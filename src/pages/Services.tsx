@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
-import { ArrowRight, Brain, Cpu, LineChart, Zap, CheckCircle } from "lucide-react";
+import { ArrowRight, Brain, Cpu, LineChart, Zap, ChevronRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
@@ -10,6 +10,7 @@ import { SectionHeader } from "@/components/SectionHeader";
 const services = [
   {
     id: "strategy",
+    slug: "strategy-advisory",
     icon: LineChart,
     title: "Strategy & Advisory",
     subtitle: "Executive guidance for complex decisions",
@@ -24,6 +25,7 @@ const services = [
   },
   {
     id: "technology",
+    slug: "technology-systems",
     icon: Cpu,
     title: "Technology & Systems",
     subtitle: "Architecture that scales with ambition",
@@ -38,6 +40,7 @@ const services = [
   },
   {
     id: "ai",
+    slug: "ai-automation",
     icon: Brain,
     title: "AI & Automation",
     subtitle: "Intelligence applied with precision",
@@ -52,6 +55,7 @@ const services = [
   },
   {
     id: "transformation",
+    slug: "digital-transformation",
     icon: Zap,
     title: "Digital Transformation",
     subtitle: "Change that creates lasting value",
@@ -117,7 +121,7 @@ export default function Services() {
       {/* Services Grid */}
       <section className="py-24 lg:py-32">
         <div className="container mx-auto px-6 lg:px-8">
-          <div className="space-y-24">
+          <div className="space-y-16">
             {services.map((service, index) => (
               <motion.div 
                 key={service.id}
@@ -128,59 +132,62 @@ export default function Services() {
                 transition={{ duration: 0.6 }}
                 viewport={{ once: true, margin: "-100px" }}
               >
-                <div className={`grid lg:grid-cols-2 gap-12 lg:gap-16 items-start ${index % 2 === 1 ? 'lg:flex-row-reverse' : ''}`}>
-                  <div className={index % 2 === 1 ? 'lg:order-2' : ''}>
-                    <motion.div 
-                      className="inline-flex p-4 rounded-xl bg-gradient-to-br from-primary/20 to-primary/5 text-primary border border-primary/20 mb-6"
-                      whileHover={{ scale: 1.1, rotate: 5 }}
-                      transition={{ type: "spring", stiffness: 400 }}
-                    >
-                      <service.icon className="h-8 w-8" />
-                    </motion.div>
-                    <h2 className="font-heading text-3xl md:text-4xl font-bold text-foreground mb-4">
-                      {service.title}
-                    </h2>
-                    <p className="text-xl text-primary mb-6">
-                      {service.subtitle}
-                    </p>
-                    <p className="text-muted-foreground leading-relaxed mb-8">
-                      {service.description}
-                    </p>
-                    <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
-                      <Button variant="hero-outline" size="lg" asChild>
-                        <Link to="/contact">
-                          Discuss Your Needs
-                          <ArrowRight className="ml-2 h-4 w-4" />
-                        </Link>
-                      </Button>
-                    </motion.div>
+                <Link 
+                  to={`/services/${service.slug}`}
+                  className="block group"
+                >
+                  <div className="glass-card rounded-2xl p-8 lg:p-12 transition-all duration-500 hover:shadow-glow hover:border-primary/30">
+                    <div className="grid lg:grid-cols-3 gap-8 items-start">
+                      <div className="lg:col-span-2">
+                        <div className="flex items-start gap-6">
+                          <motion.div 
+                            className="p-4 rounded-xl bg-gradient-to-br from-primary/20 to-primary/5 text-primary border border-primary/20 flex-shrink-0"
+                            whileHover={{ scale: 1.1, rotate: 5 }}
+                            transition={{ type: "spring", stiffness: 400 }}
+                          >
+                            <service.icon className="h-8 w-8" />
+                          </motion.div>
+                          <div className="flex-1">
+                            <h2 className="font-heading text-2xl md:text-3xl font-bold text-foreground mb-2 group-hover:text-primary transition-colors">
+                              {service.title}
+                            </h2>
+                            <p className="text-lg text-primary mb-4">
+                              {service.subtitle}
+                            </p>
+                            <p className="text-muted-foreground leading-relaxed">
+                              {service.description}
+                            </p>
+                          </div>
+                        </div>
+                      </div>
+                      
+                      <div className="flex flex-col gap-4">
+                        <h4 className="font-heading font-semibold text-sm text-muted-foreground uppercase tracking-wider">
+                          Key Capabilities
+                        </h4>
+                        <ul className="space-y-2">
+                          {service.capabilities.slice(0, 4).map((capability) => (
+                            <li 
+                              key={capability} 
+                              className="flex items-center gap-2 text-sm text-muted-foreground"
+                            >
+                              <div className="w-1.5 h-1.5 rounded-full bg-primary/50" />
+                              {capability}
+                            </li>
+                          ))}
+                        </ul>
+                        <div className="mt-4 flex items-center text-primary font-medium group-hover:gap-3 transition-all">
+                          <span>Explore service</span>
+                          <ChevronRight className="h-4 w-4 ml-1 group-hover:translate-x-1 transition-transform" />
+                        </div>
+                      </div>
+                    </div>
                   </div>
-                  
-                  <div className={`glass-card rounded-2xl p-8 ${index % 2 === 1 ? 'lg:order-1' : ''}`}>
-                    <h4 className="font-heading font-semibold text-foreground mb-6">
-                      Key Capabilities
-                    </h4>
-                    <ul className="space-y-4">
-                      {service.capabilities.map((capability, capIndex) => (
-                        <motion.li 
-                          key={capability} 
-                          className="flex items-start gap-3"
-                          initial={{ opacity: 0, x: 20 }}
-                          whileInView={{ opacity: 1, x: 0 }}
-                          transition={{ delay: capIndex * 0.1, duration: 0.4 }}
-                          viewport={{ once: true }}
-                        >
-                          <CheckCircle className="h-5 w-5 text-primary mt-0.5 flex-shrink-0" />
-                          <span className="text-muted-foreground">{capability}</span>
-                        </motion.li>
-                      ))}
-                    </ul>
-                  </div>
-                </div>
+                </Link>
                 
                 {index < services.length - 1 && (
                   <motion.div 
-                    className="mt-24 h-px bg-gradient-to-r from-transparent via-border to-transparent"
+                    className="mt-16 h-px bg-gradient-to-r from-transparent via-border to-transparent"
                     initial={{ scaleX: 0 }}
                     whileInView={{ scaleX: 1 }}
                     transition={{ duration: 0.8 }}

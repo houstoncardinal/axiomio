@@ -6,6 +6,8 @@ import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
 import { GridBackground } from "@/components/GridBackground";
 import { SectionHeader } from "@/components/SectionHeader";
+import { SEOHead } from "@/components/SEOHead";
+import { createBreadcrumbSchema, aiAutomationSchema, organizationSchema } from "@/lib/seo-schemas";
 
 const offerings = [
   {
@@ -100,13 +102,31 @@ const process = [
   },
 ];
 
+const breadcrumbSchema = createBreadcrumbSchema([
+  { name: "Home", url: "https://axiomio.com/" },
+  { name: "Services", url: "https://axiomio.com/services" },
+  { name: "AI & Automation", url: "https://axiomio.com/services/ai-automation" },
+]);
+
+const pageSchema = {
+  "@context": "https://schema.org",
+  "@graph": [breadcrumbSchema, aiAutomationSchema, organizationSchema],
+};
+
 export default function AIAutomation() {
   return (
-    <div className="min-h-screen bg-background overflow-hidden">
+    <main className="min-h-screen bg-background overflow-hidden">
+      <SEOHead
+        title="AI & Automation Services | Machine Learning & MLOps | Axiomio"
+        description="Enterprise AI implementation, machine learning solutions, intelligent process automation, and MLOps consulting. Deploy AI that delivers measurable ROI for Fortune 500 companies."
+        keywords="AI consulting, machine learning consulting, MLOps, intelligent automation, RPA, conversational AI, computer vision, document AI, AI strategy, enterprise AI, GPT integration, LLM deployment"
+        canonicalUrl="https://axiomio.com/services/ai-automation"
+        structuredData={pageSchema}
+      />
       <Navbar />
       
       {/* Hero Section */}
-      <section className="relative pt-32 pb-24 lg:pt-40 lg:pb-32">
+      <header className="relative pt-32 pb-24 lg:pt-40 lg:pb-32" role="banner">
         <GridBackground />
         <div className="container relative z-10 mx-auto px-6 lg:px-8">
           <motion.div
@@ -172,7 +192,7 @@ export default function AIAutomation() {
             </motion.div>
           </motion.div>
         </div>
-      </section>
+      </header>
 
       {/* Overview Section */}
       <section className="py-24 lg:py-32 bg-gradient-to-b from-card/50 to-background">
@@ -455,6 +475,6 @@ export default function AIAutomation() {
       </section>
 
       <Footer />
-    </div>
+    </main>
   );
 }

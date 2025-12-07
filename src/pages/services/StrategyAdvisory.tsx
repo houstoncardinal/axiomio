@@ -6,6 +6,8 @@ import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
 import { GridBackground } from "@/components/GridBackground";
 import { SectionHeader } from "@/components/SectionHeader";
+import { SEOHead } from "@/components/SEOHead";
+import { createBreadcrumbSchema, strategyAdvisorySchema, organizationSchema } from "@/lib/seo-schemas";
 
 const offerings = [
   {
@@ -81,13 +83,31 @@ const useCases = [
   },
 ];
 
+const breadcrumbSchema = createBreadcrumbSchema([
+  { name: "Home", url: "https://axiomio.com/" },
+  { name: "Services", url: "https://axiomio.com/services" },
+  { name: "Strategy & Advisory", url: "https://axiomio.com/services/strategy-advisory" },
+]);
+
+const pageSchema = {
+  "@context": "https://schema.org",
+  "@graph": [breadcrumbSchema, strategyAdvisorySchema, organizationSchema],
+};
+
 export default function StrategyAdvisory() {
   return (
-    <div className="min-h-screen bg-background overflow-hidden">
+    <main className="min-h-screen bg-background overflow-hidden">
+      <SEOHead
+        title="Strategy & Advisory Services | Executive Consulting | Axiomio"
+        description="Executive-level strategic guidance for Fortune 500 companies. Strategic roadmap development, M&A due diligence, organizational design, and investment thesis development. Outperform Deloitte and McKinsey."
+        keywords="strategy consulting, executive advisory, strategic planning, M&A consulting, organizational design, investment thesis, competitive analysis, business strategy, management consulting, enterprise strategy"
+        canonicalUrl="https://axiomio.com/services/strategy-advisory"
+        structuredData={pageSchema}
+      />
       <Navbar />
       
       {/* Hero Section */}
-      <section className="relative pt-32 pb-24 lg:pt-40 lg:pb-32">
+      <header className="relative pt-32 pb-24 lg:pt-40 lg:pb-32" role="banner">
         <GridBackground />
         <div className="container relative z-10 mx-auto px-6 lg:px-8">
           <motion.div
@@ -153,7 +173,7 @@ export default function StrategyAdvisory() {
             </motion.div>
           </motion.div>
         </div>
-      </section>
+      </header>
 
       {/* Overview Section */}
       <section className="py-24 lg:py-32 bg-gradient-to-b from-card/50 to-background">
@@ -397,6 +417,6 @@ export default function StrategyAdvisory() {
       </section>
 
       <Footer />
-    </div>
+    </main>
   );
 }

@@ -304,13 +304,23 @@ export const analyzeInternalLinks = (): { total: number; broken: number; externa
 
 // Page speed insights
 export const getPageSpeedMetrics = (): Record<string, number> => {
-  const timing = performance.timing;
+  if (typeof window === 'undefined' || typeof performance === 'undefined') {
+    return { dns: 0, tcp: 0, ttfb: 0, domLoaded: 0, fullyLoaded: 0 };
+  }
   
-  return {
-    dns: timing.domainLookupEnd - timing.domainLookupStart,
-    tcp: timing.connectEnd - timing.connectStart,
-    ttfb: timing.responseStart - timing.requestStart,
-    domLoaded: timing.domContentLoadedEventEnd - timing.navigationStart,
-    fullyLoaded: timing.loadEventEnd - timing.navigationStart,
-  };
+  // Use modern Navigation Timing API Level 2
+  const entries = performance.getEntriesByType('navigation') as PerformanceNavigationTiming[];
+  
+  if (entries.length > 0) {
+    const timing = entries[0];
+    return {
+      dns: Math.round(timing.domainLookupEnd - timing.domainLookupStart),
+      tcp: Math.round(timing.connectEnd - timing.connectStart),
+      ttfb: Math.round(timing.responseStart - timing.requestStart),
+      domLoaded: Math.round(timing.domContentLoadedEventEnd - timing.startTime),
+      fullyLoaded: Math.round(timing.loadEventEnd - timing.startTime),
+    };
+  }
+  
+  return { dns: 0, tcp: 0, ttfb: 0, domLoaded: 0, fullyLoaded: 0 };
 };

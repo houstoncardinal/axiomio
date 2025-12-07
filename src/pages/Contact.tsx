@@ -1,12 +1,13 @@
 import { useState } from "react";
-import { ArrowRight, Mail, MapPin } from "lucide-react";
+import { motion } from "framer-motion";
+import { ArrowRight, Mail, MapPin, Shield } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
 import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
-import { HeroBackground } from "@/components/HeroBackground";
+import { GridBackground } from "@/components/GridBackground";
 import { useToast } from "@/hooks/use-toast";
 
 export default function Contact() {
@@ -17,7 +18,6 @@ export default function Contact() {
     e.preventDefault();
     setIsSubmitting(true);
     
-    // Simulate form submission
     await new Promise(resolve => setTimeout(resolve, 1000));
     
     toast({
@@ -30,28 +30,49 @@ export default function Contact() {
   };
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-background overflow-hidden">
       <Navbar />
       
       {/* Hero Section */}
       <section className="relative pt-32 pb-24 lg:pt-40 lg:pb-32">
-        <HeroBackground />
+        <GridBackground />
         <div className="container relative z-10 mx-auto px-6 lg:px-8">
-          <div className="max-w-4xl">
-            <span className="inline-block text-sm font-medium text-primary uppercase tracking-wider mb-6 fade-up">
+          <motion.div 
+            className="max-w-4xl"
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+          >
+            <motion.span 
+              className="inline-flex items-center gap-2 text-sm font-medium text-primary uppercase tracking-wider mb-6 px-4 py-2 rounded-full border border-primary/20 bg-primary/5"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.1, duration: 0.5 }}
+            >
+              <span className="w-2 h-2 bg-primary rounded-full animate-pulse" />
               Contact
-            </span>
+            </motion.span>
             
-            <h1 className="font-heading text-4xl md:text-5xl lg:text-6xl font-bold text-foreground leading-[1.1] mb-8 fade-up-delay-1">
+            <motion.h1 
+              className="font-heading text-4xl md:text-5xl lg:text-6xl font-bold text-foreground leading-[1.1] mb-8"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.2, duration: 0.6 }}
+            >
               Let's discuss what's{" "}
               <span className="text-gradient">possible</span>
-            </h1>
+            </motion.h1>
             
-            <p className="text-xl md:text-2xl text-muted-foreground leading-relaxed max-w-2xl fade-up-delay-2">
+            <motion.p 
+              className="text-xl md:text-2xl text-muted-foreground leading-relaxed max-w-2xl"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.3, duration: 0.6 }}
+            >
               Whether you're facing a complex challenge or exploring new opportunities, 
               we're here to help you navigate what's next.
-            </p>
-          </div>
+            </motion.p>
+          </motion.div>
         </div>
       </section>
 
@@ -60,7 +81,13 @@ export default function Contact() {
         <div className="container mx-auto px-6 lg:px-8">
           <div className="grid lg:grid-cols-2 gap-16">
             {/* Contact Form */}
-            <div className="glass-card rounded-2xl p-8 lg:p-12">
+            <motion.div 
+              className="glass-card rounded-2xl p-8 lg:p-12"
+              initial={{ opacity: 0, x: -30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.6 }}
+              viewport={{ once: true }}
+            >
               <h2 className="font-heading text-2xl font-bold text-foreground mb-2">
                 Start a conversation
               </h2>
@@ -76,7 +103,7 @@ export default function Contact() {
                       id="firstName" 
                       placeholder="John" 
                       required 
-                      className="bg-muted/50 border-border focus:border-primary"
+                      className="bg-muted/50 border-border focus:border-primary transition-colors"
                     />
                   </div>
                   <div className="space-y-2">
@@ -85,7 +112,7 @@ export default function Contact() {
                       id="lastName" 
                       placeholder="Smith" 
                       required 
-                      className="bg-muted/50 border-border focus:border-primary"
+                      className="bg-muted/50 border-border focus:border-primary transition-colors"
                     />
                   </div>
                 </div>
@@ -97,7 +124,7 @@ export default function Contact() {
                     type="email" 
                     placeholder="john@company.com" 
                     required 
-                    className="bg-muted/50 border-border focus:border-primary"
+                    className="bg-muted/50 border-border focus:border-primary transition-colors"
                   />
                 </div>
                 
@@ -106,7 +133,7 @@ export default function Contact() {
                   <Input 
                     id="company" 
                     placeholder="Your Organization" 
-                    className="bg-muted/50 border-border focus:border-primary"
+                    className="bg-muted/50 border-border focus:border-primary transition-colors"
                   />
                 </div>
                 
@@ -117,25 +144,33 @@ export default function Contact() {
                     placeholder="Tell us about your challenge or opportunity..."
                     required
                     rows={6}
-                    className="bg-muted/50 border-border focus:border-primary resize-none"
+                    className="bg-muted/50 border-border focus:border-primary resize-none transition-colors"
                   />
                 </div>
                 
-                <Button 
-                  type="submit" 
-                  variant="hero" 
-                  size="lg" 
-                  className="w-full"
-                  disabled={isSubmitting}
-                >
-                  {isSubmitting ? "Sending..." : "Send Message"}
-                  <ArrowRight className="ml-2 h-4 w-4" />
-                </Button>
+                <motion.div whileHover={{ scale: 1.01 }} whileTap={{ scale: 0.99 }}>
+                  <Button 
+                    type="submit" 
+                    variant="hero" 
+                    size="lg" 
+                    className="w-full"
+                    disabled={isSubmitting}
+                  >
+                    {isSubmitting ? "Sending..." : "Send Message"}
+                    <ArrowRight className="ml-2 h-4 w-4" />
+                  </Button>
+                </motion.div>
               </form>
-            </div>
+            </motion.div>
             
             {/* Contact Info */}
-            <div className="space-y-12">
+            <motion.div 
+              className="space-y-12"
+              initial={{ opacity: 0, x: 30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.6 }}
+              viewport={{ once: true }}
+            >
               <div>
                 <h3 className="font-heading text-2xl font-bold text-foreground mb-6">
                   What to expect
@@ -149,14 +184,18 @@ export default function Contact() {
                   <p>
                     Expect an initial response within 24 hours. If there's a potential 
                     fit, we'll schedule a discovery call to explore your situation in 
-                    depth and discuss how we might be able to help.
+                    depth.
                   </p>
                 </div>
               </div>
               
               <div className="space-y-6">
-                <div className="flex items-start gap-4">
-                  <div className="p-3 rounded-lg bg-primary/10 text-primary">
+                <motion.div 
+                  className="flex items-start gap-4 group"
+                  whileHover={{ x: 5 }}
+                  transition={{ duration: 0.2 }}
+                >
+                  <div className="p-3 rounded-lg bg-primary/10 text-primary group-hover:bg-primary/20 transition-colors">
                     <Mail className="h-5 w-5" />
                   </div>
                   <div>
@@ -170,10 +209,14 @@ export default function Contact() {
                       hello@axiomio.com
                     </a>
                   </div>
-                </div>
+                </motion.div>
                 
-                <div className="flex items-start gap-4">
-                  <div className="p-3 rounded-lg bg-primary/10 text-primary">
+                <motion.div 
+                  className="flex items-start gap-4 group"
+                  whileHover={{ x: 5 }}
+                  transition={{ duration: 0.2 }}
+                >
+                  <div className="p-3 rounded-lg bg-primary/10 text-primary group-hover:bg-primary/20 transition-colors">
                     <MapPin className="h-5 w-5" />
                   </div>
                   <div>
@@ -184,18 +227,22 @@ export default function Contact() {
                       Global reach, based in major technology hubs
                     </p>
                   </div>
-                </div>
+                </motion.div>
               </div>
               
-              <div className="glass-card rounded-xl p-6">
+              <motion.div 
+                className="glass-card rounded-xl p-6 flex items-start gap-4"
+                whileHover={{ scale: 1.02 }}
+                transition={{ duration: 0.2 }}
+              >
+                <Shield className="h-5 w-5 text-primary flex-shrink-0 mt-0.5" />
                 <p className="text-muted-foreground text-sm">
                   <strong className="text-foreground">Confidentiality assured.</strong>{" "}
                   All conversations are treated with discretion. We understand the 
-                  sensitivity of strategic discussions and maintain appropriate 
-                  confidentiality throughout our engagements.
+                  sensitivity of strategic discussions.
                 </p>
-              </div>
-            </div>
+              </motion.div>
+            </motion.div>
           </div>
         </div>
       </section>

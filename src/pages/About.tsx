@@ -1,9 +1,10 @@
 import { Link } from "react-router-dom";
+import { motion } from "framer-motion";
 import { ArrowRight, CheckCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
-import { HeroBackground } from "@/components/HeroBackground";
+import { GridBackground } from "@/components/GridBackground";
 import { SectionHeader } from "@/components/SectionHeader";
 
 const values = [
@@ -36,37 +37,63 @@ const principles = [
 
 export default function About() {
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-background overflow-hidden">
       <Navbar />
       
       {/* Hero Section */}
       <section className="relative pt-32 pb-24 lg:pt-40 lg:pb-32">
-        <HeroBackground />
+        <GridBackground />
         <div className="container relative z-10 mx-auto px-6 lg:px-8">
-          <div className="max-w-4xl">
-            <span className="inline-block text-sm font-medium text-primary uppercase tracking-wider mb-6 fade-up">
+          <motion.div 
+            className="max-w-4xl"
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+          >
+            <motion.span 
+              className="inline-flex items-center gap-2 text-sm font-medium text-primary uppercase tracking-wider mb-6 px-4 py-2 rounded-full border border-primary/20 bg-primary/5"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.1, duration: 0.5 }}
+            >
+              <span className="w-2 h-2 bg-primary rounded-full animate-pulse" />
               About Axiomio
-            </span>
+            </motion.span>
             
-            <h1 className="font-heading text-4xl md:text-5xl lg:text-6xl font-bold text-foreground leading-[1.1] mb-8 fade-up-delay-1">
+            <motion.h1 
+              className="font-heading text-4xl md:text-5xl lg:text-6xl font-bold text-foreground leading-[1.1] mb-8"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.2, duration: 0.6 }}
+            >
               Built for the{" "}
               <span className="text-gradient">long game</span>
-            </h1>
+            </motion.h1>
             
-            <p className="text-xl md:text-2xl text-muted-foreground leading-relaxed max-w-2xl fade-up-delay-2">
+            <motion.p 
+              className="text-xl md:text-2xl text-muted-foreground leading-relaxed max-w-2xl"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.3, duration: 0.6 }}
+            >
               Axiomio exists to help ambitious organizations solve their most 
               consequential challenges—with the precision, depth, and integrity 
               that complex problems demand.
-            </p>
-          </div>
+            </motion.p>
+          </motion.div>
         </div>
       </section>
 
       {/* Vision Section */}
-      <section className="py-24 lg:py-32 bg-card/50">
+      <section className="py-24 lg:py-32 bg-gradient-to-b from-card/50 to-background">
         <div className="container mx-auto px-6 lg:px-8">
           <div className="grid lg:grid-cols-2 gap-16 items-center">
-            <div>
+            <motion.div
+              initial={{ opacity: 0, x: -30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.6 }}
+              viewport={{ once: true }}
+            >
               <SectionHeader
                 label="Our Vision"
                 title="Technology that serves strategy"
@@ -89,21 +116,34 @@ export default function About() {
                   to lead rather than follow.
                 </p>
               </div>
-            </div>
+            </motion.div>
             
-            <div className="glass-card rounded-2xl p-8 lg:p-12">
+            <motion.div 
+              className="glass-card rounded-2xl p-8 lg:p-12"
+              initial={{ opacity: 0, x: 30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.6 }}
+              viewport={{ once: true }}
+            >
               <h3 className="font-heading text-2xl font-semibold text-foreground mb-6">
                 How We Operate
               </h3>
               <ul className="space-y-4">
-                {principles.map((principle) => (
-                  <li key={principle} className="flex items-start gap-3">
+                {principles.map((principle, index) => (
+                  <motion.li 
+                    key={principle} 
+                    className="flex items-start gap-3"
+                    initial={{ opacity: 0, x: 20 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    transition={{ delay: index * 0.1, duration: 0.4 }}
+                    viewport={{ once: true }}
+                  >
                     <CheckCircle className="h-5 w-5 text-primary mt-0.5 flex-shrink-0" />
                     <span className="text-muted-foreground">{principle}</span>
-                  </li>
+                  </motion.li>
                 ))}
               </ul>
-            </div>
+            </motion.div>
           </div>
         </div>
       </section>
@@ -111,24 +151,36 @@ export default function About() {
       {/* Values Section */}
       <section className="py-24 lg:py-32">
         <div className="container mx-auto px-6 lg:px-8">
-          <SectionHeader
-            label="Our Values"
-            title="Principles that guide every decision"
-            description="These aren't aspirational statements—they're operational commitments that shape how we work, who we hire, and the outcomes we pursue."
-          />
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            viewport={{ once: true }}
+          >
+            <SectionHeader
+              label="Our Values"
+              title="Principles that guide every decision"
+              description="These aren't aspirational statements—they're operational commitments that shape how we work, who we hire, and the outcomes we pursue."
+            />
+          </motion.div>
           
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mt-16">
             {values.map((value, index) => (
-              <div 
+              <motion.div 
                 key={value.title}
-                className="glass-card rounded-2xl p-8 transition-all duration-500 hover:shadow-glow"
+                className="glass-card rounded-2xl p-8 transition-all duration-500 hover:shadow-glow group"
+                initial={{ opacity: 0, y: 40 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ delay: index * 0.1, duration: 0.5 }}
+                viewport={{ once: true }}
+                whileHover={{ y: -5 }}
               >
                 <div className="flex items-start gap-4">
-                  <span className="text-5xl font-heading font-bold text-primary/20">
+                  <span className="text-5xl font-heading font-bold text-primary/20 group-hover:text-primary/40 transition-colors duration-300">
                     {String(index + 1).padStart(2, '0')}
                   </span>
                   <div>
-                    <h3 className="font-heading text-xl font-semibold text-foreground mb-3">
+                    <h3 className="font-heading text-xl font-semibold text-foreground mb-3 group-hover:text-primary transition-colors duration-300">
                       {value.title}
                     </h3>
                     <p className="text-muted-foreground leading-relaxed">
@@ -136,16 +188,22 @@ export default function About() {
                     </p>
                   </div>
                 </div>
-              </div>
+              </motion.div>
             ))}
           </div>
         </div>
       </section>
 
       {/* CTA Section */}
-      <section className="py-24 lg:py-32 bg-card/50">
+      <section className="py-24 lg:py-32 bg-gradient-to-b from-card/50 to-background">
         <div className="container mx-auto px-6 lg:px-8">
-          <div className="text-center max-w-3xl mx-auto">
+          <motion.div 
+            className="text-center max-w-3xl mx-auto"
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            viewport={{ once: true }}
+          >
             <h2 className="font-heading text-3xl md:text-4xl font-bold text-foreground mb-6">
               Let's build something that matters
             </h2>
@@ -153,13 +211,15 @@ export default function About() {
               Whether you're navigating a complex transformation or exploring what's possible, 
               we'd welcome the conversation.
             </p>
-            <Button variant="hero" size="xl" asChild>
-              <Link to="/contact">
-                Start a Conversation
-                <ArrowRight className="ml-2 h-5 w-5" />
-              </Link>
-            </Button>
-          </div>
+            <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
+              <Button variant="hero" size="xl" asChild>
+                <Link to="/contact">
+                  Start a Conversation
+                  <ArrowRight className="ml-2 h-5 w-5" />
+                </Link>
+              </Button>
+            </motion.div>
+          </motion.div>
         </div>
       </section>
 

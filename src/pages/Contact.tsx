@@ -10,31 +10,8 @@ import { Footer } from "@/components/Footer";
 import { GridBackground } from "@/components/GridBackground";
 import { useToast } from "@/hooks/use-toast";
 import { SEOHead } from "@/components/SEOHead";
-import { createBreadcrumbSchema } from "@/lib/seo-schemas";
+import { contactPageSchema } from "@/lib/seo-schemas-enhanced";
 
-const breadcrumbSchema = createBreadcrumbSchema([
-  { name: "Home", url: "https://axiomio.com/" },
-  { name: "Contact", url: "https://axiomio.com/contact" },
-]);
-
-const contactPageSchema = {
-  "@context": "https://schema.org",
-  "@type": "ContactPage",
-  name: "Contact Axiomio",
-  description: "Contact Axiomio for enterprise technology consulting, digital transformation, and AI automation services.",
-  url: "https://axiomio.com/contact",
-  mainEntity: {
-    "@type": "Organization",
-    name: "Axiomio",
-    email: "hello@axiomio.com",
-    contactPoint: {
-      "@type": "ContactPoint",
-      contactType: "sales",
-      email: "hello@axiomio.com",
-      availableLanguage: ["English"],
-    },
-  },
-};
 
 export default function Contact() {
   const { toast } = useToast();
@@ -62,7 +39,8 @@ export default function Contact() {
         description="Contact Axiomio for enterprise technology consulting, digital transformation, AI automation, and XOPS360 platform inquiries. Schedule a discovery call with our experts."
         keywords="contact Axiomio, technology consulting inquiry, digital transformation consultation, AI consulting contact, enterprise consulting inquiry, schedule consultation"
         canonicalUrl="https://axiomio.com/contact"
-        structuredData={{ "@context": "https://schema.org", "@graph": [breadcrumbSchema, contactPageSchema] }}
+        pageType="contact"
+        structuredData={contactPageSchema}
       />
       <Navbar />
       

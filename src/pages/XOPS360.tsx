@@ -30,7 +30,7 @@ import { PremiumCard } from '@/components/PremiumCard';
 import { GlowingOrb } from '@/components/GlowingOrb';
 import { ParticleField } from '@/components/ParticleField';
 import { SEOHead } from '@/components/SEOHead';
-import { xops360Schema } from '@/lib/seo-schemas';
+import { xops360PageSchema } from '@/lib/seo-schemas-enhanced';
 
 const capabilities = [
   {
@@ -126,7 +126,7 @@ export default function XOPS360() {
         description="XOPS360 unifies DevOps, DataOps, MLOps & AIOps into one intelligent automation platform. Reduce incidents by 60%, cut cloud costs by 35%, and scale operations without scaling headcount."
         keywords="XOPS360, CloudOps automation, DevOps platform, AIOps, MLOps, DataOps, cloud automation, SRE automation, incident management, cloud cost optimization, FinOps, SecOps, managed services platform"
         canonicalUrl="https://axiomio.com/xops360"
-        structuredData={xops360Schema}
+        structuredData={xops360PageSchema}
       />
       <Navbar />
 

@@ -110,47 +110,6 @@ export default function About() {
           </motion.div>
         </div>
       </header>
-        <GridBackground />
-        <div className="container relative z-10 mx-auto px-6 lg:px-8">
-          <motion.div 
-            className="max-w-4xl"
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-          >
-            <motion.span 
-              className="inline-flex items-center gap-2 text-sm font-medium text-primary uppercase tracking-wider mb-6 px-4 py-2 rounded-full border border-primary/20 bg-primary/5"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.1, duration: 0.5 }}
-            >
-              <span className="w-2 h-2 bg-primary rounded-full animate-pulse" />
-              About Axiomio
-            </motion.span>
-            
-            <motion.h1 
-              className="font-heading text-4xl md:text-5xl lg:text-6xl font-bold text-foreground leading-[1.1] mb-8"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.2, duration: 0.6 }}
-            >
-              Built for the{" "}
-              <span className="text-gradient">long game</span>
-            </motion.h1>
-            
-            <motion.p 
-              className="text-xl md:text-2xl text-muted-foreground leading-relaxed max-w-2xl"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.3, duration: 0.6 }}
-            >
-              Axiomio exists to help ambitious organizations solve their most 
-              consequential challenges—with the precision, depth, and integrity 
-              that complex problems demand.
-            </motion.p>
-          </motion.div>
-        </div>
-      </header>
 
       {/* Vision Section */}
       <section className="py-24 lg:py-32 bg-gradient-to-b from-card/50 to-background">

@@ -6,6 +6,8 @@ import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
 import { GridBackground } from "@/components/GridBackground";
 import { SectionHeader } from "@/components/SectionHeader";
+import { SEOHead } from "@/components/SEOHead";
+import { createBreadcrumbSchema, technologySystemsSchema, organizationSchema } from "@/lib/seo-schemas";
 
 const offerings = [
   {
@@ -92,13 +94,31 @@ const useCases = [
   },
 ];
 
+const breadcrumbSchema = createBreadcrumbSchema([
+  { name: "Home", url: "https://axiomio.com/" },
+  { name: "Services", url: "https://axiomio.com/services" },
+  { name: "Technology & Systems", url: "https://axiomio.com/services/technology-systems" },
+]);
+
+const pageSchema = {
+  "@context": "https://schema.org",
+  "@graph": [breadcrumbSchema, technologySystemsSchema, organizationSchema],
+};
+
 export default function TechnologySystems() {
   return (
-    <div className="min-h-screen bg-background overflow-hidden">
+    <main className="min-h-screen bg-background overflow-hidden">
+      <SEOHead
+        title="Technology & Systems Services | Enterprise Architecture | Axiomio"
+        description="Enterprise architecture, cloud infrastructure (AWS, Azure, GCP), system integration, and platform modernization. Build scalable, secure technology systems for Fortune 500 enterprises."
+        keywords="enterprise architecture, cloud infrastructure, AWS consulting, Azure consulting, system integration, platform modernization, microservices, DevOps, cloud migration, technical due diligence"
+        canonicalUrl="https://axiomio.com/services/technology-systems"
+        structuredData={pageSchema}
+      />
       <Navbar />
       
       {/* Hero Section */}
-      <section className="relative pt-32 pb-24 lg:pt-40 lg:pb-32">
+      <header className="relative pt-32 pb-24 lg:pt-40 lg:pb-32" role="banner">
         <GridBackground />
         <div className="container relative z-10 mx-auto px-6 lg:px-8">
           <motion.div
@@ -164,7 +184,7 @@ export default function TechnologySystems() {
             </motion.div>
           </motion.div>
         </div>
-      </section>
+      </header>
 
       {/* Overview Section */}
       <section className="py-24 lg:py-32 bg-gradient-to-b from-card/50 to-background">
@@ -395,6 +415,6 @@ export default function TechnologySystems() {
       </section>
 
       <Footer />
-    </div>
+    </main>
   );
 }

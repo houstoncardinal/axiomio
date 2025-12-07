@@ -6,6 +6,8 @@ import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
 import { GridBackground } from "@/components/GridBackground";
 import { SectionHeader } from "@/components/SectionHeader";
+import { SEOHead } from "@/components/SEOHead";
+import { createBreadcrumbSchema, digitalTransformationSchema, organizationSchema } from "@/lib/seo-schemas";
 
 const offerings = [
   {
@@ -109,13 +111,31 @@ const phases = [
   },
 ];
 
+const breadcrumbSchema = createBreadcrumbSchema([
+  { name: "Home", url: "https://axiomio.com/" },
+  { name: "Services", url: "https://axiomio.com/services" },
+  { name: "Digital Transformation", url: "https://axiomio.com/services/digital-transformation" },
+]);
+
+const pageSchema = {
+  "@context": "https://schema.org",
+  "@graph": [breadcrumbSchema, digitalTransformationSchema, organizationSchema],
+};
+
 export default function DigitalTransformation() {
   return (
-    <div className="min-h-screen bg-background overflow-hidden">
+    <main className="min-h-screen bg-background overflow-hidden">
+      <SEOHead
+        title="Digital Transformation Services | Change Management | Axiomio"
+        description="End-to-end digital transformation consulting with change management, process redesign, and capability building. Navigate complex organizational change for Fortune 500 enterprises."
+        keywords="digital transformation consulting, change management, organizational transformation, process redesign, capability building, technology adoption, enterprise transformation, business transformation"
+        canonicalUrl="https://axiomio.com/services/digital-transformation"
+        structuredData={pageSchema}
+      />
       <Navbar />
       
       {/* Hero Section */}
-      <section className="relative pt-32 pb-24 lg:pt-40 lg:pb-32">
+      <header className="relative pt-32 pb-24 lg:pt-40 lg:pb-32" role="banner">
         <GridBackground />
         <div className="container relative z-10 mx-auto px-6 lg:px-8">
           <motion.div
@@ -181,7 +201,7 @@ export default function DigitalTransformation() {
             </motion.div>
           </motion.div>
         </div>
-      </section>
+      </header>
 
       {/* Overview Section */}
       <section className="py-24 lg:py-32 bg-gradient-to-b from-card/50 to-background">
@@ -468,6 +488,6 @@ export default function DigitalTransformation() {
       </section>
 
       <Footer />
-    </div>
+    </main>
   );
 }

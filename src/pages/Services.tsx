@@ -7,7 +7,7 @@ import { Footer } from "@/components/Footer";
 import { GridBackground } from "@/components/GridBackground";
 import { SectionHeader } from "@/components/SectionHeader";
 import { SEOHead } from "@/components/SEOHead";
-import { createBreadcrumbSchema, professionalServiceSchema } from "@/lib/seo-schemas";
+import { servicesPageSchema } from "@/lib/seo-schemas-enhanced";
 
 const services = [
   {
@@ -72,11 +72,6 @@ const services = [
   },
 ];
 
-const breadcrumbSchema = createBreadcrumbSchema([
-  { name: "Home", url: "https://axiomio.com/" },
-  { name: "Services", url: "https://axiomio.com/services" },
-]);
-
 export default function Services() {
   return (
     <main className="min-h-screen bg-background overflow-hidden">
@@ -85,7 +80,8 @@ export default function Services() {
         description="Axiomio's enterprise consulting services: Strategy & Advisory, Technology & Systems, AI & Automation, and Digital Transformation. XOPS360 platform for intelligent operations. Trusted by Fortune 500."
         keywords="enterprise consulting services, technology consulting, strategy consulting, AI consulting, digital transformation services, enterprise architecture, DevOps consulting, MLOps, AIOps, cloud consulting, IT strategy"
         canonicalUrl="https://axiomio.com/services"
-        structuredData={{ "@context": "https://schema.org", "@graph": [breadcrumbSchema, professionalServiceSchema] }}
+        pageType="services"
+        structuredData={servicesPageSchema}
       />
       <Navbar />
       

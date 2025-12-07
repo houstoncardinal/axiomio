@@ -7,7 +7,7 @@ import { Footer } from "@/components/Footer";
 import { GridBackground } from "@/components/GridBackground";
 import { SectionHeader } from "@/components/SectionHeader";
 import { SEOHead } from "@/components/SEOHead";
-import { createBreadcrumbSchema } from "@/lib/seo-schemas";
+import { aboutPageSchema } from "@/lib/seo-schemas-enhanced";
 
 const values = [
   {
@@ -37,24 +37,6 @@ const principles = [
   "Communicate with precision and transparency",
 ];
 
-const breadcrumbSchema = createBreadcrumbSchema([
-  { name: "Home", url: "https://axiomio.com/" },
-  { name: "About", url: "https://axiomio.com/about" },
-]);
-
-const aboutPageSchema = {
-  "@context": "https://schema.org",
-  "@type": "AboutPage",
-  name: "About Axiomio",
-  description: "Learn about Axiomio's vision, values, and approach to enterprise technology consulting and digital transformation.",
-  url: "https://axiomio.com/about",
-  mainEntity: {
-    "@type": "Organization",
-    name: "Axiomio",
-    description: "A global technology and strategy consulting firm specializing in AI automation, digital transformation, and the XOPS360 platform.",
-  },
-};
-
 export default function About() {
   return (
     <main className="min-h-screen bg-background overflow-hidden">
@@ -63,7 +45,8 @@ export default function About() {
         description="Axiomio is a global technology and strategy consulting firm. Learn about our vision, values, and precision-driven approach to digital transformation and AI implementation for Fortune 500 companies."
         keywords="about Axiomio, technology consulting firm, strategy consulting company, digital transformation consulting, enterprise consulting, AI consulting firm, management consulting"
         canonicalUrl="https://axiomio.com/about"
-        structuredData={{ "@context": "https://schema.org", "@graph": [breadcrumbSchema, aboutPageSchema] }}
+        pageType="about"
+        structuredData={aboutPageSchema}
       />
       <Navbar />
       

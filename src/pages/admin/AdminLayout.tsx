@@ -16,6 +16,7 @@ import {
   Building2,
   Link as LinkIcon,
   Briefcase,
+  Search,
 } from 'lucide-react';
 import { useAuth } from '@/contexts/AuthContext';
 import { Button } from '@/components/ui/button';
@@ -24,6 +25,7 @@ import { useState, useEffect } from 'react';
 const navItems = [
   { icon: LayoutDashboard, label: 'Dashboard', path: '/admin' },
   { icon: BarChart3, label: 'Analytics', path: '/admin/analytics' },
+  { icon: Search, label: 'SEO', path: '/admin/seo' },
   { 
     icon: Server, 
     label: 'XOPS360', 

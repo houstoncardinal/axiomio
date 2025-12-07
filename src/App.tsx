@@ -19,6 +19,7 @@ import DigitalTransformation from "./pages/services/DigitalTransformation";
 import AdminLayout from "./pages/admin/AdminLayout";
 import Dashboard from "./pages/admin/Dashboard";
 import Analytics from "./pages/admin/Analytics";
+import SEO from "./pages/admin/SEO";
 import Content from "./pages/admin/Content";
 import Users from "./pages/admin/Users";
 import Settings from "./pages/admin/Settings";
@@ -59,6 +60,7 @@ const App = () => (
               <Route path="/admin" element={<AdminLayout />}>
                 <Route index element={<Dashboard />} />
                 <Route path="analytics" element={<Analytics />} />
+                <Route path="seo" element={<SEO />} />
                 <Route path="content" element={<Content />} />
                 <Route path="users" element={<Users />} />
                 <Route path="settings" element={<Settings />} />

@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { Outlet, useNavigate, Link, useLocation } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import {
@@ -10,16 +10,36 @@ import {
   LogOut,
   ChevronLeft,
   Menu,
+  Server,
+  Target,
+  Zap,
+  Building2,
+  Link as LinkIcon,
+  Briefcase,
 } from 'lucide-react';
 import { useAuth } from '@/contexts/AuthContext';
 import { Button } from '@/components/ui/button';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 const navItems = [
   { icon: LayoutDashboard, label: 'Dashboard', path: '/admin' },
   { icon: BarChart3, label: 'Analytics', path: '/admin/analytics' },
+  { 
+    icon: Server, 
+    label: 'XOPS360', 
+    path: '/admin/xops360',
+    children: [
+      { icon: Building2, label: 'Clients', path: '/admin/xops360/clients' },
+      { icon: Server, label: 'Deployments', path: '/admin/xops360/deployments' },
+      { icon: Zap, label: 'Runbooks', path: '/admin/xops360/runbooks' },
+      { icon: LinkIcon, label: 'Integrations', path: '/admin/xops360/integrations' },
+      { icon: BarChart3, label: 'Metrics', path: '/admin/xops360/metrics' },
+    ]
+  },
+  { icon: Target, label: 'Leads', path: '/admin/leads' },
+  { icon: Briefcase, label: 'Engagements', path: '/admin/engagements' },
+  { icon: Users, label: 'Inquiries', path: '/admin/users' },
   { icon: FileText, label: 'Content', path: '/admin/content' },
-  { icon: Users, label: 'Users', path: '/admin/users' },
   { icon: Settings, label: 'Settings', path: '/admin/settings' },
 ];
 
@@ -29,6 +49,7 @@ const AdminLayout: React.FC = () => {
   const location = useLocation();
   const [collapsed, setCollapsed] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
+  const [expandedGroups, setExpandedGroups] = useState<string[]>(['XOPS360']);
 
   useEffect(() => {
     if (!loading && !user) {
@@ -49,6 +70,20 @@ const AdminLayout: React.FC = () => {
     navigate('/');
   };
 
+  const toggleGroup = (label: string) => {
+    setExpandedGroups((prev) =>
+      prev.includes(label) ? prev.filter((g) => g !== label) : [...prev, label]
+    );
+  };
+
+  const isActive = (path: string) => location.pathname === path;
+  const isGroupActive = (item: typeof navItems[0]) => {
+    if (item.children) {
+      return item.children.some((child) => location.pathname.startsWith(child.path));
+    }
+    return location.pathname === item.path;
+  };
+
   return (
     <div className="min-h-screen bg-background flex">
       {/* Mobile overlay */}
@@ -63,7 +98,7 @@ const AdminLayout: React.FC = () => {
       <motion.aside
         initial={false}
         animate={{ width: collapsed ? 80 : 280 }}
-        className={`fixed lg:relative z-50 h-screen glass-premium border-r border-border/30 flex flex-col transition-all ${
+        className={`fixed lg:relative z-50 h-screen glass-premium border-r border-border/30 flex flex-col transition-all overflow-y-auto ${
           mobileOpen ? 'left-0' : '-left-full lg:left-0'
         }`}
       >
@@ -78,32 +113,72 @@ const AdminLayout: React.FC = () => {
             onClick={() => setCollapsed(!collapsed)}
             className="w-8 h-8 rounded-lg bg-muted/50 flex items-center justify-center hover:bg-muted transition-colors hidden lg:flex"
           >
-            <ChevronLeft
-              className={`w-4 h-4 transition-transform ${collapsed ? 'rotate-180' : ''}`}
-            />
+            <ChevronLeft className={`w-4 h-4 transition-transform ${collapsed ? 'rotate-180' : ''}`} />
           </button>
         </div>
 
         {/* Navigation */}
-        <nav className="flex-1 p-4 space-y-2">
-          {navItems.map((item) => {
-            const isActive = location.pathname === item.path;
-            return (
-              <Link
-                key={item.path}
-                to={item.path}
-                onClick={() => setMobileOpen(false)}
-                className={`flex items-center gap-3 px-4 py-3 rounded-xl transition-all ${
-                  isActive
-                    ? 'bg-primary/10 text-primary border border-primary/20'
-                    : 'text-muted-foreground hover:text-foreground hover:bg-muted/50'
-                }`}
-              >
-                <item.icon className="w-5 h-5 flex-shrink-0" />
-                {!collapsed && <span className="font-medium">{item.label}</span>}
-              </Link>
-            );
-          })}
+        <nav className="flex-1 p-4 space-y-1">
+          {navItems.map((item) => (
+            <div key={item.path}>
+              {item.children ? (
+                <>
+                  <button
+                    onClick={() => !collapsed && toggleGroup(item.label)}
+                    className={`w-full flex items-center gap-3 px-4 py-3 rounded-xl transition-all ${
+                      isGroupActive(item)
+                        ? 'bg-primary/10 text-primary border border-primary/20'
+                        : 'text-muted-foreground hover:text-foreground hover:bg-muted/50'
+                    }`}
+                  >
+                    <item.icon className="w-5 h-5 flex-shrink-0" />
+                    {!collapsed && (
+                      <>
+                        <span className="font-medium flex-1 text-left">{item.label}</span>
+                        <ChevronLeft
+                          className={`w-4 h-4 transition-transform ${
+                            expandedGroups.includes(item.label) ? '-rotate-90' : 'rotate-180'
+                          }`}
+                        />
+                      </>
+                    )}
+                  </button>
+                  {!collapsed && expandedGroups.includes(item.label) && (
+                    <div className="ml-4 mt-1 space-y-1">
+                      {item.children.map((child) => (
+                        <Link
+                          key={child.path}
+                          to={child.path}
+                          onClick={() => setMobileOpen(false)}
+                          className={`flex items-center gap-3 px-4 py-2.5 rounded-lg transition-all text-sm ${
+                            isActive(child.path)
+                              ? 'bg-primary/10 text-primary'
+                              : 'text-muted-foreground hover:text-foreground hover:bg-muted/30'
+                          }`}
+                        >
+                          <child.icon className="w-4 h-4" />
+                          <span>{child.label}</span>
+                        </Link>
+                      ))}
+                    </div>
+                  )}
+                </>
+              ) : (
+                <Link
+                  to={item.path}
+                  onClick={() => setMobileOpen(false)}
+                  className={`flex items-center gap-3 px-4 py-3 rounded-xl transition-all ${
+                    isActive(item.path)
+                      ? 'bg-primary/10 text-primary border border-primary/20'
+                      : 'text-muted-foreground hover:text-foreground hover:bg-muted/50'
+                  }`}
+                >
+                  <item.icon className="w-5 h-5 flex-shrink-0" />
+                  {!collapsed && <span className="font-medium">{item.label}</span>}
+                </Link>
+              )}
+            </div>
+          ))}
         </nav>
 
         {/* User section */}
@@ -111,17 +186,13 @@ const AdminLayout: React.FC = () => {
           {!collapsed && (
             <div className="mb-4 p-3 rounded-xl bg-muted/30">
               <p className="text-sm font-medium text-foreground truncate">{user?.email}</p>
-              <p className="text-xs text-muted-foreground">
-                {isAdmin ? 'Administrator' : 'User'}
-              </p>
+              <p className="text-xs text-muted-foreground">{isAdmin ? 'Administrator' : 'User'}</p>
             </div>
           )}
           <Button
             variant="ghost"
             onClick={handleSignOut}
-            className={`w-full justify-start gap-3 text-muted-foreground hover:text-destructive ${
-              collapsed ? 'px-4' : ''
-            }`}
+            className={`w-full justify-start gap-3 text-muted-foreground hover:text-destructive ${collapsed ? 'px-4' : ''}`}
           >
             <LogOut className="w-5 h-5" />
             {!collapsed && 'Sign Out'}

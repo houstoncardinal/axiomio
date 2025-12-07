@@ -22,6 +22,13 @@ import Analytics from "./pages/admin/Analytics";
 import Content from "./pages/admin/Content";
 import Users from "./pages/admin/Users";
 import Settings from "./pages/admin/Settings";
+import Leads from "./pages/admin/Leads";
+import XOPS360Overview from "./pages/admin/xops360/Overview";
+import XOPS360Clients from "./pages/admin/xops360/Clients";
+import XOPS360Deployments from "./pages/admin/xops360/Deployments";
+import XOPS360Runbooks from "./pages/admin/xops360/Runbooks";
+import XOPS360Integrations from "./pages/admin/xops360/Integrations";
+import XOPS360Metrics from "./pages/admin/xops360/Metrics";
 import NotFound from "./pages/NotFound";
 import { ThemeSwitcher } from "./components/ThemeSwitcher";
 
@@ -55,9 +62,15 @@ const App = () => (
                 <Route path="content" element={<Content />} />
                 <Route path="users" element={<Users />} />
                 <Route path="settings" element={<Settings />} />
+                <Route path="leads" element={<Leads />} />
+                <Route path="xops360" element={<XOPS360Overview />} />
+                <Route path="xops360/clients" element={<XOPS360Clients />} />
+                <Route path="xops360/deployments" element={<XOPS360Deployments />} />
+                <Route path="xops360/runbooks" element={<XOPS360Runbooks />} />
+                <Route path="xops360/integrations" element={<XOPS360Integrations />} />
+                <Route path="xops360/metrics" element={<XOPS360Metrics />} />
               </Route>
               
-              {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
               <Route path="*" element={<NotFound />} />
             </Routes>
             <ThemeSwitcher />

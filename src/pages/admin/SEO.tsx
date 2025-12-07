@@ -8,15 +8,15 @@ import { Progress } from '@/components/ui/progress';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { supabase } from '@/integrations/supabase/client';
 
-interface AnalyticsEvent {
+type AnalyticsEvent = {
   id: string;
   event_type: string;
   page_path: string | null;
   metadata: Record<string, unknown> | null;
   created_at: string;
-}
+};
 
-const SEO = () => {
+export default function SEO() {
   const [analytics, setAnalytics] = useState<AnalyticsEvent[]>([]);
   const [loading, setLoading] = useState(true);
   const [lastRefresh, setLastRefresh] = useState(new Date());
@@ -38,7 +38,7 @@ const SEO = () => {
         setAnalytics(data as AnalyticsEvent[]);
       }
     } catch (err) {
-      console.error('Error:', err);
+      console.error('Error fetching analytics:', err);
     } finally {
       setLoading(false);
       setLastRefresh(new Date());
@@ -52,11 +52,21 @@ const SEO = () => {
 
   const coreWebVitals = useMemo(() => {
     const getAvg = (id: string) => {
-      const evts = vitalEvents.filter(e => e.metadata?.elementId === id);
+      const evts = vitalEvents.filter(e => {
+        const meta = e.metadata as Record<string, unknown> | null;
+        return meta?.elementId === id;
+      });
       if (!evts.length) return 0;
-      return evts.reduce((acc, e) => acc + (Number(e.metadata?.value) || 0), 0) / evts.length;
+      return evts.reduce((acc, e) => {
+        const meta = e.metadata as Record<string, unknown> | null;
+        return acc + (Number(meta?.value) || 0);
+      }, 0) / evts.length;
     };
-    return { fcp: Math.round(getAvg('fcp')), lcp: Math.round(getAvg('lcp')), cls: Number(getAvg('cls').toFixed(3)) };
+    return { 
+      fcp: Math.round(getAvg('fcp')), 
+      lcp: Math.round(getAvg('lcp')), 
+      cls: Number(getAvg('cls').toFixed(3)) 
+    };
   }, [vitalEvents]);
 
   const pageMetrics = useMemo(() => {
@@ -64,14 +74,20 @@ const SEO = () => {
     pageViews.forEach(e => {
       const p = e.page_path || '/';
       if (!map.has(p)) map.set(p, { views: 0, scrolls: [] });
-      map.get(p)!.views++;
+      const entry = map.get(p);
+      if (entry) entry.views++;
     });
     scrollEvents.forEach(e => {
       const p = e.page_path || '/';
-      if (map.has(p)) map.get(p)!.scrolls.push(Number(e.metadata?.depth) || 0);
+      const entry = map.get(p);
+      if (entry) {
+        const meta = e.metadata as Record<string, unknown> | null;
+        entry.scrolls.push(Number(meta?.depth) || 0);
+      }
     });
     return Array.from(map.entries()).map(([path, d]) => ({
-      path, views: d.views,
+      path, 
+      views: d.views,
       avgScroll: d.scrolls.length ? Math.round(d.scrolls.reduce((a, b) => a + b, 0) / d.scrolls.length) : 0
     })).sort((a, b) => b.views - a.views);
   }, [pageViews, scrollEvents]);
@@ -84,19 +100,24 @@ const SEO = () => {
     return Math.min(s, 100);
   }, [coreWebVitals]);
 
-  const getStatus = (m: 'fcp' | 'lcp' | 'cls', v: number) => {
-    const t = { fcp: { g: 1800, p: 3000 }, lcp: { g: 2500, p: 4000 }, cls: { g: 0.1, p: 0.25 } };
-    if (v <= t[m].g) return { l: 'Good', c: 'text-green-500', bg: 'bg-green-500/20' };
-    if (v <= t[m].p) return { l: 'Needs Work', c: 'text-yellow-500', bg: 'bg-yellow-500/20' };
-    return { l: 'Poor', c: 'text-red-500', bg: 'bg-red-500/20' };
+  const getVitalStatus = (metric: 'fcp' | 'lcp' | 'cls', value: number) => {
+    const thresholds = { 
+      fcp: { good: 1800, poor: 3000 }, 
+      lcp: { good: 2500, poor: 4000 }, 
+      cls: { good: 0.1, poor: 0.25 } 
+    };
+    const t = thresholds[metric];
+    if (value <= t.good) return { label: 'Good', color: 'text-green-500', bg: 'bg-green-500/20' };
+    if (value <= t.poor) return { label: 'Needs Work', color: 'text-yellow-500', bg: 'bg-yellow-500/20' };
+    return { label: 'Poor', color: 'text-red-500', bg: 'bg-red-500/20' };
   };
 
   const keywords = [
-    { kw: 'enterprise technology consulting', pos: 3, ch: 2, vol: 2400 },
-    { kw: 'digital transformation services', pos: 5, ch: -1, vol: 1800 },
-    { kw: 'AI automation consulting', pos: 7, ch: 4, vol: 1200 },
-    { kw: 'XOPS360 platform', pos: 1, ch: 0, vol: 320 },
-    { kw: 'cloud operations platform', pos: 12, ch: 0, vol: 890 },
+    { keyword: 'enterprise technology consulting', position: 3, change: 2, volume: 2400 },
+    { keyword: 'digital transformation services', position: 5, change: -1, volume: 1800 },
+    { keyword: 'AI automation consulting', position: 7, change: 4, volume: 1200 },
+    { keyword: 'XOPS360 platform', position: 1, change: 0, volume: 320 },
+    { keyword: 'cloud operations platform', position: 12, change: 0, volume: 890 },
   ];
 
   return (
@@ -145,7 +166,9 @@ const SEO = () => {
                   <Eye className="w-6 h-6 text-primary" />
                 </div>
               </div>
-              <p className="text-xs text-green-500 mt-4 flex items-center gap-1"><TrendingUp className="w-3 h-3" /> +12.5%</p>
+              <p className="text-xs text-green-500 mt-4 flex items-center gap-1">
+                <TrendingUp className="w-3 h-3" /> +12.5%
+              </p>
             </CardContent>
           </Card>
         </motion.div>
@@ -162,7 +185,9 @@ const SEO = () => {
                   <Zap className="w-6 h-6 text-accent-foreground" />
                 </div>
               </div>
-              <p className="text-xs text-green-500 mt-4 flex items-center gap-1"><TrendingUp className="w-3 h-3" /> +8.2%</p>
+              <p className="text-xs text-green-500 mt-4 flex items-center gap-1">
+                <TrendingUp className="w-3 h-3" /> +8.2%
+              </p>
             </CardContent>
           </Card>
         </motion.div>
@@ -179,7 +204,9 @@ const SEO = () => {
                   <Target className="w-6 h-6 text-green-500" />
                 </div>
               </div>
-              <p className="text-xs text-green-500 mt-4 flex items-center gap-1"><TrendingUp className="w-3 h-3" /> +23.1%</p>
+              <p className="text-xs text-green-500 mt-4 flex items-center gap-1">
+                <TrendingUp className="w-3 h-3" /> +23.1%
+              </p>
             </CardContent>
           </Card>
         </motion.div>
@@ -187,27 +214,42 @@ const SEO = () => {
 
       <Tabs defaultValue="vitals" className="space-y-6">
         <TabsList className="bg-card/50 border border-border/50">
-          <TabsTrigger value="vitals"><Zap className="w-4 h-4 mr-1" /> Web Vitals</TabsTrigger>
-          <TabsTrigger value="rankings"><Search className="w-4 h-4 mr-1" /> Rankings</TabsTrigger>
-          <TabsTrigger value="pages"><Globe className="w-4 h-4 mr-1" /> Pages</TabsTrigger>
+          <TabsTrigger value="vitals">
+            <Zap className="w-4 h-4 mr-1" /> Web Vitals
+          </TabsTrigger>
+          <TabsTrigger value="rankings">
+            <Search className="w-4 h-4 mr-1" /> Rankings
+          </TabsTrigger>
+          <TabsTrigger value="pages">
+            <Globe className="w-4 h-4 mr-1" /> Pages
+          </TabsTrigger>
         </TabsList>
 
         <TabsContent value="vitals" className="space-y-6">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {([
-              { k: 'fcp' as const, n: 'First Contentful Paint', v: coreWebVitals.fcp, u: 'ms' },
-              { k: 'lcp' as const, n: 'Largest Contentful Paint', v: coreWebVitals.lcp, u: 'ms' },
-              { k: 'cls' as const, n: 'Cumulative Layout Shift', v: coreWebVitals.cls, u: '' },
-            ]).map((m, i) => {
-              const st = getStatus(m.k, m.v);
+            {[
+              { key: 'fcp' as const, name: 'First Contentful Paint', value: coreWebVitals.fcp, unit: 'ms' },
+              { key: 'lcp' as const, name: 'Largest Contentful Paint', value: coreWebVitals.lcp, unit: 'ms' },
+              { key: 'cls' as const, name: 'Cumulative Layout Shift', value: coreWebVitals.cls, unit: '' },
+            ].map((metric, index) => {
+              const status = getVitalStatus(metric.key, metric.value);
               return (
-                <motion.div key={m.k} initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }} transition={{ delay: i * 0.1 }}>
+                <motion.div 
+                  key={metric.key} 
+                  initial={{ opacity: 0, scale: 0.95 }} 
+                  animate={{ opacity: 1, scale: 1 }} 
+                  transition={{ delay: index * 0.1 }}
+                >
                   <Card className="border-border/50 bg-card/50 backdrop-blur-sm">
-                    <CardHeader className="pb-2"><CardTitle className="text-lg">{m.n}</CardTitle></CardHeader>
+                    <CardHeader className="pb-2">
+                      <CardTitle className="text-lg">{metric.name}</CardTitle>
+                    </CardHeader>
                     <CardContent>
                       <div className="flex items-center justify-between">
-                        <span className={`text-4xl font-bold ${st.c}`}>{m.v}{m.u}</span>
-                        <Badge className={st.bg}>{st.l}</Badge>
+                        <span className={`text-4xl font-bold ${status.color}`}>
+                          {metric.value}{metric.unit}
+                        </span>
+                        <Badge className={status.bg}>{status.label}</Badge>
                       </div>
                     </CardContent>
                   </Card>
@@ -220,7 +262,10 @@ const SEO = () => {
         <TabsContent value="rankings">
           <Card className="border-border/50 bg-card/50 backdrop-blur-sm">
             <CardHeader>
-              <CardTitle><Search className="w-5 h-5 inline mr-2" />Keyword Rankings</CardTitle>
+              <CardTitle>
+                <Search className="w-5 h-5 inline mr-2" />
+                Keyword Rankings
+              </CardTitle>
               <CardDescription>Track target keyword positions</CardDescription>
             </CardHeader>
             <CardContent>
@@ -234,19 +279,33 @@ const SEO = () => {
                   </tr>
                 </thead>
                 <tbody>
-                  {keywords.map((k, i) => (
-                    <motion.tr key={k.kw} initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: i * 0.05 }} className="border-b border-border/20 hover:bg-muted/30">
-                      <td className="py-3 px-4 font-medium">{k.kw}</td>
-                      <td className="text-center py-3 px-4"><Badge variant={k.pos <= 3 ? 'default' : 'secondary'}>#{k.pos}</Badge></td>
+                  {keywords.map((item, index) => (
+                    <motion.tr 
+                      key={item.keyword} 
+                      initial={{ opacity: 0 }} 
+                      animate={{ opacity: 1 }} 
+                      transition={{ delay: index * 0.05 }} 
+                      className="border-b border-border/20 hover:bg-muted/30"
+                    >
+                      <td className="py-3 px-4 font-medium">{item.keyword}</td>
                       <td className="text-center py-3 px-4">
-                        <span className={`flex items-center justify-center gap-1 ${k.ch > 0 ? 'text-green-500' : k.ch < 0 ? 'text-red-500' : 'text-muted-foreground'}`}>
-                          {k.ch > 0 && <ArrowUpRight className="w-4 h-4" />}
-                          {k.ch < 0 && <ArrowDownRight className="w-4 h-4" />}
-                          {k.ch === 0 && <Minus className="w-4 h-4" />}
-                          {k.ch !== 0 && Math.abs(k.ch)}
+                        <Badge variant={item.position <= 3 ? 'default' : 'secondary'}>
+                          #{item.position}
+                        </Badge>
+                      </td>
+                      <td className="text-center py-3 px-4">
+                        <span className={`flex items-center justify-center gap-1 ${
+                          item.change > 0 ? 'text-green-500' : item.change < 0 ? 'text-red-500' : 'text-muted-foreground'
+                        }`}>
+                          {item.change > 0 && <ArrowUpRight className="w-4 h-4" />}
+                          {item.change < 0 && <ArrowDownRight className="w-4 h-4" />}
+                          {item.change === 0 && <Minus className="w-4 h-4" />}
+                          {item.change !== 0 && Math.abs(item.change)}
                         </span>
                       </td>
-                      <td className="text-right py-3 px-4 text-muted-foreground">{k.vol.toLocaleString()}/mo</td>
+                      <td className="text-right py-3 px-4 text-muted-foreground">
+                        {item.volume.toLocaleString()}/mo
+                      </td>
                     </motion.tr>
                   ))}
                 </tbody>
@@ -258,7 +317,10 @@ const SEO = () => {
         <TabsContent value="pages">
           <Card className="border-border/50 bg-card/50 backdrop-blur-sm">
             <CardHeader>
-              <CardTitle><Globe className="w-5 h-5 inline mr-2" />Page Performance</CardTitle>
+              <CardTitle>
+                <Globe className="w-5 h-5 inline mr-2" />
+                Page Performance
+              </CardTitle>
               <CardDescription>Analytics per page</CardDescription>
             </CardHeader>
             <CardContent>
@@ -271,19 +333,29 @@ const SEO = () => {
                   </tr>
                 </thead>
                 <tbody>
-                  {pageMetrics.length ? pageMetrics.map((p, i) => (
-                    <motion.tr key={p.path} initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: i * 0.05 }} className="border-b border-border/20 hover:bg-muted/30">
-                      <td className="py-3 px-4 font-mono text-sm">{p.path}</td>
-                      <td className="text-center py-3 px-4 font-medium">{p.views}</td>
+                  {pageMetrics.length > 0 ? pageMetrics.map((page, index) => (
+                    <motion.tr 
+                      key={page.path} 
+                      initial={{ opacity: 0 }} 
+                      animate={{ opacity: 1 }} 
+                      transition={{ delay: index * 0.05 }} 
+                      className="border-b border-border/20 hover:bg-muted/30"
+                    >
+                      <td className="py-3 px-4 font-mono text-sm">{page.path}</td>
+                      <td className="text-center py-3 px-4 font-medium">{page.views}</td>
                       <td className="text-center py-3 px-4">
                         <div className="flex items-center justify-center gap-2">
-                          <Progress value={p.avgScroll} className="w-16 h-2" />
-                          <span className="text-sm text-muted-foreground">{p.avgScroll}%</span>
+                          <Progress value={page.avgScroll} className="w-16 h-2" />
+                          <span className="text-sm text-muted-foreground">{page.avgScroll}%</span>
                         </div>
                       </td>
                     </motion.tr>
                   )) : (
-                    <tr><td colSpan={3} className="text-center py-8 text-muted-foreground">No data yet</td></tr>
+                    <tr>
+                      <td colSpan={3} className="text-center py-8 text-muted-foreground">
+                        No data yet
+                      </td>
+                    </tr>
                   )}
                 </tbody>
               </table>
@@ -293,6 +365,4 @@ const SEO = () => {
       </Tabs>
     </div>
   );
-};
-
-export default SEO;
+}

@@ -105,8 +105,8 @@ const AdminLayout: React.FC = () => {
         {/* Logo */}
         <div className="p-6 flex items-center justify-between border-b border-border/30">
           {!collapsed && (
-            <Link to="/" className="font-heading text-xl font-bold text-gradient">
-              Axiomio
+            <Link to="/" className="font-heading text-xl font-bold tracking-wider text-gradient">
+              AXIOMIO
             </Link>
           )}
           <button
@@ -210,7 +210,7 @@ const AdminLayout: React.FC = () => {
           >
             <Menu className="w-5 h-5" />
           </button>
-          <span className="font-heading text-lg font-bold text-gradient">Axiomio Admin</span>
+          <span className="font-heading text-lg font-bold tracking-wider text-gradient">AXIOMIO Admin</span>
         </header>
 
         {/* Page content */}

@@ -6,6 +6,8 @@ import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
 import { GridBackground } from "@/components/GridBackground";
 import { SectionHeader } from "@/components/SectionHeader";
+import { SEOHead } from "@/components/SEOHead";
+import { createBreadcrumbSchema, professionalServiceSchema } from "@/lib/seo-schemas";
 
 const services = [
   {
@@ -70,13 +72,65 @@ const services = [
   },
 ];
 
+const breadcrumbSchema = createBreadcrumbSchema([
+  { name: "Home", url: "https://axiomio.com/" },
+  { name: "Services", url: "https://axiomio.com/services" },
+]);
+
 export default function Services() {
   return (
-    <div className="min-h-screen bg-background overflow-hidden">
+    <main className="min-h-screen bg-background overflow-hidden">
+      <SEOHead
+        title="Enterprise Consulting Services | Strategy, AI, Digital Transformation | Axiomio"
+        description="Axiomio's enterprise consulting services: Strategy & Advisory, Technology & Systems, AI & Automation, and Digital Transformation. XOPS360 platform for intelligent operations. Trusted by Fortune 500."
+        keywords="enterprise consulting services, technology consulting, strategy consulting, AI consulting, digital transformation services, enterprise architecture, DevOps consulting, MLOps, AIOps, cloud consulting, IT strategy"
+        canonicalUrl="https://axiomio.com/services"
+        structuredData={{ "@context": "https://schema.org", "@graph": [breadcrumbSchema, professionalServiceSchema] }}
+      />
       <Navbar />
       
       {/* Hero Section */}
-      <section className="relative pt-32 pb-24 lg:pt-40 lg:pb-32">
+      <header className="relative pt-32 pb-24 lg:pt-40 lg:pb-32" role="banner">
+        <GridBackground />
+        <div className="container relative z-10 mx-auto px-6 lg:px-8">
+          <motion.div 
+            className="max-w-4xl"
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+          >
+            <motion.span 
+              className="inline-flex items-center gap-2 text-sm font-medium text-primary uppercase tracking-wider mb-6 px-4 py-2 rounded-full border border-primary/20 bg-primary/5"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.1, duration: 0.5 }}
+            >
+              <span className="w-2 h-2 bg-primary rounded-full animate-pulse" aria-hidden="true" />
+              Our Services
+            </motion.span>
+            
+            <motion.h1 
+              className="font-heading text-4xl md:text-5xl lg:text-6xl font-bold text-foreground leading-[1.1] mb-8"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.2, duration: 0.6 }}
+            >
+              Capabilities built for{" "}
+              <span className="text-gradient">consequential challenges</span>
+            </motion.h1>
+            
+            <motion.p 
+              className="text-xl md:text-2xl text-muted-foreground leading-relaxed max-w-2xl"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.3, duration: 0.6 }}
+            >
+              From strategic vision to technical execution, we deliver the full 
+              spectrum of capabilities needed to navigate complex transformation.
+            </motion.p>
+          </motion.div>
+        </div>
+      </header>
         <GridBackground />
         <div className="container relative z-10 mx-auto px-6 lg:px-8">
           <motion.div 
@@ -116,7 +170,7 @@ export default function Services() {
             </motion.p>
           </motion.div>
         </div>
-      </section>
+      </header>
 
       {/* Services Grid */}
       <section className="py-24 lg:py-32">
@@ -230,6 +284,6 @@ export default function Services() {
       </section>
 
       <Footer />
-    </div>
+    </main>
   );
 }

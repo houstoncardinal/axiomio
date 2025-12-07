@@ -1,6 +1,6 @@
 import React, { createContext, useContext, useEffect, useState } from 'react';
 
-export type Theme = 'dark' | 'midnight' | 'emerald' | 'rose' | 'ocean';
+export type Theme = 'dark' | 'midnight' | 'emerald' | 'rose' | 'ocean' | 'ivory';
 
 interface ThemeContextType {
   theme: Theme;
@@ -14,6 +14,7 @@ const themes = [
   { id: 'emerald' as Theme, name: 'Emerald', colors: { primary: '#10b981', accent: '#14b8a6' } },
   { id: 'rose' as Theme, name: 'Rose Gold', colors: { primary: '#f43f5e', accent: '#ec4899' } },
   { id: 'ocean' as Theme, name: 'Ocean', colors: { primary: '#0ea5e9', accent: '#06b6d4' } },
+  { id: 'ivory' as Theme, name: 'Ivory', colors: { primary: '#c9932a', accent: '#d4853a' } },
 ];
 
 const ThemeContext = createContext<ThemeContextType | undefined>(undefined);

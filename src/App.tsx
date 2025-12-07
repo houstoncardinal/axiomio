@@ -1,4 +1,4 @@
-import { Suspense, lazy } from "react";
+import { Suspense, lazy, Component, ReactNode } from "react";
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
@@ -8,7 +8,39 @@ import { ThemeProvider } from "@/contexts/ThemeContext";
 import { AuthProvider } from "@/contexts/AuthContext";
 import { ThemeSwitcher } from "./components/ThemeSwitcher";
 
-// Lazy load all pages to prevent blocking errors
+// Error Boundary Component
+class ErrorBoundary extends Component<{ children: ReactNode }, { hasError: boolean; error: Error | null }> {
+  constructor(props: { children: ReactNode }) {
+    super(props);
+    this.state = { hasError: false, error: null };
+  }
+
+  static getDerivedStateFromError(error: Error) {
+    return { hasError: true, error };
+  }
+
+  render() {
+    if (this.state.hasError) {
+      return (
+        <div className="min-h-screen bg-gray-900 flex items-center justify-center p-4">
+          <div className="text-center text-white">
+            <h1 className="text-2xl font-bold mb-4">Something went wrong</h1>
+            <p className="text-gray-400 mb-4">{this.state.error?.message}</p>
+            <button 
+              onClick={() => window.location.reload()} 
+              className="px-4 py-2 bg-cyan-500 text-white rounded hover:bg-cyan-600"
+            >
+              Reload Page
+            </button>
+          </div>
+        </div>
+      );
+    }
+    return this.props.children;
+  }
+}
+
+// Lazy load all pages
 const Index = lazy(() => import("./pages/Index"));
 const About = lazy(() => import("./pages/About"));
 const Services = lazy(() => import("./pages/Services"));
@@ -36,12 +68,13 @@ const XOPS360Integrations = lazy(() => import("./pages/admin/xops360/Integration
 const XOPS360Metrics = lazy(() => import("./pages/admin/xops360/Metrics"));
 const NotFound = lazy(() => import("./pages/NotFound"));
 
-// Loading fallback
+// Loading fallback with inline styles for reliability
 const PageLoader = () => (
-  <div className="min-h-screen bg-background flex items-center justify-center">
-    <div className="text-center">
-      <div className="w-10 h-10 border-2 border-primary border-t-transparent rounded-full animate-spin mx-auto mb-4" />
-      <p className="text-muted-foreground">Loading...</p>
+  <div style={{ minHeight: '100vh', backgroundColor: '#030712', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+    <div style={{ textAlign: 'center', color: '#f5f5f5' }}>
+      <div style={{ width: 40, height: 40, border: '3px solid #00d4ff', borderTopColor: 'transparent', borderRadius: '50%', margin: '0 auto 16px', animation: 'spin 1s linear infinite' }} />
+      <p>Loading...</p>
+      <style>{`@keyframes spin { to { transform: rotate(360deg); } }`}</style>
     </div>
   </div>
 );
@@ -49,53 +82,55 @@ const PageLoader = () => (
 const queryClient = new QueryClient();
 
 const App = () => (
-  <QueryClientProvider client={queryClient}>
-    <ThemeProvider>
-      <AuthProvider>
-        <TooltipProvider>
-          <Toaster />
-          <Sonner />
-          <BrowserRouter>
-            <Suspense fallback={<PageLoader />}>
-              <Routes>
-                <Route path="/" element={<Index />} />
-                <Route path="/about" element={<About />} />
-                <Route path="/services" element={<Services />} />
-                <Route path="/services/strategy-advisory" element={<StrategyAdvisory />} />
-                <Route path="/services/technology-systems" element={<TechnologySystems />} />
-                <Route path="/services/ai-automation" element={<AIAutomation />} />
-                <Route path="/services/digital-transformation" element={<DigitalTransformation />} />
-                <Route path="/xops360" element={<XOPS360 />} />
-                <Route path="/approach" element={<Approach />} />
-                <Route path="/contact" element={<Contact />} />
-                <Route path="/auth" element={<Auth />} />
-                
-                {/* Admin Routes */}
-                <Route path="/admin" element={<AdminLayout />}>
-                  <Route index element={<Dashboard />} />
-                  <Route path="analytics" element={<Analytics />} />
-                  <Route path="seo" element={<SEO />} />
-                  <Route path="content" element={<Content />} />
-                  <Route path="users" element={<Users />} />
-                  <Route path="settings" element={<Settings />} />
-                  <Route path="leads" element={<Leads />} />
-                  <Route path="xops360" element={<XOPS360Overview />} />
-                  <Route path="xops360/clients" element={<XOPS360Clients />} />
-                  <Route path="xops360/deployments" element={<XOPS360Deployments />} />
-                  <Route path="xops360/runbooks" element={<XOPS360Runbooks />} />
-                  <Route path="xops360/integrations" element={<XOPS360Integrations />} />
-                  <Route path="xops360/metrics" element={<XOPS360Metrics />} />
-                </Route>
-                
-                <Route path="*" element={<NotFound />} />
-              </Routes>
-            </Suspense>
-            <ThemeSwitcher />
-          </BrowserRouter>
-        </TooltipProvider>
-      </AuthProvider>
-    </ThemeProvider>
-  </QueryClientProvider>
+  <ErrorBoundary>
+    <QueryClientProvider client={queryClient}>
+      <ThemeProvider>
+        <AuthProvider>
+          <TooltipProvider>
+            <Toaster />
+            <Sonner />
+            <BrowserRouter>
+              <Suspense fallback={<PageLoader />}>
+                <Routes>
+                  <Route path="/" element={<Index />} />
+                  <Route path="/about" element={<About />} />
+                  <Route path="/services" element={<Services />} />
+                  <Route path="/services/strategy-advisory" element={<StrategyAdvisory />} />
+                  <Route path="/services/technology-systems" element={<TechnologySystems />} />
+                  <Route path="/services/ai-automation" element={<AIAutomation />} />
+                  <Route path="/services/digital-transformation" element={<DigitalTransformation />} />
+                  <Route path="/xops360" element={<XOPS360 />} />
+                  <Route path="/approach" element={<Approach />} />
+                  <Route path="/contact" element={<Contact />} />
+                  <Route path="/auth" element={<Auth />} />
+                  
+                  {/* Admin Routes */}
+                  <Route path="/admin" element={<AdminLayout />}>
+                    <Route index element={<Dashboard />} />
+                    <Route path="analytics" element={<Analytics />} />
+                    <Route path="seo" element={<SEO />} />
+                    <Route path="content" element={<Content />} />
+                    <Route path="users" element={<Users />} />
+                    <Route path="settings" element={<Settings />} />
+                    <Route path="leads" element={<Leads />} />
+                    <Route path="xops360" element={<XOPS360Overview />} />
+                    <Route path="xops360/clients" element={<XOPS360Clients />} />
+                    <Route path="xops360/deployments" element={<XOPS360Deployments />} />
+                    <Route path="xops360/runbooks" element={<XOPS360Runbooks />} />
+                    <Route path="xops360/integrations" element={<XOPS360Integrations />} />
+                    <Route path="xops360/metrics" element={<XOPS360Metrics />} />
+                  </Route>
+                  
+                  <Route path="*" element={<NotFound />} />
+                </Routes>
+              </Suspense>
+              <ThemeSwitcher />
+            </BrowserRouter>
+          </TooltipProvider>
+        </AuthProvider>
+      </ThemeProvider>
+    </QueryClientProvider>
+  </ErrorBoundary>
 );
 
 export default App;

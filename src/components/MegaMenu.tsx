@@ -1,0 +1,343 @@
+import { useState } from "react";
+import { Link } from "react-router-dom";
+import { motion, AnimatePresence } from "framer-motion";
+import { 
+  Brain, 
+  Cpu, 
+  LineChart, 
+  Zap, 
+  ArrowRight, 
+  Sparkles,
+  Target,
+  Layers,
+  Shield,
+  TrendingUp,
+  Network,
+  BarChart3,
+  Workflow,
+  Settings2,
+  Database,
+  Cloud,
+  Lock,
+  Lightbulb,
+  Users,
+  Rocket
+} from "lucide-react";
+import { cn } from "@/lib/utils";
+
+const services = [
+  {
+    id: "strategy",
+    slug: "strategy-advisory",
+    icon: LineChart,
+    title: "Strategy & Advisory",
+    subtitle: "Executive guidance for complex decisions",
+    description: "Navigate uncertainty with frameworks built on deep analysis and industry insight.",
+    color: "from-blue-500/20 to-indigo-500/10",
+    accent: "text-blue-400",
+    capabilities: [
+      { name: "Strategic Roadmap Development", icon: Target },
+      { name: "Market & Competitive Analysis", icon: TrendingUp },
+      { name: "Organizational Design", icon: Users },
+      { name: "Investment Thesis Development", icon: BarChart3 },
+    ],
+  },
+  {
+    id: "technology",
+    slug: "technology-systems",
+    icon: Cpu,
+    title: "Technology & Systems",
+    subtitle: "Architecture that scales with ambition",
+    description: "Enterprise-grade systems delivering reliability today, adaptable for tomorrow.",
+    color: "from-emerald-500/20 to-teal-500/10",
+    accent: "text-emerald-400",
+    capabilities: [
+      { name: "Enterprise Architecture", icon: Layers },
+      { name: "Cloud Infrastructure", icon: Cloud },
+      { name: "System Integration", icon: Network },
+      { name: "Platform Modernization", icon: Settings2 },
+    ],
+  },
+  {
+    id: "ai",
+    slug: "ai-automation",
+    icon: Brain,
+    title: "AI & Automation",
+    subtitle: "Intelligence applied with precision",
+    description: "Machine learning solutions enhancing decision-making and unlocking new capabilities.",
+    color: "from-violet-500/20 to-purple-500/10",
+    accent: "text-violet-400",
+    capabilities: [
+      { name: "AI Strategy & Roadmapping", icon: Lightbulb },
+      { name: "Machine Learning Implementation", icon: Sparkles },
+      { name: "Intelligent Process Automation", icon: Workflow },
+      { name: "Data Infrastructure & MLOps", icon: Database },
+    ],
+  },
+  {
+    id: "transformation",
+    slug: "digital-transformation",
+    icon: Zap,
+    title: "Digital Transformation",
+    subtitle: "Change that creates lasting value",
+    description: "Complex organizational change with methodologies ensuring adoption and sustainability.",
+    color: "from-amber-500/20 to-orange-500/10",
+    accent: "text-amber-400",
+    capabilities: [
+      { name: "Transformation Strategy", icon: Rocket },
+      { name: "Change Management", icon: Users },
+      { name: "Process Redesign", icon: Workflow },
+      { name: "Capability Building", icon: Shield },
+    ],
+  },
+];
+
+const featuredOffering = {
+  title: "XOPS360",
+  subtitle: "Flagship Platform",
+  description: "Our intelligent operations engine that transforms how enterprises manage cloud, security, and automation.",
+  link: "/xops360",
+  stats: [
+    { label: "Cost Reduction", value: "40%" },
+    { label: "Faster Resolution", value: "10x" },
+    { label: "Uptime", value: "99.9%" },
+  ],
+};
+
+interface MegaMenuProps {
+  isOpen: boolean;
+  onClose: () => void;
+}
+
+export function MegaMenu({ isOpen, onClose }: MegaMenuProps) {
+  const [hoveredService, setHoveredService] = useState<string | null>(null);
+
+  return (
+    <AnimatePresence>
+      {isOpen && (
+        <>
+          {/* Backdrop */}
+          <motion.div
+            className="fixed inset-0 top-[72px] bg-background/80 backdrop-blur-sm z-40"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            onClick={onClose}
+          />
+          
+          {/* Menu Container */}
+          <motion.div
+            className="fixed left-0 right-0 top-[72px] z-50 overflow-hidden"
+            initial={{ opacity: 0, y: -10 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -10 }}
+            transition={{ duration: 0.2, ease: "easeOut" }}
+          >
+            <div className="container mx-auto px-6 lg:px-8">
+              <motion.div 
+                className="relative bg-card/95 backdrop-blur-xl border border-border/50 rounded-2xl shadow-2xl shadow-black/20 overflow-hidden"
+                initial={{ scale: 0.98 }}
+                animate={{ scale: 1 }}
+                exit={{ scale: 0.98 }}
+              >
+                {/* Decorative gradient */}
+                <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-primary/5 pointer-events-none" />
+                <div className="absolute top-0 left-1/2 -translate-x-1/2 w-1/2 h-px bg-gradient-to-r from-transparent via-primary/50 to-transparent" />
+                
+                <div className="relative grid lg:grid-cols-[1fr_320px] gap-0">
+                  {/* Services Grid */}
+                  <div className="p-8 lg:p-10">
+                    <div className="flex items-center justify-between mb-8">
+                      <div>
+                        <h3 className="text-xs font-semibold text-primary uppercase tracking-[0.2em] mb-1">
+                          Our Services
+                        </h3>
+                        <p className="text-sm text-muted-foreground">
+                          Enterprise-grade capabilities for consequential challenges
+                        </p>
+                      </div>
+                      <Link
+                        to="/services"
+                        onClick={onClose}
+                        className="hidden sm:flex items-center gap-2 text-sm font-medium text-muted-foreground hover:text-primary transition-colors group"
+                      >
+                        View all services
+                        <ArrowRight className="h-4 w-4 group-hover:translate-x-1 transition-transform" />
+                      </Link>
+                    </div>
+                    
+                    <div className="grid sm:grid-cols-2 gap-4">
+                      {services.map((service, index) => (
+                        <motion.div
+                          key={service.id}
+                          initial={{ opacity: 0, y: 20 }}
+                          animate={{ opacity: 1, y: 0 }}
+                          transition={{ delay: index * 0.05 }}
+                          onMouseEnter={() => setHoveredService(service.id)}
+                          onMouseLeave={() => setHoveredService(null)}
+                        >
+                          <Link
+                            to={`/services/${service.slug}`}
+                            onClick={onClose}
+                            className="group block"
+                          >
+                            <div className={cn(
+                              "relative p-5 rounded-xl border border-border/50 transition-all duration-300",
+                              "hover:border-primary/30 hover:shadow-lg hover:shadow-primary/5",
+                              hoveredService === service.id && "border-primary/30 bg-primary/5"
+                            )}>
+                              {/* Gradient background on hover */}
+                              <div className={cn(
+                                "absolute inset-0 rounded-xl bg-gradient-to-br opacity-0 transition-opacity duration-300",
+                                service.color,
+                                hoveredService === service.id && "opacity-100"
+                              )} />
+                              
+                              <div className="relative">
+                                {/* Header */}
+                                <div className="flex items-start gap-4 mb-4">
+                                  <div className={cn(
+                                    "p-2.5 rounded-lg bg-gradient-to-br border transition-all duration-300",
+                                    "from-primary/20 to-primary/5 border-primary/20",
+                                    hoveredService === service.id && "scale-110"
+                                  )}>
+                                    <service.icon className={cn(
+                                      "h-5 w-5 transition-colors",
+                                      hoveredService === service.id ? service.accent : "text-primary"
+                                    )} />
+                                  </div>
+                                  <div className="flex-1 min-w-0">
+                                    <h4 className="font-heading font-semibold text-foreground group-hover:text-primary transition-colors truncate">
+                                      {service.title}
+                                    </h4>
+                                    <p className="text-xs text-muted-foreground truncate">
+                                      {service.subtitle}
+                                    </p>
+                                  </div>
+                                </div>
+                                
+                                {/* Description */}
+                                <p className="text-sm text-muted-foreground mb-4 line-clamp-2">
+                                  {service.description}
+                                </p>
+                                
+                                {/* Capabilities */}
+                                <div className="space-y-1.5">
+                                  {service.capabilities.map((cap) => (
+                                    <div 
+                                      key={cap.name}
+                                      className="flex items-center gap-2 text-xs text-muted-foreground/80 group-hover:text-muted-foreground transition-colors"
+                                    >
+                                      <cap.icon className="h-3 w-3 text-primary/60" />
+                                      <span>{cap.name}</span>
+                                    </div>
+                                  ))}
+                                </div>
+                                
+                                {/* Arrow indicator */}
+                                <div className={cn(
+                                  "absolute top-5 right-5 opacity-0 transition-all duration-300",
+                                  hoveredService === service.id && "opacity-100"
+                                )}>
+                                  <ArrowRight className={cn("h-4 w-4", service.accent)} />
+                                </div>
+                              </div>
+                            </div>
+                          </Link>
+                        </motion.div>
+                      ))}
+                    </div>
+                  </div>
+                  
+                  {/* Featured Sidebar - XOPS360 */}
+                  <div className="relative border-t lg:border-t-0 lg:border-l border-border/50">
+                    <div className="absolute inset-0 bg-gradient-to-b from-primary/5 to-transparent" />
+                    
+                    <div className="relative p-8 lg:p-10 h-full flex flex-col">
+                      <motion.div
+                        initial={{ opacity: 0, x: 20 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        transition={{ delay: 0.2 }}
+                      >
+                        {/* Badge */}
+                        <div className="inline-flex items-center gap-2 text-xs font-semibold text-primary uppercase tracking-[0.2em] mb-4 px-3 py-1.5 rounded-full border border-primary/30 bg-primary/10">
+                          <Sparkles className="h-3 w-3" />
+                          {featuredOffering.subtitle}
+                        </div>
+                        
+                        {/* Title */}
+                        <h3 className="font-heading text-2xl font-bold text-foreground mb-3">
+                          {featuredOffering.title}
+                        </h3>
+                        
+                        {/* Description */}
+                        <p className="text-sm text-muted-foreground mb-6 leading-relaxed">
+                          {featuredOffering.description}
+                        </p>
+                        
+                        {/* Stats */}
+                        <div className="grid grid-cols-3 gap-3 mb-6">
+                          {featuredOffering.stats.map((stat, index) => (
+                            <motion.div
+                              key={stat.label}
+                              className="text-center p-3 rounded-lg bg-background/50 border border-border/50"
+                              initial={{ opacity: 0, y: 10 }}
+                              animate={{ opacity: 1, y: 0 }}
+                              transition={{ delay: 0.3 + index * 0.1 }}
+                            >
+                              <div className="text-lg font-bold text-primary">
+                                {stat.value}
+                              </div>
+                              <div className="text-[10px] text-muted-foreground uppercase tracking-wider">
+                                {stat.label}
+                              </div>
+                            </motion.div>
+                          ))}
+                        </div>
+                        
+                        {/* CTA */}
+                        <Link
+                          to={featuredOffering.link}
+                          onClick={onClose}
+                          className="group flex items-center justify-center gap-2 w-full px-4 py-3 rounded-lg bg-primary text-primary-foreground font-medium text-sm transition-all hover:bg-primary/90 hover:shadow-lg hover:shadow-primary/25"
+                        >
+                          Explore XOPS360
+                          <ArrowRight className="h-4 w-4 group-hover:translate-x-1 transition-transform" />
+                        </Link>
+                      </motion.div>
+                      
+                      {/* Quick Links */}
+                      <div className="mt-auto pt-6 border-t border-border/50">
+                        <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wider mb-3">
+                          Quick Links
+                        </p>
+                        <div className="space-y-2">
+                          <Link
+                            to="/approach"
+                            onClick={onClose}
+                            className="flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground transition-colors"
+                          >
+                            <div className="w-1 h-1 rounded-full bg-primary" />
+                            Our Methodology
+                          </Link>
+                          <Link
+                            to="/contact"
+                            onClick={onClose}
+                            className="flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground transition-colors"
+                          >
+                            <div className="w-1 h-1 rounded-full bg-primary" />
+                            Schedule Discovery Call
+                          </Link>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </motion.div>
+            </div>
+          </motion.div>
+        </>
+      )}
+    </AnimatePresence>
+  );
+}

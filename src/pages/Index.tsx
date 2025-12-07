@@ -11,8 +11,13 @@ import { PremiumCard } from "@/components/PremiumCard";
 import { AnimatedGradientText } from "@/components/AnimatedGradientText";
 import { MagneticButton } from "@/components/MagneticButton";
 import { CounterBadge } from "@/components/CounterBadge";
-import { TextReveal, WordReveal } from "@/components/TextReveal";
+import { TextReveal } from "@/components/TextReveal";
 import { SectionHeader } from "@/components/SectionHeader";
+import { XOPS360Section } from "@/components/XOPS360Section";
+import { ProcessTimeline } from "@/components/ProcessTimeline";
+import { TestimonialsSection } from "@/components/TestimonialsSection";
+import { CapabilitiesGrid } from "@/components/CapabilitiesGrid";
+import { MetricsShowcase } from "@/components/MetricsShowcase";
 import { useRef } from "react";
 
 const services = [
@@ -50,22 +55,22 @@ const differentiators = [
   {
     icon: Target,
     title: "Precision-Driven",
-    description: "Every recommendation is grounded in data, tested against reality, and refined for your specific context.",
+    description: "Every recommendation is grounded in data and refined for your specific context.",
   },
   {
     icon: Shield,
     title: "Enterprise-Ready",
-    description: "Solutions built to institutional standards with security, compliance, and governance at the core.",
+    description: "Solutions built with security, compliance, and governance at the core.",
   },
   {
     icon: Users,
     title: "Partnership Model",
-    description: "We work alongside your teams, transferring knowledge and building internal capabilities that endure.",
+    description: "We work alongside your teams, building capabilities that endure.",
   },
   {
     icon: Globe,
     title: "Global Perspective",
-    description: "Insights drawn from diverse industries and markets, adapted to local realities and opportunities.",
+    description: "Insights from diverse industries, adapted to local opportunities.",
   },
 ];
 
@@ -88,7 +93,7 @@ export default function Index() {
   const heroY = useTransform(scrollYProgress, [0, 0.5], [0, 100]);
 
   return (
-    <div className="min-h-screen bg-background overflow-hidden noise-overlay">
+    <div className="min-h-screen bg-background overflow-hidden">
       <Navbar />
       
       {/* Hero Section */}
@@ -121,7 +126,7 @@ export default function Index() {
                   animate={{ scale: [1, 1.5, 1], opacity: [1, 0.5, 1] }}
                   transition={{ duration: 2, repeat: Infinity }}
                 />
-                Technology & Strategy Firm
+                Powered by XOPS360
                 <Sparkles className="w-4 h-4 text-primary" />
               </span>
             </motion.div>
@@ -134,10 +139,10 @@ export default function Index() {
               transition={{ duration: 0.8, delay: 0.2 }}
             >
               <TextReveal delay={0.3}>
-                <span className="block">Building systems</span>
+                <span className="block">The future of</span>
               </TextReveal>
               <TextReveal delay={0.5}>
-                <span className="block">that <AnimatedGradientText>define the future</AnimatedGradientText></span>
+                <span className="block"><AnimatedGradientText>intelligent operations</AnimatedGradientText></span>
               </TextReveal>
             </motion.h1>
             
@@ -148,8 +153,8 @@ export default function Index() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.8 }}
             >
-              Axiomio partners with forward-thinking organizations to architect 
-              intelligent solutions that scale with ambition and deliver measurable impact.
+              Axiomio's XOPS360 platform unifies DevOps, DataOps, MLOps, and AIOps into a single 
+              intelligent ecosystem—transforming operational complexity into competitive advantage.
             </motion.p>
             
             {/* CTA Buttons */}
@@ -163,7 +168,7 @@ export default function Index() {
                 <Button variant="hero" size="xl" className="group relative overflow-hidden" asChild>
                   <Link to="/contact">
                     <span className="relative z-10 flex items-center">
-                      Request a Strategy Session
+                      Request a Demo
                       <ArrowRight className="ml-2 h-5 w-5 transition-transform group-hover:translate-x-1" />
                     </span>
                     <motion.div
@@ -178,7 +183,7 @@ export default function Index() {
               <MagneticButton>
                 <Button variant="hero-outline" size="xl" className="backdrop-blur-sm" asChild>
                   <Link to="/services">
-                    Explore Our Work
+                    Explore XOPS360
                   </Link>
                 </Button>
               </MagneticButton>
@@ -198,7 +203,7 @@ export default function Index() {
             animate={{ y: [0, 8, 0] }}
             transition={{ duration: 2.5, repeat: Infinity, ease: "easeInOut" }}
           >
-            <span className="text-xs uppercase tracking-[0.2em] text-muted-foreground/60">Scroll to explore</span>
+            <span className="text-xs uppercase tracking-[0.2em] text-muted-foreground/60">Discover more</span>
             <div className="w-px h-12 bg-gradient-to-b from-primary/50 to-transparent" />
           </motion.div>
         </motion.div>
@@ -251,6 +256,18 @@ export default function Index() {
         </div>
       </section>
 
+      {/* XOPS360 Feature Section */}
+      <XOPS360Section />
+
+      {/* Metrics Showcase */}
+      <MetricsShowcase />
+
+      {/* Capabilities Grid */}
+      <CapabilitiesGrid />
+
+      {/* Process Timeline */}
+      <ProcessTimeline />
+
       {/* Services Section */}
       <section className="py-28 lg:py-36 relative">
         <div className="absolute inset-0">
@@ -265,9 +282,9 @@ export default function Index() {
             viewport={{ once: true }}
           >
             <SectionHeader
-              label="What We Do"
-              title="Enterprise solutions designed for lasting impact"
-              description="We deliver comprehensive capabilities that address the full spectrum of digital transformation, from strategy through execution."
+              label="Our Services"
+              title="Comprehensive enterprise solutions"
+              description="Beyond XOPS360, we deliver end-to-end capabilities that address the full spectrum of digital transformation."
             />
           </motion.div>
           
@@ -304,6 +321,9 @@ export default function Index() {
         </div>
       </section>
 
+      {/* Testimonials */}
+      <TestimonialsSection />
+
       {/* Why Axiomio Section */}
       <section className="py-28 lg:py-36 relative">
         <div className="absolute inset-0 bg-gradient-to-b from-card/30 via-card/50 to-background" />
@@ -320,7 +340,7 @@ export default function Index() {
               <SectionHeader
                 label="Why Axiomio"
                 title="Where precision meets vision"
-                description="We operate at the intersection of strategic clarity and technical excellence, building solutions that are as thoughtful as they are powerful."
+                description="We operate at the intersection of strategic clarity and technical excellence."
                 align="left"
               />
               
@@ -394,10 +414,19 @@ export default function Index() {
               {/* Decorative elements */}
               <div className="absolute top-0 left-0 w-40 h-40 bg-gradient-to-br from-primary/10 to-transparent" />
               <div className="absolute bottom-0 right-0 w-40 h-40 bg-gradient-to-tl from-secondary/10 to-transparent" />
-              <div className="absolute top-1/2 left-0 w-px h-32 -translate-y-1/2 bg-gradient-to-b from-transparent via-primary/30 to-transparent" />
-              <div className="absolute top-1/2 right-0 w-px h-32 -translate-y-1/2 bg-gradient-to-b from-transparent via-secondary/30 to-transparent" />
               
               <div className="relative z-10">
+                <motion.span
+                  initial={{ opacity: 0 }}
+                  whileInView={{ opacity: 1 }}
+                  viewport={{ once: true }}
+                  className="inline-flex items-center gap-2 text-sm font-medium uppercase tracking-[0.15em] text-primary mb-6"
+                >
+                  <span className="w-8 h-px bg-primary" />
+                  Start Your Transformation
+                  <span className="w-8 h-px bg-primary" />
+                </motion.span>
+                
                 <motion.h2 
                   className="font-heading text-4xl md:text-5xl lg:text-6xl font-bold text-foreground mb-8"
                   initial={{ opacity: 0, y: 20 }}
@@ -405,7 +434,7 @@ export default function Index() {
                   transition={{ delay: 0.2, duration: 0.6 }}
                   viewport={{ once: true }}
                 >
-                  Ready to build <AnimatedGradientText>what's next</AnimatedGradientText>?
+                  Ready to experience <AnimatedGradientText>XOPS360</AnimatedGradientText>?
                 </motion.h2>
                 <motion.p 
                   className="text-xl text-muted-foreground max-w-2xl mx-auto mb-12"
@@ -414,7 +443,7 @@ export default function Index() {
                   transition={{ delay: 0.3, duration: 0.6 }}
                   viewport={{ once: true }}
                 >
-                  Let's discuss how Axiomio can help you navigate complexity, 
+                  Let's discuss how Axiomio and XOPS360 can help you navigate complexity, 
                   accelerate transformation, and achieve outcomes that matter.
                 </motion.p>
                 <motion.div 
@@ -427,7 +456,7 @@ export default function Index() {
                   <MagneticButton>
                     <Button variant="hero" size="xl" asChild>
                       <Link to="/contact">
-                        Talk to Our Team
+                        Schedule a Demo
                         <ArrowRight className="ml-2 h-5 w-5" />
                       </Link>
                     </Button>

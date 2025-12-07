@@ -74,6 +74,92 @@ export type Database = {
         }
         Relationships: []
       }
+      leads: {
+        Row: {
+          assigned_to: string | null
+          budget_range: string | null
+          company_name: string
+          company_size: string | null
+          contact_email: string
+          contact_name: string
+          contact_phone: string | null
+          contact_role: string | null
+          converted_at: string | null
+          converted_to_client_id: string | null
+          created_at: string
+          estimated_cloud_spend: string | null
+          id: string
+          lead_score: number | null
+          lead_type: string
+          next_action: string | null
+          next_action_date: string | null
+          notes: string | null
+          pain_points: string[] | null
+          source: string | null
+          status: string
+          timeline: string | null
+          updated_at: string
+        }
+        Insert: {
+          assigned_to?: string | null
+          budget_range?: string | null
+          company_name: string
+          company_size?: string | null
+          contact_email: string
+          contact_name: string
+          contact_phone?: string | null
+          contact_role?: string | null
+          converted_at?: string | null
+          converted_to_client_id?: string | null
+          created_at?: string
+          estimated_cloud_spend?: string | null
+          id?: string
+          lead_score?: number | null
+          lead_type: string
+          next_action?: string | null
+          next_action_date?: string | null
+          notes?: string | null
+          pain_points?: string[] | null
+          source?: string | null
+          status?: string
+          timeline?: string | null
+          updated_at?: string
+        }
+        Update: {
+          assigned_to?: string | null
+          budget_range?: string | null
+          company_name?: string
+          company_size?: string | null
+          contact_email?: string
+          contact_name?: string
+          contact_phone?: string | null
+          contact_role?: string | null
+          converted_at?: string | null
+          converted_to_client_id?: string | null
+          created_at?: string
+          estimated_cloud_spend?: string | null
+          id?: string
+          lead_score?: number | null
+          lead_type?: string
+          next_action?: string | null
+          next_action_date?: string | null
+          notes?: string | null
+          pain_points?: string[] | null
+          source?: string | null
+          status?: string
+          timeline?: string | null
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "leads_converted_to_client_id_fkey"
+            columns: ["converted_to_client_id"]
+            isOneToOne: false
+            referencedRelation: "xops360_clients"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       page_content: {
         Row: {
           content: Json
@@ -134,6 +220,62 @@ export type Database = {
         }
         Relationships: []
       }
+      service_engagements: {
+        Row: {
+          billing_type: string | null
+          client_id: string | null
+          contract_value: number | null
+          created_at: string
+          deliverables: Json | null
+          description: string | null
+          end_date: string | null
+          engagement_name: string
+          id: string
+          service_type: string
+          start_date: string | null
+          status: string
+          updated_at: string
+        }
+        Insert: {
+          billing_type?: string | null
+          client_id?: string | null
+          contract_value?: number | null
+          created_at?: string
+          deliverables?: Json | null
+          description?: string | null
+          end_date?: string | null
+          engagement_name: string
+          id?: string
+          service_type: string
+          start_date?: string | null
+          status?: string
+          updated_at?: string
+        }
+        Update: {
+          billing_type?: string | null
+          client_id?: string | null
+          contract_value?: number | null
+          created_at?: string
+          deliverables?: Json | null
+          description?: string | null
+          end_date?: string | null
+          engagement_name?: string
+          id?: string
+          service_type?: string
+          start_date?: string | null
+          status?: string
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "service_engagements_client_id_fkey"
+            columns: ["client_id"]
+            isOneToOne: false
+            referencedRelation: "xops360_clients"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       site_settings: {
         Row: {
           description: string | null
@@ -181,6 +323,287 @@ export type Database = {
           user_id?: string
         }
         Relationships: []
+      }
+      xops360_clients: {
+        Row: {
+          client_type: string
+          clients_managed: number | null
+          cloud_spend_monthly: number | null
+          company_name: string
+          company_size: string | null
+          contract_end: string | null
+          contract_start: string | null
+          contract_value: number | null
+          created_at: string
+          engineers_count: number | null
+          id: string
+          industry: string | null
+          primary_cloud: string[] | null
+          primary_contact_email: string | null
+          primary_contact_name: string | null
+          primary_contact_role: string | null
+          status: string
+          updated_at: string
+        }
+        Insert: {
+          client_type: string
+          clients_managed?: number | null
+          cloud_spend_monthly?: number | null
+          company_name: string
+          company_size?: string | null
+          contract_end?: string | null
+          contract_start?: string | null
+          contract_value?: number | null
+          created_at?: string
+          engineers_count?: number | null
+          id?: string
+          industry?: string | null
+          primary_cloud?: string[] | null
+          primary_contact_email?: string | null
+          primary_contact_name?: string | null
+          primary_contact_role?: string | null
+          status?: string
+          updated_at?: string
+        }
+        Update: {
+          client_type?: string
+          clients_managed?: number | null
+          cloud_spend_monthly?: number | null
+          company_name?: string
+          company_size?: string | null
+          contract_end?: string | null
+          contract_start?: string | null
+          contract_value?: number | null
+          created_at?: string
+          engineers_count?: number | null
+          id?: string
+          industry?: string | null
+          primary_cloud?: string[] | null
+          primary_contact_email?: string | null
+          primary_contact_name?: string | null
+          primary_contact_role?: string | null
+          status?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      xops360_deployments: {
+        Row: {
+          client_id: string
+          cloud_accounts_connected: number | null
+          created_at: string
+          deployed_at: string | null
+          deployment_name: string
+          environment: string
+          health_score: number | null
+          id: string
+          integrations_count: number | null
+          last_health_check: string | null
+          modules_enabled: string[] | null
+          status: string
+          updated_at: string
+        }
+        Insert: {
+          client_id: string
+          cloud_accounts_connected?: number | null
+          created_at?: string
+          deployed_at?: string | null
+          deployment_name: string
+          environment?: string
+          health_score?: number | null
+          id?: string
+          integrations_count?: number | null
+          last_health_check?: string | null
+          modules_enabled?: string[] | null
+          status?: string
+          updated_at?: string
+        }
+        Update: {
+          client_id?: string
+          cloud_accounts_connected?: number | null
+          created_at?: string
+          deployed_at?: string | null
+          deployment_name?: string
+          environment?: string
+          health_score?: number | null
+          id?: string
+          integrations_count?: number | null
+          last_health_check?: string | null
+          modules_enabled?: string[] | null
+          status?: string
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "xops360_deployments_client_id_fkey"
+            columns: ["client_id"]
+            isOneToOne: false
+            referencedRelation: "xops360_clients"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      xops360_integrations: {
+        Row: {
+          config: Json | null
+          created_at: string
+          deployment_id: string
+          id: string
+          integration_name: string
+          integration_type: string
+          last_sync_at: string | null
+          provider: string
+          status: string
+        }
+        Insert: {
+          config?: Json | null
+          created_at?: string
+          deployment_id: string
+          id?: string
+          integration_name: string
+          integration_type: string
+          last_sync_at?: string | null
+          provider: string
+          status?: string
+        }
+        Update: {
+          config?: Json | null
+          created_at?: string
+          deployment_id?: string
+          id?: string
+          integration_name?: string
+          integration_type?: string
+          last_sync_at?: string | null
+          provider?: string
+          status?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "xops360_integrations_deployment_id_fkey"
+            columns: ["deployment_id"]
+            isOneToOne: false
+            referencedRelation: "xops360_deployments"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      xops360_metrics: {
+        Row: {
+          automations_executed: number | null
+          avg_mttr_minutes: number | null
+          cloud_spend_after: number | null
+          cloud_spend_before: number | null
+          compliance_score: number | null
+          cost_savings: number | null
+          created_at: string
+          deployment_id: string
+          engineer_hours_saved: number | null
+          id: string
+          incidents_auto_resolved: number | null
+          incidents_detected: number | null
+          metric_date: string
+          security_alerts: number | null
+          tickets_prevented: number | null
+        }
+        Insert: {
+          automations_executed?: number | null
+          avg_mttr_minutes?: number | null
+          cloud_spend_after?: number | null
+          cloud_spend_before?: number | null
+          compliance_score?: number | null
+          cost_savings?: number | null
+          created_at?: string
+          deployment_id: string
+          engineer_hours_saved?: number | null
+          id?: string
+          incidents_auto_resolved?: number | null
+          incidents_detected?: number | null
+          metric_date?: string
+          security_alerts?: number | null
+          tickets_prevented?: number | null
+        }
+        Update: {
+          automations_executed?: number | null
+          avg_mttr_minutes?: number | null
+          cloud_spend_after?: number | null
+          cloud_spend_before?: number | null
+          compliance_score?: number | null
+          cost_savings?: number | null
+          created_at?: string
+          deployment_id?: string
+          engineer_hours_saved?: number | null
+          id?: string
+          incidents_auto_resolved?: number | null
+          incidents_detected?: number | null
+          metric_date?: string
+          security_alerts?: number | null
+          tickets_prevented?: number | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "xops360_metrics_deployment_id_fkey"
+            columns: ["deployment_id"]
+            isOneToOne: false
+            referencedRelation: "xops360_deployments"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      xops360_runbooks: {
+        Row: {
+          avg_execution_time_seconds: number | null
+          category: string
+          client_id: string | null
+          created_at: string
+          description: string | null
+          execution_count: number | null
+          id: string
+          last_executed_at: string | null
+          name: string
+          status: string
+          success_rate: number | null
+          trigger_type: string
+          updated_at: string
+        }
+        Insert: {
+          avg_execution_time_seconds?: number | null
+          category: string
+          client_id?: string | null
+          created_at?: string
+          description?: string | null
+          execution_count?: number | null
+          id?: string
+          last_executed_at?: string | null
+          name: string
+          status?: string
+          success_rate?: number | null
+          trigger_type: string
+          updated_at?: string
+        }
+        Update: {
+          avg_execution_time_seconds?: number | null
+          category?: string
+          client_id?: string | null
+          created_at?: string
+          description?: string | null
+          execution_count?: number | null
+          id?: string
+          last_executed_at?: string | null
+          name?: string
+          status?: string
+          success_rate?: number | null
+          trigger_type?: string
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "xops360_runbooks_client_id_fkey"
+            columns: ["client_id"]
+            isOneToOne: false
+            referencedRelation: "xops360_clients"
+            referencedColumns: ["id"]
+          },
+        ]
       }
     }
     Views: {

@@ -4,6 +4,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
+import axiomioLogo from "@/assets/axiomio-logo.png";
 
 const navLinks = [
   { href: "/", label: "Home" },
@@ -48,13 +49,15 @@ export function Navbar() {
               whileHover={{ scale: 1.05 }}
               transition={{ type: "spring", stiffness: 400 }}
             >
-              <div className="h-11 w-11 rounded-xl bg-gradient-to-br from-primary to-secondary flex items-center justify-center shadow-glow">
-                <span className="font-heading font-bold text-xl text-primary-foreground">A</span>
-              </div>
-              <div className="absolute inset-0 rounded-xl bg-gradient-to-br from-primary to-secondary blur-lg opacity-40 group-hover:opacity-60 transition-opacity duration-300" />
+              <img 
+                src={axiomioLogo} 
+                alt="AXIOMIO" 
+                className="h-11 w-11 object-contain drop-shadow-[0_0_12px_hsl(var(--primary)/0.5)]"
+              />
+              <div className="absolute inset-0 bg-primary/20 blur-xl opacity-0 group-hover:opacity-60 transition-opacity duration-300" />
             </motion.div>
-            <span className="font-heading font-semibold text-xl tracking-tight text-foreground">
-              Axiomio
+            <span className="font-heading font-bold text-xl tracking-wider text-foreground">
+              AXIOMIO
             </span>
           </Link>
 

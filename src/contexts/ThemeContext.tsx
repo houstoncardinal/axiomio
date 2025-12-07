@@ -21,14 +21,24 @@ const ThemeContext = createContext<ThemeContextType | undefined>(undefined);
 
 export const ThemeProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const [theme, setTheme] = useState<Theme>(() => {
-    const stored = localStorage.getItem('axiomio-theme');
-    return (stored as Theme) || 'dark';
+    if (typeof window !== 'undefined') {
+      const stored = localStorage.getItem('axiomio-theme');
+      if (stored && themes.some(t => t.id === stored)) {
+        return stored as Theme;
+      }
+    }
+    return 'dark';
   });
 
   useEffect(() => {
     localStorage.setItem('axiomio-theme', theme);
     document.documentElement.setAttribute('data-theme', theme);
   }, [theme]);
+
+  // Set theme on initial mount
+  useEffect(() => {
+    document.documentElement.setAttribute('data-theme', theme);
+  }, []);
 
   return (
     <ThemeContext.Provider value={{ theme, setTheme, themes }}>

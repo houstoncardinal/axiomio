@@ -18,6 +18,8 @@ import { ProcessTimeline } from "@/components/ProcessTimeline";
 import { TestimonialsSection } from "@/components/TestimonialsSection";
 import { CapabilitiesGrid } from "@/components/CapabilitiesGrid";
 import { MetricsShowcase } from "@/components/MetricsShowcase";
+import { SEOHead } from "@/components/SEOHead";
+import { organizationSchema, websiteSchema, professionalServiceSchema, faqSchema, xops360Schema, aggregateRatingSchema } from "@/lib/seo-schemas";
 import { useRef } from "react";
 
 const services = [
@@ -92,12 +94,32 @@ export default function Index() {
   const heroScale = useTransform(scrollYProgress, [0, 0.5], [1, 0.95]);
   const heroY = useTransform(scrollYProgress, [0, 0.5], [0, 100]);
 
+  const combinedSchema = {
+    "@context": "https://schema.org",
+    "@graph": [
+      organizationSchema,
+      websiteSchema,
+      professionalServiceSchema,
+      faqSchema,
+      xops360Schema,
+      aggregateRatingSchema,
+    ],
+  };
+
   return (
     <div className="min-h-screen bg-background overflow-hidden">
+      <SEOHead
+        title="Axiomio | Enterprise Technology & Strategy Consulting | XOPS360 Platform"
+        description="Axiomio is a global technology and strategy consulting firm. Our XOPS360 platform unifies DevOps, DataOps, MLOps & AIOps. Digital transformation, AI automation & enterprise systems for Fortune 500 companies."
+        keywords="technology consulting, strategy consulting, digital transformation, AI automation, enterprise architecture, DevOps, MLOps, AIOps, DataOps, XOPS360, cloud consulting, machine learning consulting, enterprise systems, IT consulting, Deloitte alternative, Accenture alternative"
+        canonicalUrl="https://axiomio.com/"
+        ogType="website"
+        structuredData={combinedSchema}
+      />
       <Navbar />
       
       {/* Hero Section */}
-      <section ref={heroRef} className="relative min-h-[100vh] flex items-center pt-20">
+      <header ref={heroRef} className="relative min-h-[100vh] flex items-center pt-20" role="banner">
         {/* Background layers */}
         <div className="absolute inset-0">
           <div className="absolute inset-0 bg-hero-gradient" />
@@ -207,7 +229,7 @@ export default function Index() {
             <div className="w-px h-12 bg-gradient-to-b from-primary/50 to-transparent" />
           </motion.div>
         </motion.div>
-      </section>
+      </header>
 
       {/* Trusted By Section */}
       <section className="py-20 relative border-y border-border/30">

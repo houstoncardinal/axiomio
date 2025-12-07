@@ -6,6 +6,8 @@ import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
 import { GridBackground } from "@/components/GridBackground";
 import { SectionHeader } from "@/components/SectionHeader";
+import { SEOHead } from "@/components/SEOHead";
+import { createBreadcrumbSchema } from "@/lib/seo-schemas";
 
 const phases = [
   {
@@ -70,9 +72,34 @@ const phases = [
   },
 ];
 
+const breadcrumbSchema = createBreadcrumbSchema([
+  { name: "Home", url: "https://axiomio.com/" },
+  { name: "Approach", url: "https://axiomio.com/approach" },
+]);
+
+const howToSchema = {
+  "@context": "https://schema.org",
+  "@type": "HowTo",
+  name: "Axiomio's 5-Phase Transformation Methodology",
+  description: "Our systematic approach to enterprise digital transformation: Discover, Define, Design, Deliver, and Develop.",
+  step: phases.map((phase, index) => ({
+    "@type": "HowToStep",
+    position: index + 1,
+    name: phase.title,
+    text: phase.description,
+  })),
+};
+
 export default function Approach() {
   return (
-    <div className="min-h-screen bg-background overflow-hidden">
+    <main className="min-h-screen bg-background overflow-hidden">
+      <SEOHead
+        title="Our Approach | 5-Phase Transformation Methodology | Axiomio"
+        description="Axiomio's proven 5-phase methodology: Discover, Define, Design, Deliver, Develop. Systematic approach to enterprise digital transformation and technology consulting for sustainable outcomes."
+        keywords="consulting methodology, digital transformation approach, enterprise consulting process, technology implementation methodology, strategy consulting framework, transformation methodology"
+        canonicalUrl="https://axiomio.com/approach"
+        structuredData={{ "@context": "https://schema.org", "@graph": [breadcrumbSchema, howToSchema] }}
+      />
       <Navbar />
       
       {/* Hero Section */}
@@ -278,6 +305,6 @@ export default function Approach() {
       </section>
 
       <Footer />
-    </div>
+    </main>
   );
 }

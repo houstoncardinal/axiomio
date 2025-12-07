@@ -94,7 +94,7 @@ const SEO: React.FC = () => {
   // Process analytics data
   const pageViews = analytics.filter(e => e.event_type === 'page_view');
   const scrollEvents = analytics.filter(e => e.event_type === 'scroll_depth');
-  const vitalEvents = analytics.filter(e => e.event_type === 'core_web_vitals');
+  const vitalEvents = analytics.filter(e => e.event_type === 'core_web_vital');
   const conversionEvents = analytics.filter(e => e.event_type === 'conversion');
 
   // Calculate page metrics

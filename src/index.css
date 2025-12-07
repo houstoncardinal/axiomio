@@ -5,7 +5,8 @@
 @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&display=swap');
 
 @layer base {
-  :root {
+  :root,
+  [data-theme="dark"] {
     --background: 230 25% 2%;
     --foreground: 210 40% 98%;
 
@@ -47,6 +48,114 @@
     --gradient-start: 195 100% 50%;
     --gradient-mid: 220 100% 60%;
     --gradient-end: 270 80% 60%;
+  }
+
+  /* Midnight Theme - Deep blues and purples */
+  [data-theme="midnight"] {
+    --background: 240 30% 3%;
+    --foreground: 220 40% 98%;
+    --card: 240 25% 6%;
+    --card-foreground: 220 40% 98%;
+    --popover: 240 25% 5%;
+    --popover-foreground: 220 40% 98%;
+    --primary: 245 85% 65%;
+    --primary-foreground: 240 30% 3%;
+    --secondary: 280 75% 55%;
+    --secondary-foreground: 220 40% 98%;
+    --muted: 240 20% 12%;
+    --muted-foreground: 230 15% 55%;
+    --accent: 260 80% 60%;
+    --accent-foreground: 220 40% 98%;
+    --border: 240 18% 15%;
+    --input: 240 18% 15%;
+    --ring: 245 85% 65%;
+    --glow-primary: 245 85% 65%;
+    --glow-secondary: 280 75% 55%;
+    --glow-accent: 260 80% 60%;
+    --gradient-start: 245 85% 65%;
+    --gradient-mid: 260 80% 60%;
+    --gradient-end: 280 75% 55%;
+  }
+
+  /* Emerald Theme - Rich greens and teals */
+  [data-theme="emerald"] {
+    --background: 160 30% 2%;
+    --foreground: 160 20% 98%;
+    --card: 160 25% 5%;
+    --card-foreground: 160 20% 98%;
+    --popover: 160 25% 4%;
+    --popover-foreground: 160 20% 98%;
+    --primary: 160 85% 45%;
+    --primary-foreground: 160 30% 2%;
+    --secondary: 175 70% 40%;
+    --secondary-foreground: 160 20% 98%;
+    --muted: 160 20% 10%;
+    --muted-foreground: 160 15% 50%;
+    --accent: 170 80% 45%;
+    --accent-foreground: 160 20% 98%;
+    --border: 160 18% 12%;
+    --input: 160 18% 12%;
+    --ring: 160 85% 45%;
+    --glow-primary: 160 85% 45%;
+    --glow-secondary: 175 70% 40%;
+    --glow-accent: 170 80% 45%;
+    --gradient-start: 160 85% 45%;
+    --gradient-mid: 170 80% 45%;
+    --gradient-end: 175 70% 40%;
+  }
+
+  /* Rose Theme - Warm pinks and reds */
+  [data-theme="rose"] {
+    --background: 350 25% 3%;
+    --foreground: 350 20% 98%;
+    --card: 350 22% 6%;
+    --card-foreground: 350 20% 98%;
+    --popover: 350 22% 5%;
+    --popover-foreground: 350 20% 98%;
+    --primary: 350 90% 60%;
+    --primary-foreground: 350 25% 3%;
+    --secondary: 330 80% 55%;
+    --secondary-foreground: 350 20% 98%;
+    --muted: 350 18% 12%;
+    --muted-foreground: 350 15% 50%;
+    --accent: 340 85% 58%;
+    --accent-foreground: 350 20% 98%;
+    --border: 350 15% 15%;
+    --input: 350 15% 15%;
+    --ring: 350 90% 60%;
+    --glow-primary: 350 90% 60%;
+    --glow-secondary: 330 80% 55%;
+    --glow-accent: 340 85% 58%;
+    --gradient-start: 350 90% 60%;
+    --gradient-mid: 340 85% 58%;
+    --gradient-end: 330 80% 55%;
+  }
+
+  /* Ocean Theme - Deep sea blues and cyans */
+  [data-theme="ocean"] {
+    --background: 200 35% 2%;
+    --foreground: 200 25% 98%;
+    --card: 200 30% 5%;
+    --card-foreground: 200 25% 98%;
+    --popover: 200 30% 4%;
+    --popover-foreground: 200 25% 98%;
+    --primary: 200 90% 50%;
+    --primary-foreground: 200 35% 2%;
+    --secondary: 185 80% 45%;
+    --secondary-foreground: 200 25% 98%;
+    --muted: 200 22% 10%;
+    --muted-foreground: 200 18% 50%;
+    --accent: 190 85% 48%;
+    --accent-foreground: 200 25% 98%;
+    --border: 200 20% 12%;
+    --input: 200 20% 12%;
+    --ring: 200 90% 50%;
+    --glow-primary: 200 90% 50%;
+    --glow-secondary: 185 80% 45%;
+    --glow-accent: 190 85% 48%;
+    --gradient-start: 200 90% 50%;
+    --gradient-mid: 190 85% 48%;
+    --gradient-end: 185 80% 45%;
   }
 
   .dark {

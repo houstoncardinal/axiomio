@@ -7,6 +7,7 @@ import { cn } from "@/lib/utils";
 
 const navLinks = [
   { href: "/", label: "Home" },
+  { href: "/xops360", label: "XOPS360", highlight: true },
   { href: "/about", label: "About" },
   { href: "/services", label: "Services" },
   { href: "/approach", label: "Approach" },
@@ -65,11 +66,16 @@ export function Navbar() {
                 to={link.href}
                 className={cn(
                   "relative px-4 py-2 rounded-lg text-sm font-medium transition-all duration-300",
-                  location.pathname === link.href
+                  link.highlight && location.pathname !== link.href
+                    ? "text-primary"
+                    : location.pathname === link.href
                     ? "text-primary"
                     : "text-muted-foreground hover:text-foreground"
                 )}
               >
+                {link.highlight && (
+                  <span className="absolute -top-1 -right-1 w-2 h-2 bg-primary rounded-full animate-pulse" />
+                )}
                 {link.label}
                 {location.pathname === link.href && (
                   <motion.div

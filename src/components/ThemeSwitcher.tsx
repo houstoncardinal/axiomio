@@ -79,6 +79,9 @@ export const ThemeSwitcher: React.FC = () => {
 
                     <div className="flex-1 text-left">
                       <span className="font-medium text-foreground">{t.name}</span>
+                      <span className="ml-2 text-xs text-muted-foreground">
+                        {t.isDark ? 'Dark' : 'Light'}
+                      </span>
                     </div>
 
                     {theme === t.id && (
@@ -95,7 +98,7 @@ export const ThemeSwitcher: React.FC = () => {
               </div>
 
               <p className="mt-4 text-xs text-muted-foreground text-center">
-                Luxury theme system • Axiomio
+                AXIOMIO • Professional Theme System
               </p>
             </motion.div>
           </>

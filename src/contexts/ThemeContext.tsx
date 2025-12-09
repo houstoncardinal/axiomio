@@ -1,20 +1,19 @@
 import React, { createContext, useContext, useEffect, useState } from 'react';
 
-export type Theme = 'dark' | 'midnight' | 'emerald' | 'rose' | 'ocean' | 'ivory';
+export type Theme = 'light' | 'dark' | 'slate' | 'navy' | 'graphite';
 
 interface ThemeContextType {
   theme: Theme;
   setTheme: (theme: Theme) => void;
-  themes: { id: Theme; name: string; colors: { primary: string; accent: string } }[];
+  themes: { id: Theme; name: string; colors: { primary: string; accent: string }; isDark: boolean }[];
 }
 
 const themes = [
-  { id: 'dark' as Theme, name: 'Obsidian', colors: { primary: '#00d4ff', accent: '#a855f7' } },
-  { id: 'midnight' as Theme, name: 'Midnight', colors: { primary: '#6366f1', accent: '#8b5cf6' } },
-  { id: 'emerald' as Theme, name: 'Emerald', colors: { primary: '#10b981', accent: '#14b8a6' } },
-  { id: 'rose' as Theme, name: 'Rose Gold', colors: { primary: '#f43f5e', accent: '#ec4899' } },
-  { id: 'ocean' as Theme, name: 'Ocean', colors: { primary: '#0ea5e9', accent: '#06b6d4' } },
-  { id: 'ivory' as Theme, name: 'Ivory', colors: { primary: '#c9932a', accent: '#d4853a' } },
+  { id: 'light' as Theme, name: 'Professional', colors: { primary: '#2563eb', accent: '#0ea5e9' }, isDark: false },
+  { id: 'dark' as Theme, name: 'Dark Mode', colors: { primary: '#3b82f6', accent: '#0ea5e9' }, isDark: true },
+  { id: 'slate' as Theme, name: 'Slate', colors: { primary: '#3b82f6', accent: '#0ea5e9' }, isDark: true },
+  { id: 'navy' as Theme, name: 'Navy & Gold', colors: { primary: '#eab308', accent: '#0ea5e9' }, isDark: true },
+  { id: 'graphite' as Theme, name: 'Graphite', colors: { primary: '#fafafa', accent: '#a1a1aa' }, isDark: true },
 ];
 
 const ThemeContext = createContext<ThemeContextType | undefined>(undefined);
@@ -27,7 +26,7 @@ export const ThemeProvider: React.FC<{ children: React.ReactNode }> = ({ childre
         return stored as Theme;
       }
     }
-    return 'dark';
+    return 'light';
   });
 
   useEffect(() => {

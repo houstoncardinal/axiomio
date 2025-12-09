@@ -6,174 +6,179 @@
 
 @layer base {
   /* Professional Light Theme - Default */
+  /* Indigo + Bronze: Distinctive enterprise identity */
   :root,
   [data-theme="light"] {
-    --background: 0 0% 100%;
-    --foreground: 222 47% 11%;
+    --background: 40 20% 99%;
+    --foreground: 240 20% 12%;
 
     --card: 0 0% 100%;
-    --card-foreground: 222 47% 11%;
+    --card-foreground: 240 20% 12%;
 
     --popover: 0 0% 100%;
-    --popover-foreground: 222 47% 11%;
+    --popover-foreground: 240 20% 12%;
 
-    --primary: 217 91% 50%;
+    /* Primary: Deep Indigo */
+    --primary: 243 55% 45%;
     --primary-foreground: 0 0% 100%;
 
-    --secondary: 215 25% 27%;
+    /* Secondary: Rich Bronze */
+    --secondary: 30 45% 40%;
     --secondary-foreground: 0 0% 100%;
 
-    --muted: 220 14% 96%;
-    --muted-foreground: 220 13% 40%;
+    /* Muted: Warm gray */
+    --muted: 40 10% 95%;
+    --muted-foreground: 240 10% 40%;
 
-    --accent: 217 91% 60%;
+    /* Accent: Lighter Indigo */
+    --accent: 243 45% 55%;
     --accent-foreground: 0 0% 100%;
 
-    --destructive: 0 84% 60%;
+    --destructive: 0 72% 51%;
     --destructive-foreground: 0 0% 100%;
 
-    --border: 220 13% 87%;
-    --input: 220 13% 91%;
-    --ring: 217 91% 50%;
+    --border: 40 10% 88%;
+    --input: 40 10% 90%;
+    --ring: 243 55% 45%;
 
-    --radius: 0.75rem;
+    --radius: 0.625rem;
 
     /* Premium design tokens */
-    --glow-primary: 217 91% 50%;
-    --glow-secondary: 215 25% 27%;
-    --glow-accent: 217 91% 60%;
-    --glass-bg: 0 0% 100%;
-    --glass-border: 220 13% 85%;
+    --glow-primary: 243 55% 45%;
+    --glow-secondary: 30 45% 40%;
+    --glow-accent: 243 45% 55%;
+    --glass-bg: 40 20% 99%;
+    --glass-border: 40 10% 88%;
     
     /* Gradient tokens */
-    --gradient-start: 217 91% 50%;
-    --gradient-mid: 199 89% 48%;
-    --gradient-end: 215 25% 27%;
+    --gradient-start: 243 55% 45%;
+    --gradient-mid: 243 45% 55%;
+    --gradient-end: 30 45% 40%;
 
     /* Header specific */
     --header-bg: 0 0% 100%;
-    --header-border: 220 13% 90%;
+    --header-border: 40 10% 90%;
   }
 
-  /* Dark Theme */
+  /* Dark Theme - Indigo + Bronze */
   [data-theme="dark"] {
-    --background: 222 47% 6%;
-    --foreground: 210 40% 98%;
+    --background: 240 20% 6%;
+    --foreground: 40 15% 95%;
 
-    --card: 222 47% 8%;
-    --card-foreground: 210 40% 98%;
+    --card: 240 18% 9%;
+    --card-foreground: 40 15% 95%;
 
-    --popover: 222 47% 7%;
-    --popover-foreground: 210 40% 98%;
+    --popover: 240 18% 8%;
+    --popover-foreground: 40 15% 95%;
 
-    --primary: 217 91% 60%;
-    --primary-foreground: 222 47% 6%;
+    /* Primary: Lighter Indigo for dark mode */
+    --primary: 243 55% 60%;
+    --primary-foreground: 240 20% 6%;
 
-    --secondary: 215 28% 17%;
-    --secondary-foreground: 210 40% 98%;
+    /* Secondary: Warm Bronze */
+    --secondary: 30 50% 50%;
+    --secondary-foreground: 240 20% 6%;
 
-    --muted: 217 33% 12%;
-    --muted-foreground: 215 20% 65%;
+    --muted: 240 15% 14%;
+    --muted-foreground: 40 10% 60%;
 
-    --accent: 217 91% 60%;
-    --accent-foreground: 210 40% 98%;
+    --accent: 243 45% 65%;
+    --accent-foreground: 240 20% 6%;
 
     --destructive: 0 62% 55%;
-    --destructive-foreground: 210 40% 98%;
+    --destructive-foreground: 40 15% 95%;
 
-    --border: 217 33% 15%;
-    --input: 217 33% 15%;
-    --ring: 217 91% 60%;
+    --border: 240 15% 18%;
+    --input: 240 15% 18%;
+    --ring: 243 55% 60%;
 
-    --glow-primary: 217 91% 60%;
-    --glow-secondary: 215 28% 17%;
-    --glow-accent: 199 89% 48%;
-    --glass-bg: 222 47% 8%;
-    --glass-border: 217 33% 18%;
-    --gradient-start: 217 91% 60%;
-    --gradient-mid: 199 89% 48%;
-    --gradient-end: 215 25% 27%;
+    --glow-primary: 243 55% 60%;
+    --glow-secondary: 30 50% 50%;
+    --glow-accent: 243 45% 65%;
+    --glass-bg: 240 18% 9%;
+    --glass-border: 240 15% 20%;
+    --gradient-start: 243 55% 60%;
+    --gradient-mid: 243 45% 65%;
+    --gradient-end: 30 50% 50%;
   }
-
-  /* Slate Theme - Professional dark with blue undertones */
   [data-theme="slate"] {
-    --background: 222 47% 6%;
-    --foreground: 210 40% 98%;
-    --card: 222 47% 8%;
-    --card-foreground: 210 40% 98%;
-    --popover: 222 47% 7%;
-    --popover-foreground: 210 40% 98%;
-    --primary: 217 91% 60%;
-    --primary-foreground: 222 47% 6%;
-    --secondary: 215 28% 17%;
-    --secondary-foreground: 210 40% 98%;
-    --muted: 217 33% 12%;
-    --muted-foreground: 215 20% 65%;
-    --accent: 199 89% 48%;
-    --accent-foreground: 210 40% 98%;
-    --border: 217 33% 15%;
-    --input: 217 33% 15%;
-    --ring: 217 91% 60%;
-    --glow-primary: 217 91% 60%;
-    --glow-secondary: 215 28% 17%;
-    --glow-accent: 199 89% 48%;
-    --gradient-start: 217 91% 60%;
-    --gradient-mid: 199 89% 48%;
-    --gradient-end: 215 25% 27%;
+    --background: 240 18% 7%;
+    --foreground: 40 15% 96%;
+    --card: 240 16% 10%;
+    --card-foreground: 40 15% 96%;
+    --popover: 240 16% 9%;
+    --popover-foreground: 40 15% 96%;
+    --primary: 243 55% 58%;
+    --primary-foreground: 240 18% 7%;
+    --secondary: 30 45% 48%;
+    --secondary-foreground: 240 18% 7%;
+    --muted: 240 14% 14%;
+    --muted-foreground: 40 10% 58%;
+    --accent: 243 45% 62%;
+    --accent-foreground: 40 15% 96%;
+    --border: 240 14% 18%;
+    --input: 240 14% 18%;
+    --ring: 243 55% 58%;
+    --glow-primary: 243 55% 58%;
+    --glow-secondary: 30 45% 48%;
+    --glow-accent: 243 45% 62%;
+    --gradient-start: 243 55% 58%;
+    --gradient-mid: 243 45% 62%;
+    --gradient-end: 30 45% 48%;
   }
 
-  /* Navy Theme - Deep corporate navy */
+  /* Navy Theme - Deep corporate with bronze accents */
   [data-theme="navy"] {
-    --background: 222 60% 8%;
-    --foreground: 210 40% 98%;
-    --card: 222 55% 11%;
-    --card-foreground: 210 40% 98%;
-    --popover: 222 55% 10%;
-    --popover-foreground: 210 40% 98%;
-    --primary: 45 93% 58%;
-    --primary-foreground: 222 60% 8%;
-    --secondary: 199 89% 48%;
-    --secondary-foreground: 222 60% 8%;
-    --muted: 222 40% 15%;
-    --muted-foreground: 215 20% 65%;
-    --accent: 45 93% 58%;
-    --accent-foreground: 222 60% 8%;
-    --border: 222 40% 18%;
-    --input: 222 40% 18%;
-    --ring: 45 93% 58%;
-    --glow-primary: 45 93% 58%;
-    --glow-secondary: 199 89% 48%;
-    --glow-accent: 45 93% 58%;
-    --gradient-start: 45 93% 58%;
-    --gradient-mid: 199 89% 48%;
-    --gradient-end: 217 91% 60%;
+    --background: 240 40% 8%;
+    --foreground: 40 20% 96%;
+    --card: 240 35% 11%;
+    --card-foreground: 40 20% 96%;
+    --popover: 240 35% 10%;
+    --popover-foreground: 40 20% 96%;
+    --primary: 30 60% 55%;
+    --primary-foreground: 240 40% 8%;
+    --secondary: 243 50% 55%;
+    --secondary-foreground: 240 40% 8%;
+    --muted: 240 30% 15%;
+    --muted-foreground: 40 15% 58%;
+    --accent: 30 55% 60%;
+    --accent-foreground: 240 40% 8%;
+    --border: 240 30% 18%;
+    --input: 240 30% 18%;
+    --ring: 30 60% 55%;
+    --glow-primary: 30 60% 55%;
+    --glow-secondary: 243 50% 55%;
+    --glow-accent: 30 55% 60%;
+    --gradient-start: 30 60% 55%;
+    --gradient-mid: 243 50% 55%;
+    --gradient-end: 30 45% 45%;
   }
 
-  /* Graphite Theme - Elegant neutral dark */
+  /* Graphite Theme - Elegant monochrome with bronze highlights */
   [data-theme="graphite"] {
-    --background: 0 0% 7%;
-    --foreground: 0 0% 98%;
-    --card: 0 0% 10%;
-    --card-foreground: 0 0% 98%;
-    --popover: 0 0% 9%;
-    --popover-foreground: 0 0% 98%;
-    --primary: 0 0% 98%;
-    --primary-foreground: 0 0% 7%;
-    --secondary: 0 0% 20%;
-    --secondary-foreground: 0 0% 98%;
-    --muted: 0 0% 14%;
-    --muted-foreground: 0 0% 60%;
-    --accent: 0 0% 90%;
-    --accent-foreground: 0 0% 7%;
-    --border: 0 0% 18%;
-    --input: 0 0% 18%;
-    --ring: 0 0% 98%;
-    --glow-primary: 0 0% 80%;
-    --glow-secondary: 0 0% 50%;
-    --glow-accent: 0 0% 70%;
-    --gradient-start: 0 0% 98%;
-    --gradient-mid: 0 0% 80%;
-    --gradient-end: 0 0% 60%;
+    --background: 30 5% 7%;
+    --foreground: 40 10% 96%;
+    --card: 30 5% 10%;
+    --card-foreground: 40 10% 96%;
+    --popover: 30 5% 9%;
+    --popover-foreground: 40 10% 96%;
+    --primary: 30 50% 55%;
+    --primary-foreground: 30 5% 7%;
+    --secondary: 243 30% 50%;
+    --secondary-foreground: 40 10% 96%;
+    --muted: 30 5% 14%;
+    --muted-foreground: 40 8% 55%;
+    --accent: 30 45% 60%;
+    --accent-foreground: 30 5% 7%;
+    --border: 30 5% 18%;
+    --input: 30 5% 18%;
+    --ring: 30 50% 55%;
+    --glow-primary: 30 50% 55%;
+    --glow-secondary: 243 30% 50%;
+    --glow-accent: 30 45% 60%;
+    --gradient-start: 30 50% 55%;
+    --gradient-mid: 243 30% 50%;
+    --gradient-end: 30 40% 45%;
   }
 }
 

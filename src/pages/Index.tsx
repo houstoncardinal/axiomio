@@ -4,14 +4,8 @@ import { ArrowRight, Brain, Cpu, LineChart, Shield, Zap, Target, Users, Globe, S
 import { Button } from "@/components/ui/button";
 import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
-import { ParticleField } from "@/components/ParticleField";
-import { FloatingElements } from "@/components/FloatingElements";
-import { GlowingOrb } from "@/components/GlowingOrb";
 import { PremiumCard } from "@/components/PremiumCard";
-import { AnimatedGradientText } from "@/components/AnimatedGradientText";
-import { MagneticButton } from "@/components/MagneticButton";
 import { CounterBadge } from "@/components/CounterBadge";
-import { TextReveal } from "@/components/TextReveal";
 import { SectionHeader } from "@/components/SectionHeader";
 import { XOPS360Section } from "@/components/XOPS360Section";
 import { ProcessTimeline } from "@/components/ProcessTimeline";
@@ -109,60 +103,50 @@ export default function Index() {
       
       {/* Hero Section */}
       <header ref={heroRef} className="relative min-h-[100vh] flex items-center pt-20" role="banner">
-        {/* Background layers */}
+        {/* Background - Clean and professional */}
         <div className="absolute inset-0">
-          <div className="absolute inset-0 bg-hero-gradient" />
-          <GlowingOrb size={800} color="primary" className="-top-1/4 -left-1/4" delay={0} />
-          <GlowingOrb size={600} color="secondary" className="top-1/4 -right-1/4" delay={2} />
-          <GlowingOrb size={500} color="accent" className="bottom-0 left-1/3" delay={4} />
-          <ParticleField />
-          <FloatingElements />
+          <div className="absolute inset-0 bg-gradient-to-b from-muted/30 via-background to-background" />
+          <div className="absolute top-0 left-1/4 w-[600px] h-[600px] bg-primary/5 rounded-full blur-3xl" />
+          <div className="absolute bottom-1/4 right-1/4 w-[400px] h-[400px] bg-accent/5 rounded-full blur-3xl" />
         </div>
         
         <motion.div 
-          className="container relative z-10 mx-auto px-6 lg:px-8 py-24 lg:py-32"
+          className="container relative z-10 mx-auto px-6 lg:px-8 py-20 lg:py-28"
           style={{ opacity: heroOpacity, scale: heroScale, y: heroY }}
         >
-          <div className="max-w-6xl mx-auto text-center">
+          <div className="max-w-5xl mx-auto">
             {/* Badge */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6 }}
-              className="mb-8"
+              className="mb-8 flex justify-center lg:justify-start"
             >
-              <span className="inline-flex items-center gap-3 text-sm font-medium uppercase tracking-[0.2em] text-muted-foreground/80 px-6 py-3 rounded-full border border-border/50 bg-muted/30 backdrop-blur-sm">
-                <motion.span 
-                  className="w-2 h-2 bg-primary rounded-full"
-                  animate={{ scale: [1, 1.5, 1], opacity: [1, 0.5, 1] }}
-                  transition={{ duration: 2, repeat: Infinity }}
-                />
+              <span className="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.15em] text-primary bg-primary/10 px-4 py-2 rounded-full border border-primary/20">
+                <Sparkles className="w-3.5 h-3.5" />
                 Powered by XOPS360
-                <Sparkles className="w-4 h-4 text-primary" />
               </span>
             </motion.div>
 
             {/* Main headline */}
             <motion.h1 
-              className="font-heading text-5xl md:text-7xl lg:text-8xl xl:text-[6.5rem] font-bold text-foreground leading-[1.02] tracking-tight mb-8"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
+              className="font-heading text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-foreground leading-[1.1] tracking-tight mb-6 text-center lg:text-left"
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.2 }}
             >
-              <TextReveal delay={0.3}>
-                <span className="block">The future of</span>
-              </TextReveal>
-              <TextReveal delay={0.5}>
-                <span className="block"><AnimatedGradientText>intelligent operations</AnimatedGradientText></span>
-              </TextReveal>
+              The future of{" "}
+              <span className="text-primary">intelligent</span>
+              <br />
+              operations
             </motion.h1>
             
             {/* Subheadline */}
             <motion.p 
-              className="text-xl md:text-2xl lg:text-[1.65rem] text-muted-foreground leading-relaxed max-w-3xl mx-auto mb-14"
-              initial={{ opacity: 0, y: 30 }}
+              className="text-lg md:text-xl text-muted-foreground leading-relaxed max-w-2xl mb-10 text-center lg:text-left mx-auto lg:mx-0"
+              initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.8 }}
+              transition={{ duration: 0.8, delay: 0.4 }}
             >
               Axiomio's XOPS360 platform unifies DevOps, DataOps, MLOps, and AIOps into a single 
               intelligent ecosystem—transforming operational complexity into competitive advantage.
@@ -170,84 +154,51 @@ export default function Index() {
             
             {/* CTA Buttons */}
             <motion.div 
-              className="flex flex-col sm:flex-row gap-5 justify-center"
-              initial={{ opacity: 0, y: 30 }}
+              className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start"
+              initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 1 }}
+              transition={{ duration: 0.8, delay: 0.6 }}
             >
-              <MagneticButton>
-                <Button variant="hero" size="xl" className="group relative overflow-hidden" asChild>
-                  <Link to="/contact">
-                    <span className="relative z-10 flex items-center">
-                      Request a Demo
-                      <ArrowRight className="ml-2 h-5 w-5 transition-transform group-hover:translate-x-1" />
-                    </span>
-                    <motion.div
-                      className="absolute inset-0 bg-gradient-to-r from-primary via-blue-400 to-primary"
-                      style={{ backgroundSize: "200% 100%" }}
-                      animate={{ backgroundPosition: ["0% 50%", "100% 50%", "0% 50%"] }}
-                      transition={{ duration: 3, repeat: Infinity, ease: "linear" }}
-                    />
-                  </Link>
-                </Button>
-              </MagneticButton>
-              <MagneticButton>
-                <Button variant="hero-outline" size="xl" className="backdrop-blur-sm" asChild>
-                  <Link to="/services">
-                    Explore XOPS360
-                  </Link>
-                </Button>
-              </MagneticButton>
+              <Button size="lg" className="shadow-glow text-base px-8" asChild>
+                <Link to="/contact">
+                  Request a Demo
+                  <ArrowRight className="ml-2 h-4 w-4" />
+                </Link>
+              </Button>
+              <Button variant="outline" size="lg" className="text-base px-8" asChild>
+                <Link to="/xops360">
+                  Explore XOPS360
+                </Link>
+              </Button>
+            </motion.div>
+
+            {/* Trust indicators */}
+            <motion.div
+              className="mt-16 pt-10 border-t border-border/50"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 1, duration: 0.8 }}
+            >
+              <p className="text-xs uppercase tracking-[0.2em] text-muted-foreground/60 mb-6 text-center lg:text-left">
+                Trusted by enterprise leaders
+              </p>
+              <div className="flex flex-wrap justify-center lg:justify-start items-center gap-x-10 gap-y-4">
+                {["Fortune 500", "Tech Giants", "Financial Leaders", "Global Enterprises"].map((name, i) => (
+                  <motion.span
+                    key={name}
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    transition={{ delay: 1.2 + i * 0.1 }}
+                    className="text-muted-foreground/50 font-medium text-sm"
+                  >
+                    {name}
+                  </motion.span>
+                ))}
+              </div>
             </motion.div>
           </div>
         </motion.div>
-        
-        {/* Scroll indicator */}
-        <motion.div 
-          className="absolute bottom-12 left-1/2 -translate-x-1/2"
-          initial={{ opacity: 0, y: -20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 1.5, duration: 0.6 }}
-        >
-          <motion.div 
-            className="flex flex-col items-center gap-3"
-            animate={{ y: [0, 8, 0] }}
-            transition={{ duration: 2.5, repeat: Infinity, ease: "easeInOut" }}
-          >
-            <span className="text-xs uppercase tracking-[0.2em] text-muted-foreground/60">Discover more</span>
-            <div className="w-px h-12 bg-gradient-to-b from-primary/50 to-transparent" />
-          </motion.div>
-        </motion.div>
       </header>
-
-      {/* Trusted By Section */}
-      <section className="py-20 relative border-y border-border/30">
-        <div className="absolute inset-0 bg-gradient-to-b from-muted/20 to-transparent" />
-        <div className="container relative mx-auto px-6 lg:px-8">
-          <motion.p 
-            className="text-center text-sm uppercase tracking-[0.25em] text-muted-foreground/60 mb-12"
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            viewport={{ once: true }}
-          >
-            Trusted by industry leaders worldwide
-          </motion.p>
-          <div className="flex flex-wrap justify-center items-center gap-12 lg:gap-20">
-            {["Fortune 500", "Tech Giants", "Financial Leaders", "Global Enterprises", "Innovators"].map((name, i) => (
-              <motion.div
-                key={name}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ delay: i * 0.1 }}
-                viewport={{ once: true }}
-                className="text-muted-foreground/40 font-heading text-lg md:text-xl font-medium hover:text-muted-foreground/60 transition-colors cursor-default"
-              >
-                {name}
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
 
       {/* Stats Section */}
       <section className="py-28 lg:py-36 relative">
@@ -367,14 +318,12 @@ export default function Index() {
                 </p>
               </div>
               
-              <MagneticButton className="mt-10">
-                <Button variant="hero" size="lg" asChild>
-                  <Link to="/about">
-                    Learn More About Us
-                    <ArrowRight className="ml-2 h-4 w-4" />
-                  </Link>
-                </Button>
-              </MagneticButton>
+              <Button size="lg" className="mt-10 shadow-glow" asChild>
+                <Link to="/about">
+                  Learn More About Us
+                  <ArrowRight className="ml-2 h-4 w-4" />
+                </Link>
+              </Button>
             </motion.div>
             
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
@@ -407,48 +356,44 @@ export default function Index() {
       </section>
 
       {/* CTA Section */}
-      <section className="py-32 lg:py-40 relative overflow-hidden">
-        <div className="absolute inset-0">
-          <GlowingOrb size={1000} color="primary" className="top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2" />
-        </div>
-        
+      <section className="py-24 lg:py-32 relative overflow-hidden bg-muted/30">
         <div className="container relative z-10 mx-auto px-6 lg:px-8">
           <motion.div 
-            className="relative max-w-5xl mx-auto"
+            className="relative max-w-4xl mx-auto"
             initial={{ opacity: 0, y: 50 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
             viewport={{ once: true }}
           >
             {/* Card */}
-            <div className="glass-premium rounded-3xl p-12 lg:p-20 text-center relative overflow-hidden">
+            <div className="bg-background rounded-2xl p-10 lg:p-16 text-center border border-border shadow-lg relative overflow-hidden">
               {/* Decorative elements */}
-              <div className="absolute top-0 left-0 w-40 h-40 bg-gradient-to-br from-primary/10 to-transparent" />
-              <div className="absolute bottom-0 right-0 w-40 h-40 bg-gradient-to-tl from-secondary/10 to-transparent" />
+              <div className="absolute top-0 left-0 w-40 h-40 bg-gradient-to-br from-primary/5 to-transparent" />
+              <div className="absolute bottom-0 right-0 w-40 h-40 bg-gradient-to-tl from-primary/5 to-transparent" />
               
               <div className="relative z-10">
                 <motion.span
                   initial={{ opacity: 0 }}
                   whileInView={{ opacity: 1 }}
                   viewport={{ once: true }}
-                  className="inline-flex items-center gap-2 text-sm font-medium uppercase tracking-[0.15em] text-primary mb-6"
+                  className="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.15em] text-primary mb-6"
                 >
-                  <span className="w-8 h-px bg-primary" />
+                  <span className="w-6 h-px bg-primary" />
                   Start Your Transformation
-                  <span className="w-8 h-px bg-primary" />
+                  <span className="w-6 h-px bg-primary" />
                 </motion.span>
                 
                 <motion.h2 
-                  className="font-heading text-4xl md:text-5xl lg:text-6xl font-bold text-foreground mb-8"
+                  className="font-heading text-3xl md:text-4xl lg:text-5xl font-bold text-foreground mb-6"
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.2, duration: 0.6 }}
                   viewport={{ once: true }}
                 >
-                  Ready to experience <AnimatedGradientText>XOPS360</AnimatedGradientText>?
+                  Ready to experience <span className="text-primary">XOPS360</span>?
                 </motion.h2>
                 <motion.p 
-                  className="text-xl text-muted-foreground max-w-2xl mx-auto mb-12"
+                  className="text-lg text-muted-foreground max-w-2xl mx-auto mb-10"
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.3, duration: 0.6 }}
@@ -458,27 +403,23 @@ export default function Index() {
                   accelerate transformation, and achieve outcomes that matter.
                 </motion.p>
                 <motion.div 
-                  className="flex flex-col sm:flex-row gap-5 justify-center"
+                  className="flex flex-col sm:flex-row gap-4 justify-center"
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.4, duration: 0.6 }}
                   viewport={{ once: true }}
                 >
-                  <MagneticButton>
-                    <Button variant="hero" size="xl" asChild>
-                      <Link to="/contact">
-                        Schedule a Demo
-                        <ArrowRight className="ml-2 h-5 w-5" />
-                      </Link>
-                    </Button>
-                  </MagneticButton>
-                  <MagneticButton>
-                    <Button variant="hero-outline" size="xl" asChild>
-                      <Link to="/approach">
-                        See Our Approach
-                      </Link>
-                    </Button>
-                  </MagneticButton>
+                  <Button size="lg" className="shadow-glow" asChild>
+                    <Link to="/contact">
+                      Schedule a Demo
+                      <ArrowRight className="ml-2 h-4 w-4" />
+                    </Link>
+                  </Button>
+                  <Button variant="outline" size="lg" asChild>
+                    <Link to="/approach">
+                      See Our Approach
+                    </Link>
+                  </Button>
                 </motion.div>
               </div>
             </div>

@@ -40,10 +40,10 @@ export function Navbar() {
     <>
       <motion.header 
         className={cn(
-          "fixed top-0 left-0 right-0 z-50 transition-all duration-500",
+          "fixed top-0 left-0 right-0 z-50 transition-all duration-300",
           scrolled 
-            ? "glass border-b border-border/50 py-4" 
-            : "bg-transparent py-6"
+            ? "bg-background/95 backdrop-blur-xl border-b border-border shadow-sm py-3" 
+            : "bg-background/80 backdrop-blur-md py-4"
         )}
         initial={{ y: -100 }}
         animate={{ y: 0 }}
@@ -55,73 +55,60 @@ export function Navbar() {
             <Link to="/" className="flex items-center gap-3 group">
               <motion.div 
                 className="relative"
-                whileHover={{ scale: 1.05 }}
+                whileHover={{ scale: 1.02 }}
                 transition={{ type: "spring", stiffness: 400 }}
               >
-                <img 
-                  src={axiomioLogo} 
-                  alt="AXIOMIO" 
-                  className="h-11 w-11 object-contain drop-shadow-[0_0_12px_hsl(var(--primary)/0.5)]"
-                />
-                <div className="absolute inset-0 bg-primary/20 blur-xl opacity-0 group-hover:opacity-60 transition-opacity duration-300" />
+                <div className="h-10 w-10 rounded-xl bg-primary flex items-center justify-center shadow-glow">
+                  <img 
+                    src={axiomioLogo} 
+                    alt="AXIOMIO" 
+                    className="h-6 w-6 object-contain brightness-0 invert"
+                  />
+                </div>
               </motion.div>
-              <span className="font-heading font-bold text-xl tracking-wider text-foreground">
+              <span className="font-heading font-bold text-xl tracking-tight text-foreground">
                 AXIOMIO
               </span>
             </Link>
 
             {/* Desktop Navigation */}
-            <div className="hidden md:flex items-center gap-1">
+            <div className="hidden md:flex items-center gap-0.5">
               {navLinks.map((link) => (
                 <div key={link.href} className="relative">
                   {link.hasMegaMenu ? (
                     <button
                       onClick={() => setMegaMenuOpen(!megaMenuOpen)}
                       className={cn(
-                        "relative px-4 py-2 rounded-lg text-sm font-medium transition-all duration-300 flex items-center gap-1",
+                        "relative px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200 flex items-center gap-1",
                         megaMenuOpen || location.pathname.startsWith("/services")
-                          ? "text-primary"
-                          : "text-muted-foreground hover:text-foreground"
+                          ? "text-primary bg-primary/5"
+                          : "text-foreground/70 hover:text-foreground hover:bg-muted/50"
                       )}
                     >
                       {link.label}
                       <ChevronDown 
                         className={cn(
-                          "h-4 w-4 transition-transform duration-200",
+                          "h-3.5 w-3.5 transition-transform duration-200",
                           megaMenuOpen && "rotate-180"
                         )} 
                       />
-                      {(megaMenuOpen || location.pathname.startsWith("/services")) && (
-                        <motion.div
-                          className="absolute inset-0 rounded-lg bg-primary/10"
-                          layoutId="navbar-active"
-                          transition={{ type: "spring", stiffness: 400, damping: 30 }}
-                        />
-                      )}
                     </button>
                   ) : (
                     <Link
                       to={link.href}
                       className={cn(
-                        "relative px-4 py-2 rounded-lg text-sm font-medium transition-all duration-300",
+                        "relative px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200",
                         link.highlight && location.pathname !== link.href
-                          ? "text-primary"
+                          ? "text-primary font-semibold"
                           : location.pathname === link.href
-                          ? "text-primary"
-                          : "text-muted-foreground hover:text-foreground"
+                          ? "text-primary bg-primary/5"
+                          : "text-foreground/70 hover:text-foreground hover:bg-muted/50"
                       )}
                     >
                       {link.highlight && (
-                        <span className="absolute -top-1 -right-1 w-2 h-2 bg-primary rounded-full animate-pulse" />
+                        <span className="absolute -top-0.5 -right-0.5 w-1.5 h-1.5 bg-primary rounded-full" />
                       )}
                       {link.label}
-                      {location.pathname === link.href && (
-                        <motion.div
-                          className="absolute inset-0 rounded-lg bg-primary/10"
-                          layoutId="navbar-active"
-                          transition={{ type: "spring", stiffness: 400, damping: 30 }}
-                        />
-                      )}
                     </Link>
                   )}
                 </div>
@@ -129,12 +116,16 @@ export function Navbar() {
             </div>
 
             {/* CTA Button */}
-            <div className="hidden md:block">
-              <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
-                <Button variant="hero" size="default" asChild>
-                  <Link to="/contact">Get Started</Link>
-                </Button>
-              </motion.div>
+            <div className="hidden md:flex items-center gap-3">
+              <Link 
+                to="/xops360"
+                className="text-sm font-medium text-foreground/70 hover:text-primary transition-colors"
+              >
+                XOPS360
+              </Link>
+              <Button variant="default" size="default" className="shadow-glow" asChild>
+                <Link to="/contact">Get Started</Link>
+              </Button>
             </div>
 
             {/* Mobile Menu Toggle */}

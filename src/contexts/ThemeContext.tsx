@@ -9,11 +9,11 @@ interface ThemeContextType {
 }
 
 const themes = [
-  { id: 'light' as Theme, name: 'Professional', colors: { primary: '#2563eb', accent: '#0ea5e9' }, isDark: false },
-  { id: 'dark' as Theme, name: 'Dark Mode', colors: { primary: '#3b82f6', accent: '#0ea5e9' }, isDark: true },
-  { id: 'slate' as Theme, name: 'Slate', colors: { primary: '#3b82f6', accent: '#0ea5e9' }, isDark: true },
-  { id: 'navy' as Theme, name: 'Navy & Gold', colors: { primary: '#eab308', accent: '#0ea5e9' }, isDark: true },
-  { id: 'graphite' as Theme, name: 'Graphite', colors: { primary: '#fafafa', accent: '#a1a1aa' }, isDark: true },
+  { id: 'light' as Theme, name: 'Ivory', colors: { primary: '#5b4cdb', accent: '#b87333' }, isDark: false },
+  { id: 'dark' as Theme, name: 'Midnight', colors: { primary: '#7c6ef5', accent: '#cd8f4f' }, isDark: true },
+  { id: 'slate' as Theme, name: 'Slate', colors: { primary: '#7469f2', accent: '#c98642' }, isDark: true },
+  { id: 'navy' as Theme, name: 'Navy Bronze', colors: { primary: '#cd8f4f', accent: '#7c6ef5' }, isDark: true },
+  { id: 'graphite' as Theme, name: 'Graphite', colors: { primary: '#cd8f4f', accent: '#7c6ef5' }, isDark: true },
 ];
 
 const ThemeContext = createContext<ThemeContextType | undefined>(undefined);

@@ -118,7 +118,7 @@ export function MegaMenu({ isOpen, onClose }: MegaMenuProps) {
         <>
           {/* Backdrop */}
           <motion.div
-            className="fixed inset-0 top-[72px] bg-background/80 backdrop-blur-sm z-40"
+            className="fixed inset-0 top-[64px] bg-foreground/5 backdrop-blur-sm z-40"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
@@ -127,7 +127,7 @@ export function MegaMenu({ isOpen, onClose }: MegaMenuProps) {
           
           {/* Menu Container */}
           <motion.div
-            className="fixed left-0 right-0 top-[72px] z-50 overflow-hidden"
+            className="fixed left-0 right-0 top-[64px] z-50 overflow-hidden"
             initial={{ opacity: 0, y: -10 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -10 }}
@@ -135,16 +135,16 @@ export function MegaMenu({ isOpen, onClose }: MegaMenuProps) {
           >
             <div className="container mx-auto px-6 lg:px-8">
               <motion.div 
-                className="relative bg-card/95 backdrop-blur-xl border border-border/50 rounded-2xl shadow-2xl shadow-black/20 overflow-hidden"
+                className="relative bg-background border border-border rounded-xl shadow-xl overflow-hidden"
                 initial={{ scale: 0.98 }}
                 animate={{ scale: 1 }}
                 exit={{ scale: 0.98 }}
               >
                 {/* Decorative gradient */}
-                <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-primary/5 pointer-events-none" />
-                <div className="absolute top-0 left-1/2 -translate-x-1/2 w-1/2 h-px bg-gradient-to-r from-transparent via-primary/50 to-transparent" />
+                <div className="absolute inset-0 bg-gradient-to-br from-primary/3 via-transparent to-primary/3 pointer-events-none" />
+                <div className="absolute top-0 left-1/2 -translate-x-1/2 w-1/2 h-px bg-gradient-to-r from-transparent via-primary/30 to-transparent" />
                 
-                <div className="relative grid lg:grid-cols-[1fr_320px] gap-0">
+                <div className="relative grid lg:grid-cols-[1fr_300px] gap-0">
                   {/* Services Grid */}
                   <div className="p-8 lg:p-10">
                     <div className="flex items-center justify-between mb-8">

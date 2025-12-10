@@ -12,6 +12,7 @@ import { ProcessTimeline } from "@/components/ProcessTimeline";
 import { TestimonialsSection } from "@/components/TestimonialsSection";
 import { CapabilitiesGrid } from "@/components/CapabilitiesGrid";
 import { MetricsShowcase } from "@/components/MetricsShowcase";
+import { MountainVisualization } from "@/components/MountainVisualization";
 import { SEOHead } from "@/components/SEOHead";
 import { homepageSchema } from "@/lib/seo-schemas-enhanced";
 import { useRef } from "react";
@@ -223,6 +224,9 @@ export default function Index() {
 
       {/* Metrics Showcase */}
       <MetricsShowcase />
+
+      {/* Mountain Visualization Section */}
+      <MountainVisualization />
 
       {/* Capabilities Grid */}
       <CapabilitiesGrid />

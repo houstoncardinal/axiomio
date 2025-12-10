@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import { motion, useScroll, useTransform } from "framer-motion";
-import { ArrowRight, Brain, Cpu, LineChart, Shield, Zap, Target, Users, Globe, Sparkles, ChevronRight } from "lucide-react";
+import { ArrowRight, Brain, Cpu, LineChart, Zap, Sparkles, ChevronRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
@@ -13,6 +13,7 @@ import { TestimonialsSection } from "@/components/TestimonialsSection";
 import { CapabilitiesGrid } from "@/components/CapabilitiesGrid";
 import { MetricsShowcase } from "@/components/MetricsShowcase";
 import { MountainVisualization } from "@/components/MountainVisualization";
+import { DifferentiatorsStack } from "@/components/DifferentiatorsStack";
 import { SEOHead } from "@/components/SEOHead";
 import { homepageSchema } from "@/lib/seo-schemas-enhanced";
 import { useRef } from "react";
@@ -48,28 +49,6 @@ const services = [
   },
 ];
 
-const differentiators = [
-  {
-    icon: Target,
-    title: "Precision-Driven",
-    description: "Every recommendation is grounded in data and refined for your specific context.",
-  },
-  {
-    icon: Shield,
-    title: "Enterprise-Ready",
-    description: "Solutions built with security, compliance, and governance at the core.",
-  },
-  {
-    icon: Users,
-    title: "Partnership Model",
-    description: "We work alongside your teams, building capabilities that endure.",
-  },
-  {
-    icon: Globe,
-    title: "Global Perspective",
-    description: "Insights from diverse industries, adapted to local opportunities.",
-  },
-];
 
 const stats = [
   { value: 500, suffix: "M+", label: "Value Delivered" },
@@ -290,74 +269,8 @@ export default function Index() {
       {/* Testimonials */}
       <TestimonialsSection />
 
-      {/* Why Axiomio Section */}
-      <section className="py-28 lg:py-36 relative">
-        <div className="absolute inset-0 bg-gradient-to-b from-card/30 via-card/50 to-background" />
-        <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-border to-transparent" />
-        
-        <div className="container relative mx-auto px-6 lg:px-8">
-          <div className="grid lg:grid-cols-2 gap-20 items-center">
-            <motion.div
-              initial={{ opacity: 0, x: -40 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.7 }}
-              viewport={{ once: true }}
-            >
-              <SectionHeader
-                label="Why Axiomio"
-                title="Where precision meets vision"
-                description="We operate at the intersection of strategic clarity and technical excellence."
-                align="left"
-              />
-              
-              <div className="mt-10 space-y-5">
-                <p className="text-muted-foreground leading-relaxed text-lg">
-                  In a landscape crowded with shortcuts and hype, we take the deliberate path. 
-                  Every engagement begins with understanding—your business, your challenges, 
-                  your opportunities.
-                </p>
-                <p className="text-muted-foreground leading-relaxed text-lg">
-                  The result is work that endures: systems that scale, strategies that adapt, 
-                  and partnerships that compound value over time.
-                </p>
-              </div>
-              
-              <Button size="lg" className="mt-10 shadow-glow" asChild>
-                <Link to="/about">
-                  Learn More About Us
-                  <ArrowRight className="ml-2 h-4 w-4" />
-                </Link>
-              </Button>
-            </motion.div>
-            
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
-              {differentiators.map((item, index) => (
-                <motion.div 
-                  key={item.title}
-                  initial={{ opacity: 0, y: 40 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ delay: index * 0.1, duration: 0.6 }}
-                  viewport={{ once: true }}
-                >
-                  <PremiumCard className="h-full">
-                    <div className="p-7">
-                      <div className="p-2.5 rounded-lg bg-primary/10 text-primary w-fit mb-5 border border-primary/20">
-                        <item.icon className="h-5 w-5" />
-                      </div>
-                      <h4 className="font-heading font-semibold text-foreground mb-2 text-lg">
-                        {item.title}
-                      </h4>
-                      <p className="text-sm text-muted-foreground leading-relaxed">
-                        {item.description}
-                      </p>
-                    </div>
-                  </PremiumCard>
-                </motion.div>
-              ))}
-            </div>
-          </div>
-        </div>
-      </section>
+      {/* Why Axiomio Section - Interactive Card Stack */}
+      <DifferentiatorsStack />
 
       {/* CTA Section */}
       <section className="py-24 lg:py-32 relative overflow-hidden bg-muted/30">

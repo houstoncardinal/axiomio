@@ -10,7 +10,7 @@ const features = [
   {
     icon: Workflow,
     title: "Unified Operations",
-    description: "Consolidate DevOps, DataOps, MLOps, and AIOps into a single, intelligent framework.",
+    description: "Consolidate DevOps, DataOps, SecOps, and AIOps into a single, intelligent framework.",
   },
   {
     icon: BarChart3,
@@ -58,12 +58,12 @@ const opsNodes = [
     subNodes: ["ETL", "Quality", "Catalog"]
   },
   { 
-    id: "mlops", 
-    label: "MLOps", 
+    id: "secops", 
+    label: "SecOps", 
     color: "from-emerald-500 to-teal-400",
-    icon: BrainCircuit,
-    stats: { models: 34, accuracy: "97.2%", inference: "8ms" },
-    subNodes: ["Training", "Registry", "Serving"]
+    icon: Lock,
+    stats: { scans: 1247, threats: "0", compliance: "100%" },
+    subNodes: ["SIEM", "Compliance", "Threat Intel"]
   },
   { 
     id: "aiops", 

@@ -128,7 +128,7 @@ export default function Index() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.4 }}
             >
-              Axiomio's XOPS360 platform unifies DevOps, DataOps, MLOps, and AIOps into a single 
+              Axiomio's XOPS360 platform unifies DevOps, DataOps, SecOps, and AIOps into a single 
               intelligent ecosystem—transforming operational complexity into competitive advantage.
             </motion.p>
             

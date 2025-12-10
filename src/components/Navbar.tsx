@@ -5,7 +5,7 @@ import { Menu, X, ChevronDown } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { MegaMenu } from "@/components/MegaMenu";
 import { cn } from "@/lib/utils";
-import axiomioLogo from "@/assets/axiomio-logo.png";
+
 
 const navLinks = [
   { href: "/", label: "Home" },
@@ -52,23 +52,14 @@ export function Navbar() {
         <nav className="container mx-auto px-6 lg:px-8">
           <div className="flex items-center justify-between">
             {/* Logo */}
-            <Link to="/" className="flex items-center gap-3 group">
-              <motion.div 
-                className="relative"
+            <Link to="/" className="group">
+              <motion.span 
+                className="font-heading font-bold text-2xl tracking-tight text-foreground"
                 whileHover={{ scale: 1.02 }}
                 transition={{ type: "spring", stiffness: 400 }}
               >
-                <div className="h-10 w-10 rounded-xl bg-primary flex items-center justify-center shadow-glow">
-                  <img 
-                    src={axiomioLogo} 
-                    alt="AXIOMIO" 
-                    className="h-6 w-6 object-contain brightness-0 invert"
-                  />
-                </div>
-              </motion.div>
-              <span className="font-heading font-bold text-xl tracking-tight text-foreground">
                 AXIOMIO
-              </span>
+              </motion.span>
             </Link>
 
             {/* Desktop Navigation */}

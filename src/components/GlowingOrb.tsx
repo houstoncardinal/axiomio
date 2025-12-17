@@ -1,4 +1,5 @@
-import { motion } from "framer-motion";
+// GlowingOrb component - simplified for performance
+// Using CSS instead of Framer Motion for better performance
 
 interface GlowingOrbProps {
   size?: number;
@@ -11,30 +12,17 @@ export function GlowingOrb({
   size = 600, 
   color = "primary", 
   className = "",
-  delay = 0 
 }: GlowingOrbProps) {
   const colorClasses = {
-    primary: "bg-primary/20",
-    secondary: "bg-secondary/15",
-    accent: "bg-accent/15",
+    primary: "bg-primary/15",
+    secondary: "bg-secondary/10",
+    accent: "bg-accent/10",
   };
 
   return (
-    <motion.div
+    <div
       className={`absolute rounded-full blur-[120px] ${colorClasses[color]} ${className}`}
       style={{ width: size, height: size }}
-      animate={{
-        scale: [1, 1.2, 1],
-        opacity: [0.3, 0.6, 0.3],
-        x: [0, 30, 0],
-        y: [0, -20, 0],
-      }}
-      transition={{
-        duration: 8,
-        repeat: Infinity,
-        ease: "easeInOut",
-        delay,
-      }}
     />
   );
 }

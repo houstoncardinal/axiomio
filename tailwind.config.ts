@@ -110,6 +110,10 @@ export default {
           "0%": { transform: "rotate(0deg)" },
           "100%": { transform: "rotate(360deg)" },
         },
+        "rotate-slow": {
+          "0%": { transform: "translate(-50%, -50%) rotate(0deg)" },
+          "100%": { transform: "translate(-50%, -50%) rotate(360deg)" },
+        },
         "gradient-x": {
           "0%, 100%": { backgroundPosition: "0% 50%" },
           "50%": { backgroundPosition: "100% 50%" },
@@ -125,6 +129,7 @@ export default {
         "shimmer": "shimmer 2s ease-in-out infinite",
         "float": "float 6s ease-in-out infinite",
         "spin-slow": "spin-slow 30s linear infinite",
+        "rotate-slow": "rotate-slow 40s linear infinite",
         "gradient-x": "gradient-x 5s ease infinite",
       },
       boxShadow: {

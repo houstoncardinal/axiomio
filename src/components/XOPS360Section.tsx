@@ -81,34 +81,7 @@ const connections = [
   { from: 0, to: 2 }, { from: 1, to: 3 },
 ];
 
-// Particle system for data flow visualization
-const DataParticle = ({ delay, pathIndex }: { delay: number; pathIndex: number }) => {
-  const paths = [
-    "M0,50 Q25,20 50,50 T100,50",
-    "M0,50 Q25,80 50,50 T100,50",
-    "M50,0 Q20,25 50,50 T50,100",
-    "M50,0 Q80,25 50,50 T50,100",
-  ];
-  
-  return (
-    <motion.div
-      className="absolute w-2 h-2 rounded-full bg-primary shadow-[0_0_10px_hsl(var(--primary))]"
-      initial={{ opacity: 0, scale: 0 }}
-      animate={{
-        opacity: [0, 1, 1, 0],
-        scale: [0.5, 1, 1, 0.5],
-        x: [0, 100, 200, 300],
-        y: [0, -30, 0, 30],
-      }}
-      transition={{
-        duration: 3,
-        delay,
-        repeat: Infinity,
-        ease: "linear",
-      }}
-    />
-  );
-};
+// Removed DataParticle for performance - was causing continuous animations
 
 // Interactive 3D Node Component
 const Node3D = ({ 
@@ -228,23 +201,14 @@ const Node3D = ({
         </div>
       </motion.div>
       
-      {/* Connection points */}
+      {/* Static connection points - removed animations for performance */}
       {[0, 90, 180, 270].map((deg) => (
-        <motion.div
+        <div
           key={deg}
           className="absolute w-2 h-2 rounded-full bg-primary/50"
           style={{
             left: `calc(50% + ${Math.cos(deg * Math.PI / 180) * 56}px - 4px)`,
             top: `calc(50% + ${Math.sin(deg * Math.PI / 180) * 56}px - 4px)`,
-          }}
-          animate={{
-            scale: [1, 1.5, 1],
-            opacity: [0.5, 1, 0.5],
-          }}
-          transition={{
-            duration: 2,
-            delay: deg / 360,
-            repeat: Infinity,
           }}
         />
       ))}
@@ -276,11 +240,9 @@ const CentralHub = ({
       }}
       transition={{ type: "spring", stiffness: 150, damping: 15 }}
     >
-      {/* Outer rotating ring */}
-      <motion.div
-        className="absolute inset-0 w-44 h-44 -translate-x-1/2 -translate-y-1/2 left-1/2 top-1/2"
-        animate={{ rotate: 360 }}
-        transition={{ duration: 30, repeat: Infinity, ease: "linear" }}
+      {/* Static outer ring - CSS animation for better performance */}
+      <div
+        className="absolute inset-0 w-44 h-44 -translate-x-1/2 -translate-y-1/2 left-1/2 top-1/2 animate-rotate-slow"
       >
         <svg viewBox="0 0 200 200" className="w-full h-full">
           <defs>
@@ -300,13 +262,11 @@ const CentralHub = ({
             strokeDasharray="10 5"
           />
         </svg>
-      </motion.div>
+      </div>
       
-      {/* Middle ring - counter rotation */}
-      <motion.div
+      {/* Static middle ring */}
+      <div
         className="absolute inset-0 w-36 h-36 -translate-x-1/2 -translate-y-1/2 left-1/2 top-1/2"
-        animate={{ rotate: -360 }}
-        transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
       >
         <svg viewBox="0 0 200 200" className="w-full h-full">
           <circle
@@ -319,7 +279,7 @@ const CentralHub = ({
             strokeDasharray="20 10"
           />
         </svg>
-      </motion.div>
+      </div>
       
       {/* Core hub */}
       <motion.div
@@ -332,47 +292,25 @@ const CentralHub = ({
         }}
       >
         <div className="w-full h-full rounded-full bg-background/95 backdrop-blur-md flex flex-col items-center justify-center">
-          <motion.div
-            animate={{ rotateY: [0, 360] }}
-            transition={{ duration: 8, repeat: Infinity, ease: "linear" }}
-            style={{ transformStyle: "preserve-3d" }}
-          >
-            <CircuitBoard className="w-8 h-8 text-primary mb-1" />
-          </motion.div>
+          <CircuitBoard className="w-8 h-8 text-primary mb-1" />
           <span className="font-heading text-lg font-black bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
             X360
           </span>
         </div>
       </motion.div>
       
-      {/* Orbiting data indicators */}
-      {metrics.map((metric, i) => (
-        <motion.div
-          key={metric.label}
-          className="absolute"
-          style={{
-            width: 160,
-            height: 160,
-            left: "calc(50% - 80px)",
-            top: "calc(50% - 80px)",
-          }}
-          animate={{ rotate: 360 }}
-          transition={{ duration: 25 + i * 5, repeat: Infinity, ease: "linear" }}
-        >
-          <motion.div
-            className="absolute bg-card/90 backdrop-blur-sm border border-border/50 rounded-lg px-2 py-1 text-xs shadow-lg"
-            style={{
-              top: 0,
-              left: "50%",
-              transform: "translateX(-50%)",
-            }}
-            whileHover={{ scale: 1.1, zIndex: 100 }}
+      {/* Static metric indicators - removed orbiting animation for performance */}
+      <div className="absolute -bottom-16 left-1/2 -translate-x-1/2 flex gap-3">
+        {metrics.map((metric) => (
+          <div
+            key={metric.label}
+            className="bg-card/90 backdrop-blur-sm border border-border/50 rounded-lg px-3 py-1.5 text-xs shadow-lg"
           >
             <div className="text-primary font-mono font-bold">{metric.value}</div>
             <div className="text-muted-foreground text-[10px]">{metric.label}</div>
-          </motion.div>
-        </motion.div>
-      ))}
+          </div>
+        ))}
+      </div>
     </motion.div>
   );
 };
@@ -442,27 +380,7 @@ const ConnectionLines = ({ hoveredNode }: { hoveredNode: string | null }) => {
         />
       ))}
       
-      {/* Animated data flow particles */}
-      {nodePositions.map((pos, i) => (
-        <motion.circle
-          key={`particle-${i}`}
-          r="3"
-          fill="hsl(var(--primary))"
-          filter="url(#glow)"
-          initial={{ opacity: 0 }}
-          animate={{
-            cx: [250, pos.x],
-            cy: [200, pos.y],
-            opacity: [0, 1, 0],
-          }}
-          transition={{
-            duration: 2,
-            delay: i * 0.5,
-            repeat: Infinity,
-            repeatDelay: 1,
-          }}
-        />
-      ))}
+      {/* Removed animated particles for performance */}
     </svg>
   );
 };
@@ -544,13 +462,11 @@ export function XOPS360Section() {
       {/* Background effects */}
       <div className="absolute inset-0">
         <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-primary/40 to-transparent" />
-        <motion.div 
-          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[1400px] h-[1400px]"
+        <div 
+          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[1400px] h-[1400px] opacity-60"
           style={{
             background: "radial-gradient(circle, hsl(195 100% 50% / 0.06) 0%, hsl(270 80% 60% / 0.03) 40%, transparent 70%)",
           }}
-          animate={{ scale: [1, 1.1, 1], opacity: [0.5, 0.8, 0.5] }}
-          transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
         />
         
         {/* Animated grid */}

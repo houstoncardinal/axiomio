@@ -1,5 +1,5 @@
-import { motion, useMotionValue, useSpring, useTransform } from "framer-motion";
-import { useRef, ReactNode } from "react";
+import { motion, useMotionValue, useSpring } from "framer-motion";
+import { useRef, ReactNode, useCallback } from "react";
 
 interface MagneticButtonProps {
   children: ReactNode;
@@ -12,28 +12,36 @@ export function MagneticButton({ children, className = "" }: MagneticButtonProps
   const x = useMotionValue(0);
   const y = useMotionValue(0);
   
-  const springConfig = { damping: 15, stiffness: 150 };
+  const springConfig = { damping: 20, stiffness: 200, mass: 0.5 };
   const xSpring = useSpring(x, springConfig);
   const ySpring = useSpring(y, springConfig);
 
-  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
-    if (!ref.current) return;
+  // Check for reduced motion preference
+  const prefersReducedMotion = typeof window !== 'undefined' && 
+    window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  const handleMouseMove = useCallback((e: React.MouseEvent<HTMLDivElement>) => {
+    if (prefersReducedMotion || !ref.current) return;
     
     const rect = ref.current.getBoundingClientRect();
     const centerX = rect.left + rect.width / 2;
     const centerY = rect.top + rect.height / 2;
     
-    const deltaX = (e.clientX - centerX) * 0.3;
-    const deltaY = (e.clientY - centerY) * 0.3;
+    const deltaX = (e.clientX - centerX) * 0.2;
+    const deltaY = (e.clientY - centerY) * 0.2;
     
     x.set(deltaX);
     y.set(deltaY);
-  };
+  }, [prefersReducedMotion, x, y]);
 
-  const handleMouseLeave = () => {
+  const handleMouseLeave = useCallback(() => {
     x.set(0);
     y.set(0);
-  };
+  }, [x, y]);
+
+  if (prefersReducedMotion) {
+    return <div className={className}>{children}</div>;
+  }
 
   return (
     <motion.div

@@ -1,7 +1,6 @@
 import * as React from "react";
 import { Slot } from "@radix-ui/react-slot";
 import { cva, type VariantProps } from "class-variance-authority";
-import { motion } from "framer-motion";
 
 import { cn } from "@/lib/utils";
 
@@ -54,19 +53,18 @@ const buttonVariants = cva(
           "hover:translate-y-[-1px]",
           "after:absolute after:inset-0 after:rounded-2xl after:opacity-0 after:bg-[radial-gradient(circle_at_center,hsl(var(--primary)/0.1)_0%,transparent_70%)] after:transition-opacity after:duration-500 hover:after:opacity-100",
         ].join(" "),
-        // Animated gradient premium with shimmer
+        // Animated gradient premium - hover only for better performance
         premium: [
           "relative rounded-2xl font-semibold tracking-wide overflow-hidden",
-          "bg-[length:200%_100%] bg-gradient-to-r from-primary via-accent to-primary",
+          "bg-gradient-to-r from-primary via-accent to-primary bg-[length:200%_100%]",
           "text-primary-foreground",
           "shadow-[0_4px_24px_-4px_hsl(var(--primary)/0.5),inset_0_1px_0_hsl(var(--primary-foreground)/0.2)]",
           "hover:shadow-[0_8px_36px_-4px_hsl(var(--primary)/0.6),inset_0_1px_0_hsl(var(--primary-foreground)/0.25)]",
-          "animate-gradient-x",
-          "hover:translate-y-[-2px]",
+          "hover:bg-[position:100%_0%] hover:translate-y-[-2px]",
           "active:translate-y-[1px]",
           "border border-primary/20",
           "before:absolute before:inset-0 before:bg-gradient-to-b before:from-white/15 before:to-transparent before:pointer-events-none",
-          "after:absolute after:inset-0 after:rounded-2xl after:opacity-0 after:bg-[radial-gradient(circle_at_center,hsl(var(--primary-foreground)/0.4)_0%,transparent_70%)] after:transition-opacity after:duration-500 hover:after:opacity-100",
+          "transition-all duration-500",
         ].join(" "),
         // Luxury bronze accent with depth
         luxury: [
@@ -101,28 +99,10 @@ export interface ButtonProps
   extends React.ButtonHTMLAttributes<HTMLButtonElement>,
     VariantProps<typeof buttonVariants> {
   asChild?: boolean;
-  enableRipple?: boolean;
 }
 
 const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
-  ({ className, variant, size, asChild = false, enableRipple = true, onClick, ...props }, ref) => {
-    const [ripples, setRipples] = React.useState<{ x: number; y: number; id: number }[]>([]);
-
-    const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
-      if (enableRipple && !asChild) {
-        const rect = e.currentTarget.getBoundingClientRect();
-        const x = e.clientX - rect.left;
-        const y = e.clientY - rect.top;
-        const id = Date.now();
-        
-        setRipples((prev) => [...prev, { x, y, id }]);
-        setTimeout(() => {
-          setRipples((prev) => prev.filter((ripple) => ripple.id !== id));
-        }, 600);
-      }
-      onClick?.(e);
-    };
-
+  ({ className, variant, size, asChild = false, ...props }, ref) => {
     if (asChild) {
       return (
         <Slot
@@ -135,23 +115,10 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
 
     return (
       <button
-        className={cn(buttonVariants({ variant, size, className }), "relative overflow-hidden")}
+        className={cn(buttonVariants({ variant, size, className }))}
         ref={ref}
-        onClick={handleClick}
         {...props}
-      >
-        {props.children}
-        {ripples.map((ripple) => (
-          <motion.span
-            key={ripple.id}
-            className="absolute rounded-full bg-current pointer-events-none"
-            initial={{ width: 0, height: 0, opacity: 0.4, x: ripple.x, y: ripple.y }}
-            animate={{ width: 300, height: 300, opacity: 0, x: ripple.x - 150, y: ripple.y - 150 }}
-            transition={{ duration: 0.6, ease: "easeOut" }}
-            style={{ transformOrigin: "center" }}
-          />
-        ))}
-      </button>
+      />
     );
   }
 );

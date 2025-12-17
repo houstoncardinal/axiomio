@@ -7,17 +7,21 @@ import { Footer } from "@/components/Footer";
 import { PremiumCard } from "@/components/PremiumCard";
 import { CounterBadge } from "@/components/CounterBadge";
 import { SectionHeader } from "@/components/SectionHeader";
-import { XOPS360Section } from "@/components/XOPS360Section";
 import { ProcessTimeline } from "@/components/ProcessTimeline";
 import { TestimonialsSection } from "@/components/TestimonialsSection";
 import { CapabilitiesGrid } from "@/components/CapabilitiesGrid";
 import { MetricsShowcase } from "@/components/MetricsShowcase";
-import { MountainVisualization } from "@/components/MountainVisualization";
 import { DifferentiatorsStack } from "@/components/DifferentiatorsStack";
 import { SEOHead } from "@/components/SEOHead";
 import { homepageSchema } from "@/lib/seo-schemas-enhanced";
 import { MagneticButton } from "@/components/MagneticButton";
-import { useRef } from "react";
+import { useInViewOnce } from "@/hooks/useInViewOnce";
+import { lazy, Suspense, useRef } from "react";
+
+const LazyXOPS360Section = lazy(() =>
+  import("@/components/XOPS360Section").then((m) => ({ default: m.XOPS360Section }))
+);
+const LazyMountainVisualization = lazy(() => import("@/components/MountainVisualization"));
 
 const services = [
   {
@@ -69,6 +73,8 @@ export default function Index() {
   const heroScale = useTransform(scrollYProgress, [0, 0.5], [1, 0.95]);
   const heroY = useTransform(scrollYProgress, [0, 0.5], [0, 100]);
 
+  const { ref: xopsRef, inView: xopsInView } = useInViewOnce<HTMLDivElement>("800px");
+  const { ref: mountainRef, inView: mountainInView } = useInViewOnce<HTMLDivElement>("800px");
 
   return (
     <div className="min-h-screen bg-background overflow-hidden">
@@ -203,14 +209,34 @@ export default function Index() {
         </div>
       </section>
 
-      {/* XOPS360 Feature Section */}
-      <XOPS360Section />
+      {/* XOPS360 Feature Section (lazy-mounted) */}
+      <div ref={xopsRef}>
+        {xopsInView ? (
+          <Suspense
+            fallback={<div className="py-32 lg:py-44 bg-muted/10 animate-pulse" aria-label="Loading section" />}
+          >
+            <LazyXOPS360Section />
+          </Suspense>
+        ) : (
+          <div className="py-32 lg:py-44 bg-muted/10" aria-hidden="true" />
+        )}
+      </div>
 
       {/* Metrics Showcase */}
       <MetricsShowcase />
 
-      {/* Mountain Visualization Section */}
-      <MountainVisualization />
+      {/* Mountain Visualization Section (lazy-mounted) */}
+      <div ref={mountainRef}>
+        {mountainInView ? (
+          <Suspense
+            fallback={<div className="py-28 lg:py-36 bg-muted/10 animate-pulse" aria-label="Loading visualization" />}
+          >
+            <LazyMountainVisualization />
+          </Suspense>
+        ) : (
+          <div className="py-28 lg:py-36 bg-muted/10" aria-hidden="true" />
+        )}
+      </div>
 
       {/* Capabilities Grid */}
       <CapabilitiesGrid />

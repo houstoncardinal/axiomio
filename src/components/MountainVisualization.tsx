@@ -1,9 +1,10 @@
-import React, { Suspense } from "react";
+import React, { Suspense, lazy } from "react";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import { ArrowRight, Waves } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import GenerativeMountainScene from "@/components/ui/mountain-scene";
+
+const GenerativeMountainScene = lazy(() => import("@/components/ui/mountain-scene"));
 
 export function MountainVisualization() {
   return (

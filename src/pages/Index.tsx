@@ -139,13 +139,13 @@ export default function Index() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.6 }}
             >
-              <Button size="lg" className="shadow-glow text-base px-8" asChild>
+              <Button variant="hero" size="xl" asChild>
                 <Link to="/contact">
                   Request a Demo
                   <ArrowRight className="ml-2 h-4 w-4" />
                 </Link>
               </Button>
-              <Button variant="outline" size="lg" className="text-base px-8" asChild>
+              <Button variant="hero-outline" size="xl" asChild>
                 <Link to="/xops360">
                   Explore XOPS360
                 </Link>
@@ -326,13 +326,13 @@ export default function Index() {
                   transition={{ delay: 0.4, duration: 0.6 }}
                   viewport={{ once: true }}
                 >
-                  <Button size="lg" className="shadow-glow" asChild>
+                  <Button variant="premium" size="xl" asChild>
                     <Link to="/contact">
                       Schedule a Demo
                       <ArrowRight className="ml-2 h-4 w-4" />
                     </Link>
                   </Button>
-                  <Button variant="outline" size="lg" asChild>
+                  <Button variant="hero-outline" size="xl" asChild>
                     <Link to="/approach">
                       See Our Approach
                     </Link>

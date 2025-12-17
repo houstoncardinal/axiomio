@@ -1,17 +1,35 @@
-import React, { useRef, useEffect } from "react";
+import React, { useRef, useEffect, useState } from "react";
 import * as THREE from "three";
 
 /**
  * GenerativeMountainScene
  * Renders a solid, undulating mountain landscape with Axiomio brand colors.
+ * Optimized for performance with intersection observer.
  */
 export function GenerativeMountainScene() {
   const mountRef = useRef<HTMLDivElement>(null);
   const lightRef = useRef<THREE.PointLight | null>(null);
+  const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
     const currentMount = mountRef.current;
     if (!currentMount) return;
+    
+    // Intersection observer to pause/resume animation
+    const observer = new IntersectionObserver(
+      (entries) => {
+        setIsVisible(entries[0]?.isIntersecting ?? false);
+      },
+      { threshold: 0.1 }
+    );
+    observer.observe(currentMount);
+    
+    return () => observer.disconnect();
+  }, []);
+
+  useEffect(() => {
+    const currentMount = mountRef.current;
+    if (!currentMount || !isVisible) return;
     
     // SCENE SETUP
     const scene = new THREE.Scene();
@@ -26,13 +44,13 @@ export function GenerativeMountainScene() {
     camera.position.set(0, 1.5, 3);
     camera.rotation.x = -0.3;
 
-    const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+    const renderer = new THREE.WebGLRenderer({ antialias: false, alpha: true, powerPreference: "low-power" });
     renderer.setSize(currentMount.clientWidth, currentMount.clientHeight);
-    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 1.5));
     currentMount.appendChild(renderer.domElement);
 
-    // GEOMETRY
-    const geometry = new THREE.PlaneGeometry(12, 8, 128, 128); 
+    // GEOMETRY - reduced segments for performance
+    const geometry = new THREE.PlaneGeometry(12, 8, 64, 64); 
 
     // SHADER MATERIAL - Using Axiomio brand colors (Indigo + Bronze)
     const material = new THREE.ShaderMaterial({
@@ -156,10 +174,19 @@ export function GenerativeMountainScene() {
     scene.add(pointLight);
 
     let frameId: number;
+    let lastTime = 0;
+    const targetFPS = 30; // Limit to 30 FPS for performance
+    const frameInterval = 1000 / targetFPS;
+    
     const animate = (t: number) => {
+      frameId = requestAnimationFrame(animate);
+      
+      const elapsed = t - lastTime;
+      if (elapsed < frameInterval) return;
+      
+      lastTime = t - (elapsed % frameInterval);
       material.uniforms.time.value = t * 0.0003;
       renderer.render(scene, camera);
-      frameId = requestAnimationFrame(animate);
     };
     animate(0);
 
@@ -170,7 +197,12 @@ export function GenerativeMountainScene() {
       renderer.setSize(currentMount.clientWidth, currentMount.clientHeight);
     };
 
+    // Throttled mouse move handler
+    let mouseThrottle: number | null = null;
     const handleMouseMove = (e: MouseEvent) => {
+      if (mouseThrottle) return;
+      mouseThrottle = window.setTimeout(() => { mouseThrottle = null; }, 50);
+      
       const x = (e.clientX / window.innerWidth) * 2 - 1;
       const y = -(e.clientY / window.innerHeight) * 2 + 1;
       const lightX = x * 5;
@@ -185,10 +217,11 @@ export function GenerativeMountainScene() {
     };
 
     window.addEventListener("resize", handleResize);
-    window.addEventListener("mousemove", handleMouseMove);
+    window.addEventListener("mousemove", handleMouseMove, { passive: true });
 
     return () => {
       cancelAnimationFrame(frameId);
+      if (mouseThrottle) clearTimeout(mouseThrottle);
       window.removeEventListener("resize", handleResize);
       window.removeEventListener("mousemove", handleMouseMove);
       if (currentMount && renderer.domElement.parentNode === currentMount) {
@@ -196,8 +229,9 @@ export function GenerativeMountainScene() {
       }
       geometry.dispose();
       material.dispose();
+      renderer.dispose();
     };
-  }, []);
+  }, [isVisible]);
 
   return <div ref={mountRef} className="absolute inset-0 w-full h-full z-0" />;
 }

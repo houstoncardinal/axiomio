@@ -77,7 +77,7 @@ export function XeroTrustROICalculator() {
           viewport={{ once: true }}
           className="text-center mb-12"
         >
-          <div className="inline-flex items-center gap-2 text-xs font-semibold text-cyan-500 uppercase tracking-[0.2em] mb-4 px-3 py-1.5 rounded-full border border-cyan-500/30 bg-cyan-500/10">
+          <div className="inline-flex items-center gap-2 text-xs font-semibold text-cyan-500 uppercase tracking-[0.2em] mb-4 px-3 py-1.5 rounded-xl border border-cyan-500/30 bg-cyan-500/10">
             <Calculator className="h-3 w-3" />
             ROI Calculator
           </div>

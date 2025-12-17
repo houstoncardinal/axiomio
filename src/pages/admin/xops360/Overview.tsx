@@ -77,7 +77,7 @@ const XOPS360Overview: React.FC = () => {
           <h1 className="font-heading text-3xl font-bold text-gradient mb-2">XOPS360 Platform</h1>
           <p className="text-muted-foreground">The CloudOps Automation Engine Management Console</p>
         </div>
-        <div className="flex items-center gap-2 px-4 py-2 rounded-full bg-emerald-500/10 text-emerald-400">
+        <div className="flex items-center gap-2 px-4 py-2 rounded-xl bg-emerald-500/10 text-emerald-400">
           <Activity className="w-4 h-4" />
           <span className="text-sm font-medium">All Systems Operational</span>
         </div>

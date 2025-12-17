@@ -10,6 +10,7 @@ import { cn } from "@/lib/utils";
 const navLinks = [
   { href: "/", label: "Home" },
   { href: "/xops360", label: "XOPS360", highlight: true },
+  { href: "/xerotrust", label: "XeroTrust", highlight: true, secondary: true },
   { href: "/about", label: "About" },
   { href: "/services", label: "Services", hasMegaMenu: true },
   { href: "/approach", label: "Approach" },
@@ -90,14 +91,21 @@ export function Navbar() {
                       className={cn(
                         "relative px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200",
                         link.highlight && location.pathname !== link.href
-                          ? "text-primary font-semibold"
+                          ? link.secondary 
+                            ? "text-secondary font-semibold"
+                            : "text-primary font-semibold"
                           : location.pathname === link.href
-                          ? "text-primary bg-primary/5"
+                          ? link.secondary
+                            ? "text-secondary bg-secondary/5"
+                            : "text-primary bg-primary/5"
                           : "text-foreground/70 hover:text-foreground hover:bg-muted/50"
                       )}
                     >
                       {link.highlight && (
-                        <span className="absolute -top-0.5 -right-0.5 w-1.5 h-1.5 bg-primary rounded-full" />
+                        <span className={cn(
+                          "absolute -top-0.5 -right-0.5 w-1.5 h-1.5 rounded-full",
+                          link.secondary ? "bg-secondary" : "bg-primary"
+                        )} />
                       )}
                       {link.label}
                     </Link>

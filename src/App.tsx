@@ -52,7 +52,9 @@ const StrategyAdvisory = lazy(() => import("./pages/services/StrategyAdvisory"))
 const TechnologySystems = lazy(() => import("./pages/services/TechnologySystems"));
 const AIAutomation = lazy(() => import("./pages/services/AIAutomation"));
 const DigitalTransformation = lazy(() => import("./pages/services/DigitalTransformation"));
-const XeroTrust = lazy(() => import("./pages/services/XeroTrust"));
+const XeroTrustService = lazy(() => import("./pages/services/XeroTrust"));
+const XeroTrust = lazy(() => import("./pages/XeroTrust"));
+const XeroTrustCompare = lazy(() => import("./pages/XeroTrustCompare"));
 const AdminLayout = lazy(() => import("./pages/admin/AdminLayout"));
 const Dashboard = lazy(() => import("./pages/admin/Dashboard"));
 const Analytics = lazy(() => import("./pages/admin/Analytics"));
@@ -100,7 +102,9 @@ const App = () => (
                   <Route path="/services/technology-systems" element={<TechnologySystems />} />
                   <Route path="/services/ai-automation" element={<AIAutomation />} />
                   <Route path="/services/digital-transformation" element={<DigitalTransformation />} />
-                  <Route path="/services/xerotrust" element={<XeroTrust />} />
+                  <Route path="/services/xerotrust" element={<XeroTrustService />} />
+                  <Route path="/xerotrust" element={<XeroTrust />} />
+                  <Route path="/xerotrust/compare" element={<XeroTrustCompare />} />
                   <Route path="/xops360" element={<XOPS360 />} />
                   <Route path="/approach" element={<Approach />} />
                   <Route path="/contact" element={<Contact />} />

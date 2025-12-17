@@ -90,6 +90,22 @@ const services = [
       { name: "Capability Building", icon: Shield },
     ],
   },
+  {
+    id: "xerotrust",
+    slug: "xerotrust",
+    icon: Lock,
+    title: "XeroTrust",
+    subtitle: "Zero-Trust Network Access",
+    description: "Enterprise security without VPN complexity. 10x faster with AI-driven protection.",
+    color: "from-cyan-500/20 to-emerald-500/10",
+    accent: "text-cyan-400",
+    capabilities: [
+      { name: "Zero-Trust Architecture", icon: Shield },
+      { name: "WireGuard Encryption", icon: Lock },
+      { name: "SSO & MFA Integration", icon: Users },
+      { name: "AI-Driven Security", icon: Brain },
+    ],
+  },
 ];
 
 const featuredOffering = {

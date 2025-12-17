@@ -30,7 +30,7 @@ const metrics = [
 
 export function MetricsShowcase() {
   return (
-    <section className="py-24 lg:py-32 relative overflow-hidden bg-gradient-to-b from-card/50 to-background">
+    <section className="py-16 lg:py-20 relative overflow-hidden bg-gradient-to-b from-card/50 to-background">
       {/* Background effects */}
       <div className="absolute inset-0">
         <motion.div

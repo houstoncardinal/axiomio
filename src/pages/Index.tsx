@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import { motion, useScroll, useTransform } from "framer-motion";
-import { ArrowRight, Brain, Cpu, LineChart, Zap, Sparkles, ChevronRight } from "lucide-react";
+import { ArrowRight, Brain, Cpu, LineChart, Zap, Sparkles, ChevronRight, Shield } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
@@ -110,11 +110,15 @@ export default function Index() {
             y: 0
           }} transition={{
             duration: 0.6
-          }} className="mb-8 flex justify-center lg:justify-start">
-              <span className="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.15em] text-primary bg-primary/10 px-4 py-2 rounded-full border border-primary/20">
+          }} className="mb-8 flex flex-wrap gap-3 justify-center lg:justify-start">
+              <Link to="/xops360" className="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.15em] text-primary bg-primary/10 px-4 py-2 rounded-full border border-primary/20 hover:bg-primary/20 transition-colors">
                 <Sparkles className="w-3.5 h-3.5" />
-                Powered by XOPS360
-              </span>
+                XOPS360
+              </Link>
+              <Link to="/xerotrust" className="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.15em] text-secondary bg-secondary/10 px-4 py-2 rounded-full border border-secondary/20 hover:bg-secondary/20 transition-colors">
+                <Shield className="w-3.5 h-3.5" />
+                XeroTrust
+              </Link>
             </motion.div>
 
             {/* Main headline */}
@@ -172,6 +176,14 @@ export default function Index() {
                 <Button variant="hero-outline" size="xl" asChild>
                   <Link to="/xops360">
                     Explore XOPS360
+                  </Link>
+                </Button>
+              </MagneticButton>
+              <MagneticButton>
+                <Button variant="outline" size="xl" className="border-secondary/30 text-secondary hover:bg-secondary/10" asChild>
+                  <Link to="/xerotrust">
+                    <Shield className="mr-2 h-4 w-4" />
+                    XeroTrust Security
                   </Link>
                 </Button>
               </MagneticButton>

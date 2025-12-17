@@ -16,6 +16,7 @@ import { MountainVisualization } from "@/components/MountainVisualization";
 import { DifferentiatorsStack } from "@/components/DifferentiatorsStack";
 import { SEOHead } from "@/components/SEOHead";
 import { homepageSchema } from "@/lib/seo-schemas-enhanced";
+import { MagneticButton } from "@/components/MagneticButton";
 import { useRef } from "react";
 
 const services = [
@@ -139,17 +140,21 @@ export default function Index() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.6 }}
             >
-              <Button variant="hero" size="xl" asChild>
-                <Link to="/contact">
-                  Request a Demo
-                  <ArrowRight className="ml-2 h-4 w-4" />
-                </Link>
-              </Button>
-              <Button variant="hero-outline" size="xl" asChild>
-                <Link to="/xops360">
-                  Explore XOPS360
-                </Link>
-              </Button>
+              <MagneticButton>
+                <Button variant="hero" size="xl" asChild>
+                  <Link to="/contact">
+                    Request a Demo
+                    <ArrowRight className="ml-2 h-4 w-4" />
+                  </Link>
+                </Button>
+              </MagneticButton>
+              <MagneticButton>
+                <Button variant="hero-outline" size="xl" asChild>
+                  <Link to="/xops360">
+                    Explore XOPS360
+                  </Link>
+                </Button>
+              </MagneticButton>
             </motion.div>
 
             {/* Trust indicators */}
@@ -326,17 +331,21 @@ export default function Index() {
                   transition={{ delay: 0.4, duration: 0.6 }}
                   viewport={{ once: true }}
                 >
-                  <Button variant="premium" size="xl" asChild>
-                    <Link to="/contact">
-                      Schedule a Demo
-                      <ArrowRight className="ml-2 h-4 w-4" />
-                    </Link>
-                  </Button>
-                  <Button variant="hero-outline" size="xl" asChild>
-                    <Link to="/approach">
-                      See Our Approach
-                    </Link>
-                  </Button>
+                  <MagneticButton>
+                    <Button variant="premium" size="xl" asChild>
+                      <Link to="/contact">
+                        Schedule a Demo
+                        <ArrowRight className="ml-2 h-4 w-4" />
+                      </Link>
+                    </Button>
+                  </MagneticButton>
+                  <MagneticButton>
+                    <Button variant="hero-outline" size="xl" asChild>
+                      <Link to="/approach">
+                        See Our Approach
+                      </Link>
+                    </Button>
+                  </MagneticButton>
                 </motion.div>
               </div>
             </div>

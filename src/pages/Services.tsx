@@ -8,6 +8,7 @@ import { GridBackground } from "@/components/GridBackground";
 import { SectionHeader } from "@/components/SectionHeader";
 import { SEOHead } from "@/components/SEOHead";
 import { servicesPageSchema } from "@/lib/seo-schemas-enhanced";
+import { MagneticButton } from "@/components/MagneticButton";
 
 const services = [
   {
@@ -227,14 +228,14 @@ export default function Services() {
               Many engagements begin with a discovery session to understand your 
               challenges and opportunities. Let's find the right starting point together.
             </p>
-            <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
-              <Button variant="hero" size="xl" asChild>
+            <MagneticButton>
+              <Button variant="premium" size="xl" asChild>
                 <Link to="/contact">
                   Schedule a Discovery Call
                   <ArrowRight className="ml-2 h-5 w-5" />
                 </Link>
               </Button>
-            </motion.div>
+            </MagneticButton>
           </motion.div>
         </div>
       </section>

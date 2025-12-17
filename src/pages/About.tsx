@@ -8,6 +8,7 @@ import { GridBackground } from "@/components/GridBackground";
 import { SectionHeader } from "@/components/SectionHeader";
 import { SEOHead } from "@/components/SEOHead";
 import { aboutPageSchema } from "@/lib/seo-schemas-enhanced";
+import { MagneticButton } from "@/components/MagneticButton";
 
 const values = [
   {
@@ -221,14 +222,14 @@ export default function About() {
               Whether you're navigating a complex transformation or exploring what's possible, 
               we'd welcome the conversation.
             </p>
-            <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
-              <Button variant="hero" size="xl" asChild>
+            <MagneticButton>
+              <Button variant="premium" size="xl" asChild>
                 <Link to="/contact">
                   Start a Conversation
                   <ArrowRight className="ml-2 h-5 w-5" />
                 </Link>
               </Button>
-            </motion.div>
+            </MagneticButton>
           </motion.div>
         </div>
       </section>

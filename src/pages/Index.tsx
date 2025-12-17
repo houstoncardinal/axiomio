@@ -16,6 +16,7 @@ import { SEOHead } from "@/components/SEOHead";
 import { homepageSchema } from "@/lib/seo-schemas-enhanced";
 import { MagneticButton } from "@/components/MagneticButton";
 import { useInViewOnce } from "@/hooks/useInViewOnce";
+import { ClientLogoMarquee } from "@/components/ClientLogoMarquee";
 import { lazy, Suspense, useRef } from "react";
 const LazyXOPS360Section = lazy(() => import("@/components/XOPS360Section").then(m => ({
   default: m.XOPS360Section
@@ -256,55 +257,73 @@ export default function Index() {
         </div>
         
         <div className="container mx-auto px-6 lg:px-8">
-          <motion.div initial={{
-          opacity: 0,
-          y: 30
-        }} whileInView={{
-          opacity: 1,
-          y: 0
-        }} transition={{
-          duration: 0.6
-        }} viewport={{
-          once: true
-        }}>
+          <motion.div 
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+            viewport={{ once: true, margin: "-100px" }}
+          >
             <SectionHeader label="Our Services" title="Comprehensive enterprise solutions" description="Beyond XOPS360, we deliver end-to-end capabilities that address the full spectrum of digital transformation." />
           </motion.div>
           
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-8 mt-20">
-            {services.map((service, index) => <motion.div key={service.title} initial={{
-            opacity: 0,
-            y: 40
-          }} whileInView={{
-            opacity: 1,
-            y: 0
-          }} transition={{
-            delay: index * 0.1,
-            duration: 0.6
-          }} viewport={{
-            once: true
-          }}>
+            {services.map((service, index) => (
+              <motion.div
+                key={service.title}
+                initial={{ opacity: 0, y: 60, scale: 0.95 }}
+                whileInView={{ opacity: 1, y: 0, scale: 1 }}
+                transition={{
+                  delay: index * 0.15,
+                  duration: 0.7,
+                  ease: [0.16, 1, 0.3, 1]
+                }}
+                viewport={{ once: true, margin: "-50px" }}
+                whileHover={{ y: -8, transition: { duration: 0.3 } }}
+              >
                 <Link to={service.link}>
-                  <PremiumCard className="h-full">
-                    <div className={`p-8 lg:p-10 bg-gradient-to-br ${service.gradient}`}>
-                      <div className="flex items-start justify-between mb-6">
-                        <div className="p-3 rounded-xl bg-primary/10 text-primary border border-primary/20">
-                          <service.icon className="h-6 w-6" />
+                  <PremiumCard className="h-full group">
+                    <div className={`p-8 lg:p-10 bg-gradient-to-br ${service.gradient} relative overflow-hidden`}>
+                      {/* Animated background glow on hover */}
+                      <motion.div
+                        className="absolute inset-0 bg-gradient-to-br from-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"
+                      />
+                      
+                      <div className="relative z-10">
+                        <div className="flex items-start justify-between mb-6">
+                          <motion.div 
+                            className="p-3 rounded-xl bg-primary/10 text-primary border border-primary/20"
+                            whileHover={{ scale: 1.1, rotate: 5 }}
+                            transition={{ type: "spring", stiffness: 400, damping: 10 }}
+                          >
+                            <service.icon className="h-6 w-6" />
+                          </motion.div>
+                          <motion.div
+                            initial={{ x: -10, opacity: 0 }}
+                            whileInView={{ x: 0, opacity: 1 }}
+                            transition={{ delay: index * 0.15 + 0.3 }}
+                            viewport={{ once: true }}
+                          >
+                            <ChevronRight className="h-5 w-5 text-muted-foreground/50 group-hover:text-primary group-hover:translate-x-1 transition-all duration-300" />
+                          </motion.div>
                         </div>
-                        <ChevronRight className="h-5 w-5 text-muted-foreground/50 group-hover:text-primary transition-colors" />
+                        <h3 className="font-heading text-2xl font-semibold text-foreground mb-3 group-hover:text-primary transition-colors duration-300">
+                          {service.title}
+                        </h3>
+                        <p className="text-muted-foreground leading-relaxed">
+                          {service.description}
+                        </p>
                       </div>
-                      <h3 className="font-heading text-2xl font-semibold text-foreground mb-3">
-                        {service.title}
-                      </h3>
-                      <p className="text-muted-foreground leading-relaxed">
-                        {service.description}
-                      </p>
                     </div>
                   </PremiumCard>
                 </Link>
-              </motion.div>)}
+              </motion.div>
+            ))}
           </div>
         </div>
       </section>
+
+      {/* Client Logo Marquee */}
+      <ClientLogoMarquee />
 
       {/* Testimonials */}
       <TestimonialsSection />

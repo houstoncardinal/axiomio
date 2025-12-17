@@ -17,75 +17,73 @@ import { homepageSchema } from "@/lib/seo-schemas-enhanced";
 import { MagneticButton } from "@/components/MagneticButton";
 import { useInViewOnce } from "@/hooks/useInViewOnce";
 import { lazy, Suspense, useRef } from "react";
-
-const LazyXOPS360Section = lazy(() =>
-  import("@/components/XOPS360Section").then((m) => ({ default: m.XOPS360Section }))
-);
+const LazyXOPS360Section = lazy(() => import("@/components/XOPS360Section").then(m => ({
+  default: m.XOPS360Section
+})));
 const LazyMountainVisualization = lazy(() => import("@/components/MountainVisualization"));
-
-const services = [
-  {
-    icon: LineChart,
-    title: "Strategy & Advisory",
-    description: "Executive-level strategic guidance that transforms vision into measurable outcomes through systematic analysis.",
-    gradient: "from-primary/20 to-blue-500/10",
-    link: "/services/strategy-advisory",
-  },
-  {
-    icon: Cpu,
-    title: "Technology & Systems",
-    description: "Architect and implement enterprise-grade systems designed for scale, reliability, and operational excellence.",
-    gradient: "from-blue-500/20 to-violet-500/10",
-    link: "/services/technology-systems",
-  },
-  {
-    icon: Brain,
-    title: "AI & Automation",
-    description: "Deploy intelligent automation solutions that enhance decision-making and unlock new capabilities.",
-    gradient: "from-violet-500/20 to-secondary/10",
-    link: "/services/ai-automation",
-  },
-  {
-    icon: Zap,
-    title: "Digital Transformation",
-    description: "Navigate complex organizational change with frameworks that ensure adoption and sustainable value.",
-    gradient: "from-secondary/20 to-primary/10",
-    link: "/services/digital-transformation",
-  },
-];
-
-
-const stats = [
-  { value: 500, suffix: "M+", label: "Value Delivered" },
-  { value: 150, suffix: "+", label: "Enterprise Clients" },
-  { value: 98, suffix: "%", label: "Client Retention" },
-  { value: 40, suffix: "+", label: "Countries Served" },
-];
-
+const services = [{
+  icon: LineChart,
+  title: "Strategy & Advisory",
+  description: "Executive-level strategic guidance that transforms vision into measurable outcomes through systematic analysis.",
+  gradient: "from-primary/20 to-blue-500/10",
+  link: "/services/strategy-advisory"
+}, {
+  icon: Cpu,
+  title: "Technology & Systems",
+  description: "Architect and implement enterprise-grade systems designed for scale, reliability, and operational excellence.",
+  gradient: "from-blue-500/20 to-violet-500/10",
+  link: "/services/technology-systems"
+}, {
+  icon: Brain,
+  title: "AI & Automation",
+  description: "Deploy intelligent automation solutions that enhance decision-making and unlock new capabilities.",
+  gradient: "from-violet-500/20 to-secondary/10",
+  link: "/services/ai-automation"
+}, {
+  icon: Zap,
+  title: "Digital Transformation",
+  description: "Navigate complex organizational change with frameworks that ensure adoption and sustainable value.",
+  gradient: "from-secondary/20 to-primary/10",
+  link: "/services/digital-transformation"
+}];
+const stats = [{
+  value: 500,
+  suffix: "M+",
+  label: "Value Delivered"
+}, {
+  value: 150,
+  suffix: "+",
+  label: "Enterprise Clients"
+}, {
+  value: 98,
+  suffix: "%",
+  label: "Client Retention"
+}, {
+  value: 40,
+  suffix: "+",
+  label: "Countries Served"
+}];
 export default function Index() {
   const heroRef = useRef<HTMLDivElement>(null);
-  const { scrollYProgress } = useScroll({
+  const {
+    scrollYProgress
+  } = useScroll({
     target: heroRef,
-    offset: ["start start", "end start"],
+    offset: ["start start", "end start"]
   });
-
   const heroOpacity = useTransform(scrollYProgress, [0, 0.5], [1, 0]);
   const heroScale = useTransform(scrollYProgress, [0, 0.5], [1, 0.95]);
   const heroY = useTransform(scrollYProgress, [0, 0.5], [0, 100]);
-
-  const { ref: xopsRef, inView: xopsInView } = useInViewOnce<HTMLDivElement>("800px");
-  const { ref: mountainRef, inView: mountainInView } = useInViewOnce<HTMLDivElement>("800px");
-
-  return (
-    <div className="min-h-screen bg-background overflow-hidden">
-      <SEOHead
-        title="Axiomio | Enterprise Technology & Strategy Consulting | XOPS360 Platform"
-        description="Axiomio is a global technology and strategy consulting firm. Our XOPS360 platform unifies DevOps, DataOps, MLOps & AIOps. Digital transformation, AI automation & enterprise systems for Fortune 500 companies."
-        keywords="technology consulting, strategy consulting, digital transformation, AI automation, enterprise architecture, DevOps, MLOps, AIOps, DataOps, XOPS360, cloud consulting, machine learning consulting, enterprise systems, IT consulting, Deloitte alternative, Accenture alternative"
-        canonicalUrl="https://axiomio.com/"
-        ogType="website"
-        structuredData={homepageSchema}
-      />
+  const {
+    ref: xopsRef,
+    inView: xopsInView
+  } = useInViewOnce<HTMLDivElement>("800px");
+  const {
+    ref: mountainRef,
+    inView: mountainInView
+  } = useInViewOnce<HTMLDivElement>("800px");
+  return <div className="min-h-screen bg-background overflow-hidden">
+      <SEOHead title="Axiomio | Enterprise Technology & Strategy Consulting | XOPS360 Platform" description="Axiomio is a global technology and strategy consulting firm. Our XOPS360 platform unifies DevOps, DataOps, MLOps & AIOps. Digital transformation, AI automation & enterprise systems for Fortune 500 companies." keywords="technology consulting, strategy consulting, digital transformation, AI automation, enterprise architecture, DevOps, MLOps, AIOps, DataOps, XOPS360, cloud consulting, machine learning consulting, enterprise systems, IT consulting, Deloitte alternative, Accenture alternative" canonicalUrl="https://axiomio.com/" ogType="website" structuredData={homepageSchema} />
       <Navbar />
       
       {/* Hero Section */}
@@ -97,18 +95,22 @@ export default function Index() {
           <div className="absolute bottom-1/4 right-1/4 w-[400px] h-[400px] bg-accent/5 rounded-full blur-3xl" />
         </div>
         
-        <motion.div 
-          className="container relative z-10 mx-auto px-6 lg:px-8 py-20 lg:py-28"
-          style={{ opacity: heroOpacity, scale: heroScale, y: heroY }}
-        >
+        <motion.div style={{
+        opacity: heroOpacity,
+        scale: heroScale,
+        y: heroY
+      }} className="container relative z-10 mx-auto px-6 lg:px-8 lg:py-28 py-[50px]">
           <div className="max-w-5xl mx-auto">
             {/* Badge */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6 }}
-              className="mb-8 flex justify-center lg:justify-start"
-            >
+            <motion.div initial={{
+            opacity: 0,
+            y: 20
+          }} animate={{
+            opacity: 1,
+            y: 0
+          }} transition={{
+            duration: 0.6
+          }} className="mb-8 flex justify-center lg:justify-start">
               <span className="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.15em] text-primary bg-primary/10 px-4 py-2 rounded-full border border-primary/20">
                 <Sparkles className="w-3.5 h-3.5" />
                 Powered by XOPS360
@@ -116,12 +118,16 @@ export default function Index() {
             </motion.div>
 
             {/* Main headline */}
-            <motion.h1 
-              className="font-heading text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-foreground leading-[1.1] tracking-tight mb-6 text-center lg:text-left"
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.2 }}
-            >
+            <motion.h1 className="font-heading text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-foreground leading-[1.1] tracking-tight mb-6 text-center lg:text-left" initial={{
+            opacity: 0,
+            y: 30
+          }} animate={{
+            opacity: 1,
+            y: 0
+          }} transition={{
+            duration: 0.8,
+            delay: 0.2
+          }}>
               The future of{" "}
               <span className="text-primary">intelligent</span>
               <br />
@@ -129,23 +135,31 @@ export default function Index() {
             </motion.h1>
             
             {/* Subheadline */}
-            <motion.p 
-              className="text-lg md:text-xl text-muted-foreground leading-relaxed max-w-2xl mb-10 text-center lg:text-left mx-auto lg:mx-0"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.4 }}
-            >
+            <motion.p className="text-lg md:text-xl text-muted-foreground leading-relaxed max-w-2xl mb-10 text-center lg:text-left mx-auto lg:mx-0" initial={{
+            opacity: 0,
+            y: 20
+          }} animate={{
+            opacity: 1,
+            y: 0
+          }} transition={{
+            duration: 0.8,
+            delay: 0.4
+          }}>
               Axiomio's XOPS360 platform unifies DevOps, DataOps, SecOps, and AIOps into a single 
               intelligent ecosystem—transforming operational complexity into competitive advantage.
             </motion.p>
             
             {/* CTA Buttons */}
-            <motion.div 
-              className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.6 }}
-            >
+            <motion.div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start" initial={{
+            opacity: 0,
+            y: 20
+          }} animate={{
+            opacity: 1,
+            y: 0
+          }} transition={{
+            duration: 0.8,
+            delay: 0.6
+          }}>
               <MagneticButton>
                 <Button variant="hero" size="xl" asChild>
                   <Link to="/contact">
@@ -164,27 +178,27 @@ export default function Index() {
             </motion.div>
 
             {/* Trust indicators */}
-            <motion.div
-              className="mt-16 pt-10 border-t border-border/50"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 1, duration: 0.8 }}
-            >
+            <motion.div className="mt-16 pt-10 border-t border-border/50" initial={{
+            opacity: 0
+          }} animate={{
+            opacity: 1
+          }} transition={{
+            delay: 1,
+            duration: 0.8
+          }}>
               <p className="text-xs uppercase tracking-[0.2em] text-muted-foreground/60 mb-6 text-center lg:text-left">
                 Trusted by enterprise leaders
               </p>
               <div className="flex flex-wrap justify-center lg:justify-start items-center gap-x-10 gap-y-4">
-                {["Fortune 500", "Tech Giants", "Financial Leaders", "Global Enterprises"].map((name, i) => (
-                  <motion.span
-                    key={name}
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    transition={{ delay: 1.2 + i * 0.1 }}
-                    className="text-muted-foreground/50 font-medium text-sm"
-                  >
+                {["Fortune 500", "Tech Giants", "Financial Leaders", "Global Enterprises"].map((name, i) => <motion.span key={name} initial={{
+                opacity: 0
+              }} animate={{
+                opacity: 1
+              }} transition={{
+                delay: 1.2 + i * 0.1
+              }} className="text-muted-foreground/50 font-medium text-sm">
                     {name}
-                  </motion.span>
-                ))}
+                  </motion.span>)}
               </div>
             </motion.div>
           </div>
@@ -195,31 +209,16 @@ export default function Index() {
       <section className="py-16 lg:py-20 relative">
         <div className="container mx-auto px-6 lg:px-8">
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8">
-            {stats.map((stat, index) => (
-              <CounterBadge
-                key={stat.label}
-                value={stat.value}
-                suffix={stat.suffix}
-                prefix={stat.label === "Value Delivered" ? "$" : ""}
-                label={stat.label}
-                duration={2 + index * 0.3}
-              />
-            ))}
+            {stats.map((stat, index) => <CounterBadge key={stat.label} value={stat.value} suffix={stat.suffix} prefix={stat.label === "Value Delivered" ? "$" : ""} label={stat.label} duration={2 + index * 0.3} />)}
           </div>
         </div>
       </section>
 
       {/* XOPS360 Feature Section (lazy-mounted) */}
       <div ref={xopsRef}>
-        {xopsInView ? (
-          <Suspense
-            fallback={<div className="py-20 lg:py-24 bg-muted/10 animate-pulse" aria-label="Loading section" />}
-          >
+        {xopsInView ? <Suspense fallback={<div className="py-20 lg:py-24 bg-muted/10 animate-pulse" aria-label="Loading section" />}>
             <LazyXOPS360Section />
-          </Suspense>
-        ) : (
-          <div className="py-20 lg:py-24 bg-muted/10" aria-hidden="true" />
-        )}
+          </Suspense> : <div className="py-20 lg:py-24 bg-muted/10" aria-hidden="true" />}
       </div>
 
       {/* Metrics Showcase */}
@@ -227,15 +226,9 @@ export default function Index() {
 
       {/* Mountain Visualization Section (lazy-mounted) */}
       <div ref={mountainRef}>
-        {mountainInView ? (
-          <Suspense
-            fallback={<div className="py-16 lg:py-20 bg-muted/10 animate-pulse" aria-label="Loading visualization" />}
-          >
+        {mountainInView ? <Suspense fallback={<div className="py-16 lg:py-20 bg-muted/10 animate-pulse" aria-label="Loading visualization" />}>
             <LazyMountainVisualization />
-          </Suspense>
-        ) : (
-          <div className="py-16 lg:py-20 bg-muted/10" aria-hidden="true" />
-        )}
+          </Suspense> : <div className="py-16 lg:py-20 bg-muted/10" aria-hidden="true" />}
       </div>
 
       {/* Capabilities Grid */}
@@ -251,28 +244,33 @@ export default function Index() {
         </div>
         
         <div className="container mx-auto px-6 lg:px-8">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            viewport={{ once: true }}
-          >
-            <SectionHeader
-              label="Our Services"
-              title="Comprehensive enterprise solutions"
-              description="Beyond XOPS360, we deliver end-to-end capabilities that address the full spectrum of digital transformation."
-            />
+          <motion.div initial={{
+          opacity: 0,
+          y: 30
+        }} whileInView={{
+          opacity: 1,
+          y: 0
+        }} transition={{
+          duration: 0.6
+        }} viewport={{
+          once: true
+        }}>
+            <SectionHeader label="Our Services" title="Comprehensive enterprise solutions" description="Beyond XOPS360, we deliver end-to-end capabilities that address the full spectrum of digital transformation." />
           </motion.div>
           
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-8 mt-20">
-            {services.map((service, index) => (
-              <motion.div
-                key={service.title}
-                initial={{ opacity: 0, y: 40 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ delay: index * 0.1, duration: 0.6 }}
-                viewport={{ once: true }}
-              >
+            {services.map((service, index) => <motion.div key={service.title} initial={{
+            opacity: 0,
+            y: 40
+          }} whileInView={{
+            opacity: 1,
+            y: 0
+          }} transition={{
+            delay: index * 0.1,
+            duration: 0.6
+          }} viewport={{
+            once: true
+          }}>
                 <Link to={service.link}>
                   <PremiumCard className="h-full">
                     <div className={`p-8 lg:p-10 bg-gradient-to-br ${service.gradient}`}>
@@ -291,8 +289,7 @@ export default function Index() {
                     </div>
                   </PremiumCard>
                 </Link>
-              </motion.div>
-            ))}
+              </motion.div>)}
           </div>
         </div>
       </section>
@@ -306,13 +303,17 @@ export default function Index() {
       {/* CTA Section */}
       <section className="py-24 lg:py-32 relative overflow-hidden bg-muted/30">
         <div className="container relative z-10 mx-auto px-6 lg:px-8">
-          <motion.div 
-            className="relative max-w-4xl mx-auto"
-            initial={{ opacity: 0, y: 50 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            viewport={{ once: true }}
-          >
+          <motion.div className="relative max-w-4xl mx-auto" initial={{
+          opacity: 0,
+          y: 50
+        }} whileInView={{
+          opacity: 1,
+          y: 0
+        }} transition={{
+          duration: 0.8
+        }} viewport={{
+          once: true
+        }}>
             {/* Card */}
             <div className="bg-background rounded-2xl p-10 lg:p-16 text-center border border-border shadow-lg relative overflow-hidden">
               {/* Decorative elements */}
@@ -320,43 +321,59 @@ export default function Index() {
               <div className="absolute bottom-0 right-0 w-40 h-40 bg-gradient-to-tl from-primary/5 to-transparent" />
               
               <div className="relative z-10">
-                <motion.span
-                  initial={{ opacity: 0 }}
-                  whileInView={{ opacity: 1 }}
-                  viewport={{ once: true }}
-                  className="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.15em] text-primary mb-6"
-                >
+                <motion.span initial={{
+                opacity: 0
+              }} whileInView={{
+                opacity: 1
+              }} viewport={{
+                once: true
+              }} className="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.15em] text-primary mb-6">
                   <span className="w-6 h-px bg-primary" />
                   Start Your Transformation
                   <span className="w-6 h-px bg-primary" />
                 </motion.span>
                 
-                <motion.h2 
-                  className="font-heading text-3xl md:text-4xl lg:text-5xl font-bold text-foreground mb-6"
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.2, duration: 0.6 }}
-                  viewport={{ once: true }}
-                >
+                <motion.h2 className="font-heading text-3xl md:text-4xl lg:text-5xl font-bold text-foreground mb-6" initial={{
+                opacity: 0,
+                y: 20
+              }} whileInView={{
+                opacity: 1,
+                y: 0
+              }} transition={{
+                delay: 0.2,
+                duration: 0.6
+              }} viewport={{
+                once: true
+              }}>
                   Ready to experience <span className="text-primary">XOPS360</span>?
                 </motion.h2>
-                <motion.p 
-                  className="text-lg text-muted-foreground max-w-2xl mx-auto mb-10"
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.3, duration: 0.6 }}
-                  viewport={{ once: true }}
-                >
+                <motion.p className="text-lg text-muted-foreground max-w-2xl mx-auto mb-10" initial={{
+                opacity: 0,
+                y: 20
+              }} whileInView={{
+                opacity: 1,
+                y: 0
+              }} transition={{
+                delay: 0.3,
+                duration: 0.6
+              }} viewport={{
+                once: true
+              }}>
                   Let's discuss how Axiomio and XOPS360 can help you navigate complexity, 
                   accelerate transformation, and achieve outcomes that matter.
                 </motion.p>
-                <motion.div 
-                  className="flex flex-col sm:flex-row gap-4 justify-center"
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.4, duration: 0.6 }}
-                  viewport={{ once: true }}
-                >
+                <motion.div className="flex flex-col sm:flex-row gap-4 justify-center" initial={{
+                opacity: 0,
+                y: 20
+              }} whileInView={{
+                opacity: 1,
+                y: 0
+              }} transition={{
+                delay: 0.4,
+                duration: 0.6
+              }} viewport={{
+                once: true
+              }}>
                   <MagneticButton>
                     <Button variant="premium" size="xl" asChild>
                       <Link to="/contact">
@@ -380,6 +397,5 @@ export default function Index() {
       </section>
 
       <Footer />
-    </div>
-  );
+    </div>;
 }

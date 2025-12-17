@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import { Settings as SettingsIcon, Palette, Globe, Shield, Save, Check } from 'lucide-react';
+import { Settings as SettingsIcon, Globe, Shield, Save } from 'lucide-react';
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import { supabase } from '@/integrations/supabase/client';
 import { Button } from '@/components/ui/button';
@@ -8,11 +8,9 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Switch } from '@/components/ui/switch';
 import { toast } from '@/hooks/use-toast';
-import { useTheme, Theme } from '@/contexts/ThemeContext';
 
 const Settings: React.FC = () => {
   const queryClient = useQueryClient();
-  const { theme, setTheme, themes } = useTheme();
   const [seoTitle, setSeoTitle] = useState(' | Axiomio');
   const [contactEmail, setContactEmail] = useState('contact@axiomio.com');
 
@@ -44,13 +42,6 @@ const Settings: React.FC = () => {
     },
   });
 
-  const handleSaveTheme = () => {
-    updateSettingMutation.mutate({
-      key: 'theme',
-      value: { current: theme, available: themes.map((t) => t.id) },
-    });
-  };
-
   return (
     <div className="space-y-8">
       {/* Header */}
@@ -60,60 +51,10 @@ const Settings: React.FC = () => {
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-        {/* Theme Settings */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          className="glass-premium rounded-2xl border border-border/30 overflow-hidden"
-        >
-          <div className="p-6 border-b border-border/30 flex items-center gap-3">
-            <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center">
-              <Palette className="w-5 h-5 text-primary" />
-            </div>
-            <div>
-              <h2 className="font-heading text-lg font-semibold text-foreground">Theme</h2>
-              <p className="text-sm text-muted-foreground">Customize the site appearance</p>
-            </div>
-          </div>
-          <div className="p-6 space-y-4">
-            <div className="grid grid-cols-2 gap-3">
-              {themes.map((t) => (
-                <button
-                  key={t.id}
-                  onClick={() => setTheme(t.id)}
-                  className={`p-4 rounded-xl border transition-all flex items-center gap-3 ${
-                    theme === t.id
-                      ? 'border-primary bg-primary/10'
-                      : 'border-border/30 hover:border-border/50'
-                  }`}
-                >
-                  <div className="flex -space-x-1">
-                    <div
-                      className="w-5 h-5 rounded-full border-2 border-background"
-                      style={{ backgroundColor: t.colors.primary }}
-                    />
-                    <div
-                      className="w-5 h-5 rounded-full border-2 border-background"
-                      style={{ backgroundColor: t.colors.accent }}
-                    />
-                  </div>
-                  <span className="text-sm font-medium">{t.name}</span>
-                  {theme === t.id && <Check className="w-4 h-4 text-primary ml-auto" />}
-                </button>
-              ))}
-            </div>
-            <Button onClick={handleSaveTheme} className="w-full bg-primary hover:bg-primary/90 gap-2">
-              <Save className="w-4 h-4" />
-              Save Theme
-            </Button>
-          </div>
-        </motion.div>
-
         {/* SEO Settings */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.1 }}
           className="glass-premium rounded-2xl border border-border/30 overflow-hidden"
         >
           <div className="p-6 border-b border-border/30 flex items-center gap-3">
@@ -154,7 +95,7 @@ const Settings: React.FC = () => {
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.2 }}
+          transition={{ delay: 0.1 }}
           className="glass-premium rounded-2xl border border-border/30 overflow-hidden"
         >
           <div className="p-6 border-b border-border/30 flex items-center gap-3">
@@ -196,8 +137,8 @@ const Settings: React.FC = () => {
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.3 }}
-          className="glass-premium rounded-2xl border border-border/30 overflow-hidden"
+          transition={{ delay: 0.2 }}
+          className="glass-premium rounded-2xl border border-border/30 overflow-hidden lg:col-span-2"
         >
           <div className="p-6 border-b border-border/30 flex items-center gap-3">
             <div className="w-10 h-10 rounded-lg bg-rose-500/10 flex items-center justify-center">

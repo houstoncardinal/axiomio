@@ -192,7 +192,7 @@ export default function Index() {
       </header>
 
       {/* Stats Section */}
-      <section className="py-28 lg:py-36 relative">
+      <section className="py-16 lg:py-20 relative">
         <div className="container mx-auto px-6 lg:px-8">
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8">
             {stats.map((stat, index) => (
@@ -213,12 +213,12 @@ export default function Index() {
       <div ref={xopsRef}>
         {xopsInView ? (
           <Suspense
-            fallback={<div className="py-32 lg:py-44 bg-muted/10 animate-pulse" aria-label="Loading section" />}
+            fallback={<div className="py-20 lg:py-24 bg-muted/10 animate-pulse" aria-label="Loading section" />}
           >
             <LazyXOPS360Section />
           </Suspense>
         ) : (
-          <div className="py-32 lg:py-44 bg-muted/10" aria-hidden="true" />
+          <div className="py-20 lg:py-24 bg-muted/10" aria-hidden="true" />
         )}
       </div>
 
@@ -229,12 +229,12 @@ export default function Index() {
       <div ref={mountainRef}>
         {mountainInView ? (
           <Suspense
-            fallback={<div className="py-28 lg:py-36 bg-muted/10 animate-pulse" aria-label="Loading visualization" />}
+            fallback={<div className="py-16 lg:py-20 bg-muted/10 animate-pulse" aria-label="Loading visualization" />}
           >
             <LazyMountainVisualization />
           </Suspense>
         ) : (
-          <div className="py-28 lg:py-36 bg-muted/10" aria-hidden="true" />
+          <div className="py-16 lg:py-20 bg-muted/10" aria-hidden="true" />
         )}
       </div>
 

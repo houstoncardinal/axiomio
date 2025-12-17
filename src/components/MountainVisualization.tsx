@@ -8,7 +8,7 @@ const GenerativeMountainScene = lazy(() => import("@/components/ui/mountain-scen
 
 export function MountainVisualization() {
   return (
-    <section className="relative py-28 lg:py-36 overflow-hidden">
+    <section className="relative py-16 lg:py-20 overflow-hidden">
       {/* Background gradient */}
       <div className="absolute inset-0 bg-gradient-to-b from-background via-muted/20 to-background" />
       

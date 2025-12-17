@@ -458,7 +458,7 @@ export function XOPS360Section() {
   ];
 
   return (
-    <section ref={containerRef} className="py-32 lg:py-44 relative overflow-hidden">
+    <section ref={containerRef} className="py-20 lg:py-24 relative overflow-hidden">
       {/* Background effects */}
       <div className="absolute inset-0">
         <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-primary/40 to-transparent" />

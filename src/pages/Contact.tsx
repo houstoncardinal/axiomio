@@ -159,18 +159,16 @@ export default function Contact() {
                   />
                 </div>
                 
-                <motion.div whileHover={{ scale: 1.01 }} whileTap={{ scale: 0.99 }}>
-                  <Button 
-                    type="submit" 
-                    variant="hero" 
-                    size="lg" 
-                    className="w-full"
-                    disabled={isSubmitting}
-                  >
-                    {isSubmitting ? "Sending..." : "Send Message"}
-                    <ArrowRight className="ml-2 h-4 w-4" />
-                  </Button>
-                </motion.div>
+                <Button 
+                  type="submit" 
+                  variant="luxury" 
+                  size="lg" 
+                  className="w-full"
+                  disabled={isSubmitting}
+                >
+                  {isSubmitting ? "Sending..." : "Send Message"}
+                  <ArrowRight className="ml-2 h-4 w-4" />
+                </Button>
               </form>
             </motion.div>
             

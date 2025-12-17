@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
-import { ArrowRight, Brain, Cpu, LineChart, Zap, ChevronRight } from "lucide-react";
+import { ArrowRight, Brain, Cpu, LineChart, Zap, ChevronRight, Shield } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
@@ -69,6 +69,21 @@ const services = [
       "Process redesign",
       "Technology adoption",
       "Capability building",
+    ],
+  },
+  {
+    id: "xerotrust",
+    slug: "xerotrust",
+    icon: Shield,
+    title: "XeroTrust",
+    subtitle: "Zero-Trust Network Access",
+    description: "Enterprise security without VPN complexity. 10x faster than traditional VPNs with AI-driven protection, WireGuard encryption, and seamless SSO integration.",
+    capabilities: [
+      "Zero-trust architecture",
+      "WireGuard encryption",
+      "SSO & MFA integration",
+      "Device posture checks",
+      "AI-driven security engine",
     ],
   },
 ];

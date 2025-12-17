@@ -573,6 +573,24 @@ export const digitalTransformationSchema = createServiceSchema({
   ],
 });
 
+export const xerotrustSchema = createServiceSchema({
+  name: "XeroTrust - Zero-Trust Network Access",
+  description:
+    "Enterprise-grade Zero-Trust Network Access (ZTNA) platform. Replace traditional VPNs with 10x faster, AI-driven security featuring WireGuard encryption, SSO integration, and continuous verification.",
+  url: "https://axiomio.com/services/xerotrust",
+  category: "Cybersecurity Solutions",
+  features: [
+    "Zero-Trust Architecture",
+    "WireGuard Encryption",
+    "SSO & MFA Integration",
+    "Device Posture Checks",
+    "AI-Driven Security Engine",
+    "P2P Mesh Networking",
+    "Complete Audit Logs",
+    "Self-Hostable Relay",
+  ],
+});
+
 // ItemList Schema for Services
 export const servicesListSchema = {
   "@context": "https://schema.org",
@@ -581,7 +599,7 @@ export const servicesListSchema = {
   name: "Axiomio Enterprise Consulting Services",
   description:
     "Comprehensive enterprise technology and strategy consulting services from Axiomio.",
-  numberOfItems: 4,
+  numberOfItems: 5,
   itemListElement: [
     {
       "@type": "ListItem",
@@ -614,6 +632,14 @@ export const servicesListSchema = {
       url: "https://axiomio.com/services/digital-transformation",
       description:
         "End-to-end organizational transformation with change management and capability building.",
+    },
+    {
+      "@type": "ListItem",
+      position: 5,
+      name: "XeroTrust",
+      url: "https://axiomio.com/services/xerotrust",
+      description:
+        "Zero-Trust Network Access platform replacing VPNs with enterprise-grade security and 10x performance.",
     },
   ],
 };

@@ -108,17 +108,34 @@ const services = [
   },
 ];
 
-const featuredOffering = {
-  title: "XOPS360",
-  subtitle: "Flagship Platform",
-  description: "Our intelligent operations engine that transforms how enterprises manage cloud, security, and automation.",
-  link: "/xops360",
-  stats: [
-    { label: "Cost Reduction", value: "40%" },
-    { label: "Faster Resolution", value: "10x" },
-    { label: "Uptime", value: "99.9%" },
-  ],
-};
+const featuredOfferings = [
+  {
+    title: "XOPS360",
+    subtitle: "Flagship Platform",
+    description: "Our intelligent operations engine that transforms how enterprises manage cloud, security, and automation.",
+    link: "/xops360",
+    color: "from-indigo-500/20 to-violet-500/10",
+    accent: "bg-primary",
+    stats: [
+      { label: "Cost Reduction", value: "40%" },
+      { label: "Faster Resolution", value: "10x" },
+      { label: "Uptime", value: "99.9%" },
+    ],
+  },
+  {
+    title: "XeroTrust",
+    subtitle: "Security Platform",
+    description: "Zero-trust network access with WireGuard encryption. 10x faster than legacy VPNs with AI-driven threat detection.",
+    link: "/xerotrust",
+    color: "from-cyan-500/20 to-emerald-500/10",
+    accent: "bg-cyan-500",
+    stats: [
+      { label: "Faster Access", value: "10x" },
+      { label: "Deployment", value: "5min" },
+      { label: "Cost Savings", value: "60%" },
+    ],
+  },
+];
 
 interface MegaMenuProps {
   isOpen: boolean;
@@ -160,7 +177,7 @@ export function MegaMenu({ isOpen, onClose }: MegaMenuProps) {
                 <div className="absolute inset-0 bg-gradient-to-br from-primary/3 via-transparent to-primary/3 pointer-events-none" />
                 <div className="absolute top-0 left-1/2 -translate-x-1/2 w-1/2 h-px bg-gradient-to-r from-transparent via-primary/30 to-transparent" />
                 
-                <div className="relative grid lg:grid-cols-[1fr_300px] gap-0">
+                <div className="relative grid lg:grid-cols-[1fr_340px] gap-0">
                   {/* Services Grid */}
                   <div className="p-8 lg:p-10">
                     <div className="flex items-center justify-between mb-8">
@@ -265,65 +282,89 @@ export function MegaMenu({ isOpen, onClose }: MegaMenuProps) {
                     </div>
                   </div>
                   
-                  {/* Featured Sidebar - XOPS360 */}
+                  {/* Featured Sidebar - Both Products */}
                   <div className="relative border-t lg:border-t-0 lg:border-l border-border/50">
                     <div className="absolute inset-0 bg-gradient-to-b from-primary/5 to-transparent" />
                     
-                    <div className="relative p-8 lg:p-10 h-full flex flex-col">
-                      <motion.div
-                        initial={{ opacity: 0, x: 20 }}
-                        animate={{ opacity: 1, x: 0 }}
-                        transition={{ delay: 0.2 }}
-                      >
-                        {/* Badge */}
-                        <div className="inline-flex items-center gap-2 text-xs font-semibold text-primary uppercase tracking-[0.2em] mb-4 px-3 py-1.5 rounded-full border border-primary/30 bg-primary/10">
-                          <Sparkles className="h-3 w-3" />
-                          {featuredOffering.subtitle}
-                        </div>
-                        
-                        {/* Title */}
-                        <h3 className="font-heading text-2xl font-bold text-foreground mb-3">
-                          {featuredOffering.title}
-                        </h3>
-                        
-                        {/* Description */}
-                        <p className="text-sm text-muted-foreground mb-6 leading-relaxed">
-                          {featuredOffering.description}
-                        </p>
-                        
-                        {/* Stats */}
-                        <div className="grid grid-cols-3 gap-3 mb-6">
-                          {featuredOffering.stats.map((stat, index) => (
-                            <motion.div
-                              key={stat.label}
-                              className="text-center p-3 rounded-lg bg-background/50 border border-border/50"
-                              initial={{ opacity: 0, y: 10 }}
-                              animate={{ opacity: 1, y: 0 }}
-                              transition={{ delay: 0.3 + index * 0.1 }}
+                    <div className="relative p-6 lg:p-8 h-full flex flex-col">
+                      <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wider mb-4">
+                        Featured Products
+                      </p>
+                      
+                      <div className="space-y-4 flex-1">
+                        {featuredOfferings.map((offering, index) => (
+                          <motion.div
+                            key={offering.title}
+                            initial={{ opacity: 0, x: 20 }}
+                            animate={{ opacity: 1, x: 0 }}
+                            transition={{ delay: 0.2 + index * 0.1 }}
+                            className={cn(
+                              "relative rounded-xl border border-border/50 p-4 transition-all hover:border-primary/30",
+                              "bg-gradient-to-br",
+                              offering.color
+                            )}
+                          >
+                            {/* Badge */}
+                            <div className={cn(
+                              "inline-flex items-center gap-1.5 text-[10px] font-semibold uppercase tracking-[0.15em] mb-3 px-2 py-1 rounded-full border",
+                              offering.title === "XOPS360" 
+                                ? "text-primary border-primary/30 bg-primary/10"
+                                : "text-cyan-500 border-cyan-500/30 bg-cyan-500/10"
+                            )}>
+                              <Sparkles className="h-2.5 w-2.5" />
+                              {offering.subtitle}
+                            </div>
+                            
+                            {/* Title */}
+                            <h3 className="font-heading text-lg font-bold text-foreground mb-2">
+                              {offering.title}
+                            </h3>
+                            
+                            {/* Description */}
+                            <p className="text-xs text-muted-foreground mb-4 leading-relaxed line-clamp-2">
+                              {offering.description}
+                            </p>
+                            
+                            {/* Stats */}
+                            <div className="grid grid-cols-3 gap-2 mb-4">
+                              {offering.stats.map((stat) => (
+                                <div
+                                  key={stat.label}
+                                  className="text-center p-2 rounded-lg bg-background/50 border border-border/30"
+                                >
+                                  <div className={cn(
+                                    "text-sm font-bold",
+                                    offering.title === "XOPS360" ? "text-primary" : "text-cyan-500"
+                                  )}>
+                                    {stat.value}
+                                  </div>
+                                  <div className="text-[9px] text-muted-foreground uppercase tracking-wider">
+                                    {stat.label}
+                                  </div>
+                                </div>
+                              ))}
+                            </div>
+                            
+                            {/* CTA */}
+                            <Link
+                              to={offering.link}
+                              onClick={onClose}
+                              className={cn(
+                                "group flex items-center justify-center gap-2 w-full px-3 py-2 rounded-lg font-medium text-xs transition-all",
+                                offering.title === "XOPS360"
+                                  ? "bg-primary text-primary-foreground hover:bg-primary/90"
+                                  : "bg-cyan-500 text-white hover:bg-cyan-600"
+                              )}
                             >
-                              <div className="text-lg font-bold text-primary">
-                                {stat.value}
-                              </div>
-                              <div className="text-[10px] text-muted-foreground uppercase tracking-wider">
-                                {stat.label}
-                              </div>
-                            </motion.div>
-                          ))}
-                        </div>
-                        
-                        {/* CTA */}
-                        <Link
-                          to={featuredOffering.link}
-                          onClick={onClose}
-                          className="group flex items-center justify-center gap-2 w-full px-4 py-3 rounded-lg bg-primary text-primary-foreground font-medium text-sm transition-all hover:bg-primary/90 hover:shadow-lg hover:shadow-primary/25"
-                        >
-                          Explore XOPS360
-                          <ArrowRight className="h-4 w-4 group-hover:translate-x-1 transition-transform" />
-                        </Link>
-                      </motion.div>
+                              Explore {offering.title}
+                              <ArrowRight className="h-3 w-3 group-hover:translate-x-1 transition-transform" />
+                            </Link>
+                          </motion.div>
+                        ))}
+                      </div>
                       
                       {/* Quick Links */}
-                      <div className="mt-auto pt-6 border-t border-border/50">
+                      <div className="pt-4 border-t border-border/50 mt-4">
                         <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wider mb-3">
                           Quick Links
                         </p>
@@ -335,6 +376,14 @@ export function MegaMenu({ isOpen, onClose }: MegaMenuProps) {
                           >
                             <div className="w-1 h-1 rounded-full bg-primary" />
                             Our Methodology
+                          </Link>
+                          <Link
+                            to="/xerotrust/compare"
+                            onClick={onClose}
+                            className="flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground transition-colors"
+                          >
+                            <div className="w-1 h-1 rounded-full bg-cyan-500" />
+                            XeroTrust vs Competitors
                           </Link>
                           <Link
                             to="/contact"

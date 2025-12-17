@@ -32,6 +32,7 @@ import { PremiumCard } from '@/components/PremiumCard';
 import { GlowingOrb } from '@/components/GlowingOrb';
 import { ParticleField } from '@/components/ParticleField';
 import { SEOHead } from '@/components/SEOHead';
+import { XeroTrustROICalculator } from '@/components/XeroTrustROICalculator';
 
 const capabilities = [
   {
@@ -535,6 +536,9 @@ export default function XeroTrust() {
           </motion.div>
         </div>
       </section>
+
+      {/* ROI Calculator */}
+      <XeroTrustROICalculator />
 
       <Footer />
     </div>

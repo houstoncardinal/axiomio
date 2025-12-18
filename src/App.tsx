@@ -20,13 +20,13 @@ class ErrorBoundary extends Component<{ children: ReactNode }, { hasError: boole
   render() {
     if (this.state.hasError) {
       return (
-        <div className="min-h-screen bg-gray-900 flex items-center justify-center p-4">
-          <div className="text-center text-white">
+        <div className="min-h-screen bg-background flex items-center justify-center p-4">
+          <div className="text-center text-foreground">
             <h1 className="text-2xl font-bold mb-4">Something went wrong</h1>
-            <p className="text-gray-400 mb-4">{this.state.error?.message}</p>
+            <p className="text-muted-foreground mb-4">{this.state.error?.message}</p>
             <button 
               onClick={() => window.location.reload()} 
-              className="px-4 py-2 bg-cyan-500 text-white rounded hover:bg-cyan-600"
+              className="px-4 py-2 bg-primary text-primary-foreground rounded-xl hover:bg-primary/90"
             >
               Reload Page
             </button>
@@ -69,12 +69,12 @@ const XOPS360Integrations = lazy(() => import("./pages/admin/xops360/Integration
 const XOPS360Metrics = lazy(() => import("./pages/admin/xops360/Metrics"));
 const NotFound = lazy(() => import("./pages/NotFound"));
 
-// Loading fallback with inline styles for reliability
+// Loading fallback with inline styles for reliability - Light enterprise theme
 const PageLoader = () => (
-  <div style={{ minHeight: '100vh', backgroundColor: '#030712', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-    <div style={{ textAlign: 'center', color: '#f5f5f5' }}>
-      <div style={{ width: 40, height: 40, border: '3px solid #00d4ff', borderTopColor: 'transparent', borderRadius: '50%', margin: '0 auto 16px', animation: 'spin 1s linear infinite' }} />
-      <p>Loading...</p>
+  <div style={{ minHeight: '100vh', backgroundColor: '#f5f7fa', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+    <div style={{ textAlign: 'center', color: '#1a1f36' }}>
+      <div style={{ width: 40, height: 40, border: '3px solid #5046e5', borderTopColor: 'transparent', borderRadius: '50%', margin: '0 auto 16px', animation: 'spin 1s linear infinite' }} />
+      <p style={{ fontWeight: 500 }}>Loading...</p>
       <style>{`@keyframes spin { to { transform: rotate(360deg); } }`}</style>
     </div>
   </div>
@@ -84,7 +84,7 @@ const queryClient = new QueryClient();
 
 const App = () => (
   <ErrorBoundary>
-    <ThemeProvider attribute="class" defaultTheme="light" enableSystem>
+    <ThemeProvider attribute="class" defaultTheme="light" enableSystem={false}>
       <QueryClientProvider client={queryClient}>
         <AuthProvider>
           <TooltipProvider>

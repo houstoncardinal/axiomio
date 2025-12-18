@@ -1,22 +1,41 @@
 import { motion } from "framer-motion";
 
 const clients = [
-  { name: "Tatami", initials: "T" },
-  { name: "iA", initials: "iA" },
-  { name: "Aeries Group", initials: "AG" },
-  { name: "EG2", initials: "EG2" },
-  { name: "Criteo", initials: "C" },
+  // Row 1
+  { name: "Kuliza", initials: "Kuliza" },
+  { name: "India Accelerator", initials: "iA" },
+  { name: "SciFund Challenge", initials: "SciFund" },
+  { name: "ECI", initials: "ECI+" },
+  { name: "OFOFO", initials: "OFOFO" },
   { name: "KUN", initials: "KUN" },
-  { name: "Smartek", initials: "ST" },
-  { name: "Tile", initials: "T" },
-  { name: "Tighe Logistics", initials: "TL" },
-  { name: "Port Asia", initials: "PA" },
-  { name: "G-Media", initials: "GM" },
-  { name: "Expat", initials: "E" },
-  { name: "Sollutions", initials: "S" },
-  { name: "Azend", initials: "AZ" },
-  { name: "X2", initials: "X2" },
-  { name: "Sipped", initials: "SP" },
+  // Row 2
+  { name: "Ideaspring Capital", initials: "Ideaspring" },
+  { name: "Phi Capital", initials: "φ Phi" },
+  { name: "PenguinAI", initials: "PenguinAI" },
+  { name: "Autodit", initials: "Autodit" },
+  { name: "Kalaam", initials: "Kalaam" },
+  { name: "InfyStrat", initials: "InfyStrat" },
+  { name: "Wipro", initials: "Wipro" },
+  // Row 3
+  { name: "Cogent", initials: "COGENT" },
+  { name: "Avone", initials: "AVONE" },
+  { name: "AIS", initials: "AIS" },
+  { name: "Alpvest Institute", initials: "Alpvest" },
+  { name: "Cryptoforce", initials: "Cryptoforce" },
+  { name: "Fortude", initials: "FORTUDE" },
+  { name: "EMFOI", initials: "EMFOI" },
+  // Row 4
+  { name: "KIMS Hospitals", initials: "KIMS" },
+  { name: "King & Haxson", initials: "K&H" },
+  { name: "Marshall & Sterling", initials: "M&S" },
+  { name: "OneForce", initials: "OneForce" },
+  { name: "Orchid IT", initials: "Orchid" },
+  { name: "Pay Capital", initials: "PayCap" },
+  // Row 5
+  { name: "Roxiler Systems", initials: "Roxiler" },
+  { name: "Sharpsell", initials: "Sharpsell" },
+  { name: "Zertain", initials: "Zertain" },
+  { name: "FPT", initials: "FPT" },
 ];
 
 const partners = [
@@ -34,12 +53,13 @@ const featuredIn = [
 ];
 
 function LogoCard({ name, initials }: { name: string; initials: string }) {
+  const isLongName = initials.length > 6;
   return (
     <div className="flex-shrink-0 group">
-      <div className="h-16 w-32 rounded-xl bg-muted/30 border border-border/30 flex items-center justify-center text-muted-foreground/60 font-heading font-bold text-base transition-all duration-300 group-hover:text-primary group-hover:border-primary/30 group-hover:bg-primary/5 group-hover:scale-105">
-        <span className="truncate px-2">{initials}</span>
+      <div className={`h-16 ${isLongName ? 'w-36' : 'w-32'} rounded-xl bg-muted/30 border border-border/30 flex items-center justify-center text-muted-foreground/70 font-heading font-bold ${isLongName ? 'text-xs' : 'text-sm'} transition-all duration-300 group-hover:text-primary group-hover:border-primary/30 group-hover:bg-primary/5 group-hover:scale-105`}>
+        <span className="truncate px-3">{initials}</span>
       </div>
-      <p className="text-xs text-muted-foreground/40 text-center mt-2 opacity-0 group-hover:opacity-100 transition-opacity">
+      <p className="text-xs text-muted-foreground/40 text-center mt-2 opacity-0 group-hover:opacity-100 transition-opacity max-w-32 truncate">
         {name}
       </p>
     </div>

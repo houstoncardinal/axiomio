@@ -1,12 +1,12 @@
 import { motion } from "framer-motion";
 
 const logos = [
-  { name: "Enterprise One", initials: "E1" },
-  { name: "Global Systems", initials: "GS" },
-  { name: "Apex Digital", initials: "AD" },
-  { name: "Quantum Corp", initials: "QC" },
-  { name: "Nexus Tech", initials: "NT" },
-  { name: "Vertex AI", initials: "VA" },
+  { name: "Kuliza", initials: "Kuliza" },
+  { name: "India Accelerator", initials: "iA" },
+  { name: "SciFund Challenge", initials: "SciFund" },
+  { name: "Wipro", initials: "Wipro" },
+  { name: "FPT", initials: "FPT" },
+  { name: "KIMS Hospitals", initials: "KIMS" },
 ];
 
 export function ClientLogos() {

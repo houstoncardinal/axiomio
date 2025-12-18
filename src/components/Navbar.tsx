@@ -4,6 +4,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X, ChevronDown } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { MegaMenu } from "@/components/MegaMenu";
+import { ThemeToggle } from "@/components/ThemeToggle";
 import { cn } from "@/lib/utils";
 
 
@@ -116,6 +117,7 @@ export function Navbar() {
 
             {/* CTA Button */}
             <div className="hidden md:flex items-center gap-3">
+              <ThemeToggle />
               <Link 
                 to="/xops360"
                 className="text-sm font-medium text-foreground/70 hover:text-primary transition-colors"

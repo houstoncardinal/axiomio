@@ -5,8 +5,8 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { AuthProvider } from "@/contexts/AuthContext";
+import { ThemeProvider } from "next-themes";
 
-// Error Boundary Component
 class ErrorBoundary extends Component<{ children: ReactNode }, { hasError: boolean; error: Error | null }> {
   constructor(props: { children: ReactNode }) {
     super(props);
@@ -84,53 +84,55 @@ const queryClient = new QueryClient();
 
 const App = () => (
   <ErrorBoundary>
-    <QueryClientProvider client={queryClient}>
-      <AuthProvider>
-        <TooltipProvider>
-          <Toaster />
-          <Sonner />
-          <BrowserRouter>
-            <Suspense fallback={<PageLoader />}>
-              <Routes>
-                <Route path="/" element={<Index />} />
-                <Route path="/about" element={<About />} />
-                <Route path="/services" element={<Services />} />
-                <Route path="/services/strategy-advisory" element={<StrategyAdvisory />} />
-                <Route path="/services/technology-systems" element={<TechnologySystems />} />
-                <Route path="/services/ai-automation" element={<AIAutomation />} />
-                <Route path="/services/digital-transformation" element={<DigitalTransformation />} />
-                <Route path="/services/xerotrust" element={<XeroTrustService />} />
-                <Route path="/xerotrust" element={<XeroTrust />} />
-                <Route path="/xerotrust/compare" element={<XeroTrustCompare />} />
-                <Route path="/xops360" element={<XOPS360 />} />
-                <Route path="/approach" element={<Approach />} />
-                <Route path="/contact" element={<Contact />} />
-                <Route path="/auth" element={<Auth />} />
-                
-                {/* Admin Routes */}
-                <Route path="/admin" element={<AdminLayout />}>
-                  <Route index element={<Dashboard />} />
-                  <Route path="analytics" element={<Analytics />} />
-                  <Route path="seo" element={<SEO />} />
-                  <Route path="content" element={<Content />} />
-                  <Route path="users" element={<Users />} />
-                  <Route path="settings" element={<Settings />} />
-                  <Route path="leads" element={<Leads />} />
-                  <Route path="xops360" element={<XOPS360Overview />} />
-                  <Route path="xops360/clients" element={<XOPS360Clients />} />
-                  <Route path="xops360/deployments" element={<XOPS360Deployments />} />
-                  <Route path="xops360/runbooks" element={<XOPS360Runbooks />} />
-                  <Route path="xops360/integrations" element={<XOPS360Integrations />} />
-                  <Route path="xops360/metrics" element={<XOPS360Metrics />} />
-                </Route>
-                
-                <Route path="*" element={<NotFound />} />
-              </Routes>
-            </Suspense>
-          </BrowserRouter>
-        </TooltipProvider>
-      </AuthProvider>
-    </QueryClientProvider>
+    <ThemeProvider attribute="class" defaultTheme="light" enableSystem>
+      <QueryClientProvider client={queryClient}>
+        <AuthProvider>
+          <TooltipProvider>
+            <Toaster />
+            <Sonner />
+            <BrowserRouter>
+              <Suspense fallback={<PageLoader />}>
+                <Routes>
+                  <Route path="/" element={<Index />} />
+                  <Route path="/about" element={<About />} />
+                  <Route path="/services" element={<Services />} />
+                  <Route path="/services/strategy-advisory" element={<StrategyAdvisory />} />
+                  <Route path="/services/technology-systems" element={<TechnologySystems />} />
+                  <Route path="/services/ai-automation" element={<AIAutomation />} />
+                  <Route path="/services/digital-transformation" element={<DigitalTransformation />} />
+                  <Route path="/services/xerotrust" element={<XeroTrustService />} />
+                  <Route path="/xerotrust" element={<XeroTrust />} />
+                  <Route path="/xerotrust/compare" element={<XeroTrustCompare />} />
+                  <Route path="/xops360" element={<XOPS360 />} />
+                  <Route path="/approach" element={<Approach />} />
+                  <Route path="/contact" element={<Contact />} />
+                  <Route path="/auth" element={<Auth />} />
+                  
+                  {/* Admin Routes */}
+                  <Route path="/admin" element={<AdminLayout />}>
+                    <Route index element={<Dashboard />} />
+                    <Route path="analytics" element={<Analytics />} />
+                    <Route path="seo" element={<SEO />} />
+                    <Route path="content" element={<Content />} />
+                    <Route path="users" element={<Users />} />
+                    <Route path="settings" element={<Settings />} />
+                    <Route path="leads" element={<Leads />} />
+                    <Route path="xops360" element={<XOPS360Overview />} />
+                    <Route path="xops360/clients" element={<XOPS360Clients />} />
+                    <Route path="xops360/deployments" element={<XOPS360Deployments />} />
+                    <Route path="xops360/runbooks" element={<XOPS360Runbooks />} />
+                    <Route path="xops360/integrations" element={<XOPS360Integrations />} />
+                    <Route path="xops360/metrics" element={<XOPS360Metrics />} />
+                  </Route>
+                  
+                  <Route path="*" element={<NotFound />} />
+                </Routes>
+              </Suspense>
+            </BrowserRouter>
+          </TooltipProvider>
+        </AuthProvider>
+      </QueryClientProvider>
+    </ThemeProvider>
   </ErrorBoundary>
 );
 

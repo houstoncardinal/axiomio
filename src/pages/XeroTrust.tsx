@@ -206,7 +206,7 @@ export default function XeroTrust() {
                   className="font-heading text-5xl md:text-6xl lg:text-7xl font-bold text-foreground mb-6 leading-[1.05]"
                 >
                   <AnimatedGradientText>XeroTrust</AnimatedGradientText>
-                  <span className="block text-3xl md:text-4xl lg:text-5xl mt-4 text-foreground/90">
+                  <span className="block text-3xl md:text-4xl lg:text-5xl mt-4 text-foreground">
                     AI-Native Zero Trust Security
                   </span>
                 </motion.h1>
@@ -215,7 +215,7 @@ export default function XeroTrust() {
                   initial={{ opacity: 0, y: 30 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.2 }}
-                  className="text-xl text-muted-foreground leading-relaxed mb-8"
+                  className="text-xl text-foreground/70 leading-relaxed mb-8"
                 >
                   Eliminate implicit trust. Deploy in minutes. Protect everything. 
                   XeroTrust combines AI-powered threat detection with continuous verification 

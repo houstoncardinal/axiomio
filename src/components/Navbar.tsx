@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button";
 import { MegaMenu } from "@/components/MegaMenu";
 import { ThemeToggle } from "@/components/ThemeToggle";
 import { cn } from "@/lib/utils";
+import axiomioLogo from "@/assets/axiomio-logo.png";
 
 
 const navLinks = [
@@ -54,16 +55,17 @@ export function Navbar() {
         <nav className="container mx-auto px-6 lg:px-8">
           <div className="flex items-center justify-between">
             {/* Logo */}
-            <Link to="/" className="group">
-              <motion.span 
-                className="font-heading font-bold text-2xl tracking-tight"
+            <Link to="/" className="group flex items-center">
+              <motion.div
                 whileHover={{ scale: 1.02 }}
                 transition={{ type: "spring", stiffness: 400 }}
               >
-                <span className="text-[#1a2151] dark:text-foreground">A</span>
-                <span className="text-[#3eb8d5]">X</span>
-                <span className="text-[#1a2151] dark:text-foreground">IOMIO</span>
-              </motion.span>
+                <img 
+                  src={axiomioLogo} 
+                  alt="AXIOMIO" 
+                  className="h-10 w-auto object-contain"
+                />
+              </motion.div>
             </Link>
 
             {/* Desktop Navigation */}

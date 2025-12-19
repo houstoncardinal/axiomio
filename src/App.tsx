@@ -50,6 +50,7 @@ const StrategyAdvisory = lazy(() => import("./pages/services/StrategyAdvisory"))
 const TechnologySystems = lazy(() => import("./pages/services/TechnologySystems"));
 const AIAutomation = lazy(() => import("./pages/services/AIAutomation"));
 const DigitalTransformation = lazy(() => import("./pages/services/DigitalTransformation"));
+const OpsExcellence = lazy(() => import("./pages/services/OpsExcellence"));
 const XeroTrustService = lazy(() => import("./pages/services/XeroTrust"));
 const XeroTrust = lazy(() => import("./pages/XeroTrust"));
 const XeroTrustCompare = lazy(() => import("./pages/XeroTrustCompare"));
@@ -100,6 +101,7 @@ const App = () => (
                   <Route path="/services/technology-systems" element={<TechnologySystems />} />
                   <Route path="/services/ai-automation" element={<AIAutomation />} />
                   <Route path="/services/digital-transformation" element={<DigitalTransformation />} />
+                  <Route path="/services/ops-excellence" element={<OpsExcellence />} />
                   <Route path="/services/xerotrust" element={<XeroTrustService />} />
                   <Route path="/xerotrust" element={<XeroTrust />} />
                   <Route path="/xerotrust/compare" element={<XeroTrustCompare />} />

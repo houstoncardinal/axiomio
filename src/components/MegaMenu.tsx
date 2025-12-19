@@ -370,6 +370,14 @@ export function MegaMenu({ isOpen, onClose }: MegaMenuProps) {
                         </p>
                         <div className="space-y-2">
                           <Link
+                            to="/services/ops-excellence"
+                            onClick={onClose}
+                            className="flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground transition-colors"
+                          >
+                            <div className="w-1 h-1 rounded-full bg-emerald-500" />
+                            FinOps · SecOps · CloudOps · DevOps
+                          </Link>
+                          <Link
                             to="/approach"
                             onClick={onClose}
                             className="flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground transition-colors"

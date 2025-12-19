@@ -7,22 +7,32 @@ import { MagneticButton } from "./MagneticButton";
 
 const capabilities = [
   {
-    title: "DevOps Excellence",
-    items: ["CI/CD Pipeline Automation", "Infrastructure as Code", "Container Orchestration", "GitOps Workflows"],
-    color: "primary",
+    title: "FinOps",
+    items: ["Cost Visibility & Allocation", "Budget Forecasting", "Reserved Instance Optimization", "Showback & Chargeback"],
+    color: "emerald-500",
   },
   {
-    title: "DataOps Mastery",
-    items: ["Data Pipeline Automation", "Real-time ETL Processing", "Data Quality Monitoring", "Schema Evolution"],
+    title: "SecOps",
+    items: ["SIEM & Log Aggregation", "Threat Intelligence", "Automated Incident Response", "Compliance Monitoring"],
+    color: "red-500",
+  },
+  {
+    title: "CloudOps",
+    items: ["Infrastructure as Code", "Multi-cloud Orchestration", "Auto-scaling & Optimization", "Disaster Recovery"],
     color: "blue-500",
   },
   {
-    title: "MLOps Intelligence",
-    items: ["Model Lifecycle Management", "Feature Store Integration", "A/B Testing Framework", "Model Monitoring"],
+    title: "DevOps",
+    items: ["CI/CD Pipeline Automation", "GitOps Workflows", "Container Orchestration", "Release Management"],
     color: "violet-500",
   },
   {
-    title: "AIOps Automation",
+    title: "DataOps",
+    items: ["Data Pipeline Automation", "Real-time ETL Processing", "Data Quality Monitoring", "Schema Evolution"],
+    color: "primary",
+  },
+  {
+    title: "AIOps",
     items: ["Anomaly Detection", "Predictive Analytics", "Auto-remediation", "Intelligent Alerting"],
     color: "secondary",
   },
@@ -171,7 +181,7 @@ export function CapabilitiesGrid() {
         </div>
 
         {/* Capabilities grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-16">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-16">
           {capabilities.map((capability, index) => (
             <CapabilityCard key={capability.title} capability={capability} index={index} />
           ))}

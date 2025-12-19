@@ -5,102 +5,102 @@
 @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&display=swap');
 
 @layer base {
-  /* Enterprise Light Theme - Indigo + Bronze */
+  /* Enterprise Light Theme - Navy Blue + Cyan */
   :root {
     --background: 220 20% 97%;
-    --foreground: 240 20% 12%;
+    --foreground: 230 50% 20%;
 
     --card: 0 0% 100%;
-    --card-foreground: 240 20% 12%;
+    --card-foreground: 230 50% 20%;
 
     --popover: 0 0% 100%;
-    --popover-foreground: 240 20% 12%;
+    --popover-foreground: 230 50% 20%;
 
-    --primary: 243 55% 48%;
+    --primary: 230 52% 21%;
     --primary-foreground: 0 0% 100%;
 
-    --secondary: 30 55% 45%;
-    --secondary-foreground: 0 0% 100%;
+    --secondary: 188 60% 54%;
+    --secondary-foreground: 230 50% 15%;
 
     --muted: 220 15% 92%;
-    --muted-foreground: 240 10% 45%;
+    --muted-foreground: 230 30% 45%;
 
-    --accent: 243 45% 55%;
-    --accent-foreground: 0 0% 100%;
+    --accent: 188 55% 50%;
+    --accent-foreground: 230 50% 15%;
 
     --destructive: 0 62% 50%;
     --destructive-foreground: 0 0% 100%;
 
     --border: 220 15% 88%;
     --input: 220 15% 88%;
-    --ring: 243 55% 48%;
+    --ring: 230 52% 21%;
 
     --radius: 0.625rem;
 
-    --glow-primary: 243 55% 48%;
-    --glow-secondary: 30 55% 45%;
-    --glow-accent: 243 45% 55%;
+    --glow-primary: 230 52% 21%;
+    --glow-secondary: 188 60% 54%;
+    --glow-accent: 188 55% 50%;
     --glass-bg: 0 0% 100%;
     --glass-border: 220 15% 90%;
     
-    --gradient-start: 243 55% 48%;
-    --gradient-mid: 243 45% 55%;
-    --gradient-end: 30 55% 45%;
+    --gradient-start: 230 52% 21%;
+    --gradient-mid: 188 55% 50%;
+    --gradient-end: 188 60% 54%;
 
     --header-bg: 0 0% 100%;
     --header-border: 220 15% 90%;
 
     /* Card shadows for light theme */
-    --card-shadow: 0 1px 3px 0 hsl(240 20% 12% / 0.04), 0 4px 12px -2px hsl(240 20% 12% / 0.06);
-    --card-shadow-hover: 0 4px 16px -2px hsl(240 20% 12% / 0.08), 0 12px 32px -4px hsl(240 20% 12% / 0.12);
+    --card-shadow: 0 1px 3px 0 hsl(230 50% 20% / 0.04), 0 4px 12px -2px hsl(230 50% 20% / 0.06);
+    --card-shadow-hover: 0 4px 16px -2px hsl(230 50% 20% / 0.08), 0 12px 32px -4px hsl(230 50% 20% / 0.12);
   }
 
-  /* Enterprise Dark Theme - Indigo + Bronze */
+  /* Enterprise Dark Theme - Navy Blue + Cyan */
   .dark {
-    --background: 240 20% 6%;
-    --foreground: 40 15% 95%;
+    --background: 230 35% 8%;
+    --foreground: 200 20% 95%;
 
-    --card: 240 18% 9%;
-    --card-foreground: 40 15% 95%;
+    --card: 230 30% 11%;
+    --card-foreground: 200 20% 95%;
 
-    --popover: 240 18% 8%;
-    --popover-foreground: 40 15% 95%;
+    --popover: 230 30% 10%;
+    --popover-foreground: 200 20% 95%;
 
-    --primary: 243 55% 58%;
-    --primary-foreground: 240 20% 6%;
+    --primary: 188 60% 54%;
+    --primary-foreground: 230 35% 8%;
 
-    --secondary: 30 55% 52%;
-    --secondary-foreground: 240 20% 6%;
+    --secondary: 230 45% 35%;
+    --secondary-foreground: 200 20% 95%;
 
-    --muted: 240 15% 14%;
-    --muted-foreground: 40 10% 60%;
+    --muted: 230 25% 15%;
+    --muted-foreground: 200 15% 60%;
 
-    --accent: 243 45% 65%;
-    --accent-foreground: 240 20% 6%;
+    --accent: 188 55% 50%;
+    --accent-foreground: 230 35% 8%;
 
     --destructive: 0 62% 55%;
-    --destructive-foreground: 40 15% 95%;
+    --destructive-foreground: 200 20% 95%;
 
-    --border: 240 15% 18%;
-    --input: 240 15% 18%;
-    --ring: 243 55% 58%;
+    --border: 230 25% 18%;
+    --input: 230 25% 18%;
+    --ring: 188 60% 54%;
 
-    --glow-primary: 243 55% 58%;
-    --glow-secondary: 30 55% 52%;
-    --glow-accent: 243 45% 65%;
-    --glass-bg: 240 18% 9%;
-    --glass-border: 240 15% 20%;
+    --glow-primary: 188 60% 54%;
+    --glow-secondary: 230 45% 35%;
+    --glow-accent: 188 55% 50%;
+    --glass-bg: 230 30% 11%;
+    --glass-border: 230 25% 20%;
     
-    --gradient-start: 243 55% 58%;
-    --gradient-mid: 243 45% 65%;
-    --gradient-end: 30 55% 52%;
+    --gradient-start: 188 60% 54%;
+    --gradient-mid: 188 55% 50%;
+    --gradient-end: 230 45% 35%;
 
-    --header-bg: 240 20% 6%;
-    --header-border: 240 15% 14%;
+    --header-bg: 230 35% 8%;
+    --header-border: 230 25% 15%;
 
     /* Card shadows for dark theme */
     --card-shadow: 0 1px 3px 0 hsl(0 0% 0% / 0.2), 0 4px 12px -2px hsl(0 0% 0% / 0.3);
-    --card-shadow-hover: 0 4px 16px -2px hsl(243 55% 58% / 0.15), 0 12px 32px -4px hsl(0 0% 0% / 0.4);
+    --card-shadow-hover: 0 4px 16px -2px hsl(188 60% 54% / 0.15), 0 12px 32px -4px hsl(0 0% 0% / 0.4);
   }
 }
 

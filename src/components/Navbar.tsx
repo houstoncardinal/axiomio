@@ -56,11 +56,13 @@ export function Navbar() {
             {/* Logo */}
             <Link to="/" className="group">
               <motion.span 
-                className="font-heading font-bold text-2xl tracking-tight text-foreground"
+                className="font-heading font-bold text-2xl tracking-tight"
                 whileHover={{ scale: 1.02 }}
                 transition={{ type: "spring", stiffness: 400 }}
               >
-                AXIOMIO
+                <span className="text-[#1a2151] dark:text-foreground">A</span>
+                <span className="text-[#3eb8d5]">X</span>
+                <span className="text-[#1a2151] dark:text-foreground">IOMIO</span>
               </motion.span>
             </Link>
 

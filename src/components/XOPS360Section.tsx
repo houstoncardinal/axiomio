@@ -1,6 +1,6 @@
-import { motion, useScroll, useTransform, useSpring, useMotionValue, animate } from "framer-motion";
-import { useRef, useState, useEffect, useCallback } from "react";
-import { ArrowRight, Layers, BarChart3, Workflow, Shield, Zap, Globe2, Cpu, Database, Cloud, GitBranch, Activity, Lock, Gauge, Network, Server, Binary, Bot, BrainCircuit, Cog, CircuitBoard } from "lucide-react";
+import { motion, useScroll, useTransform } from "framer-motion";
+import { useRef, useState, useCallback } from "react";
+import { ArrowRight, Layers, BarChart3, Shield, Zap, Globe2, GitBranch, Cloud, Lock, Bot, CircuitBoard } from "lucide-react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { AnimatedGradientText } from "./AnimatedGradientText";
@@ -39,60 +39,55 @@ const features = [
   },
 ];
 
-// Enhanced 3D node data with more detail - AI workforce focused
+// Operations domains with their service alignments
 const opsNodes = [
   { 
     id: "devops", 
     label: "DevOps", 
-    color: "from-blue-500 to-cyan-400",
+    color: "#3B82F6",
+    secondaryColor: "#06B6D4",
     icon: GitBranch,
-    stats: { pipelines: 247, uptime: "99.9%", deploys: "12/day" },
-    subNodes: ["CI/CD", "IaC", "Monitoring"]
+    metrics: ["CI/CD Pipelines", "Infrastructure as Code", "Continuous Monitoring"],
+    stat: "247 Pipelines",
   },
   { 
     id: "secops", 
     label: "SecOps", 
-    color: "from-emerald-500 to-teal-400",
+    color: "#10B981",
+    secondaryColor: "#14B8A6",
     icon: Lock,
-    stats: { scans: 1247, threats: "0", compliance: "100%" },
-    subNodes: ["SIEM", "Compliance", "Threat Intel"]
+    metrics: ["Threat Detection", "Compliance", "Zero Trust"],
+    stat: "100% Compliance",
   },
   { 
     id: "cloudops", 
     label: "CloudOps", 
-    color: "from-violet-500 to-purple-400",
+    color: "#8B5CF6",
+    secondaryColor: "#A855F7",
     icon: Cloud,
-    stats: { resources: "1.2K", cost: "-40%", regions: "12" },
-    subNodes: ["Multi-Cloud", "FinOps", "Automation"]
+    metrics: ["Multi-Cloud", "Cost Optimization", "Auto-Scaling"],
+    stat: "40% Cost Savings",
   },
   { 
     id: "aiops", 
     label: "AIOps", 
-    color: "from-orange-500 to-amber-400",
+    color: "#F59E0B",
+    secondaryColor: "#EF4444",
     icon: Bot,
-    stats: { incidents: 156, mttr: "4min", automation: "82%" },
-    subNodes: ["AI Workforce", "RCA", "Remediation"]
+    metrics: ["AI Workforce", "Auto-Remediation", "Predictive Ops"],
+    stat: "82% Automated",
   },
 ];
 
-// Connection lines between nodes
-const connections = [
-  { from: 0, to: 1 }, { from: 1, to: 2 }, { from: 2, to: 3 }, { from: 3, to: 0 },
-  { from: 0, to: 2 }, { from: 1, to: 3 },
-];
-
-// Removed DataParticle for performance - was causing continuous animations
-
-// Interactive 3D Node Component
-const Node3D = ({ 
+// Enterprise-ready node component
+const EnterpriseNode = ({ 
   node, 
   index, 
   isHovered, 
   isSelected,
   onHover, 
   onSelect,
-  mouseX,
-  mouseY,
+  totalNodes,
 }: { 
   node: typeof opsNodes[0]; 
   index: number; 
@@ -100,173 +95,154 @@ const Node3D = ({
   isSelected: boolean;
   onHover: (id: string | null) => void;
   onSelect: (id: string | null) => void;
-  mouseX: number;
-  mouseY: number;
+  totalNodes: number;
 }) => {
   const Icon = node.icon;
-  const angle = (index * 90) * (Math.PI / 180);
-  const radius = 180;
-  const x = Math.cos(angle) * radius;
-  const y = Math.sin(angle) * radius;
+  // Position nodes in a clean square pattern around center
+  const positions = [
+    { x: -140, y: -140 }, // Top-left - DevOps
+    { x: 140, y: -140 },  // Top-right - SecOps
+    { x: 140, y: 140 },   // Bottom-right - CloudOps
+    { x: -140, y: 140 },  // Bottom-left - AIOps
+  ];
   
-  // 3D parallax effect based on mouse position
-  const parallaxX = (mouseX - 0.5) * 20;
-  const parallaxY = (mouseY - 0.5) * 20;
+  const pos = positions[index];
+  const isActive = isHovered || isSelected;
   
   return (
     <motion.div
       className="absolute cursor-pointer"
       style={{
-        left: `calc(50% + ${x}px)`,
-        top: `calc(50% + ${y}px)`,
+        left: `calc(50% + ${pos.x}px)`,
+        top: `calc(50% + ${pos.y}px)`,
         transform: "translate(-50%, -50%)",
-        zIndex: isHovered || isSelected ? 50 : 10,
+        zIndex: isActive ? 50 : 10,
       }}
       initial={{ opacity: 0, scale: 0 }}
       animate={{ 
         opacity: 1, 
-        scale: isHovered || isSelected ? 1.15 : 1,
-        x: parallaxX * (1 + index * 0.1),
-        y: parallaxY * (1 + index * 0.1),
+        scale: isActive ? 1.08 : 1,
       }}
       transition={{ 
-        delay: 0.5 + index * 0.15, 
-        duration: 0.6,
-        type: "spring",
-        stiffness: 100,
+        delay: 0.4 + index * 0.1, 
+        duration: 0.5,
+        scale: { duration: 0.2 },
       }}
       onMouseEnter={() => onHover(node.id)}
       onMouseLeave={() => onHover(null)}
       onClick={() => onSelect(isSelected ? null : node.id)}
     >
-      {/* Outer glow ring */}
+      {/* Glow effect */}
       <motion.div
-        className={`absolute inset-0 rounded-full bg-gradient-to-br ${node.color} blur-xl`}
+        className="absolute inset-0 rounded-2xl blur-xl"
+        style={{ backgroundColor: node.color }}
         animate={{
-          opacity: isHovered || isSelected ? 0.6 : 0.2,
-          scale: isHovered || isSelected ? 1.5 : 1,
+          opacity: isActive ? 0.4 : 0.15,
+          scale: isActive ? 1.3 : 1,
         }}
         transition={{ duration: 0.3 }}
       />
       
-      {/* Main node */}
+      {/* Main node card */}
       <motion.div
-        className={`relative w-28 h-28 rounded-full bg-gradient-to-br ${node.color} p-[2px] shadow-lg`}
-        animate={{
-          rotateX: isHovered ? 10 : 0,
-          rotateY: isHovered ? -10 : 0,
-        }}
+        className="relative w-32 h-32 rounded-2xl p-[2px] shadow-xl"
         style={{
-          transformStyle: "preserve-3d",
-          perspective: "1000px",
+          background: `linear-gradient(135deg, ${node.color}, ${node.secondaryColor})`,
+        }}
+        animate={{
+          boxShadow: isActive 
+            ? `0 20px 40px -10px ${node.color}50, 0 0 60px ${node.color}20`
+            : `0 10px 30px -10px ${node.color}30`,
         }}
       >
-        <div className="w-full h-full rounded-full bg-background/90 backdrop-blur-sm flex flex-col items-center justify-center gap-1">
-          <Icon className="w-8 h-8 text-foreground" />
+        <div className="w-full h-full rounded-[14px] bg-background/95 backdrop-blur-sm flex flex-col items-center justify-center gap-2 p-3">
+          <div 
+            className="p-2.5 rounded-xl"
+            style={{ backgroundColor: `${node.color}15` }}
+          >
+            <Icon className="w-6 h-6" style={{ color: node.color }} />
+          </div>
           <span className="text-sm font-bold text-foreground">{node.label}</span>
+          <span className="text-[10px] text-muted-foreground font-medium">{node.stat}</span>
         </div>
       </motion.div>
       
-      {/* Stats popup on hover/select */}
+      {/* Hover/Select popup */}
       <motion.div
-        className="absolute -bottom-4 left-1/2 -translate-x-1/2 translate-y-full pointer-events-none"
-        initial={{ opacity: 0, y: -10, scale: 0.9 }}
+        className="absolute left-1/2 -translate-x-1/2 pointer-events-none"
+        style={{
+          top: pos.y < 0 ? "auto" : "-8px",
+          bottom: pos.y < 0 ? "-8px" : "auto",
+          transform: pos.y < 0 ? "translate(-50%, 100%)" : "translate(-50%, -100%)",
+        }}
+        initial={{ opacity: 0, scale: 0.9 }}
         animate={{
-          opacity: isHovered || isSelected ? 1 : 0,
-          y: isHovered || isSelected ? 0 : -10,
-          scale: isHovered || isSelected ? 1 : 0.9,
+          opacity: isActive ? 1 : 0,
+          scale: isActive ? 1 : 0.9,
         }}
         transition={{ duration: 0.2 }}
       >
-        <div className="bg-card/95 backdrop-blur-md border border-border rounded-xl p-4 shadow-2xl min-w-[200px]">
-          <div className="text-xs uppercase tracking-wider text-muted-foreground mb-2">Live Metrics</div>
+        <div className="bg-card/95 backdrop-blur-md border border-border rounded-xl p-4 shadow-2xl min-w-[180px]">
+          <div 
+            className="text-xs font-bold uppercase tracking-wider mb-3"
+            style={{ color: node.color }}
+          >
+            {node.label} Capabilities
+          </div>
           <div className="space-y-2">
-            {Object.entries(node.stats).map(([key, value]) => (
-              <div key={key} className="flex justify-between items-center">
-                <span className="text-sm text-muted-foreground capitalize">{key}</span>
-                <span className="text-sm font-mono font-bold text-primary">{value}</span>
+            {node.metrics.map((metric, i) => (
+              <div key={i} className="flex items-center gap-2 text-sm text-foreground">
+                <div 
+                  className="w-1.5 h-1.5 rounded-full"
+                  style={{ backgroundColor: node.color }}
+                />
+                {metric}
               </div>
             ))}
           </div>
-          <div className="mt-3 pt-3 border-t border-border">
-            <div className="text-xs text-muted-foreground mb-2">Sub-modules</div>
-            <div className="flex flex-wrap gap-1">
-              {node.subNodes.map((sub) => (
-                <span key={sub} className="px-2 py-0.5 text-xs bg-primary/10 text-primary rounded-full border border-primary/20">
-                  {sub}
-                </span>
-              ))}
-            </div>
-          </div>
         </div>
       </motion.div>
-      
-      {/* Static connection points - removed animations for performance */}
-      {[0, 90, 180, 270].map((deg) => (
-        <div
-          key={deg}
-          className="absolute w-2 h-2 rounded-full bg-primary/50"
-          style={{
-            left: `calc(50% + ${Math.cos(deg * Math.PI / 180) * 56}px - 4px)`,
-            top: `calc(50% + ${Math.sin(deg * Math.PI / 180) * 56}px - 4px)`,
-          }}
-        />
-      ))}
     </motion.div>
   );
 };
 
-// Central hub component
-const CentralHub = ({ 
-  isActive, 
-  mouseX, 
-  mouseY,
-  metrics 
-}: { 
-  isActive: boolean; 
-  mouseX: number; 
-  mouseY: number;
-  metrics: { value: number; label: string }[];
-}) => {
-  const parallaxX = (mouseX - 0.5) * 10;
-  const parallaxY = (mouseY - 0.5) * 10;
-  
+// Central hub
+const CentralHub = ({ isActive }: { isActive: boolean }) => {
   return (
     <motion.div
       className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-30"
-      animate={{
-        x: parallaxX,
-        y: parallaxY,
-      }}
-      transition={{ type: "spring", stiffness: 150, damping: 15 }}
     >
-      {/* Static outer ring - CSS animation for better performance */}
-      <div
-        className="absolute inset-0 w-44 h-44 -translate-x-1/2 -translate-y-1/2 left-1/2 top-1/2 animate-rotate-slow"
+      {/* Rotating outer ring */}
+      <motion.div
+        className="absolute inset-0 w-40 h-40 -translate-x-1/2 -translate-y-1/2 left-1/2 top-1/2"
+        animate={{ rotate: 360 }}
+        transition={{ duration: 30, repeat: Infinity, ease: "linear" }}
       >
         <svg viewBox="0 0 200 200" className="w-full h-full">
           <defs>
-            <linearGradient id="ringGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-              <stop offset="0%" stopColor="hsl(var(--primary))" stopOpacity="0.8" />
-              <stop offset="50%" stopColor="hsl(var(--secondary))" stopOpacity="0.4" />
-              <stop offset="100%" stopColor="hsl(var(--primary))" stopOpacity="0.8" />
+            <linearGradient id="hubRingGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stopColor="hsl(var(--primary))" stopOpacity="0.6" />
+              <stop offset="50%" stopColor="hsl(var(--secondary))" stopOpacity="0.3" />
+              <stop offset="100%" stopColor="hsl(var(--primary))" stopOpacity="0.6" />
             </linearGradient>
           </defs>
           <circle
             cx="100"
             cy="100"
-            r="85"
+            r="90"
             fill="none"
-            stroke="url(#ringGradient)"
+            stroke="url(#hubRingGradient)"
             strokeWidth="2"
-            strokeDasharray="10 5"
+            strokeDasharray="8 6"
           />
         </svg>
-      </div>
+      </motion.div>
       
-      {/* Static middle ring */}
-      <div
-        className="absolute inset-0 w-36 h-36 -translate-x-1/2 -translate-y-1/2 left-1/2 top-1/2"
+      {/* Inner ring - counter rotate */}
+      <motion.div
+        className="absolute inset-0 w-28 h-28 -translate-x-1/2 -translate-y-1/2 left-1/2 top-1/2"
+        animate={{ rotate: -360 }}
+        transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
       >
         <svg viewBox="0 0 200 200" className="w-full h-full">
           <circle
@@ -274,67 +250,69 @@ const CentralHub = ({
             cy="100"
             r="85"
             fill="none"
-            stroke="hsl(var(--primary) / 0.3)"
-            strokeWidth="1"
-            strokeDasharray="20 10"
+            stroke="hsl(var(--primary) / 0.25)"
+            strokeWidth="1.5"
+            strokeDasharray="12 8"
           />
         </svg>
-      </div>
+      </motion.div>
       
       {/* Core hub */}
       <motion.div
-        className="relative w-28 h-28 rounded-full bg-gradient-to-br from-primary via-blue-500 to-secondary p-[3px] shadow-glow-intense"
-        whileHover={{ scale: 1.1 }}
+        className="relative w-24 h-24 rounded-full bg-gradient-to-br from-primary via-blue-500 to-secondary p-[3px]"
         animate={{
           boxShadow: isActive 
-            ? "0 0 60px hsl(var(--primary) / 0.5), 0 0 120px hsl(var(--primary) / 0.3)"
-            : "0 0 40px hsl(var(--primary) / 0.3), 0 0 80px hsl(var(--primary) / 0.15)",
+            ? "0 0 50px hsl(var(--primary) / 0.4), 0 0 100px hsl(var(--primary) / 0.2)"
+            : "0 0 30px hsl(var(--primary) / 0.25), 0 0 60px hsl(var(--primary) / 0.1)",
         }}
+        transition={{ duration: 0.3 }}
       >
         <div className="w-full h-full rounded-full bg-background/95 backdrop-blur-md flex flex-col items-center justify-center">
-          <CircuitBoard className="w-8 h-8 text-primary mb-1" />
-          <span className="font-heading text-lg font-black bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
+          <CircuitBoard className="w-7 h-7 text-primary mb-0.5" />
+          <span className="font-heading text-base font-black bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
             X360
           </span>
         </div>
       </motion.div>
       
-      {/* Static metric indicators - removed orbiting animation for performance */}
-      <div className="absolute -bottom-16 left-1/2 -translate-x-1/2 flex gap-3">
-        {metrics.map((metric) => (
-          <div
-            key={metric.label}
-            className="bg-card/90 backdrop-blur-sm border border-border/50 rounded-lg px-3 py-1.5 text-xs shadow-lg"
-          >
-            <div className="text-primary font-mono font-bold">{metric.value}</div>
-            <div className="text-muted-foreground text-[10px]">{metric.label}</div>
-          </div>
-        ))}
-      </div>
+      {/* Pulse ring */}
+      <motion.div
+        className="absolute inset-0 w-24 h-24 rounded-full border-2 border-primary/30"
+        initial={{ scale: 1, opacity: 0.5 }}
+        animate={{ scale: 1.8, opacity: 0 }}
+        transition={{ duration: 2, repeat: Infinity, ease: "easeOut" }}
+      />
     </motion.div>
   );
 };
 
-// Connection line SVG
-const ConnectionLines = ({ hoveredNode }: { hoveredNode: string | null }) => {
-  const nodePositions = opsNodes.map((_, i) => {
-    const angle = (i * 90) * (Math.PI / 180);
-    const radius = 180;
-    return {
-      x: 250 + Math.cos(angle) * radius,
-      y: 200 + Math.sin(angle) * radius,
-    };
-  });
+// Connection lines between nodes and hub
+const ConnectionLines = ({ 
+  hoveredNode, 
+  selectedNode 
+}: { 
+  hoveredNode: string | null;
+  selectedNode: string | null;
+}) => {
+  const positions = [
+    { x: 250 - 140, y: 200 - 140 }, // DevOps
+    { x: 250 + 140, y: 200 - 140 }, // SecOps
+    { x: 250 + 140, y: 200 + 140 }, // CloudOps
+    { x: 250 - 140, y: 200 + 140 }, // AIOps
+  ];
+  
+  const activeNode = hoveredNode || selectedNode;
   
   return (
     <svg className="absolute inset-0 w-full h-full pointer-events-none" style={{ zIndex: 5 }}>
       <defs>
-        <linearGradient id="lineGradient" x1="0%" y1="0%" x2="100%" y2="0%">
-          <stop offset="0%" stopColor="hsl(var(--primary))" stopOpacity="0.3" />
-          <stop offset="50%" stopColor="hsl(var(--primary))" stopOpacity="0.6" />
-          <stop offset="100%" stopColor="hsl(var(--primary))" stopOpacity="0.3" />
-        </linearGradient>
-        <filter id="glow">
+        {opsNodes.map((node) => (
+          <linearGradient key={`grad-${node.id}`} id={`line-${node.id}`} x1="0%" y1="0%" x2="100%" y2="0%">
+            <stop offset="0%" stopColor={node.color} stopOpacity="0.6" />
+            <stop offset="100%" stopColor="hsl(var(--primary))" stopOpacity="0.6" />
+          </linearGradient>
+        ))}
+        <filter id="lineGlow">
           <feGaussianBlur stdDeviation="2" result="coloredBlur"/>
           <feMerge>
             <feMergeNode in="coloredBlur"/>
@@ -343,74 +321,102 @@ const ConnectionLines = ({ hoveredNode }: { hoveredNode: string | null }) => {
         </filter>
       </defs>
       
-      {/* Connection to center */}
-      {nodePositions.map((pos, i) => (
-        <motion.line
-          key={`center-${i}`}
-          x1="250"
-          y1="200"
-          x2={pos.x}
-          y2={pos.y}
-          stroke="url(#lineGradient)"
-          strokeWidth={hoveredNode === opsNodes[i].id ? 3 : 1.5}
-          filter="url(#glow)"
-          initial={{ pathLength: 0, opacity: 0 }}
-          animate={{ 
-            pathLength: 1, 
-            opacity: hoveredNode === opsNodes[i].id ? 1 : 0.5,
-          }}
-          transition={{ duration: 1, delay: 0.3 + i * 0.1 }}
-        />
-      ))}
+      {/* Lines from each node to center */}
+      {positions.map((pos, i) => {
+        const node = opsNodes[i];
+        const isActive = activeNode === node.id;
+        return (
+          <motion.line
+            key={`center-${i}`}
+            x1="250"
+            y1="200"
+            x2={pos.x}
+            y2={pos.y}
+            stroke={`url(#line-${node.id})`}
+            strokeWidth={isActive ? 3 : 1.5}
+            filter="url(#lineGlow)"
+            initial={{ pathLength: 0, opacity: 0 }}
+            animate={{ 
+              pathLength: 1, 
+              opacity: isActive ? 0.9 : 0.4,
+            }}
+            transition={{ duration: 0.8, delay: 0.2 + i * 0.08 }}
+          />
+        );
+      })}
       
-      {/* Inter-node connections */}
-      {connections.map((conn, i) => (
-        <motion.line
-          key={`conn-${i}`}
-          x1={nodePositions[conn.from].x}
-          y1={nodePositions[conn.from].y}
-          x2={nodePositions[conn.to].x}
-          y2={nodePositions[conn.to].y}
-          stroke="hsl(var(--primary) / 0.2)"
-          strokeWidth="1"
-          strokeDasharray="4 4"
-          initial={{ pathLength: 0 }}
-          animate={{ pathLength: 1 }}
-          transition={{ duration: 1.5, delay: 1 + i * 0.1 }}
-        />
-      ))}
+      {/* Cross connections (dashed) */}
+      <motion.line
+        x1={positions[0].x} y1={positions[0].y}
+        x2={positions[2].x} y2={positions[2].y}
+        stroke="hsl(var(--primary) / 0.15)"
+        strokeWidth="1"
+        strokeDasharray="6 6"
+        initial={{ pathLength: 0 }}
+        animate={{ pathLength: 1 }}
+        transition={{ duration: 1.2, delay: 0.8 }}
+      />
+      <motion.line
+        x1={positions[1].x} y1={positions[1].y}
+        x2={positions[3].x} y2={positions[3].y}
+        stroke="hsl(var(--primary) / 0.15)"
+        strokeWidth="1"
+        strokeDasharray="6 6"
+        initial={{ pathLength: 0 }}
+        animate={{ pathLength: 1 }}
+        transition={{ duration: 1.2, delay: 0.9 }}
+      />
       
-      {/* Removed animated particles for performance */}
+      {/* Perimeter connections */}
+      {positions.map((pos, i) => {
+        const nextPos = positions[(i + 1) % 4];
+        return (
+          <motion.line
+            key={`perimeter-${i}`}
+            x1={pos.x}
+            y1={pos.y}
+            x2={nextPos.x}
+            y2={nextPos.y}
+            stroke="hsl(var(--muted-foreground) / 0.15)"
+            strokeWidth="1"
+            strokeDasharray="4 8"
+            initial={{ pathLength: 0 }}
+            animate={{ pathLength: 1 }}
+            transition={{ duration: 1, delay: 1 + i * 0.1 }}
+          />
+        );
+      })}
     </svg>
   );
 };
 
-// Live metrics display
-const LiveMetricsBar = ({ metrics }: { metrics: { label: string; value: string; trend: "up" | "down" | "stable" }[] }) => {
+// Key metrics display
+const KeyMetrics = () => {
+  const metrics = [
+    { value: "99.9%", label: "Uptime SLA" },
+    { value: "4 min", label: "Avg MTTR" },
+    { value: "82%", label: "Auto-Resolved" },
+    { value: "$2.4M", label: "Saved/Year" },
+  ];
+  
   return (
     <motion.div
-      className="absolute bottom-4 left-4 right-4 flex justify-center gap-6 z-20"
+      className="absolute -bottom-4 left-1/2 -translate-x-1/2 flex gap-3 z-20"
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
-      transition={{ delay: 1.5 }}
+      transition={{ delay: 1.2 }}
     >
       {metrics.map((metric, i) => (
         <motion.div
           key={metric.label}
-          className="flex items-center gap-2 px-4 py-2 bg-card/80 backdrop-blur-sm rounded-lg border border-border/50"
+          className="flex flex-col items-center px-4 py-2.5 bg-card/90 backdrop-blur-sm rounded-lg border border-border/50 shadow-lg"
           initial={{ opacity: 0, scale: 0.9 }}
           animate={{ opacity: 1, scale: 1 }}
-          transition={{ delay: 1.5 + i * 0.1 }}
-          whileHover={{ scale: 1.05, borderColor: "hsl(var(--primary) / 0.5)" }}
+          transition={{ delay: 1.3 + i * 0.1 }}
+          whileHover={{ scale: 1.05, borderColor: "hsl(var(--primary) / 0.4)" }}
         >
-          <Activity className={`w-4 h-4 ${
-            metric.trend === "up" ? "text-emerald-400" :
-            metric.trend === "down" ? "text-red-400" : "text-amber-400"
-          }`} />
-          <div>
-            <div className="text-xs text-muted-foreground">{metric.label}</div>
-            <div className="text-sm font-mono font-bold text-foreground">{metric.value}</div>
-          </div>
+          <div className="text-sm font-mono font-bold text-primary">{metric.value}</div>
+          <div className="text-[10px] text-muted-foreground">{metric.label}</div>
         </motion.div>
       ))}
     </motion.div>
@@ -419,10 +425,8 @@ const LiveMetricsBar = ({ metrics }: { metrics: { label: string; value: string; 
 
 export function XOPS360Section() {
   const containerRef = useRef<HTMLDivElement>(null);
-  const visualRef = useRef<HTMLDivElement>(null);
   const [hoveredNode, setHoveredNode] = useState<string | null>(null);
   const [selectedNode, setSelectedNode] = useState<string | null>(null);
-  const [mousePosition, setMousePosition] = useState({ x: 0.5, y: 0.5 });
   
   const { scrollYProgress } = useScroll({
     target: containerRef,
@@ -431,78 +435,30 @@ export function XOPS360Section() {
 
   const opacity = useTransform(scrollYProgress, [0, 0.2, 0.8, 1], [0, 1, 1, 0]);
   const scale = useTransform(scrollYProgress, [0, 0.2], [0.95, 1]);
-  
-  // Track mouse position for 3D effect
-  const handleMouseMove = useCallback((e: React.MouseEvent<HTMLDivElement>) => {
-    if (!visualRef.current) return;
-    const rect = visualRef.current.getBoundingClientRect();
-    setMousePosition({
-      x: (e.clientX - rect.left) / rect.width,
-      y: (e.clientY - rect.top) / rect.height,
-    });
-  }, []);
-
-  // Animated counter for hub metrics
-  const [hubMetrics] = useState([
-    { value: 99.9, label: "Uptime %" },
-    { value: 247, label: "Pipelines" },
-    { value: 12, label: "ms Latency" },
-    { value: 82, label: "% Auto" },
-  ]);
-  
-  const liveMetrics = [
-    { label: "Incidents/hr", value: "0.3", trend: "down" as const },
-    { label: "Deployments", value: "847", trend: "up" as const },
-    { label: "Cost Savings", value: "$2.4M", trend: "up" as const },
-    { label: "MTTR", value: "4.2min", trend: "down" as const },
-  ];
 
   return (
     <section ref={containerRef} className="py-20 lg:py-24 relative overflow-hidden">
-      {/* Background effects */}
+      {/* Background */}
       <div className="absolute inset-0">
         <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-primary/40 to-transparent" />
         <div 
-          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[1400px] h-[1400px] opacity-60"
+          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[1200px] h-[1200px] opacity-50"
           style={{
-            background: "radial-gradient(circle, hsl(195 100% 50% / 0.06) 0%, hsl(270 80% 60% / 0.03) 40%, transparent 70%)",
+            background: "radial-gradient(circle, hsl(var(--primary) / 0.08) 0%, hsl(var(--primary) / 0.02) 40%, transparent 70%)",
           }}
         />
         
-        {/* Animated grid */}
+        {/* Subtle grid */}
         <div 
-          className="absolute inset-0 opacity-[0.02]"
+          className="absolute inset-0 opacity-[0.025]"
           style={{
             backgroundImage: `
-              linear-gradient(hsl(195 100% 50%) 1px, transparent 1px),
-              linear-gradient(90deg, hsl(195 100% 50%) 1px, transparent 1px)
+              linear-gradient(hsl(var(--primary)) 1px, transparent 1px),
+              linear-gradient(90deg, hsl(var(--primary)) 1px, transparent 1px)
             `,
-            backgroundSize: '60px 60px',
+            backgroundSize: '80px 80px',
           }}
         />
-        
-        {/* Animated rings */}
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
-          {[...Array(5)].map((_, i) => (
-            <motion.div
-              key={i}
-              className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 rounded-full"
-              style={{
-                width: 300 + i * 150,
-                height: 300 + i * 150,
-                border: `1px solid hsl(var(--primary) / ${0.15 - i * 0.02})`,
-              }}
-              animate={{ 
-                rotate: i % 2 === 0 ? 360 : -360,
-                scale: [1, 1.02, 1],
-              }}
-              transition={{ 
-                rotate: { duration: 40 + i * 10, repeat: Infinity, ease: "linear" },
-                scale: { duration: 4, repeat: Infinity, ease: "easeInOut" },
-              }}
-            />
-          ))}
-        </div>
       </div>
 
       <motion.div 
@@ -510,7 +466,7 @@ export function XOPS360Section() {
         style={{ opacity, scale }}
       >
         {/* Header */}
-        <div className="text-center max-w-4xl mx-auto mb-20">
+        <div className="text-center max-w-4xl mx-auto mb-16">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -520,15 +476,10 @@ export function XOPS360Section() {
             <span className="inline-flex items-center gap-2 text-sm font-semibold uppercase tracking-[0.2em] text-primary px-5 py-2 rounded-full border border-primary/30 bg-primary/10">
               <motion.span
                 className="w-2 h-2 bg-primary rounded-full"
-                animate={{ scale: [1, 1.5, 1], opacity: [1, 0.5, 1] }}
-                transition={{ duration: 1.5, repeat: Infinity }}
+                animate={{ scale: [1, 1.4, 1], opacity: [1, 0.6, 1] }}
+                transition={{ duration: 2, repeat: Infinity }}
               />
               Flagship Platform
-              <motion.span
-                className="w-2 h-2 bg-secondary rounded-full"
-                animate={{ scale: [1.5, 1, 1.5], opacity: [0.5, 1, 0.5] }}
-                transition={{ duration: 1.5, repeat: Infinity }}
-              />
             </span>
           </motion.div>
 
@@ -550,45 +501,32 @@ export function XOPS360Section() {
             className="text-xl md:text-2xl text-muted-foreground leading-relaxed"
           >
             The AI-powered operations platform that replaces traditional manual processes with an 
-            intelligent AI workforce. Unifying DevOps, SecOps, CloudOps, and AIOps. <span className="text-primary font-medium">Click any node to explore.</span>
+            intelligent AI workforce. Unifying DevOps, SecOps, CloudOps, and AIOps.{" "}
+            <span className="text-primary font-medium">Click any node to explore.</span>
           </motion.p>
         </div>
 
-        {/* Central 3D visualization */}
+        {/* Central visualization */}
         <motion.div
-          ref={visualRef}
           initial={{ opacity: 0, scale: 0.9 }}
           whileInView={{ opacity: 1, scale: 1 }}
-          transition={{ delay: 0.3, duration: 0.8 }}
+          transition={{ delay: 0.3, duration: 0.6 }}
           viewport={{ once: true }}
-          className="relative max-w-[500px] aspect-square mx-auto mb-20"
-          onMouseMove={handleMouseMove}
-          style={{ perspective: "1000px" }}
+          className="relative max-w-[500px] aspect-square mx-auto mb-24"
         >
-          {/* 3D container with perspective */}
-          <motion.div
-            className="relative w-full h-full"
-            animate={{
-              rotateX: (mousePosition.y - 0.5) * 10,
-              rotateY: (mousePosition.x - 0.5) * -10,
-            }}
-            transition={{ type: "spring", stiffness: 100, damping: 30 }}
-            style={{ transformStyle: "preserve-3d" }}
-          >
+          <div className="relative w-full h-full">
             {/* Connection lines */}
-            <ConnectionLines hoveredNode={hoveredNode || selectedNode} />
-            
-            {/* Central hub */}
-            <CentralHub 
-              isActive={hoveredNode !== null || selectedNode !== null}
-              mouseX={mousePosition.x}
-              mouseY={mousePosition.y}
-              metrics={hubMetrics}
+            <ConnectionLines 
+              hoveredNode={hoveredNode} 
+              selectedNode={selectedNode}
             />
             
-            {/* Orbital nodes */}
+            {/* Central hub */}
+            <CentralHub isActive={hoveredNode !== null || selectedNode !== null} />
+            
+            {/* Operation nodes */}
             {opsNodes.map((node, index) => (
-              <Node3D
+              <EnterpriseNode
                 key={node.id}
                 node={node}
                 index={index}
@@ -596,14 +534,13 @@ export function XOPS360Section() {
                 isSelected={selectedNode === node.id}
                 onHover={setHoveredNode}
                 onSelect={setSelectedNode}
-                mouseX={mousePosition.x}
-                mouseY={mousePosition.y}
+                totalNodes={opsNodes.length}
               />
             ))}
             
-            {/* Live metrics bar */}
-            <LiveMetricsBar metrics={liveMetrics} />
-          </motion.div>
+            {/* Key metrics */}
+            <KeyMetrics />
+          </div>
         </motion.div>
 
         {/* Features grid */}
@@ -613,12 +550,11 @@ export function XOPS360Section() {
               key={feature.title}
               initial={{ opacity: 0, y: 40 }}
               whileInView={{ opacity: 1, y: 0 }}
-              transition={{ delay: index * 0.1, duration: 0.6 }}
+              transition={{ delay: index * 0.08, duration: 0.5 }}
               viewport={{ once: true }}
-              whileHover={{ y: -5, transition: { duration: 0.2 } }}
+              whileHover={{ y: -4, transition: { duration: 0.2 } }}
               className="group relative p-8 rounded-2xl bg-gradient-to-br from-muted/50 to-muted/20 border border-border/50 hover:border-primary/30 transition-all duration-300"
             >
-              {/* Hover glow */}
               <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
               
               <div className="relative z-10">

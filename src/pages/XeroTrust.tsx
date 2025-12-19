@@ -62,11 +62,6 @@ const capabilities = [
     title: 'Behavioral Analytics',
     description: 'User and entity behavior analysis that flags suspicious patterns and prevents insider threats.',
   },
-  {
-    icon: Bot,
-    title: 'Automated Remediation',
-    description: 'Self-healing security that automatically responds to and contains threats without human intervention.',
-  },
 ];
 
 const pricingTiers = [

@@ -36,16 +36,16 @@ const services = [{
   link: "/services/technology-systems"
 }, {
   icon: Brain,
-  title: "AI-Driven Automation",
-  description: "AI-driven automation for DevOps and SRE in the cloud—enhancing decision-making and operational excellence.",
+  title: "AI Automation with Cloud DevOps",
+  description: "AI workforce replacing manual DevOps and SRE—intelligent automation for cloud operations at scale.",
   gradient: "from-violet-500/20 to-secondary/10",
   link: "/services/ai-automation"
 }, {
-  icon: Zap,
-  title: "Digital Transformation",
-  description: "Navigate complex organizational change with frameworks that ensure adoption and sustainable value.",
-  gradient: "from-secondary/20 to-primary/10",
-  link: "/services/digital-transformation"
+  icon: Shield,
+  title: "Cyber Security Services",
+  description: "End-to-end cybersecurity: cloud security, network security, threat detection with AI-driven protection.",
+  gradient: "from-red-500/20 to-orange-500/10",
+  link: "/services/cybersecurity"
 }];
 const stats = [{
   value: 500,

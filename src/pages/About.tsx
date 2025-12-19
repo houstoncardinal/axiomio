@@ -87,9 +87,9 @@ export default function About() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.3, duration: 0.6 }}
             >
-              For 14 years, we've been in the trenches—from cabling and bare metal 
-              to cloud and AI. We've witnessed the entire transformation and walked 
-              every step alongside our clients.
+              We're not just an MSP—we're an ecosystem of partners. Cloud, ISP, 
+              Cybersecurity, Cloud Security, Network Security. 14 years of 
+              building relationships that transform enterprises.
             </motion.p>
           </motion.div>
         </div>
@@ -215,8 +215,52 @@ export default function About() {
         </div>
       </section>
 
-      {/* Vision Section */}
+      {/* Ecosystem Section */}
       <section className="py-24 lg:py-32">
+        <div className="container mx-auto px-6 lg:px-8">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            viewport={{ once: true }}
+          >
+            <SectionHeader
+              label="Our Ecosystem"
+              title="More than an MSP—a network of excellence"
+              description="We've built strategic partnerships across every layer of enterprise technology to deliver comprehensive solutions."
+            />
+          </motion.div>
+          
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6 mt-16">
+            {[
+              { title: "Cloud Partners", icon: "☁️", desc: "AWS, Azure, GCP" },
+              { title: "ISP Partners", icon: "🌐", desc: "Global connectivity" },
+              { title: "Cybersecurity", icon: "🛡️", desc: "Threat protection" },
+              { title: "Cloud Security", icon: "🔐", desc: "CSPM & CWPP" },
+              { title: "Network Security", icon: "🔒", desc: "Zero trust architecture" },
+              { title: "Compliance", icon: "✓", desc: "SOC2, HIPAA, PCI" },
+            ].map((partner, index) => (
+              <motion.div
+                key={partner.title}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ delay: index * 0.1, duration: 0.4 }}
+                viewport={{ once: true }}
+                className="glass-card rounded-xl p-6 text-center hover:border-primary/30 transition-all duration-300 group"
+              >
+                <span className="text-3xl mb-3 block">{partner.icon}</span>
+                <h4 className="font-heading font-semibold text-foreground text-sm mb-1 group-hover:text-primary transition-colors">
+                  {partner.title}
+                </h4>
+                <p className="text-xs text-muted-foreground">{partner.desc}</p>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Vision Section */}
+      <section className="py-24 lg:py-32 bg-gradient-to-b from-card/50 to-background">
         <div className="container mx-auto px-6 lg:px-8">
           <div className="grid lg:grid-cols-2 gap-16 items-center">
             <motion.div

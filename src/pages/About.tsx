@@ -87,9 +87,9 @@ export default function About() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.3, duration: 0.6 }}
             >
-              Axiomio exists to help ambitious organizations solve their most 
-              consequential challenges—with the precision, depth, and integrity 
-              that complex problems demand.
+              For 14 years, we've been in the trenches—from cabling and bare metal 
+              to cloud and AI. We've witnessed the entire transformation and walked 
+              every step alongside our clients.
             </motion.p>
           </motion.div>
         </div>
@@ -119,13 +119,13 @@ export default function About() {
                 className="glass-card rounded-2xl p-8"
               >
                 <div className="flex items-start gap-4">
-                  <span className="text-4xl font-heading font-bold text-primary/30">2018</span>
+                  <span className="text-4xl font-heading font-bold text-primary/30">2011</span>
                   <div>
-                    <h3 className="font-heading text-xl font-semibold text-foreground mb-2">Foundation</h3>
+                    <h3 className="font-heading text-xl font-semibold text-foreground mb-2">The Beginning</h3>
                     <p className="text-muted-foreground leading-relaxed">
-                      Axiomio was founded with a clear mission: to bridge the gap between strategic vision and technical execution. 
-                      We recognized that enterprises needed partners who could think holistically about technology while delivering 
-                      measurable outcomes.
+                      AXIOMIO started from the ground up—literally. We began with cabling, rack installations, 
+                      and hands-on infrastructure work. From Rackspace deployments to physical data center builds, 
+                      we learned the fundamentals that would shape our future.
                     </p>
                   </div>
                 </div>
@@ -139,13 +139,13 @@ export default function About() {
                 className="glass-card rounded-2xl p-8"
               >
                 <div className="flex items-start gap-4">
-                  <span className="text-4xl font-heading font-bold text-primary/30">2021</span>
+                  <span className="text-4xl font-heading font-bold text-primary/30">2015</span>
                   <div>
-                    <h3 className="font-heading text-xl font-semibold text-foreground mb-2">XOPS360 Launch</h3>
+                    <h3 className="font-heading text-xl font-semibold text-foreground mb-2">The Cloud Revolution</h3>
                     <p className="text-muted-foreground leading-relaxed">
-                      We launched XOPS360, our flagship CloudOps automation platform, transforming how MSPs and enterprises 
-                      manage their operations. This marked our transition from pure consulting to a product-driven modern MSP 
-                      powered by an AI workforce.
+                      We witnessed the entire cloud transformation firsthand—and became an integral part of it. 
+                      As the industry shifted, we evolved with it, helping clients transition from traditional 
+                      bare-metal infrastructure to modern cloud environments.
                     </p>
                   </div>
                 </div>
@@ -159,13 +159,13 @@ export default function About() {
                 className="glass-card rounded-2xl p-8"
               >
                 <div className="flex items-start gap-4">
-                  <span className="text-4xl font-heading font-bold text-primary/30">2023</span>
+                  <span className="text-4xl font-heading font-bold text-primary/30">2019</span>
                   <div>
-                    <h3 className="font-heading text-xl font-semibold text-foreground mb-2">XeroTrust & AI Integration</h3>
+                    <h3 className="font-heading text-xl font-semibold text-foreground mb-2">Hands-On Partnership</h3>
                     <p className="text-muted-foreground leading-relaxed">
-                      With the launch of XeroTrust, our AI-native zero trust security platform, we completed our transformation 
-                      into a full-stack operations company. Our AI workforce now handles millions of automated tasks daily, 
-                      enabling clients to scale without scaling headcount.
+                      We developed our signature approach: true hand-holding through every step of the journey. 
+                      We don't just consult—we walk alongside our clients, guiding them through complex migrations 
+                      and ensuring nothing falls through the cracks.
                     </p>
                   </div>
                 </div>
@@ -176,16 +176,36 @@ export default function About() {
                 whileInView={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.6, delay: 0.3 }}
                 viewport={{ once: true }}
+                className="glass-card rounded-2xl p-8"
+              >
+                <div className="flex items-start gap-4">
+                  <span className="text-4xl font-heading font-bold text-primary/30">2021</span>
+                  <div>
+                    <h3 className="font-heading text-xl font-semibold text-foreground mb-2">XOPS360 & AI Workforce</h3>
+                    <p className="text-muted-foreground leading-relaxed">
+                      We launched XOPS360, our flagship CloudOps automation platform. This marked our evolution 
+                      into a product-driven modern MSP powered by an AI workforce—combining 14 years of operational 
+                      expertise with cutting-edge automation.
+                    </p>
+                  </div>
+                </div>
+              </motion.div>
+              
+              <motion.div
+                initial={{ opacity: 0, x: -30 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.6, delay: 0.4 }}
+                viewport={{ once: true }}
                 className="glass-card rounded-2xl p-8 border-primary/30"
               >
                 <div className="flex items-start gap-4">
                   <span className="text-4xl font-heading font-bold text-primary">Today</span>
                   <div>
-                    <h3 className="font-heading text-xl font-semibold text-foreground mb-2">Global Impact</h3>
+                    <h3 className="font-heading text-xl font-semibold text-foreground mb-2">14 Years of Transformation</h3>
                     <p className="text-muted-foreground leading-relaxed">
-                      Today, Axiomio serves Fortune 500 companies across 40+ countries. Our product-driven approach, 
-                      combined with deep consulting expertise, delivers operational excellence at scale. We continue 
-                      to innovate at the intersection of AI, automation, and cloud operations.
+                      After 14 years in the trenches, we've seen it all—from cabling to cloud, from bare metal to 
+                      AI-driven automation. Today, we continue to hand-hold enterprises through their most critical 
+                      transformations, bringing the wisdom of experience to every engagement.
                     </p>
                   </div>
                 </div>

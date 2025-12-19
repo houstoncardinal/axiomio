@@ -264,6 +264,93 @@ const EnterpriseNode = ({
   );
 };
 
+// Floating particles around the hub
+const HubParticles = ({ animationPhase }: { animationPhase: number }) => {
+  const particles = Array.from({ length: 16 }, (_, i) => ({
+    id: i,
+    angle: (i / 16) * 360,
+    radius: 60 + (i % 3) * 20,
+    size: 2 + (i % 3),
+    speed: 15 + (i % 4) * 5,
+    delay: i * 0.1,
+  }));
+  
+  const isPoweredUp = animationPhase >= 2;
+  const nodesActive = animationPhase >= 3;
+  
+  return (
+    <div className="absolute inset-0 pointer-events-none" style={{ zIndex: 25 }}>
+      {particles.map((particle) => {
+        const initialX = Math.cos((particle.angle * Math.PI) / 180) * particle.radius;
+        const initialY = Math.sin((particle.angle * Math.PI) / 180) * particle.radius;
+        
+        return (
+          <motion.div
+            key={particle.id}
+            className="absolute left-1/2 top-1/2 rounded-full"
+            style={{
+              width: particle.size,
+              height: particle.size,
+              background: `radial-gradient(circle, hsl(var(--primary)) 0%, hsl(var(--primary) / 0.3) 100%)`,
+              boxShadow: `0 0 ${particle.size * 2}px hsl(var(--primary) / 0.5)`,
+            }}
+            initial={{ 
+              x: 0, 
+              y: 0, 
+              opacity: 0, 
+              scale: 0 
+            }}
+            animate={isPoweredUp ? {
+              x: [initialX, initialX * 1.2, initialX * 0.9, initialX],
+              y: [initialY, initialY * 0.9, initialY * 1.15, initialY],
+              opacity: nodesActive ? [0.3, 0.8, 0.5, 0.3] : [0.2, 0.5, 0.3, 0.2],
+              scale: nodesActive ? [1, 1.3, 0.9, 1] : [0.8, 1, 0.8, 0.8],
+            } : { x: 0, y: 0, opacity: 0, scale: 0 }}
+            transition={{
+              duration: particle.speed,
+              repeat: Infinity,
+              ease: "easeInOut",
+              delay: particle.delay,
+            }}
+          />
+        );
+      })}
+      
+      {/* Faster inner particles */}
+      {Array.from({ length: 8 }, (_, i) => {
+        const angle = (i / 8) * 360 + 22.5;
+        const radius = 35 + (i % 2) * 10;
+        const x = Math.cos((angle * Math.PI) / 180) * radius;
+        const y = Math.sin((angle * Math.PI) / 180) * radius;
+        
+        return (
+          <motion.div
+            key={`inner-${i}`}
+            className="absolute left-1/2 top-1/2 rounded-full bg-secondary"
+            style={{
+              width: 3,
+              height: 3,
+              boxShadow: `0 0 6px hsl(var(--secondary) / 0.6)`,
+            }}
+            initial={{ x: 0, y: 0, opacity: 0 }}
+            animate={isPoweredUp ? {
+              x: [x, x * 1.1, x],
+              y: [y, y * 1.1, y],
+              opacity: [0.4, 0.9, 0.4],
+            } : { x: 0, y: 0, opacity: 0 }}
+            transition={{
+              duration: 3 + i * 0.3,
+              repeat: Infinity,
+              ease: "easeInOut",
+              delay: 0.5 + i * 0.15,
+            }}
+          />
+        );
+      })}
+    </div>
+  );
+};
+
 // Central hub with power-up animation
 const CentralHub = ({ animationPhase, isActive }: { animationPhase: number; isActive: boolean }) => {
   const shouldShow = animationPhase >= 1;
@@ -724,6 +811,9 @@ export function XOPS360Section() {
               animationPhase={animationPhase}
               isActive={hoveredNode !== null || selectedNode !== null} 
             />
+            
+            {/* Floating particles around hub */}
+            <HubParticles animationPhase={animationPhase} />
             
             {/* Operation nodes */}
             {opsNodes.map((node, index) => (

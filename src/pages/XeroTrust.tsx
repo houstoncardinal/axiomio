@@ -33,6 +33,8 @@ import { GlowingOrb } from '@/components/GlowingOrb';
 import { ParticleField } from '@/components/ParticleField';
 import { SEOHead } from '@/components/SEOHead';
 import { XeroTrustROICalculator } from '@/components/XeroTrustROICalculator';
+import { XeroTrustInteractiveDemo } from '@/components/XeroTrustInteractiveDemo';
+import { XeroTrustTestimonials } from '@/components/XeroTrustTestimonials';
 
 const capabilities = [
   {
@@ -536,6 +538,12 @@ export default function XeroTrust() {
           </motion.div>
         </div>
       </section>
+
+      {/* Interactive Demo */}
+      <XeroTrustInteractiveDemo />
+
+      {/* Testimonials */}
+      <XeroTrustTestimonials />
 
       {/* ROI Calculator */}
       <XeroTrustROICalculator />

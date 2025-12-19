@@ -1,10 +1,11 @@
 import { motion, useScroll, useTransform } from "framer-motion";
 import { useRef, useState, useCallback } from "react";
-import { ArrowRight, Layers, BarChart3, Shield, Zap, Globe2, GitBranch, Cloud, Lock, Bot, CircuitBoard } from "lucide-react";
+import { ArrowRight, Layers, BarChart3, Shield, Zap, Globe2, GitBranch, Cloud, Lock, Bot } from "lucide-react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { AnimatedGradientText } from "./AnimatedGradientText";
 import { MagneticButton } from "./MagneticButton";
+import axiomioLogo from "@/assets/axiomio-logo.png";
 
 const features = [
   {
@@ -259,7 +260,7 @@ const CentralHub = ({ isActive }: { isActive: boolean }) => {
       
       {/* Core hub */}
       <motion.div
-        className="relative w-24 h-24 rounded-full bg-gradient-to-br from-primary via-blue-500 to-secondary p-[3px]"
+        className="relative w-28 h-28 rounded-full bg-gradient-to-br from-primary via-blue-500 to-secondary p-[3px]"
         animate={{
           boxShadow: isActive 
             ? "0 0 50px hsl(var(--primary) / 0.4), 0 0 100px hsl(var(--primary) / 0.2)"
@@ -267,17 +268,18 @@ const CentralHub = ({ isActive }: { isActive: boolean }) => {
         }}
         transition={{ duration: 0.3 }}
       >
-        <div className="w-full h-full rounded-full bg-background/95 backdrop-blur-md flex flex-col items-center justify-center">
-          <CircuitBoard className="w-7 h-7 text-primary mb-0.5" />
-          <span className="font-heading text-base font-black bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
-            X360
-          </span>
+        <div className="w-full h-full rounded-full bg-background/95 backdrop-blur-md flex items-center justify-center p-3">
+          <img 
+            src={axiomioLogo} 
+            alt="AXIOMIO" 
+            className="w-full h-auto object-contain"
+          />
         </div>
       </motion.div>
       
       {/* Pulse ring */}
       <motion.div
-        className="absolute inset-0 w-24 h-24 rounded-full border-2 border-primary/30"
+        className="absolute inset-0 w-28 h-28 rounded-full border-2 border-primary/30"
         initial={{ scale: 1, opacity: 0.5 }}
         animate={{ scale: 1.8, opacity: 0 }}
         transition={{ duration: 2, repeat: Infinity, ease: "easeOut" }}

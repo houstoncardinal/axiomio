@@ -95,8 +95,108 @@ export default function About() {
         </div>
       </header>
 
-      {/* Vision Section */}
+      {/* Company History Section */}
       <section className="py-24 lg:py-32 bg-gradient-to-b from-card/50 to-background">
+        <div className="container mx-auto px-6 lg:px-8">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            viewport={{ once: true }}
+            className="max-w-4xl mx-auto"
+          >
+            <SectionHeader
+              label="Our Story"
+              title="From vision to reality"
+              align="center"
+            />
+            <div className="mt-12 space-y-8">
+              <motion.div
+                initial={{ opacity: 0, x: -30 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.6 }}
+                viewport={{ once: true }}
+                className="glass-card rounded-2xl p-8"
+              >
+                <div className="flex items-start gap-4">
+                  <span className="text-4xl font-heading font-bold text-primary/30">2018</span>
+                  <div>
+                    <h3 className="font-heading text-xl font-semibold text-foreground mb-2">Foundation</h3>
+                    <p className="text-muted-foreground leading-relaxed">
+                      Axiomio was founded with a clear mission: to bridge the gap between strategic vision and technical execution. 
+                      We recognized that enterprises needed partners who could think holistically about technology while delivering 
+                      measurable outcomes.
+                    </p>
+                  </div>
+                </div>
+              </motion.div>
+              
+              <motion.div
+                initial={{ opacity: 0, x: 30 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.6, delay: 0.1 }}
+                viewport={{ once: true }}
+                className="glass-card rounded-2xl p-8"
+              >
+                <div className="flex items-start gap-4">
+                  <span className="text-4xl font-heading font-bold text-primary/30">2021</span>
+                  <div>
+                    <h3 className="font-heading text-xl font-semibold text-foreground mb-2">XOPS360 Launch</h3>
+                    <p className="text-muted-foreground leading-relaxed">
+                      We launched XOPS360, our flagship CloudOps automation platform, transforming how MSPs and enterprises 
+                      manage their operations. This marked our transition from pure consulting to a product-driven modern MSP 
+                      powered by an AI workforce.
+                    </p>
+                  </div>
+                </div>
+              </motion.div>
+              
+              <motion.div
+                initial={{ opacity: 0, x: -30 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.6, delay: 0.2 }}
+                viewport={{ once: true }}
+                className="glass-card rounded-2xl p-8"
+              >
+                <div className="flex items-start gap-4">
+                  <span className="text-4xl font-heading font-bold text-primary/30">2023</span>
+                  <div>
+                    <h3 className="font-heading text-xl font-semibold text-foreground mb-2">XeroTrust & AI Integration</h3>
+                    <p className="text-muted-foreground leading-relaxed">
+                      With the launch of XeroTrust, our AI-native zero trust security platform, we completed our transformation 
+                      into a full-stack operations company. Our AI workforce now handles millions of automated tasks daily, 
+                      enabling clients to scale without scaling headcount.
+                    </p>
+                  </div>
+                </div>
+              </motion.div>
+              
+              <motion.div
+                initial={{ opacity: 0, x: 30 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.6, delay: 0.3 }}
+                viewport={{ once: true }}
+                className="glass-card rounded-2xl p-8 border-primary/30"
+              >
+                <div className="flex items-start gap-4">
+                  <span className="text-4xl font-heading font-bold text-primary">Today</span>
+                  <div>
+                    <h3 className="font-heading text-xl font-semibold text-foreground mb-2">Global Impact</h3>
+                    <p className="text-muted-foreground leading-relaxed">
+                      Today, Axiomio serves Fortune 500 companies across 40+ countries. Our product-driven approach, 
+                      combined with deep consulting expertise, delivers operational excellence at scale. We continue 
+                      to innovate at the intersection of AI, automation, and cloud operations.
+                    </p>
+                  </div>
+                </div>
+              </motion.div>
+            </div>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* Vision Section */}
+      <section className="py-24 lg:py-32">
         <div className="container mx-auto px-6 lg:px-8">
           <div className="grid lg:grid-cols-2 gap-16 items-center">
             <motion.div

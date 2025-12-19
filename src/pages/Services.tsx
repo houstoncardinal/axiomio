@@ -60,9 +60,9 @@ const services = [
     id: "ai",
     slug: "ai-automation",
     icon: Brain,
-    title: "AI & Automation",
-    subtitle: "Intelligence applied with precision",
-    description: "Deploy machine learning and automation solutions that enhance human decision-making and unlock operational capabilities previously impossible.",
+    title: "AI-Driven Automation",
+    subtitle: "AI-driven automation for DevOps and SRE in the cloud",
+    description: "Deploy AI-powered automation solutions that enhance decision-making and unlock operational capabilities for DevOps and SRE teams.",
     capabilities: [
       "AI strategy and roadmapping",
       "Machine learning implementation",

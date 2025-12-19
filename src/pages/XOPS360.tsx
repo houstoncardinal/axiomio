@@ -60,8 +60,8 @@ const capabilities = [
   },
   {
     icon: Layers,
-    title: 'Universal Integration',
-    description: 'Connect 200+ tools including AWS, Azure, GCP, Kubernetes, Terraform, and CI/CD pipelines.',
+    title: 'Seamless Integrations',
+    description: 'Connect to various tools such as AWS, Azure, Microsoft 365, and other integrations.',
   },
 ];
 
@@ -192,16 +192,18 @@ export default function XOPS360() {
                 >
                   <MagneticButton>
                     <Button variant="hero" size="xl" asChild>
-                      <Link to="/contact">
-                        Request Demo
+                      <a href="https://xops360.ai" target="_blank" rel="noopener noreferrer">
+                        Get Started
                         <ArrowRight className="ml-2 h-5 w-5" />
-                      </Link>
+                      </a>
                     </Button>
                   </MagneticButton>
                   <MagneticButton>
-                    <Button variant="hero-outline" size="xl" className="gap-2">
-                      <Play className="w-5 h-5" />
-                      Watch Overview
+                    <Button variant="hero-outline" size="xl" className="gap-2" asChild>
+                      <a href="https://youtube.com" target="_blank" rel="noopener noreferrer">
+                        <Play className="w-5 h-5" />
+                        Watch Overview
+                      </a>
                     </Button>
                   </MagneticButton>
                 </motion.div>

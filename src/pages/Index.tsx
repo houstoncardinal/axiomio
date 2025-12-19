@@ -36,8 +36,8 @@ const services = [{
   link: "/services/technology-systems"
 }, {
   icon: Brain,
-  title: "AI & Automation",
-  description: "Deploy intelligent automation solutions that enhance decision-making and unlock new capabilities.",
+  title: "AI-Driven Automation",
+  description: "AI-driven automation for DevOps and SRE in the cloud—enhancing decision-making and operational excellence.",
   gradient: "from-violet-500/20 to-secondary/10",
   link: "/services/ai-automation"
 }, {
@@ -129,10 +129,10 @@ export default function Index() {
             duration: 0.8,
             delay: 0.2
           }}>
-              The future of{" "}
-              <span className="text-primary">intelligent</span>
+              A product-driven{" "}
+              <span className="text-primary">modern MSP</span>
               <br />
-              operations
+              powered by an AI workforce
             </motion.h1>
             
             {/* Subheadline */}

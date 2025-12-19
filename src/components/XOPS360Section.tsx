@@ -268,11 +268,11 @@ const CentralHub = ({ isActive }: { isActive: boolean }) => {
         }}
         transition={{ duration: 0.3 }}
       >
-        <div className="w-full h-full rounded-full bg-background/95 backdrop-blur-md flex items-center justify-center p-3">
+        <div className="w-full h-full rounded-full bg-transparent flex items-center justify-center p-4">
           <img 
             src={axiomioLogo} 
             alt="AXIOMIO" 
-            className="w-full h-auto object-contain"
+            className="w-16 h-16 object-contain brightness-0 invert dark:brightness-0 dark:invert"
           />
         </div>
       </motion.div>

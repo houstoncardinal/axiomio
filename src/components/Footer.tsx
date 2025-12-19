@@ -23,15 +23,12 @@ export function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
           {/* Brand Column */}
           <div className="lg:col-span-2">
-            <Link to="/" className="flex items-center gap-3 mb-6 group">
+            <Link to="/" className="inline-block mb-6 group">
               <img 
                 src={axiomioLogo} 
                 alt="AXIOMIO" 
-                className="h-10 w-10 object-contain drop-shadow-[0_0_8px_hsl(var(--primary)/0.4)]"
+                className="h-12 w-auto object-contain"
               />
-              <span className="font-heading font-bold text-xl tracking-wider text-foreground">
-                AXIOMIO
-              </span>
             </Link>
             <p className="text-muted-foreground max-w-md leading-relaxed">
               A high-caliber technology and strategy firm operating at the intersection of 

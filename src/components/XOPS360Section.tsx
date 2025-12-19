@@ -8,9 +8,9 @@ import { MagneticButton } from "./MagneticButton";
 
 const features = [
   {
-    icon: Workflow,
-    title: "Unified Operations",
-    description: "Consolidate DevOps, DataOps, SecOps, and AIOps into a single, intelligent framework.",
+    icon: Bot,
+    title: "AI Workforce",
+    description: "Replace manual operations with intelligent AI agents that automate DevOps, SRE, and cloud management.",
   },
   {
     icon: BarChart3,
@@ -24,8 +24,8 @@ const features = [
   },
   {
     icon: Zap,
-    title: "Automated Workflows",
-    description: "Self-healing systems and intelligent automation that reduce manual intervention by 80%.",
+    title: "Self-Healing Systems",
+    description: "Intelligent automation that detects, diagnoses, and resolves issues before they impact users.",
   },
   {
     icon: Layers,
@@ -39,7 +39,7 @@ const features = [
   },
 ];
 
-// Enhanced 3D node data with more detail
+// Enhanced 3D node data with more detail - AI workforce focused
 const opsNodes = [
   { 
     id: "devops", 
@@ -50,14 +50,6 @@ const opsNodes = [
     subNodes: ["CI/CD", "IaC", "Monitoring"]
   },
   { 
-    id: "dataops", 
-    label: "DataOps", 
-    color: "from-violet-500 to-purple-400",
-    icon: Database,
-    stats: { pipelines: 89, latency: "12ms", throughput: "1.2TB/h" },
-    subNodes: ["ETL", "Quality", "Catalog"]
-  },
-  { 
     id: "secops", 
     label: "SecOps", 
     color: "from-emerald-500 to-teal-400",
@@ -66,12 +58,20 @@ const opsNodes = [
     subNodes: ["SIEM", "Compliance", "Threat Intel"]
   },
   { 
+    id: "cloudops", 
+    label: "CloudOps", 
+    color: "from-violet-500 to-purple-400",
+    icon: Cloud,
+    stats: { resources: "1.2K", cost: "-40%", regions: "12" },
+    subNodes: ["Multi-Cloud", "FinOps", "Automation"]
+  },
+  { 
     id: "aiops", 
     label: "AIOps", 
     color: "from-orange-500 to-amber-400",
     icon: Bot,
     stats: { incidents: 156, mttr: "4min", automation: "82%" },
-    subNodes: ["Anomaly", "RCA", "Remediation"]
+    subNodes: ["AI Workforce", "RCA", "Remediation"]
   },
 ];
 
@@ -549,8 +549,8 @@ export function XOPS360Section() {
             viewport={{ once: true }}
             className="text-xl md:text-2xl text-muted-foreground leading-relaxed"
           >
-            The next-generation operations platform that unifies DevOps, DataOps, MLOps, and AIOps 
-            into a single intelligent ecosystem. <span className="text-primary font-medium">Click any node to explore.</span>
+            The AI-powered operations platform that replaces traditional manual processes with an 
+            intelligent AI workforce. Unifying DevOps, SecOps, CloudOps, and AIOps. <span className="text-primary font-medium">Click any node to explore.</span>
           </motion.p>
         </div>
 

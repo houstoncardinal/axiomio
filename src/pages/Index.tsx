@@ -18,6 +18,7 @@ import { MagneticButton } from "@/components/MagneticButton";
 import { useInViewOnce } from "@/hooks/useInViewOnce";
 import { ClientLogoMarquee } from "@/components/ClientLogoMarquee";
 import { XeroTrustBanner } from "@/components/XeroTrustBanner";
+import { CertificationsSection } from "@/components/CertificationsSection";
 import { lazy, Suspense, useRef } from "react";
 const LazyXOPS360Section = lazy(() => import("@/components/XOPS360Section").then(m => ({
   default: m.XOPS360Section
@@ -316,6 +317,9 @@ export default function Index() {
 
       {/* Client Logo Marquee */}
       <ClientLogoMarquee />
+
+      {/* Certifications Section */}
+      <CertificationsSection />
 
       {/* Testimonials */}
       <TestimonialsSection />

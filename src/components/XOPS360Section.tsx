@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { AnimatedGradientText } from "./AnimatedGradientText";
 import { MagneticButton } from "./MagneticButton";
-import axiomioLogo from "@/assets/axiomio-logo.png";
+import axiomioLogo from "@/assets/axiomio-logo.svg";
 
 const features = [
   {

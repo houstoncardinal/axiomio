@@ -17,11 +17,11 @@ import { homepageSchema } from "@/lib/seo-schemas-enhanced";
 import { MagneticButton } from "@/components/MagneticButton";
 import { useInViewOnce } from "@/hooks/useInViewOnce";
 import { ClientLogoMarquee } from "@/components/ClientLogoMarquee";
+import { XeroTrustBanner } from "@/components/XeroTrustBanner";
 import { lazy, Suspense, useRef } from "react";
 const LazyXOPS360Section = lazy(() => import("@/components/XOPS360Section").then(m => ({
   default: m.XOPS360Section
 })));
-const LazyMountainVisualization = lazy(() => import("@/components/MountainVisualization"));
 const services = [{
   icon: LineChart,
   title: "Strategy & Advisory",
@@ -78,10 +78,6 @@ export default function Index() {
   const {
     ref: xopsRef,
     inView: xopsInView
-  } = useInViewOnce<HTMLDivElement>("800px");
-  const {
-    ref: mountainRef,
-    inView: mountainInView
   } = useInViewOnce<HTMLDivElement>("800px");
   return <div className="min-h-screen bg-background overflow-hidden">
       <SEOHead title="Axiomio | Enterprise Technology & Strategy Consulting | XOPS360 Platform" description="Axiomio is a global technology and strategy consulting firm. Our XOPS360 platform unifies DevOps, DataOps, MLOps & AIOps. Digital transformation, AI automation & enterprise systems for Fortune 500 companies." keywords="technology consulting, strategy consulting, digital transformation, AI automation, enterprise architecture, DevOps, MLOps, AIOps, DataOps, XOPS360, cloud consulting, machine learning consulting, enterprise systems, IT consulting, Deloitte alternative, Accenture alternative" canonicalUrl="https://axiomio.com/" ogType="website" structuredData={homepageSchema} />
@@ -237,12 +233,8 @@ export default function Index() {
       {/* Metrics Showcase */}
       <MetricsShowcase />
 
-      {/* Mountain Visualization Section (lazy-mounted) */}
-      <div ref={mountainRef}>
-        {mountainInView ? <Suspense fallback={<div className="py-16 lg:py-20 bg-muted/10 animate-pulse" aria-label="Loading visualization" />}>
-            <LazyMountainVisualization />
-          </Suspense> : <div className="py-16 lg:py-20 bg-muted/10" aria-hidden="true" />}
-      </div>
+      {/* XeroTrust Banner */}
+      <XeroTrustBanner />
 
       {/* Capabilities Grid */}
       <CapabilitiesGrid />

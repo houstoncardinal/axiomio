@@ -85,6 +85,18 @@ export function Footer() {
             </Link>
           </div>
         </div>
+        
+        {/* Cardinal Consulting Credit */}
+        <div className="mt-6 flex justify-end">
+          <a 
+            href="https://www.visitcardinal.com" 
+            target="_blank" 
+            rel="noopener noreferrer"
+            className="text-[10px] text-muted-foreground/50 hover:text-muted-foreground transition-colors"
+          >
+            Built by Cardinal Consulting
+          </a>
+        </div>
       </div>
     </footer>
   );

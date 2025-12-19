@@ -12,6 +12,21 @@ import { MagneticButton } from "@/components/MagneticButton";
 
 const services = [
   {
+    id: "ops",
+    slug: "ops-excellence",
+    icon: Cpu,
+    title: "Ops Excellence",
+    subtitle: "FinOps · SecOps · CloudOps · DevOps",
+    description: "Master your operations with unified precision. AI-powered automation across financial, security, cloud, and development operations.",
+    capabilities: [
+      "Cloud cost optimization (FinOps)",
+      "Security operations & compliance",
+      "Multi-cloud orchestration",
+      "CI/CD pipeline automation",
+      "Self-healing infrastructure",
+    ],
+  },
+  {
     id: "strategy",
     slug: "strategy-advisory",
     icon: LineChart,

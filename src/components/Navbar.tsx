@@ -6,7 +6,7 @@ import { Button } from "@/components/ui/button";
 import { MegaMenu } from "@/components/MegaMenu";
 import { ThemeToggle } from "@/components/ThemeToggle";
 import { cn } from "@/lib/utils";
-import axiomioLogo from "@/assets/axiomio-logo.svg";
+import axiomioLogo from "@/assets/axiomio-logo.png";
 
 
 const navLinks = [
@@ -63,7 +63,8 @@ export function Navbar() {
                 <img 
                   src={axiomioLogo} 
                   alt="AXIOMIO" 
-                  className="h-8 w-auto"
+                  className="h-9 w-auto object-contain"
+                  style={{ imageRendering: 'auto' }}
                 />
               </motion.div>
             </Link>

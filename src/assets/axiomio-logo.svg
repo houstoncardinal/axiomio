@@ -1,5 +1,25 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 40" fill="none">
-  <text x="0" y="30" font-family="system-ui, -apple-system, sans-serif" font-size="28" font-weight="700" letter-spacing="-0.02em">
-    <tspan fill="#1e2a4a">AXIOM</tspan><tspan fill="#4fa8c5">IO</tspan>
-  </text>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 280 50" fill="none">
+  <defs>
+    <linearGradient id="xGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#00b4d8"/>
+      <stop offset="100%" stop-color="#0096c7"/>
+    </linearGradient>
+  </defs>
+  <!-- A -->
+  <path d="M0 40L12 8h8l12 32h-7l-2.5-7H9.5L7 40H0zm11.5-13h9L16 14l-4.5 13z" fill="#1e2a4a"/>
+  <!-- X with gradient accent -->
+  <g transform="translate(32, 0)">
+    <path d="M0 8h7.5l6.5 11 6.5-11H28L18.5 24 28 40h-7.5l-6.5-11-6.5 11H0l9.5-16L0 8z" fill="#1e2a4a"/>
+    <path d="M14 8l6.5 11L28 8h-7.5l-6.5 11z" fill="url(#xGradient)" opacity="0.9"/>
+  </g>
+  <!-- I -->
+  <path d="M68 8h7v32h-7V8z" fill="#1e2a4a"/>
+  <!-- O -->
+  <path d="M82 24c0-9.4 7.2-17 16-17s16 7.6 16 17-7.2 17-16 17-16-7.6-16-17zm7 0c0 5.5 4 10 9 10s9-4.5 9-10-4-10-9-10-9 4.5-9 10z" fill="#1e2a4a"/>
+  <!-- M -->
+  <path d="M120 8h9l7 22 7-22h9v32h-7V18l-7 22h-4l-7-22v22h-7V8z" fill="#1e2a4a"/>
+  <!-- I (cyan) -->
+  <path d="M160 8h7v32h-7V8z" fill="#00b4d8"/>
+  <!-- O (cyan) -->
+  <path d="M174 24c0-9.4 7.2-17 16-17s16 7.6 16 17-7.2 17-16 17-16-7.6-16-17zm7 0c0 5.5 4 10 9 10s9-4.5 9-10-4-10-9-10-9 4.5-9 10z" fill="#00b4d8"/>
 </svg>

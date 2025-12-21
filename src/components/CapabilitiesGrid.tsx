@@ -27,13 +27,8 @@ const capabilities = [
     color: "violet-500",
   },
   {
-    title: "DataOps",
-    items: ["Data Pipeline Automation", "Real-time ETL Processing", "Data Quality Monitoring", "Schema Evolution"],
-    color: "primary",
-  },
-  {
-    title: "AIOps",
-    items: ["Anomaly Detection", "Predictive Analytics", "Auto-remediation", "Intelligent Alerting"],
+    title: "AI Agent-led Automation",
+    items: ["Intelligent Workflow Orchestration", "Autonomous Task Execution", "Smart Decision Making", "Continuous Learning Systems"],
     color: "secondary",
   },
 ];
@@ -180,10 +175,15 @@ export function CapabilitiesGrid() {
           </motion.p>
         </div>
 
-        {/* Capabilities grid */}
+        {/* Capabilities grid - 5 items */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-16">
-          {capabilities.map((capability, index) => (
+          {capabilities.slice(0, 3).map((capability, index) => (
             <CapabilityCard key={capability.title} capability={capability} index={index} />
+          ))}
+        </div>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto mb-16">
+          {capabilities.slice(3).map((capability, index) => (
+            <CapabilityCard key={capability.title} capability={capability} index={index + 3} />
           ))}
         </div>
 

@@ -42,19 +42,19 @@ export function CounterBadge({
       transition={{ duration: 0.6 }}
       viewport={{ once: true }}
     >
-      <div className="relative p-8 rounded-2xl bg-gradient-to-br from-muted/60 to-muted/20 border border-border/50 overflow-hidden">
+      <div className="relative p-5 sm:p-6 md:p-8 rounded-2xl bg-gradient-to-br from-muted/60 to-muted/20 border border-border/50 overflow-hidden h-full">
         {/* Glow effect */}
         <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
           <div className="absolute inset-0 bg-gradient-to-br from-primary/10 to-transparent" />
         </div>
         
-        <div className="relative z-10">
-          <div className="font-heading text-4xl sm:text-5xl md:text-6xl font-bold text-foreground mb-2 tabular-nums whitespace-nowrap">
+        <div className="relative z-10 flex flex-col justify-center h-full">
+          <div className="font-heading text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-foreground mb-2 tabular-nums leading-tight">
             <span className="text-primary">{prefix}</span>
             {displayValue.toLocaleString()}
             <span className="text-primary">{suffix}</span>
           </div>
-          <p className="text-muted-foreground text-sm uppercase tracking-wider font-medium">
+          <p className="text-muted-foreground text-xs sm:text-sm uppercase tracking-wider font-medium leading-tight">
             {label}
           </p>
         </div>

@@ -63,7 +63,7 @@ export function Navbar() {
                 <img 
                   src={axiomioLogo} 
                   alt="AXIOMIO" 
-                  className="h-8 w-auto object-contain"
+                  className="h-10 w-auto object-contain"
                 />
               </motion.div>
             </Link>

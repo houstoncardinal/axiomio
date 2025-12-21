@@ -8,6 +8,40 @@ import { GridBackground } from "@/components/GridBackground";
 import { SectionHeader } from "@/components/SectionHeader";
 import { SEOHead } from "@/components/SEOHead";
 import { MagneticButton } from "@/components/MagneticButton";
+import { createBreadcrumbSchema, organizationSchema } from "@/lib/seo-schemas";
+
+const breadcrumbSchema = createBreadcrumbSchema([
+  { name: "Home", url: "https://axiomio.com/" },
+  { name: "Services", url: "https://axiomio.com/services" },
+  { name: "Ops Excellence", url: "https://axiomio.com/services/ops-excellence" },
+]);
+
+const opsExcellenceSchema = {
+  "@context": "https://schema.org",
+  "@type": "Service",
+  "@id": "https://axiomio.com/services/ops-excellence/#service",
+  "name": "Ops Excellence - FinOps, SecOps, CloudOps, DevOps",
+  "serviceType": "IT Operations Consulting",
+  "description": "Unified operations platform for FinOps, SecOps, CloudOps, and DevOps. AI-powered automation, real-time observability, and self-healing systems for enterprise cloud operations.",
+  "url": "https://axiomio.com/services/ops-excellence",
+  "provider": { "@id": "https://axiomio.com/#organization" },
+  "areaServed": "Worldwide",
+  "hasOfferCatalog": {
+    "@type": "OfferCatalog",
+    "name": "Operations Excellence Services",
+    "itemListElement": [
+      { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "FinOps - Cloud Financial Management" } },
+      { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "SecOps - Security Operations" } },
+      { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "CloudOps - Cloud Operations Excellence" } },
+      { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "DevOps - Development Operations" } }
+    ]
+  }
+};
+
+const pageSchema = {
+  "@context": "https://schema.org",
+  "@graph": [breadcrumbSchema, opsExcellenceSchema, organizationSchema]
+};
 
 const opsCategories = [
   {
@@ -245,10 +279,11 @@ export default function OpsExcellence() {
     <main className="min-h-screen bg-background overflow-hidden">
       <SEOHead
         title="FinOps, SecOps, CloudOps, DevOps Excellence | Unified Operations Platform | Axiomio"
-        description="Master your operations with Axiomio's unified platform for FinOps, SecOps, CloudOps, and DevOps. AI-powered automation, real-time observability, and self-healing systems."
-        keywords="FinOps, SecOps, CloudOps, DevOps, cloud financial management, security operations, cloud operations, development operations, XOPS360, unified operations, AI automation, cloud optimization"
+        description="Master your operations with Axiomio's unified platform for FinOps, SecOps, CloudOps, and DevOps. AI-powered automation, real-time observability, self-healing systems, and XOPS360 integration."
+        keywords="FinOps, SecOps, CloudOps, DevOps, cloud financial management, security operations, cloud operations, development operations, XOPS360, unified operations, AI automation, cloud optimization, SRE, platform engineering"
         canonicalUrl="https://axiomio.com/services/ops-excellence"
         pageType="services"
+        structuredData={pageSchema}
       />
       <Navbar />
       

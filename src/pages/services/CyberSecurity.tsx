@@ -21,6 +21,42 @@ import { PremiumCard } from "@/components/PremiumCard";
 import { SectionHeader } from "@/components/SectionHeader";
 import { SEOHead } from "@/components/SEOHead";
 import { MagneticButton } from "@/components/MagneticButton";
+import { createBreadcrumbSchema, organizationSchema } from "@/lib/seo-schemas";
+
+const breadcrumbSchema = createBreadcrumbSchema([
+  { name: "Home", url: "https://axiomio.com/" },
+  { name: "Services", url: "https://axiomio.com/services" },
+  { name: "Cyber Security", url: "https://axiomio.com/services/cybersecurity" },
+]);
+
+const cyberSecuritySchema = {
+  "@context": "https://schema.org",
+  "@type": "Service",
+  "@id": "https://axiomio.com/services/cybersecurity/#service",
+  "name": "Cyber Security Services",
+  "serviceType": "Cybersecurity Consulting",
+  "description": "Enterprise cybersecurity services including Cloud Security (CSPM/CWPP), Network Security, Threat Detection & Response, Compliance, and AI-driven protection with 24/7 SOC.",
+  "url": "https://axiomio.com/services/cybersecurity",
+  "provider": { "@id": "https://axiomio.com/#organization" },
+  "areaServed": "Worldwide",
+  "hasOfferCatalog": {
+    "@type": "OfferCatalog",
+    "name": "Cybersecurity Services",
+    "itemListElement": [
+      { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Cloud Security (CSPM & CWPP)" } },
+      { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Network Security & Zero Trust" } },
+      { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Threat Detection & Response (MDR)" } },
+      { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Compliance & Governance" } },
+      { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Endpoint Security (EDR/XDR)" } },
+      { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Identity Security (IAM/PAM)" } }
+    ]
+  }
+};
+
+const pageSchema = {
+  "@context": "https://schema.org",
+  "@graph": [breadcrumbSchema, cyberSecuritySchema, organizationSchema]
+};
 
 const services = [
   {
@@ -115,10 +151,11 @@ export default function CyberSecurity() {
     <main className="min-h-screen bg-background overflow-hidden">
       <SEOHead
         title="Cyber Security Services | Cloud, Network & Threat Protection | Axiomio"
-        description="Enterprise cybersecurity services: Cloud Security, Network Security, Threat Detection, Compliance. AI-driven protection with 24/7 SOC. Trusted by Fortune 500."
-        keywords="cybersecurity services, cloud security, network security, threat detection, CSPM, CWPP, SOC, MDR, zero trust, compliance, HIPAA, SOC2, PCI-DSS"
+        description="Enterprise cybersecurity services: Cloud Security (CSPM/CWPP), Network Security, Zero Trust, Threat Detection & Response (MDR), Compliance. AI-driven protection with 24/7 SOC. Trusted by Fortune 500."
+        keywords="cybersecurity services, cloud security, network security, threat detection, CSPM, CWPP, SOC, MDR, zero trust, compliance, HIPAA, SOC2, PCI-DSS, endpoint security, identity security"
         canonicalUrl="https://axiomio.com/services/cybersecurity"
         pageType="services"
+        structuredData={pageSchema}
       />
       <Navbar />
       

@@ -6,7 +6,7 @@ import { Button } from "@/components/ui/button";
 import { MegaMenu } from "@/components/MegaMenu";
 import { ThemeToggle } from "@/components/ThemeToggle";
 import { cn } from "@/lib/utils";
-import axiomioLogo from "@/assets/axiomio-logo.png";
+import axiomioLogo from "@/assets/axiomio-logo-transparent.png";
 
 
 const navLinks = [

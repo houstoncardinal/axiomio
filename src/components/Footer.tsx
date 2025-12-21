@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import axiomioLogo from "@/assets/axiomio-logo.png";
+import axiomioLogo from "@/assets/axiomio-logo-transparent.png";
 
 const footerLinks = {
   company: [

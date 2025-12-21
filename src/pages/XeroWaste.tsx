@@ -71,15 +71,40 @@ const wasteTypes = [
   { name: "Missing Reservations", percentage: "28%", description: "On-demand pricing for predictable workloads" },
 ];
 
+const xeroWasteSchema = {
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "@id": "https://axiomio.com/xerowaste/#product",
+  "name": "XeroWaste",
+  "applicationCategory": "BusinessApplication",
+  "applicationSubCategory": "FinOps Platform",
+  "description": "AI-powered cloud cost optimization platform that eliminates waste, maximizes savings, and delivers real-time visibility across AWS, Azure, and GCP.",
+  "url": "https://axiomio.com/xerowaste",
+  "featureList": [
+    "Real-Time Cost Visibility",
+    "AI-Powered Optimization",
+    "Automated Rightsizing",
+    "Reserved Instance Management",
+    "Anomaly Detection",
+    "Cost Allocation & Showback"
+  ],
+  "offers": {
+    "@type": "Offer",
+    "description": "Cloud cost optimization with average 35% savings"
+  },
+  "provider": { "@id": "https://axiomio.com/#organization" }
+};
+
 export default function XeroWaste() {
   return (
     <main className="min-h-screen bg-background overflow-hidden">
       <SEOHead
         title="XeroWaste | AI-Powered Cloud Cost Optimization | FinOps | Axiomio"
-        description="Eliminate cloud waste with AI-powered cost optimization. Real-time visibility, automated rightsizing, and FinOps best practices. Average 35% savings."
-        keywords="cloud cost optimization, FinOps, cloud waste, AWS cost management, Azure cost optimization, GCP billing, cloud savings, rightsizing, reserved instances"
+        description="Eliminate cloud waste with AI-powered cost optimization. Real-time visibility, automated rightsizing, and FinOps best practices. Average 35% savings across AWS, Azure, GCP."
+        keywords="cloud cost optimization, FinOps, cloud waste, AWS cost management, Azure cost optimization, GCP billing, cloud savings, rightsizing, reserved instances, cloud financial management"
         canonicalUrl="https://axiomio.com/xerowaste"
         pageType="product"
+        structuredData={xeroWasteSchema}
       />
       <Navbar />
       

@@ -122,14 +122,33 @@ const FeatureValue = ({ value }: { value: boolean | string }) => {
   return <span className="text-xs font-medium text-amber-500 uppercase">Partial</span>;
 };
 
+const comparisonPageSchema = {
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "@id": "https://axiomio.com/xerotrust/compare/#webpage",
+  "name": "XeroTrust vs Cloudflare vs Zscaler vs Tailscale | Zero Trust Comparison",
+  "description": "Compare XeroTrust with Cloudflare Access, Zscaler, and Tailscale. See why enterprises choose XeroTrust for AI-powered zero trust security.",
+  "url": "https://axiomio.com/xerotrust/compare",
+  "isPartOf": {
+    "@id": "https://axiomio.com/#website"
+  },
+  "about": {
+    "@type": "SoftwareApplication",
+    "name": "XeroTrust",
+    "applicationCategory": "SecurityApplication"
+  }
+};
+
 export default function XeroTrustCompare() {
   return (
     <div className="min-h-screen bg-background overflow-hidden">
       <SEOHead
         title="XeroTrust vs Cloudflare vs Zscaler vs Tailscale | Zero Trust Comparison"
         description="Compare XeroTrust with Cloudflare Access, Zscaler, and Tailscale. See why enterprises choose XeroTrust for AI-powered zero trust security."
-        keywords="XeroTrust comparison, Cloudflare Access alternative, Zscaler alternative, Tailscale alternative, zero trust comparison, ZTNA comparison"
+        keywords="XeroTrust comparison, Cloudflare Access alternative, Zscaler alternative, Tailscale alternative, zero trust comparison, ZTNA comparison, VPN alternative, network security comparison"
         canonicalUrl="https://axiomio.com/xerotrust/compare"
+        pageType="comparison"
+        structuredData={comparisonPageSchema}
       />
       <Navbar />
 

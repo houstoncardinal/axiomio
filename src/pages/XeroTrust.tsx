@@ -35,6 +35,66 @@ import { SEOHead } from '@/components/SEOHead';
 import { XeroTrustROICalculator } from '@/components/XeroTrustROICalculator';
 import { XeroTrustInteractiveDemo } from '@/components/XeroTrustInteractiveDemo';
 import { XeroTrustTestimonials } from '@/components/XeroTrustTestimonials';
+import { createBreadcrumbSchema, organizationSchema } from '@/lib/seo-schemas';
+
+const breadcrumbSchema = createBreadcrumbSchema([
+  { name: "Home", url: "https://axiomio.com/" },
+  { name: "XeroTrust", url: "https://axiomio.com/xerotrust" },
+]);
+
+const xeroTrustSchema = {
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "@id": "https://axiomio.com/xerotrust/#product",
+  "name": "XeroTrust",
+  "applicationCategory": "SecurityApplication",
+  "applicationSubCategory": "Zero-Trust Network Access (ZTNA)",
+  "description": "XeroTrust delivers AI-native zero trust security. Deploy in minutes, reduce threats by 85%, and cut security costs by 50%. Enterprise-grade protection without complexity.",
+  "url": "https://axiomio.com/xerotrust",
+  "operatingSystem": "Windows, macOS, Linux, iOS, Android",
+  "offers": [
+    {
+      "@type": "Offer",
+      "name": "Starter",
+      "price": "8",
+      "priceCurrency": "USD",
+      "description": "For small teams up to 50 users"
+    },
+    {
+      "@type": "Offer",
+      "name": "Business",
+      "price": "15",
+      "priceCurrency": "USD",
+      "description": "For growing organizations with unlimited users"
+    },
+    {
+      "@type": "Offer",
+      "name": "Enterprise",
+      "description": "Custom pricing for large organizations"
+    }
+  ],
+  "featureList": [
+    "AI-Powered Threat Detection",
+    "Continuous Authentication",
+    "Micro-Segmentation",
+    "Device Trust Scoring",
+    "Behavioral Analytics",
+    "WireGuard Encryption",
+    "SSO Integration",
+    "99.99% Uptime SLA"
+  ],
+  "provider": { "@id": "https://axiomio.com/#organization" },
+  "aggregateRating": {
+    "@type": "AggregateRating",
+    "ratingValue": "4.9",
+    "ratingCount": "150"
+  }
+};
+
+const pageSchema = {
+  "@context": "https://schema.org",
+  "@graph": [breadcrumbSchema, xeroTrustSchema, organizationSchema]
+};
 
 const capabilities = [
   {
@@ -158,9 +218,11 @@ export default function XeroTrust() {
     <div className="min-h-screen bg-background overflow-hidden">
       <SEOHead
         title="XeroTrust | AI-Powered Zero Trust Security Platform | Axiomio"
-        description="XeroTrust delivers AI-native zero trust security. Deploy in minutes, reduce threats by 85%, and cut security costs by 50%. Enterprise-grade protection without complexity."
-        keywords="XeroTrust, zero trust security, ZTNA, AI security, identity verification, device trust, network security, continuous authentication"
+        description="XeroTrust delivers AI-native zero trust security. Deploy in minutes, reduce threats by 85%, cut security costs by 50%. Enterprise-grade ZTNA with continuous authentication, device trust, and behavioral analytics."
+        keywords="XeroTrust, zero trust security, ZTNA, AI security, identity verification, device trust, network security, continuous authentication, micro-segmentation, WireGuard, SSO integration"
         canonicalUrl="https://axiomio.com/xerotrust"
+        pageType="product"
+        structuredData={pageSchema}
       />
       <Navbar />
 

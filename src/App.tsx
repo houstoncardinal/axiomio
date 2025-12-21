@@ -8,6 +8,7 @@ import { AuthProvider } from "@/contexts/AuthContext";
 import { ThemeProvider } from "next-themes";
 import LoadingScreen from "@/components/LoadingScreen";
 import AIChatWidget from "@/components/AIChatWidget";
+import { ScrollToTop } from "@/components/ScrollToTop";
 
 class ErrorBoundary extends Component<{ children: ReactNode }, { hasError: boolean; error: Error | null }> {
   constructor(props: { children: ReactNode }) {
@@ -101,6 +102,7 @@ const AppContent = () => {
 
   return (
     <>
+      <ScrollToTop />
       <LoadingScreen isLoading={isLoading} />
       <Suspense fallback={<PageLoader />}>
         <Routes>

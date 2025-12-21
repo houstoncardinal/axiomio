@@ -121,7 +121,7 @@ export default function Index() {
             </motion.div>
 
             {/* Main headline */}
-            <motion.h1 className="font-heading text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-foreground leading-[1.1] tracking-tight mb-6 text-center lg:text-left" initial={{
+            <motion.h1 className="font-heading text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold text-foreground leading-[1.1] tracking-tight mb-6 text-center lg:text-left" initial={{
             opacity: 0,
             y: 30
           }} animate={{
@@ -131,10 +131,10 @@ export default function Index() {
             duration: 0.8,
             delay: 0.2
           }}>
-              Your innovation-led{" "}
-              <span className="text-primary">modern MSP</span>
-              <br />
-              powered by an AI workforce
+              <span className="block sm:inline">Your innovation-led </span>
+              <span className="text-primary whitespace-nowrap">modern MSP</span>
+              <br className="hidden sm:block" />
+              <span className="block sm:inline"> powered by an AI workforce</span>
             </motion.h1>
             
             {/* Subheadline */}

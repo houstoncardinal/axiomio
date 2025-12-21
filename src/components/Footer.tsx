@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import axiomioLogo from "@/assets/axiomio-logo.svg";
+import axiomioLogo from "@/assets/axiomio-logo.png";
 
 const footerLinks = {
   company: [
@@ -27,7 +27,7 @@ export function Footer() {
               <img 
                 src={axiomioLogo} 
                 alt="AXIOMIO" 
-                className="h-12 w-auto object-contain"
+                className="h-8 w-auto object-contain"
               />
             </Link>
             <p className="text-muted-foreground max-w-md leading-relaxed">

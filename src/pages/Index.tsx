@@ -17,6 +17,7 @@ import { homepageSchema } from "@/lib/seo-schemas-enhanced";
 import { MagneticButton } from "@/components/MagneticButton";
 import { useInViewOnce } from "@/hooks/useInViewOnce";
 import { ClientLogoMarquee } from "@/components/ClientLogoMarquee";
+import { TechnologyPartnersSection } from "@/components/TechnologyPartnersSection";
 import { XeroTrustBanner } from "@/components/XeroTrustBanner";
 import { CertificationsSection } from "@/components/CertificationsSection";
 import { lazy, Suspense, useRef } from "react";
@@ -81,7 +82,7 @@ export default function Index() {
     inView: xopsInView
   } = useInViewOnce<HTMLDivElement>("800px");
   return <div className="min-h-screen bg-background overflow-hidden">
-      <SEOHead title="Axiomio | Enterprise Technology & Strategy Consulting | XOPS360 Platform" description="Axiomio is a global technology and strategy consulting firm. Our XOPS360 platform unifies DevOps, DataOps, MLOps & AIOps. Digital transformation, AI automation & enterprise systems for Fortune 500 companies." keywords="technology consulting, strategy consulting, digital transformation, AI automation, enterprise architecture, DevOps, MLOps, AIOps, DataOps, XOPS360, cloud consulting, machine learning consulting, enterprise systems, IT consulting, Deloitte alternative, Accenture alternative" canonicalUrl="https://axiomio.com/" ogType="website" structuredData={homepageSchema} />
+      <SEOHead title="Axiomio | Enterprise Technology & Strategy Consulting | XOPS360 Platform" description="Axiomio is a global technology and strategy consulting firm. Our XOPS360 platform unifies DevOps, SecOps, CloudOps & AI Agents. Digital transformation, AI automation & enterprise systems for Fortune 500 companies." keywords="technology consulting, strategy consulting, digital transformation, AI automation, enterprise architecture, DevOps, SecOps, CloudOps, AI Agents, XOPS360, cloud consulting, machine learning consulting, enterprise systems, IT consulting, Deloitte alternative, Accenture alternative" canonicalUrl="https://axiomio.com/" ogType="website" structuredData={homepageSchema} />
       <Navbar />
       
       {/* Hero Section */}
@@ -130,7 +131,7 @@ export default function Index() {
             duration: 0.8,
             delay: 0.2
           }}>
-              A product-driven{" "}
+              Your innovation-led{" "}
               <span className="text-primary">modern MSP</span>
               <br />
               powered by an AI workforce
@@ -147,7 +148,7 @@ export default function Index() {
             duration: 0.8,
             delay: 0.4
           }}>
-              Axiomio's XOPS360 platform unifies DevOps, DataOps, SecOps, and AIOps into a single 
+              Axiomio's XOPS360 platform unifies DevOps, SecOps, CloudOps, and AI Agents into a single 
               intelligent ecosystem—transforming operational complexity into competitive advantage.
             </motion.p>
             
@@ -223,6 +224,9 @@ export default function Index() {
           </div>
         </div>
       </section>
+
+      {/* Technology Partners */}
+      <TechnologyPartnersSection />
 
       {/* XOPS360 Feature Section (lazy-mounted) */}
       <div ref={xopsRef}>

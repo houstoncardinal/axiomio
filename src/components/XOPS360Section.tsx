@@ -5,7 +5,6 @@ import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { AnimatedGradientText } from "./AnimatedGradientText";
 import { MagneticButton } from "./MagneticButton";
-import axiomioLogo from "@/assets/axiomio-logo.svg";
 import { useIsMobile } from "@/hooks/use-mobile";
 
 const features = [
@@ -71,8 +70,8 @@ const opsNodes = [
     stat: "40% Cost Savings",
   },
   { 
-    id: "aiops", 
-    label: "AIOps", 
+    id: "aiagents", 
+    label: "AI Agents", 
     color: "#F59E0B",
     secondaryColor: "#EF4444",
     icon: Bot,
@@ -428,15 +427,15 @@ const CentralHub = ({ animationPhase, isActive }: { animationPhase: number; isAc
         } : { boxShadow: "0 0 0 hsl(var(--primary) / 0)" }}
         transition={{ duration: 0.8 }}
       >
-        <div className="w-full h-full rounded-full bg-transparent flex items-center justify-center p-3 md:p-4">
-          <motion.img 
-            src={axiomioLogo} 
-            alt="AXIOMIO" 
-            className="w-10 h-10 md:w-16 md:h-16 object-contain brightness-0 invert dark:brightness-0 dark:invert"
+        <div className="w-full h-full rounded-full bg-transparent flex items-center justify-center p-2 md:p-3">
+          <motion.span 
+            className="text-[10px] md:text-sm font-bold text-white tracking-wider"
             initial={{ opacity: 0, scale: 0 }}
             animate={isPoweredUp ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0 }}
             transition={{ delay: 0.3, duration: 0.5 }}
-          />
+          >
+            XOPS
+          </motion.span>
         </div>
       </motion.div>
       

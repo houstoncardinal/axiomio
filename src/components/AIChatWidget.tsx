@@ -229,13 +229,13 @@ const AIChatWidget = () => {
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
             onClick={() => setIsOpen(true)}
-            className="fixed bottom-6 right-6 z-50 w-14 h-14 rounded-full bg-background border border-border shadow-xl shadow-black/20 flex items-center justify-center overflow-hidden group"
+            className="fixed bottom-4 right-4 sm:bottom-6 sm:right-6 z-50 w-12 h-12 sm:w-14 sm:h-14 rounded-full bg-background border border-border shadow-xl shadow-black/20 flex items-center justify-center overflow-hidden group"
           >
             <div className="absolute inset-0 bg-gradient-to-br from-primary/10 to-accent/10" />
             <img 
               src={logo} 
               alt="Alex" 
-              className="w-9 h-9 object-contain relative z-10 group-hover:scale-110 transition-transform duration-200 brightness-100"
+              className="w-7 h-7 sm:w-9 sm:h-9 object-contain relative z-10 group-hover:scale-110 transition-transform duration-200 brightness-100"
             />
           </motion.button>
         )}
@@ -249,7 +249,7 @@ const AIChatWidget = () => {
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.95, y: 10 }}
             transition={{ type: 'spring', damping: 30, stiffness: 400 }}
-            className="fixed bottom-6 right-6 z-50 w-[340px] h-[520px] max-h-[75vh] bg-background border border-border/50 rounded-2xl shadow-2xl shadow-black/10 flex flex-col overflow-hidden"
+            className="fixed inset-4 sm:inset-auto sm:bottom-6 sm:right-6 z-50 sm:w-[340px] sm:h-[520px] sm:max-h-[75vh] bg-background border border-border/50 rounded-2xl shadow-2xl shadow-black/10 flex flex-col overflow-hidden"
           >
             {/* Header */}
             <div className="flex items-center justify-between px-4 py-3 bg-gradient-to-r from-primary/5 via-transparent to-accent/5 border-b border-border/50">

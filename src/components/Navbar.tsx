@@ -45,8 +45,8 @@ export function Navbar() {
         className={cn(
           "fixed top-0 left-0 right-0 z-50 transition-all duration-300",
           scrolled 
-            ? "bg-background/95 backdrop-blur-xl border-b border-border shadow-sm py-3" 
-            : "bg-background/80 backdrop-blur-md py-4"
+            ? "bg-background border-b border-border/30 shadow-sm py-3" 
+            : "bg-background py-4"
         )}
         initial={{ y: -100 }}
         animate={{ y: 0 }}
@@ -63,7 +63,7 @@ export function Navbar() {
                 <img 
                   src={axiomioLogo} 
                   alt="AXIOMIO" 
-                  className="h-10 w-auto"
+                  className="h-8 w-auto object-contain"
                 />
               </motion.div>
             </Link>

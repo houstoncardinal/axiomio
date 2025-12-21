@@ -1,8 +1,11 @@
 import { useState, useRef, useEffect, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { MessageSquare, X, Send, Volume2, VolumeX, Sparkles, Loader2 } from 'lucide-react';
+import { X, Send, Volume2, VolumeX, Loader2, Mic, MicOff, Phone, PhoneOff } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { cn } from '@/lib/utils';
+import { useConversation } from '@elevenlabs/react';
+import { supabase } from '@/integrations/supabase/client';
+import logo from '@/assets/axiomio-logo-transparent.png';
 
 interface Message {
   role: 'user' | 'assistant';
@@ -14,14 +17,35 @@ const TTS_URL = `${import.meta.env.VITE_SUPABASE_URL}/functions/v1/text-to-speec
 
 const AIChatWidget = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const [activeTab, setActiveTab] = useState<'chat' | 'voice'>('chat');
   const [messages, setMessages] = useState<Message[]>([]);
   const [input, setInput] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const [isTTSEnabled, setIsTTSEnabled] = useState(false);
   const [isSpeaking, setIsSpeaking] = useState(false);
+  const [isVoiceConnecting, setIsVoiceConnecting] = useState(false);
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
   const audioRef = useRef<HTMLAudioElement | null>(null);
+
+  // ElevenLabs Conversation Hook
+  const conversation = useConversation({
+    onConnect: () => {
+      console.log('Voice connected');
+      setIsVoiceConnecting(false);
+    },
+    onDisconnect: () => {
+      console.log('Voice disconnected');
+      setIsVoiceConnecting(false);
+    },
+    onMessage: (message) => {
+      console.log('Voice message:', message);
+    },
+    onError: (error) => {
+      console.error('Voice error:', error);
+      setIsVoiceConnecting(false);
+    },
+  });
 
   const scrollToBottom = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
@@ -32,10 +56,38 @@ const AIChatWidget = () => {
   }, [messages]);
 
   useEffect(() => {
-    if (isOpen && inputRef.current) {
+    if (isOpen && inputRef.current && activeTab === 'chat') {
       inputRef.current.focus();
     }
-  }, [isOpen]);
+  }, [isOpen, activeTab]);
+
+  const startVoiceConversation = async () => {
+    try {
+      setIsVoiceConnecting(true);
+      
+      // Request microphone permission
+      await navigator.mediaDevices.getUserMedia({ audio: true });
+
+      // Get signed URL from edge function
+      const { data, error } = await supabase.functions.invoke('elevenlabs-conversation-token');
+
+      if (error || !data?.signed_url) {
+        throw new Error(error?.message || 'Failed to get conversation token');
+      }
+
+      // Start the conversation with WebSocket
+      await conversation.startSession({
+        signedUrl: data.signed_url,
+      });
+    } catch (error) {
+      console.error('Failed to start voice conversation:', error);
+      setIsVoiceConnecting(false);
+    }
+  };
+
+  const endVoiceConversation = async () => {
+    await conversation.endSession();
+  };
 
   const playTTS = async (text: string) => {
     if (!isTTSEnabled) return;
@@ -97,7 +149,6 @@ const AIChatWidget = () => {
       const decoder = new TextDecoder();
       let buffer = '';
 
-      // Add empty assistant message
       setMessages([...newMessages, { role: 'assistant', content: '' }]);
 
       while (true) {
@@ -130,12 +181,11 @@ const AIChatWidget = () => {
               });
             }
           } catch {
-            // Incomplete JSON, continue
+            // Incomplete JSON
           }
         }
       }
 
-      // Play TTS for the complete response
       if (assistantContent && isTTSEnabled) {
         playTTS(assistantContent);
       }
@@ -169,7 +219,7 @@ const AIChatWidget = () => {
 
   return (
     <>
-      {/* Chat Toggle Button */}
+      {/* Sleek Toggle Button */}
       <AnimatePresence>
         {!isOpen && (
           <motion.button
@@ -179,10 +229,14 @@ const AIChatWidget = () => {
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
             onClick={() => setIsOpen(true)}
-            className="fixed bottom-6 right-6 z-50 w-16 h-16 rounded-full bg-primary text-primary-foreground shadow-glow flex items-center justify-center group"
+            className="fixed bottom-6 right-6 z-50 w-14 h-14 rounded-full bg-gradient-to-br from-primary to-primary/80 text-primary-foreground shadow-lg shadow-primary/25 flex items-center justify-center overflow-hidden group"
           >
-            <div className="absolute inset-0 rounded-full bg-primary/50 animate-ping" />
-            <Sparkles className="w-7 h-7 relative z-10 group-hover:rotate-12 transition-transform" />
+            <div className="absolute inset-0 bg-gradient-to-br from-white/10 to-transparent" />
+            <img 
+              src={logo} 
+              alt="AXIA" 
+              className="w-8 h-8 object-contain relative z-10 group-hover:scale-110 transition-transform duration-200"
+            />
           </motion.button>
         )}
       </AnimatePresence>
@@ -191,120 +245,248 @@ const AIChatWidget = () => {
       <AnimatePresence>
         {isOpen && (
           <motion.div
-            initial={{ opacity: 0, scale: 0.9, y: 20 }}
+            initial={{ opacity: 0, scale: 0.95, y: 10 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
-            exit={{ opacity: 0, scale: 0.9, y: 20 }}
-            transition={{ type: 'spring', damping: 25, stiffness: 300 }}
-            className="fixed bottom-6 right-6 z-50 w-[380px] h-[600px] max-h-[80vh] bg-card border border-border rounded-2xl shadow-2xl flex flex-col overflow-hidden"
+            exit={{ opacity: 0, scale: 0.95, y: 10 }}
+            transition={{ type: 'spring', damping: 30, stiffness: 400 }}
+            className="fixed bottom-6 right-6 z-50 w-[340px] h-[520px] max-h-[75vh] bg-background border border-border/50 rounded-2xl shadow-2xl shadow-black/10 flex flex-col overflow-hidden"
           >
             {/* Header */}
-            <div className="flex items-center justify-between p-4 bg-gradient-to-r from-primary/10 to-accent/10 border-b border-border">
-              <div className="flex items-center gap-3">
-                <div className="w-10 h-10 rounded-full bg-primary/20 flex items-center justify-center">
-                  <Sparkles className="w-5 h-5 text-primary" />
+            <div className="flex items-center justify-between px-4 py-3 bg-gradient-to-r from-primary/5 via-transparent to-accent/5 border-b border-border/50">
+              <div className="flex items-center gap-2.5">
+                <div className="w-8 h-8 rounded-full bg-gradient-to-br from-primary/20 to-primary/10 flex items-center justify-center p-1.5">
+                  <img src={logo} alt="AXIA" className="w-full h-full object-contain" />
                 </div>
                 <div>
-                  <h3 className="font-semibold text-foreground">AXIA</h3>
-                  <p className="text-xs text-muted-foreground">AI Assistant</p>
+                  <h3 className="font-semibold text-sm text-foreground leading-none">AXIA</h3>
+                  <p className="text-[10px] text-muted-foreground mt-0.5">AI Assistant</p>
                 </div>
               </div>
-              <div className="flex items-center gap-2">
+              <div className="flex items-center gap-1">
                 <Button
                   variant="ghost"
                   size="icon"
                   onClick={toggleTTS}
                   className={cn(
-                    "h-8 w-8 rounded-full",
+                    "h-7 w-7 rounded-full",
                     isTTSEnabled && "text-primary bg-primary/10"
                   )}
                 >
                   {isTTSEnabled ? (
-                    <Volume2 className={cn("w-4 h-4", isSpeaking && "animate-pulse")} />
+                    <Volume2 className={cn("w-3.5 h-3.5", isSpeaking && "animate-pulse")} />
                   ) : (
-                    <VolumeX className="w-4 h-4" />
+                    <VolumeX className="w-3.5 h-3.5" />
                   )}
                 </Button>
                 <Button
                   variant="ghost"
                   size="icon"
                   onClick={() => setIsOpen(false)}
-                  className="h-8 w-8 rounded-full"
+                  className="h-7 w-7 rounded-full hover:bg-destructive/10 hover:text-destructive"
                 >
-                  <X className="w-4 h-4" />
+                  <X className="w-3.5 h-3.5" />
                 </Button>
               </div>
             </div>
 
-            {/* Messages */}
-            <div className="flex-1 overflow-y-auto p-4 space-y-4">
-              {messages.length === 0 && (
-                <div className="flex flex-col items-center justify-center h-full text-center px-4">
-                  <div className="w-16 h-16 rounded-full bg-gradient-to-br from-primary/20 to-accent/20 flex items-center justify-center mb-4">
-                    <MessageSquare className="w-8 h-8 text-primary" />
-                  </div>
-                  <h4 className="font-semibold text-foreground mb-2">Hi, I'm AXIA</h4>
-                  <p className="text-sm text-muted-foreground">
-                    Your AI assistant powered by Axiom.io. Ask me anything about our services, solutions, or how we can help transform your business.
-                  </p>
-                </div>
-              )}
-              
-              {messages.map((message, index) => (
-                <motion.div
-                  key={index}
-                  initial={{ opacity: 0, y: 10 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  className={cn(
-                    "flex",
-                    message.role === 'user' ? 'justify-end' : 'justify-start'
+            {/* Tab Switcher */}
+            <div className="flex border-b border-border/50">
+              <button
+                onClick={() => setActiveTab('chat')}
+                className={cn(
+                  "flex-1 py-2 text-xs font-medium transition-colors relative",
+                  activeTab === 'chat' 
+                    ? "text-primary" 
+                    : "text-muted-foreground hover:text-foreground"
+                )}
+              >
+                Chat
+                {activeTab === 'chat' && (
+                  <motion.div 
+                    layoutId="activeTab"
+                    className="absolute bottom-0 left-0 right-0 h-0.5 bg-primary"
+                  />
+                )}
+              </button>
+              <button
+                onClick={() => setActiveTab('voice')}
+                className={cn(
+                  "flex-1 py-2 text-xs font-medium transition-colors relative",
+                  activeTab === 'voice' 
+                    ? "text-primary" 
+                    : "text-muted-foreground hover:text-foreground"
+                )}
+              >
+                Voice Call
+                {activeTab === 'voice' && (
+                  <motion.div 
+                    layoutId="activeTab"
+                    className="absolute bottom-0 left-0 right-0 h-0.5 bg-primary"
+                  />
+                )}
+              </button>
+            </div>
+
+            {/* Chat Tab */}
+            {activeTab === 'chat' && (
+              <>
+                <div className="flex-1 overflow-y-auto p-3 space-y-3">
+                  {messages.length === 0 && (
+                    <div className="flex flex-col items-center justify-center h-full text-center px-4">
+                      <div className="w-12 h-12 rounded-full bg-gradient-to-br from-primary/15 to-accent/15 flex items-center justify-center mb-3 p-2">
+                        <img src={logo} alt="AXIA" className="w-full h-full object-contain" />
+                      </div>
+                      <h4 className="font-medium text-sm text-foreground mb-1">Welcome to AXIA</h4>
+                      <p className="text-xs text-muted-foreground leading-relaxed">
+                        Ask me anything about Axiom.io's services, solutions, or how we can help your business.
+                      </p>
+                    </div>
                   )}
-                >
-                  <div
+                  
+                  {messages.map((message, index) => (
+                    <motion.div
+                      key={index}
+                      initial={{ opacity: 0, y: 5 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      className={cn(
+                        "flex",
+                        message.role === 'user' ? 'justify-end' : 'justify-start'
+                      )}
+                    >
+                      <div
+                        className={cn(
+                          "max-w-[85%] rounded-xl px-3 py-2 text-xs leading-relaxed",
+                          message.role === 'user'
+                            ? 'bg-primary text-primary-foreground rounded-br-sm'
+                            : 'bg-muted/70 text-foreground rounded-bl-sm'
+                        )}
+                      >
+                        {message.content || (
+                          <span className="flex items-center gap-1.5">
+                            <Loader2 className="w-3 h-3 animate-spin" />
+                            Thinking...
+                          </span>
+                        )}
+                      </div>
+                    </motion.div>
+                  ))}
+                  <div ref={messagesEndRef} />
+                </div>
+
+                <form onSubmit={handleSubmit} className="p-3 border-t border-border/50 bg-background/80 backdrop-blur-sm">
+                  <div className="flex items-center gap-2">
+                    <input
+                      ref={inputRef}
+                      type="text"
+                      value={input}
+                      onChange={(e) => setInput(e.target.value)}
+                      placeholder="Type a message..."
+                      disabled={isLoading}
+                      className="flex-1 bg-muted/50 border border-border/50 rounded-full px-3.5 py-2 text-xs text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-1 focus:ring-primary/50 focus:border-primary/50"
+                    />
+                    <Button
+                      type="submit"
+                      size="icon"
+                      disabled={isLoading || !input.trim()}
+                      className="h-8 w-8 rounded-full bg-primary hover:bg-primary/90 shadow-sm"
+                    >
+                      {isLoading ? (
+                        <Loader2 className="w-3.5 h-3.5 animate-spin" />
+                      ) : (
+                        <Send className="w-3.5 h-3.5" />
+                      )}
+                    </Button>
+                  </div>
+                </form>
+              </>
+            )}
+
+            {/* Voice Tab */}
+            {activeTab === 'voice' && (
+              <div className="flex-1 flex flex-col items-center justify-center p-6 text-center">
+                {/* Voice Status Visualization */}
+                <div className="relative mb-6">
+                  <motion.div
+                    animate={conversation.status === 'connected' ? {
+                      scale: [1, 1.1, 1],
+                      opacity: [0.5, 0.8, 0.5],
+                    } : {}}
+                    transition={{ duration: 2, repeat: Infinity }}
                     className={cn(
-                      "max-w-[85%] rounded-2xl px-4 py-3 text-sm",
-                      message.role === 'user'
-                        ? 'bg-primary text-primary-foreground rounded-br-sm'
-                        : 'bg-muted text-foreground rounded-bl-sm'
+                      "absolute inset-0 rounded-full",
+                      conversation.status === 'connected' 
+                        ? "bg-green-500/20" 
+                        : "bg-primary/10"
+                    )}
+                    style={{ transform: 'scale(1.5)' }}
+                  />
+                  <motion.div
+                    animate={conversation.isSpeaking ? {
+                      scale: [1, 1.15, 1],
+                    } : {}}
+                    transition={{ duration: 0.5, repeat: Infinity }}
+                    className={cn(
+                      "relative w-20 h-20 rounded-full flex items-center justify-center",
+                      conversation.status === 'connected'
+                        ? "bg-gradient-to-br from-green-500/20 to-green-500/10 border-2 border-green-500/30"
+                        : "bg-gradient-to-br from-primary/20 to-primary/10 border-2 border-primary/20"
                     )}
                   >
-                    {message.content || (
-                      <span className="flex items-center gap-2">
-                        <Loader2 className="w-4 h-4 animate-spin" />
-                        Thinking...
-                      </span>
+                    {conversation.status === 'connected' ? (
+                      conversation.isSpeaking ? (
+                        <Volume2 className="w-8 h-8 text-green-500 animate-pulse" />
+                      ) : (
+                        <Mic className="w-8 h-8 text-green-500" />
+                      )
+                    ) : (
+                      <Phone className="w-8 h-8 text-primary" />
                     )}
-                  </div>
-                </motion.div>
-              ))}
-              <div ref={messagesEndRef} />
-            </div>
+                  </motion.div>
+                </div>
 
-            {/* Input */}
-            <form onSubmit={handleSubmit} className="p-4 border-t border-border bg-background/50 backdrop-blur-sm">
-              <div className="flex items-center gap-2">
-                <input
-                  ref={inputRef}
-                  type="text"
-                  value={input}
-                  onChange={(e) => setInput(e.target.value)}
-                  placeholder="Type your message..."
-                  disabled={isLoading}
-                  className="flex-1 bg-muted border-0 rounded-full px-4 py-3 text-sm text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary/50"
-                />
-                <Button
-                  type="submit"
-                  size="icon"
-                  disabled={isLoading || !input.trim()}
-                  className="h-10 w-10 rounded-full bg-primary hover:bg-primary/90"
-                >
-                  {isLoading ? (
-                    <Loader2 className="w-4 h-4 animate-spin" />
-                  ) : (
-                    <Send className="w-4 h-4" />
-                  )}
-                </Button>
+                <h4 className="font-medium text-sm text-foreground mb-1">
+                  {conversation.status === 'connected' 
+                    ? conversation.isSpeaking ? 'AXIA is speaking...' : 'Listening...'
+                    : 'Voice Conversation'
+                  }
+                </h4>
+                <p className="text-xs text-muted-foreground mb-6 max-w-[200px]">
+                  {conversation.status === 'connected'
+                    ? 'Speak naturally - AXIA will respond in real-time'
+                    : 'Start a live voice call with AXIA for hands-free assistance'
+                  }
+                </p>
+
+                {conversation.status === 'disconnected' ? (
+                  <Button
+                    onClick={startVoiceConversation}
+                    disabled={isVoiceConnecting}
+                    className="rounded-full px-6 bg-gradient-to-r from-primary to-primary/90 hover:from-primary/90 hover:to-primary/80 shadow-lg shadow-primary/20"
+                  >
+                    {isVoiceConnecting ? (
+                      <>
+                        <Loader2 className="w-4 h-4 mr-2 animate-spin" />
+                        Connecting...
+                      </>
+                    ) : (
+                      <>
+                        <Phone className="w-4 h-4 mr-2" />
+                        Start Call
+                      </>
+                    )}
+                  </Button>
+                ) : (
+                  <Button
+                    onClick={endVoiceConversation}
+                    variant="destructive"
+                    className="rounded-full px-6"
+                  >
+                    <PhoneOff className="w-4 h-4 mr-2" />
+                    End Call
+                  </Button>
+                )}
               </div>
-            </form>
+            )}
           </motion.div>
         )}
       </AnimatePresence>

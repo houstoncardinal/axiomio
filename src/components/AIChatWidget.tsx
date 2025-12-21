@@ -229,13 +229,13 @@ const AIChatWidget = () => {
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
             onClick={() => setIsOpen(true)}
-            className="fixed bottom-6 right-6 z-50 w-14 h-14 rounded-full bg-gradient-to-br from-primary to-primary/80 text-primary-foreground shadow-lg shadow-primary/25 flex items-center justify-center overflow-hidden group"
+            className="fixed bottom-6 right-6 z-50 w-14 h-14 rounded-full bg-background border border-border shadow-xl shadow-black/20 flex items-center justify-center overflow-hidden group"
           >
-            <div className="absolute inset-0 bg-gradient-to-br from-white/10 to-transparent" />
+            <div className="absolute inset-0 bg-gradient-to-br from-primary/10 to-accent/10" />
             <img 
               src={logo} 
-              alt="AXIA" 
-              className="w-8 h-8 object-contain relative z-10 group-hover:scale-110 transition-transform duration-200"
+              alt="Alex" 
+              className="w-9 h-9 object-contain relative z-10 group-hover:scale-110 transition-transform duration-200 brightness-100"
             />
           </motion.button>
         )}
@@ -255,10 +255,10 @@ const AIChatWidget = () => {
             <div className="flex items-center justify-between px-4 py-3 bg-gradient-to-r from-primary/5 via-transparent to-accent/5 border-b border-border/50">
               <div className="flex items-center gap-2.5">
                 <div className="w-8 h-8 rounded-full bg-gradient-to-br from-primary/20 to-primary/10 flex items-center justify-center p-1.5">
-                  <img src={logo} alt="AXIA" className="w-full h-full object-contain" />
+                  <img src={logo} alt="Alex" className="w-full h-full object-contain" />
                 </div>
                 <div>
-                  <h3 className="font-semibold text-sm text-foreground leading-none">AXIA</h3>
+                  <h3 className="font-semibold text-sm text-foreground leading-none">Alex</h3>
                   <p className="text-[10px] text-muted-foreground mt-0.5">AI Assistant</p>
                 </div>
               </div>
@@ -334,9 +334,9 @@ const AIChatWidget = () => {
                   {messages.length === 0 && (
                     <div className="flex flex-col items-center justify-center h-full text-center px-4">
                       <div className="w-12 h-12 rounded-full bg-gradient-to-br from-primary/15 to-accent/15 flex items-center justify-center mb-3 p-2">
-                        <img src={logo} alt="AXIA" className="w-full h-full object-contain" />
+                        <img src={logo} alt="Alex" className="w-full h-full object-contain" />
                       </div>
-                      <h4 className="font-medium text-sm text-foreground mb-1">Welcome to AXIA</h4>
+                      <h4 className="font-medium text-sm text-foreground mb-1">Hi, I'm Alex</h4>
                       <p className="text-xs text-muted-foreground leading-relaxed">
                         Ask me anything about Axiom.io's services, solutions, or how we can help your business.
                       </p>
@@ -446,7 +446,7 @@ const AIChatWidget = () => {
 
                 <h4 className="font-medium text-sm text-foreground mb-1">
                   {conversation.status === 'connected' 
-                    ? conversation.isSpeaking ? 'AXIA is speaking...' : 'Listening...'
+                    ? conversation.isSpeaking ? 'Alex is speaking...' : 'Listening...'
                     : 'Voice Conversation'
                   }
                 </h4>

@@ -13,7 +13,13 @@ const capabilities = [
   },
   {
     title: "SecOps",
-    items: ["SIEM & Log Aggregation", "Threat Intelligence", "Automated Incident Response", "Compliance Monitoring"],
+    items: [
+      "SIEM & Log Aggregation",
+      "Threat Intelligence",
+      "Automated Incident Response",
+      "Compliance Monitoring",
+      "VAPT for Network and Application",
+    ],
     color: "red-500",
   },
   {

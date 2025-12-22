@@ -49,7 +49,7 @@ const opsNodes = [
     secondaryColor: "#06B6D4",
     icon: GitBranch,
     metrics: ["CI/CD Pipelines", "Infrastructure as Code", "Continuous Monitoring"],
-    stat: "247 Pipelines",
+    stat: "24 X 7 Pipelines",
   },
   { 
     id: "secops", 
@@ -57,7 +57,7 @@ const opsNodes = [
     color: "#10B981",
     secondaryColor: "#14B8A6",
     icon: Lock,
-    metrics: ["Threat Detection", "Compliance", "Zero Trust"],
+    metrics: ["SIEM & Log Aggregation", "Threat Intelligence", "Automated Incident Response", "Compliance Monitoring", "VAPT for Network and Application"],
     stat: "100% Compliance",
   },
   { 
@@ -429,12 +429,12 @@ const CentralHub = ({ animationPhase, isActive }: { animationPhase: number; isAc
       >
         <div className="w-full h-full rounded-full bg-transparent flex items-center justify-center p-2 md:p-3">
           <motion.span 
-            className="text-[10px] md:text-sm font-bold text-white tracking-wider"
+            className="text-[8px] md:text-xs font-bold text-white tracking-wider"
             initial={{ opacity: 0, scale: 0 }}
             animate={isPoweredUp ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0 }}
             transition={{ delay: 0.3, duration: 0.5 }}
           >
-            XOPS
+            Xops360
           </motion.span>
         </div>
       </motion.div>

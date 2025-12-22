@@ -112,6 +112,19 @@ const services = [
     ],
   },
   {
+    icon: AlertTriangle,
+    title: "VAPT",
+    subtitle: "Penetration Testing",
+    description: "Comprehensive vulnerability assessment and penetration testing to identify, validate, and mitigate security risks across applications and infrastructure.",
+    capabilities: [
+      "Web Application & API VAPT",
+      "Network Vulnerability Assessments",
+      "Mobile Applications (Android & iOS) VAPT",
+      "Desktop (thick client) Application VAPT",
+      "Security Code Review",
+    ],
+  },
+  {
     icon: Server,
     title: "Endpoint Security",
     subtitle: "EDR & XDR",

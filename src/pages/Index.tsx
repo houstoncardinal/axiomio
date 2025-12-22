@@ -39,7 +39,7 @@ const services = [{
 }, {
   icon: Brain,
   title: "AI Automation with Cloud DevOps",
-  description: "AI workforce replacing manual DevOps and SRE—intelligent automation for cloud operations at scale.",
+  description: "AI workforce for DevOps, SRE, and cloud operations with intelligent DevSecOps automation including SAST & SCA.",
   gradient: "from-violet-500/20 to-secondary/10",
   link: "/services/ai-automation"
 }, {
@@ -50,21 +50,21 @@ const services = [{
   link: "/services/cybersecurity"
 }];
 const stats = [{
-  value: 500,
+  value: 100,
   suffix: "M+",
   label: "Value Delivered"
 }, {
   value: 150,
   suffix: "+",
-  label: "Enterprise Clients"
+  label: "Clients"
 }, {
   value: 98,
   suffix: "%",
   label: "Client Retention"
 }, {
-  value: 40,
+  value: 14,
   suffix: "+",
-  label: "Countries Served"
+  label: "Years of Excellence"
 }];
 export default function Index() {
   const heroRef = useRef<HTMLDivElement>(null);

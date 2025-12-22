@@ -52,8 +52,8 @@ const capabilities = [
     items: ["Model development", "Feature engineering", "Training pipelines", "Model serving", "A/B testing"],
   },
   {
-    title: "MLOps",
-    items: ["CI/CD for ML", "Model monitoring", "Drift detection", "Experiment tracking", "Model registry"],
+    title: "DevSecOps",
+    items: ["SAST (Static Analysis)", "SCA (Software Composition)", "Security Pipelines", "Vulnerability Scanning", "Compliance as Code"],
   },
   {
     title: "Data Infrastructure",

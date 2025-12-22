@@ -2,10 +2,10 @@ import { motion } from "framer-motion";
 import { AnimatedCounter } from "./AnimatedCounter";
 
 const stats = [
-  { value: 150, suffix: "+", label: "Enterprise Clients" },
+  { value: 150, suffix: "+", label: "Clients" },
   { value: 98, suffix: "%", label: "Client Retention" },
-  { value: 2.5, suffix: "B+", prefix: "$", label: "Value Delivered" },
-  { value: 12, suffix: "+", label: "Years of Excellence" },
+  { value: 100, suffix: "M+", prefix: "$", label: "Value Delivered" },
+  { value: 14, suffix: "+", label: "Years of Excellence" },
 ];
 
 export function StatsSection() {

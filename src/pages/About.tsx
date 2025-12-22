@@ -87,9 +87,9 @@ export default function About() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.3, duration: 0.6 }}
             >
-              We're not just an MSP—we're an ecosystem of partners. Cloud, ISP, 
-              Cybersecurity, Cloud Security, Network Security. 14 years of 
-              building relationships that transform enterprises.
+              For over 14 years, AxiomIO has been the trusted technology partner across verticals, 
+              delivering reliable and secure managed services. Today, we're redefining managed 
+              services for the modern era with our Product-led innovations Xops360 and XeroTrust platforms.
             </motion.p>
           </motion.div>
         </div>
@@ -121,11 +121,10 @@ export default function About() {
                 <div className="flex items-start gap-4">
                   <span className="text-4xl font-heading font-bold text-primary/30">2011</span>
                   <div>
-                    <h3 className="font-heading text-xl font-semibold text-foreground mb-2">The Beginning</h3>
+                    <h3 className="font-heading text-xl font-semibold text-foreground mb-2">Infrastructure Foundations</h3>
                     <p className="text-muted-foreground leading-relaxed">
-                      AXIOMIO started from the ground up—literally. We began with cabling, rack installations, 
-                      and hands-on infrastructure work. From Rackspace deployments to physical data center builds, 
-                      we learned the fundamentals that would shape our future.
+                      Launched hands-on IaaS deployments and 24/7 NOC services to modernize legacy infrastructure, 
+                      establishing Axiomio's reputation for reliable, scalable operations enterprises trust.
                     </p>
                   </div>
                 </div>
@@ -141,11 +140,10 @@ export default function About() {
                 <div className="flex items-start gap-4">
                   <span className="text-4xl font-heading font-bold text-primary/30">2015</span>
                   <div>
-                    <h3 className="font-heading text-xl font-semibold text-foreground mb-2">The Cloud Revolution</h3>
+                    <h3 className="font-heading text-xl font-semibold text-foreground mb-2">Private Cloud Pioneers</h3>
                     <p className="text-muted-foreground leading-relaxed">
-                      We witnessed the entire cloud transformation firsthand—and became an integral part of it. 
-                      As the industry shifted, we evolved with it, helping clients transition from traditional 
-                      bare-metal infrastructure to modern cloud environments.
+                      Pioneered private cloud architectures with large-scale Citrix VDI rollouts and customized 
+                      environments, enabling secure transitions to enterprise-grade virtualization while managing client deployments.
                     </p>
                   </div>
                 </div>
@@ -159,13 +157,12 @@ export default function About() {
                 className="glass-card rounded-2xl p-8"
               >
                 <div className="flex items-start gap-4">
-                  <span className="text-4xl font-heading font-bold text-primary/30">2019</span>
+                  <span className="text-4xl font-heading font-bold text-primary/30">2017</span>
                   <div>
-                    <h3 className="font-heading text-xl font-semibold text-foreground mb-2">Hands-On Partnership</h3>
+                    <h3 className="font-heading text-xl font-semibold text-foreground mb-2">Public Cloud Momentum</h3>
                     <p className="text-muted-foreground leading-relaxed">
-                      We developed our signature approach: true hand-holding through every step of the journey. 
-                      We don't just consult—we walk alongside our clients, guiding them through complex migrations 
-                      and ensuring nothing falls through the cracks.
+                      Secured AWS and Azure partnerships for seamless on-premises to public cloud migrations, 
+                      automating VDI across banking, finance, and engineering verticals to deliver agility and cost savings.
                     </p>
                   </div>
                 </div>
@@ -179,13 +176,12 @@ export default function About() {
                 className="glass-card rounded-2xl p-8"
               >
                 <div className="flex items-start gap-4">
-                  <span className="text-4xl font-heading font-bold text-primary/30">2021</span>
+                  <span className="text-4xl font-heading font-bold text-primary/30">2020</span>
                   <div>
-                    <h3 className="font-heading text-xl font-semibold text-foreground mb-2">XOPS360 & AI Workforce</h3>
+                    <h3 className="font-heading text-xl font-semibold text-foreground mb-2">AWS Advanced Excellence</h3>
                     <p className="text-muted-foreground leading-relaxed">
-                      We launched XOPS360, our flagship CloudOps automation platform. This marked our evolution 
-                      into a product-driven modern MSP powered by an AI workforce—combining 14 years of operational 
-                      expertise with cutting-edge automation.
+                      Attained AWS Advanced Partner status with MSSP L1, Digital Workspace, and DevOps competencies, 
+                      launching cloud-native apps supported by dedicated SOC, SIEM, and cybersecurity teams for compliant security.
                     </p>
                   </div>
                 </div>
@@ -199,13 +195,12 @@ export default function About() {
                 className="glass-card rounded-2xl p-8 border-primary/30"
               >
                 <div className="flex items-start gap-4">
-                  <span className="text-4xl font-heading font-bold text-primary">Today</span>
+                  <span className="text-4xl font-heading font-bold text-primary">2025</span>
                   <div>
-                    <h3 className="font-heading text-xl font-semibold text-foreground mb-2">14 Years of Transformation</h3>
+                    <h3 className="font-heading text-xl font-semibold text-foreground mb-2">AI-Driven Transformation</h3>
                     <p className="text-muted-foreground leading-relaxed">
-                      After 14 years in the trenches, we've seen it all—from cabling to cloud, from bare metal to 
-                      AI-driven automation. Today, we continue to hand-hold enterprises through their most critical 
-                      transformations, bringing the wisdom of experience to every engagement.
+                      Unveiled in-house AI platforms Xops360.ai and Xerotrust.ai, automating cloud security, FinOps, 
+                      Zero Trust access, and threat remediation with agentic AI that autonomously resolves issues.
                     </p>
                   </div>
                 </div>
@@ -276,14 +271,13 @@ export default function About() {
               />
               <div className="mt-8 space-y-6">
                 <p className="text-muted-foreground leading-relaxed">
-                  The technology landscape is filled with solutions searching for problems. 
-                  We take the opposite approach: starting with the strategic challenge, then 
-                  architecting the precise capabilities needed to address it.
+                  As a Modern MSP, AxiomIO blends artificial intelligence, automation, and governance 
+                  across every layer of service delivery—elevating traditional infrastructure management 
+                  into true intelligence management.
                 </p>
                 <p className="text-muted-foreground leading-relaxed">
-                  This discipline yields systems that are elegant in their purpose, efficient 
-                  in their operation, and adaptable as circumstances evolve. It's not about 
-                  having the latest technology—it's about having the right technology.
+                  We are more than a managed service provider. We are the intelligence engine powering 
+                  secure digital transformation for regulated industries worldwide.
                 </p>
                 <p className="text-muted-foreground leading-relaxed">
                   Our work spans industries and scales, but the thread is consistent: 

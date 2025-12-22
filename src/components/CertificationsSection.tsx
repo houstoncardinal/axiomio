@@ -55,7 +55,7 @@ const azureCertifications = [
 
 const partnerBadges = [
   {
-    name: "AWS Partner",
+    name: "AWS Advanced Partner",
     description: "Advanced Tier Services",
     logo: awsLogo,
     competencies: [
@@ -294,7 +294,7 @@ export function CertificationsSection() {
           </div>
           <div className="flex items-center gap-2 text-muted-foreground">
             <Award className="w-5 h-5 text-[#FF9900]" />
-            <span className="text-sm font-medium">AWS Premier Partner</span>
+            <span className="text-sm font-medium">AWS Advanced Partner</span>
           </div>
         </motion.div>
       </div>

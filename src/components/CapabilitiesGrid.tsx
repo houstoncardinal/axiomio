@@ -8,7 +8,13 @@ import { MagneticButton } from "./MagneticButton";
 const capabilities = [
   {
     title: "FinOps",
-    items: ["Cost Visibility & Allocation", "Budget Forecasting", "Reserved Instance Optimization", "Showback & Chargeback"],
+    items: [
+      "Cost Visibility & Allocation",
+      "Budget Forecasting & Anomaly Detection",
+      "Reserved Instance Optimization",
+      "Showback & Chargeback Reporting",
+      "Cloud Spend Governance",
+    ],
     color: "emerald-500",
   },
   {
@@ -24,12 +30,24 @@ const capabilities = [
   },
   {
     title: "CloudOps",
-    items: ["Infrastructure as Code", "Multi-cloud Orchestration", "Auto-scaling & Optimization", "Disaster Recovery"],
+    items: [
+      "Infrastructure as Code",
+      "Multi-cloud Orchestration",
+      "Auto-scaling & Optimization",
+      "Disaster Recovery & Backup",
+      "Cloud Migration & Modernization",
+    ],
     color: "blue-500",
   },
   {
     title: "DevOps",
-    items: ["CI/CD Pipeline Automation", "GitOps Workflows", "Container Orchestration", "Release Management"],
+    items: [
+      "CI/CD Pipeline Automation",
+      "GitOps Workflows",
+      "Container & Kubernetes Orchestration",
+      "Release Management",
+      "24 X 7 Pipeline Monitoring",
+    ],
     color: "violet-500",
   },
   {

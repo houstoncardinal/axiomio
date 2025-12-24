@@ -133,9 +133,9 @@ export default function XOPS360() {
 
         <div className="container relative z-10 mx-auto px-4 sm:px-6 lg:px-8 py-8 md:py-16 lg:py-24">
           <div className="max-w-6xl mx-auto">
-            <div className="flex flex-col lg:grid lg:grid-cols-2 gap-8 lg:gap-16 items-center">
-              {/* Left content */}
-              <div className="text-center lg:text-left order-2 lg:order-1">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-center">
+              {/* Left content - First on mobile, first on desktop */}
+              <div className="text-center lg:text-left">
                 <motion.div
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
@@ -198,14 +198,14 @@ export default function XOPS360() {
                 </motion.div>
               </div>
 
-              {/* Right visual - Responsive CloudOps Visualization */}
+              {/* Right visual - Responsive CloudOps Visualization - Below hero on mobile, right column on desktop */}
               <motion.div
                 initial={{ opacity: 0, scale: 0.9 }}
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ delay: 0.4, duration: 0.8 }}
-                className="relative w-full order-1 lg:order-2"
+                className="relative w-full"
               >
-                <div className="relative w-full max-w-[320px] sm:max-w-[400px] md:max-w-[450px] lg:max-w-[500px] aspect-square mx-auto">
+                <div className="relative w-full max-w-[280px] sm:max-w-[350px] md:max-w-[400px] lg:max-w-[500px] aspect-square mx-auto">
                   {/* Central XOPS360 Hub */}
                   <motion.div
                     className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-24 h-24 sm:w-28 sm:h-28 md:w-32 md:h-32 lg:w-36 lg:h-36 rounded-2xl bg-gradient-to-br from-primary via-blue-500 to-secondary p-[2px] shadow-2xl z-10"

@@ -1,5 +1,5 @@
-import React, { useRef, useState } from 'react';
-import { motion, useScroll, useTransform, AnimatePresence } from 'framer-motion';
+import React, { useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import {
   ArrowRight,
@@ -30,8 +30,6 @@ import { Button } from '@/components/ui/button';
 import { AnimatedGradientText } from '@/components/AnimatedGradientText';
 import { MagneticButton } from '@/components/MagneticButton';
 import { PremiumCard } from '@/components/PremiumCard';
-import { GlowingOrb } from '@/components/GlowingOrb';
-import { ParticleField } from '@/components/ParticleField';
 import { SEOHead } from '@/components/SEOHead';
 import { XeroTrustROICalculator } from '@/components/XeroTrustROICalculator';
 import { XeroTrustInteractiveDemo } from '@/components/XeroTrustInteractiveDemo';
@@ -460,15 +458,6 @@ function CustomerSuccessStories() {
 }
 
 export default function XeroTrust() {
-  const heroRef = useRef<HTMLDivElement>(null);
-  const { scrollYProgress } = useScroll({
-    target: heroRef,
-    offset: ['start start', 'end start'],
-  });
-
-  const heroOpacity = useTransform(scrollYProgress, [0, 0.5], [1, 0]);
-  const heroScale = useTransform(scrollYProgress, [0, 0.5], [1, 0.95]);
-
   return (
     <div className="min-h-screen bg-background overflow-hidden">
       <SEOHead
@@ -481,31 +470,30 @@ export default function XeroTrust() {
       />
       <Navbar />
 
-      {/* Hero Section */}
-      <header ref={heroRef} className="relative min-h-[100vh] flex items-center pt-20">
+      {/* Hero Section - Mobile Optimized */}
+      <header className="relative min-h-screen flex items-center pt-20 pb-12 lg:pt-24 lg:pb-16 overflow-hidden">
+        {/* Simplified Background - Clean gradient without overwhelming effects */}
         <div className="absolute inset-0">
-          <div className="absolute inset-0 bg-hero-gradient" />
-          <GlowingOrb size={900} color="secondary" className="-top-1/4 -right-1/4" delay={0} />
-          <GlowingOrb size={700} color="primary" className="top-1/3 -left-1/4" delay={2} />
-          <ParticleField />
+          <div className="absolute inset-0 bg-gradient-to-br from-secondary/5 via-background to-primary/5" />
+          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_hsl(var(--secondary)/0.15),_transparent_50%)]" />
+          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom_left,_hsl(var(--primary)/0.1),_transparent_50%)]" />
+          {/* Grid pattern */}
+          <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.02)_1px,transparent_1px)] bg-[size:60px_60px] [mask-image:radial-gradient(ellipse_at_center,black_20%,transparent_70%)]" />
         </div>
 
-        <motion.div
-          className="container relative z-10 mx-auto px-6 lg:px-8 py-24"
-          style={{ opacity: heroOpacity, scale: heroScale }}
-        >
+        <div className="container relative z-10 mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12 lg:py-16">
           <div className="max-w-6xl mx-auto">
-            <div className="grid lg:grid-cols-2 gap-16 items-center">
-              {/* Left content */}
-              <div>
+            <div className="grid lg:grid-cols-2 gap-8 lg:gap-16 items-center">
+              {/* Left content - Mobile optimized */}
+              <div className="text-center lg:text-left">
                 <motion.div
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
-                  className="mb-6"
+                  className="mb-4 sm:mb-6"
                 >
-                  <span className="inline-flex items-center gap-3 text-sm font-semibold uppercase tracking-[0.2em] text-secondary px-5 py-2 rounded-full border border-secondary/30 bg-secondary/10">
+                  <span className="inline-flex items-center gap-2 sm:gap-3 text-xs sm:text-sm font-semibold uppercase tracking-[0.15em] sm:tracking-[0.2em] text-secondary px-3 sm:px-5 py-1.5 sm:py-2 rounded-full border border-secondary/30 bg-secondary/10">
                     <motion.span
-                      className="w-2 h-2 bg-secondary rounded-full"
+                      className="w-1.5 h-1.5 sm:w-2 sm:h-2 bg-secondary rounded-full"
                       animate={{ scale: [1, 1.5, 1] }}
                       transition={{ duration: 1.5, repeat: Infinity }}
                     />
@@ -517,10 +505,10 @@ export default function XeroTrust() {
                   initial={{ opacity: 0, y: 30 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.1 }}
-                  className="font-heading text-5xl md:text-6xl lg:text-7xl font-bold text-foreground mb-6 leading-[1.05] tracking-tight"
+                  className="font-heading text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-foreground mb-4 sm:mb-6 leading-[1.1] tracking-tight"
                 >
                   <AnimatedGradientText>XeroTrust</AnimatedGradientText>
-                  <span className="block text-3xl md:text-4xl lg:text-5xl mt-4 text-foreground font-medium tracking-tight">
+                  <span className="block text-xl sm:text-2xl md:text-3xl lg:text-4xl mt-2 sm:mt-4 text-foreground font-medium tracking-tight">
                     Zero Trust, Zero Friction
                   </span>
                 </motion.h1>
@@ -529,7 +517,7 @@ export default function XeroTrust() {
                   initial={{ opacity: 0, y: 30 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.2 }}
-                  className="text-xl text-foreground/80 leading-relaxed mb-8 max-w-2xl"
+                  className="text-base sm:text-lg md:text-xl text-foreground/80 leading-relaxed mb-6 sm:mb-8 max-w-2xl mx-auto lg:mx-0"
                 >
                   Secure access for teams. <span className="font-semibold text-foreground">No VPN required.</span> Give employees instant, secure access to internal apps without exposing your entire network.
                   <span className="block mt-2 text-secondary font-semibold">Deploy in 10 minutes.</span>
@@ -539,20 +527,20 @@ export default function XeroTrust() {
                   initial={{ opacity: 0, y: 30 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.3 }}
-                  className="flex flex-col sm:flex-row gap-4"
+                  className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center lg:justify-start"
                 >
                   <MagneticButton>
-                    <Button variant="hero" size="xl" asChild>
+                    <Button variant="hero" size="lg" className="w-full sm:w-auto" asChild>
                       <Link to="/contact">
                         Start Free Trial
-                        <ArrowRight className="ml-2 h-5 w-5" />
+                        <ArrowRight className="ml-2 h-4 w-4 sm:h-5 sm:w-5" />
                       </Link>
                     </Button>
                   </MagneticButton>
                   <MagneticButton>
-                    <Button variant="hero-outline" size="xl" className="gap-2" asChild>
+                    <Button variant="hero-outline" size="lg" className="w-full sm:w-auto gap-2" asChild>
                       <Link to="/xerotrust/compare">
-                        <Shield className="w-5 h-5" />
+                        <Shield className="w-4 h-4 sm:w-5 sm:h-5" />
                         Compare Solutions
                       </Link>
                     </Button>
@@ -560,14 +548,14 @@ export default function XeroTrust() {
                 </motion.div>
               </div>
 
-              {/* Right visual - Masterfully Designed Zero-Trust Network Visualization */}
+              {/* Right visual - Hidden on mobile, shown on lg+ */}
               <motion.div
                 initial={{ opacity: 0, scale: 0.9 }}
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ delay: 0.4, duration: 0.8 }}
-                className="relative"
+                className="relative hidden lg:block"
               >
-                <div className="relative aspect-square max-w-lg mx-auto min-h-[400px] sm:min-h-[450px] md:min-h-[500px] lg:min-h-[550px]">
+                <div className="relative aspect-square max-w-lg mx-auto min-h-[450px] lg:min-h-[500px]">
                   {/* Background ambient glow effect - responsive */}
                   <div className="absolute inset-0 flex items-center justify-center z-0">
                     <motion.div
@@ -1096,13 +1084,13 @@ export default function XeroTrust() {
               </motion.div>
             </div>
           </div>
-        </motion.div>
+        </div>
       </header>
 
       {/* Stats Bar */}
-      <section className="py-12 border-y border-border/30 bg-muted/20">
-        <div className="container mx-auto px-6 lg:px-8">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
+      <section className="py-8 sm:py-12 border-y border-border/30 bg-muted/20">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-8">
             {stats.map((stat, i) => (
               <motion.div
                 key={stat.label}
@@ -1112,8 +1100,8 @@ export default function XeroTrust() {
                 viewport={{ once: true }}
                 className="text-center"
               >
-                <p className="font-heading text-4xl md:text-5xl font-bold text-gradient mb-2">{stat.value}</p>
-                <p className="text-muted-foreground">{stat.label}</p>
+                <p className="font-heading text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-gradient mb-1 sm:mb-2">{stat.value}</p>
+                <p className="text-xs sm:text-sm text-muted-foreground">{stat.label}</p>
               </motion.div>
             ))}
           </div>
@@ -1121,41 +1109,41 @@ export default function XeroTrust() {
       </section>
 
       {/* What is ZTNA */}
-      <section className="py-28 lg:py-36 relative bg-gradient-to-br from-muted/20 to-transparent">
-        <div className="container mx-auto px-6 lg:px-8">
+      <section className="py-16 sm:py-20 lg:py-28 relative bg-gradient-to-br from-muted/20 to-transparent">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             className="max-w-4xl mx-auto"
           >
-            <div className="text-center mb-12">
-              <span className="inline-block text-sm font-semibold uppercase tracking-[0.2em] text-secondary mb-4">
+            <div className="text-center mb-8 sm:mb-12">
+              <span className="inline-block text-xs sm:text-sm font-semibold uppercase tracking-[0.15em] sm:tracking-[0.2em] text-secondary mb-3 sm:mb-4">
                 Zero Trust Explained
               </span>
-              <h2 className="font-heading text-4xl md:text-5xl font-bold text-foreground mb-6">
+              <h2 className="font-heading text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-foreground mb-4 sm:mb-6">
                 What is <AnimatedGradientText>Zero-Trust Network Access</AnimatedGradientText>?
               </h2>
             </div>
 
             <PremiumCard>
-              <div className="p-10 lg:p-12">
-                <div className="flex items-start gap-4 mb-8">
-                  <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-secondary/20 to-primary/20 flex items-center justify-center flex-shrink-0 border border-secondary/20">
-                    <Shield className="w-8 h-8 text-secondary" />
+              <div className="p-6 sm:p-8 lg:p-12">
+                <div className="flex flex-col sm:flex-row items-start gap-4 mb-6 sm:mb-8">
+                  <div className="w-12 h-12 sm:w-16 sm:h-16 rounded-xl sm:rounded-2xl bg-gradient-to-br from-secondary/20 to-primary/20 flex items-center justify-center flex-shrink-0 border border-secondary/20">
+                    <Shield className="w-6 h-6 sm:w-8 sm:h-8 text-secondary" />
                   </div>
                   <div>
-                    <p className="text-2xl font-heading font-bold text-foreground mb-4">
+                    <p className="text-lg sm:text-xl lg:text-2xl font-heading font-bold text-foreground mb-2 sm:mb-4">
                       "Never trust, always verify."
                     </p>
-                    <p className="text-lg text-muted-foreground leading-relaxed">
+                    <p className="text-sm sm:text-base lg:text-lg text-muted-foreground leading-relaxed">
                       Unlike legacy networks that trust everything inside the firewall, Zero-Trust authenticates and encrypts every single connection—regardless of location or network.
                     </p>
                   </div>
                 </div>
 
-                <div className="space-y-4">
-                  <p className="text-foreground/90 text-lg font-semibold mb-6">XeroTrust implements zero-trust by:</p>
+                <div className="space-y-3 sm:space-y-4">
+                  <p className="text-foreground/90 text-base sm:text-lg font-semibold mb-4 sm:mb-6">XeroTrust implements zero-trust by:</p>
                   {[
                     { num: '1', text: 'Authenticating users and devices', detail: '(SSO, MFA)' },
                     { num: '2', text: 'Verifying device security', detail: '(posture checks)' },
@@ -1169,16 +1157,16 @@ export default function XeroTrust() {
                       whileInView={{ opacity: 1, x: 0 }}
                       transition={{ delay: i * 0.1 }}
                       viewport={{ once: true }}
-                      className="flex items-start gap-4 p-4 rounded-xl bg-muted/30 hover:bg-muted/50 transition-colors"
+                      className="flex items-start gap-3 sm:gap-4 p-3 sm:p-4 rounded-xl bg-muted/30 hover:bg-muted/50 transition-colors"
                     >
-                      <div className="w-8 h-8 rounded-lg bg-secondary/20 flex items-center justify-center flex-shrink-0 border border-secondary/30">
-                        <span className="text-secondary font-bold">{item.num}</span>
+                      <div className="w-6 h-6 sm:w-8 sm:h-8 rounded-lg bg-secondary/20 flex items-center justify-center flex-shrink-0 border border-secondary/30">
+                        <span className="text-secondary font-bold text-xs sm:text-sm">{item.num}</span>
                       </div>
-                      <div className="flex-1">
-                        <span className="text-foreground font-semibold">{item.text}</span>
-                        <span className="text-muted-foreground ml-2">{item.detail}</span>
+                      <div className="flex-1 min-w-0">
+                        <span className="text-foreground font-semibold text-sm sm:text-base">{item.text}</span>
+                        <span className="text-muted-foreground text-xs sm:text-sm ml-1 sm:ml-2 block sm:inline">{item.detail}</span>
                       </div>
-                      <CheckCircle2 className="w-5 h-5 text-secondary flex-shrink-0" />
+                      <CheckCircle2 className="w-4 h-4 sm:w-5 sm:h-5 text-secondary flex-shrink-0" />
                     </motion.div>
                   ))}
                 </div>
@@ -1189,23 +1177,23 @@ export default function XeroTrust() {
       </section>
 
       {/* Four Core Principles */}
-      <section className="py-28 lg:py-36 relative">
-        <div className="container mx-auto px-6 lg:px-8">
+      <section className="py-16 sm:py-20 lg:py-28 relative">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="text-center max-w-3xl mx-auto mb-20"
+            className="text-center max-w-3xl mx-auto mb-12 sm:mb-16 lg:mb-20"
           >
-            <span className="inline-block text-sm font-semibold uppercase tracking-[0.2em] text-secondary mb-4">
+            <span className="inline-block text-xs sm:text-sm font-semibold uppercase tracking-[0.15em] sm:tracking-[0.2em] text-secondary mb-3 sm:mb-4">
               Core Principles
             </span>
-            <h2 className="font-heading text-4xl md:text-5xl font-bold text-foreground mb-6">
+            <h2 className="font-heading text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-foreground mb-4 sm:mb-6">
               Four Pillars of <AnimatedGradientText>Zero-Trust</AnimatedGradientText>
             </h2>
           </motion.div>
 
-          <div className="grid md:grid-cols-2 gap-8 max-w-6xl mx-auto">
+          <div className="grid sm:grid-cols-2 gap-4 sm:gap-6 lg:gap-8 max-w-6xl mx-auto">
             {[
               {
                 title: 'Continuous Verification',
@@ -1236,12 +1224,12 @@ export default function XeroTrust() {
                 viewport={{ once: true }}
               >
                 <PremiumCard className="h-full hover:shadow-glow transition-shadow duration-300">
-                  <div className="p-8">
-                    <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-secondary/20 to-primary/20 flex items-center justify-center mb-6 border border-secondary/20">
-                      <principle.icon className="w-8 h-8 text-secondary" />
+                  <div className="p-5 sm:p-6 lg:p-8">
+                    <div className="w-12 h-12 sm:w-14 sm:h-14 lg:w-16 lg:h-16 rounded-xl sm:rounded-2xl bg-gradient-to-br from-secondary/20 to-primary/20 flex items-center justify-center mb-4 sm:mb-6 border border-secondary/20">
+                      <principle.icon className="w-6 h-6 sm:w-7 sm:h-7 lg:w-8 lg:h-8 text-secondary" />
                     </div>
-                    <h3 className="font-heading text-2xl font-bold text-foreground mb-4">{principle.title}</h3>
-                    <p className="text-muted-foreground leading-relaxed text-lg">{principle.description}</p>
+                    <h3 className="font-heading text-lg sm:text-xl lg:text-2xl font-bold text-foreground mb-2 sm:mb-4">{principle.title}</h3>
+                    <p className="text-muted-foreground leading-relaxed text-sm sm:text-base lg:text-lg">{principle.description}</p>
                   </div>
                 </PremiumCard>
               </motion.div>
@@ -1251,27 +1239,27 @@ export default function XeroTrust() {
       </section>
 
       {/* Use Cases */}
-      <section className="py-28 lg:py-36 relative bg-muted/10">
+      <section className="py-16 sm:py-20 lg:py-28 relative bg-muted/10">
         <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-border to-transparent" />
-        <div className="container mx-auto px-6 lg:px-8">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="text-center max-w-3xl mx-auto mb-20"
+            className="text-center max-w-3xl mx-auto mb-12 sm:mb-16 lg:mb-20"
           >
-            <span className="inline-block text-sm font-semibold uppercase tracking-[0.2em] text-secondary mb-4">
+            <span className="inline-block text-xs sm:text-sm font-semibold uppercase tracking-[0.15em] sm:tracking-[0.2em] text-secondary mb-3 sm:mb-4">
               Use Cases & Real Results
             </span>
-            <h2 className="font-heading text-4xl md:text-5xl font-bold text-foreground mb-6">
+            <h2 className="font-heading text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-foreground mb-4 sm:mb-6">
               Organizations Deliver <AnimatedGradientText>Measurable Impact</AnimatedGradientText>
             </h2>
-            <p className="text-lg text-muted-foreground">
+            <p className="text-sm sm:text-base lg:text-lg text-muted-foreground">
               Real teams, real problems solved, real metrics improved
             </p>
           </motion.div>
 
-          <div className="grid lg:grid-cols-3 gap-8">
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8">
             {useCases.map((useCase, index) => (
               <motion.div
                 key={useCase.title}
@@ -1281,16 +1269,16 @@ export default function XeroTrust() {
                 viewport={{ once: true }}
               >
                 <PremiumCard className="h-full">
-                  <div className="p-8 lg:p-10">
-                    <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-secondary/20 to-primary/20 flex items-center justify-center mb-6 border border-secondary/20">
-                      <useCase.icon className="w-7 h-7 text-secondary" />
+                  <div className="p-5 sm:p-6 lg:p-8">
+                    <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-xl sm:rounded-2xl bg-gradient-to-br from-secondary/20 to-primary/20 flex items-center justify-center mb-4 sm:mb-6 border border-secondary/20">
+                      <useCase.icon className="w-6 h-6 sm:w-7 sm:h-7 text-secondary" />
                     </div>
-                    <h3 className="font-heading text-2xl font-bold text-foreground mb-4">{useCase.title}</h3>
-                    <p className="text-muted-foreground mb-6 leading-relaxed">{useCase.description}</p>
-                    <ul className="space-y-3">
+                    <h3 className="font-heading text-lg sm:text-xl lg:text-2xl font-bold text-foreground mb-2 sm:mb-4">{useCase.title}</h3>
+                    <p className="text-muted-foreground mb-4 sm:mb-6 leading-relaxed text-sm sm:text-base">{useCase.description}</p>
+                    <ul className="space-y-2 sm:space-y-3">
                       {useCase.benefits.map((benefit) => (
-                        <li key={benefit} className="flex items-center gap-3 text-foreground/90">
-                          <CheckCircle2 className="w-5 h-5 text-secondary flex-shrink-0" />
+                        <li key={benefit} className="flex items-center gap-2 sm:gap-3 text-foreground/90 text-sm sm:text-base">
+                          <CheckCircle2 className="w-4 h-4 sm:w-5 sm:h-5 text-secondary flex-shrink-0" />
                           {benefit}
                         </li>
                       ))}
@@ -1304,27 +1292,27 @@ export default function XeroTrust() {
       </section>
 
       {/* Capabilities */}
-      <section className="py-28 lg:py-36 relative bg-muted/10">
+      <section className="py-16 sm:py-20 lg:py-28 relative bg-muted/10">
         <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-secondary/30 to-transparent" />
-        <div className="container mx-auto px-6 lg:px-8">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="text-center max-w-3xl mx-auto mb-20"
+            className="text-center max-w-3xl mx-auto mb-12 sm:mb-16 lg:mb-20"
           >
-            <span className="inline-block text-sm font-semibold uppercase tracking-[0.2em] text-secondary mb-4">
+            <span className="inline-block text-xs sm:text-sm font-semibold uppercase tracking-[0.15em] sm:tracking-[0.2em] text-secondary mb-3 sm:mb-4">
               Core Capabilities
             </span>
-            <h2 className="font-heading text-4xl md:text-5xl font-bold text-foreground mb-6">
+            <h2 className="font-heading text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-foreground mb-4 sm:mb-6">
               Enterprise-Grade <AnimatedGradientText>Core Features</AnimatedGradientText>
             </h2>
-            <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+            <p className="text-sm sm:text-base lg:text-lg text-muted-foreground max-w-2xl mx-auto">
               Built on WireGuard's proven cryptographic foundation with intelligent peer-to-peer mesh networking
             </p>
           </motion.div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
             {capabilities.map((cap, index) => (
               <motion.div
                 key={cap.title}
@@ -1332,15 +1320,15 @@ export default function XeroTrust() {
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ delay: index * 0.05 }}
                 viewport={{ once: true }}
-                className="group p-8 rounded-2xl bg-card/50 border border-border/50 hover:border-secondary/30 transition-all duration-300"
+                className="group p-5 sm:p-6 lg:p-8 rounded-xl sm:rounded-2xl bg-card/50 border border-border/50 hover:border-secondary/30 transition-all duration-300"
               >
-                <div className="p-3 rounded-xl bg-secondary/10 text-secondary w-fit mb-5 border border-secondary/20 group-hover:bg-secondary/20 transition-colors">
-                  <cap.icon className="h-6 w-6" />
+                <div className="p-2.5 sm:p-3 rounded-lg sm:rounded-xl bg-secondary/10 text-secondary w-fit mb-4 sm:mb-5 border border-secondary/20 group-hover:bg-secondary/20 transition-colors">
+                  <cap.icon className="h-5 w-5 sm:h-6 sm:w-6" />
                 </div>
-                <h3 className="font-heading text-xl font-semibold text-foreground mb-3 group-hover:text-secondary transition-colors">
+                <h3 className="font-heading text-base sm:text-lg lg:text-xl font-semibold text-foreground mb-2 sm:mb-3 group-hover:text-secondary transition-colors">
                   {cap.title}
                 </h3>
-                <p className="text-muted-foreground leading-relaxed">{cap.description}</p>
+                <p className="text-muted-foreground leading-relaxed text-sm sm:text-base">{cap.description}</p>
               </motion.div>
             ))}
           </div>
@@ -1348,27 +1336,27 @@ export default function XeroTrust() {
       </section>
 
       {/* Enterprise Security, Zero Complexity */}
-      <section className="py-28 lg:py-36 relative overflow-hidden">
+      <section className="py-16 sm:py-20 lg:py-28 relative overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-b from-transparent via-secondary/5 to-transparent" />
-        <div className="container relative z-10 mx-auto px-6 lg:px-8">
+        <div className="container relative z-10 mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="text-center max-w-3xl mx-auto mb-20"
+            className="text-center max-w-3xl mx-auto mb-12 sm:mb-16 lg:mb-20"
           >
-            <span className="inline-block text-sm font-semibold uppercase tracking-[0.2em] text-secondary mb-4">
+            <span className="inline-block text-xs sm:text-sm font-semibold uppercase tracking-[0.15em] sm:tracking-[0.2em] text-secondary mb-3 sm:mb-4">
               Enterprise Features
             </span>
-            <h2 className="font-heading text-4xl md:text-5xl font-bold text-foreground mb-6">
+            <h2 className="font-heading text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-foreground mb-4 sm:mb-6">
               Enterprise Security, <AnimatedGradientText>Zero Complexity</AnimatedGradientText>
             </h2>
-            <p className="text-lg text-muted-foreground">
+            <p className="text-sm sm:text-base lg:text-lg text-muted-foreground">
               Advanced identity verification and seamless integrations for enterprise-grade security
             </p>
           </motion.div>
 
-          <div className="grid lg:grid-cols-2 gap-8 max-w-6xl mx-auto mb-16">
+          <div className="grid lg:grid-cols-2 gap-4 sm:gap-6 lg:gap-8 max-w-6xl mx-auto mb-12 sm:mb-16">
             {/* Identity & Device Verification */}
             <motion.div
               initial={{ opacity: 0, y: 40 }}
@@ -1376,17 +1364,17 @@ export default function XeroTrust() {
               viewport={{ once: true }}
             >
               <PremiumCard className="h-full">
-                <div className="p-8 lg:p-10">
-                  <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-secondary/20 to-primary/20 flex items-center justify-center mb-6 border border-secondary/20">
-                    <Fingerprint className="w-8 h-8 text-secondary" />
+                <div className="p-5 sm:p-6 lg:p-8">
+                  <div className="w-12 h-12 sm:w-14 sm:h-14 lg:w-16 lg:h-16 rounded-xl sm:rounded-2xl bg-gradient-to-br from-secondary/20 to-primary/20 flex items-center justify-center mb-4 sm:mb-6 border border-secondary/20">
+                    <Fingerprint className="w-6 h-6 sm:w-7 sm:h-7 lg:w-8 lg:h-8 text-secondary" />
                   </div>
-                  <h3 className="font-heading text-2xl font-bold text-foreground mb-4">
+                  <h3 className="font-heading text-lg sm:text-xl lg:text-2xl font-bold text-foreground mb-2 sm:mb-4">
                     Identity & Device Verification
                   </h3>
-                  <p className="text-muted-foreground leading-relaxed mb-6">
+                  <p className="text-muted-foreground leading-relaxed mb-4 sm:mb-6 text-sm sm:text-base">
                     Continuous verification of user identity and device posture before granting access to any resource.
                   </p>
-                  <ul className="space-y-3">
+                  <ul className="space-y-2 sm:space-y-3">
                     {[
                       'Multi-factor authentication (MFA)',
                       'Disk encryption verification',
@@ -1394,8 +1382,8 @@ export default function XeroTrust() {
                       'OS patch compliance',
                       'Device fingerprinting',
                     ].map((item) => (
-                      <li key={item} className="flex items-center gap-3 text-foreground/90">
-                        <CheckCircle2 className="w-5 h-5 text-secondary flex-shrink-0" />
+                      <li key={item} className="flex items-center gap-2 sm:gap-3 text-foreground/90 text-sm sm:text-base">
+                        <CheckCircle2 className="w-4 h-4 sm:w-5 sm:h-5 text-secondary flex-shrink-0" />
                         {item}
                       </li>
                     ))}

@@ -12,7 +12,7 @@ const partners = [
   {
     name: "AWS",
     logo: awsLogo,
-    description: "Premier Partner",
+    description: "Advanced Partner",
   },
   {
     name: "Google Cloud",

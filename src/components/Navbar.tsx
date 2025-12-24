@@ -177,20 +177,20 @@ export function Navbar() {
                 transition={{ duration: 0.3 }}
                 className="md:hidden overflow-hidden"
               >
-                <div className="py-6 flex flex-col gap-2 border-t border-border/50 mt-4">
+                <div className="py-4 flex flex-col gap-1 border-t border-border/50 mt-4 max-h-[calc(100vh-100px)] overflow-y-auto">
                   {navLinks.map((link, index) => (
                     <motion.div
                       key={link.href}
                       initial={{ opacity: 0, x: -20 }}
                       animate={{ opacity: 1, x: 0 }}
-                      transition={{ delay: index * 0.05 }}
+                      transition={{ delay: index * 0.03 }}
                     >
                       {link.hasMegaMenu ? (
                         <div>
                           <button
                             onClick={() => setMobileServicesOpen(!mobileServicesOpen)}
                             className={cn(
-                              "w-full flex items-center justify-between px-4 py-3 rounded-lg text-base font-medium transition-all",
+                              "w-full flex items-center justify-between px-3 py-2.5 rounded-lg text-sm font-medium transition-all",
                               mobileServicesOpen || location.pathname.startsWith("/services")
                                 ? "text-primary bg-primary/10"
                                 : "text-muted-foreground hover:text-foreground hover:bg-muted/50"
@@ -213,7 +213,7 @@ export function Navbar() {
                                 transition={{ duration: 0.2 }}
                                 className="overflow-hidden"
                               >
-                                <div className="mt-2 ml-4 pl-4 border-l-2 border-primary/20 space-y-1">
+                                <div className="mt-1 ml-3 pl-3 border-l-2 border-primary/20 space-y-0.5">
                                   <Link
                                     to="/services/strategy-advisory"
                                     onClick={() => setIsOpen(false)}
@@ -252,11 +252,11 @@ export function Navbar() {
                                   <Link
                                     to="/xerotrust"
                                     onClick={() => setIsOpen(false)}
-                                    className="block px-3 py-2 text-sm text-cyan-500 hover:text-cyan-400 hover:bg-cyan-500/5 rounded-md transition-colors font-medium"
+                                    className="block px-3 py-2 text-sm text-secondary hover:text-secondary/80 hover:bg-secondary/5 rounded-md transition-colors font-medium"
                                   >
                                     XeroTrust
                                   </Link>
-                                  <div className="h-px bg-border/30 my-2" />
+                                  <div className="h-px bg-border/30 my-1" />
                                   <Link
                                     to="/services"
                                     onClick={() => setIsOpen(false)}
@@ -274,7 +274,7 @@ export function Navbar() {
                           to={link.href}
                           onClick={() => setIsOpen(false)}
                           className={cn(
-                            "block px-4 py-3 rounded-lg text-base font-medium transition-all",
+                            "block px-3 py-2.5 rounded-lg text-sm font-medium transition-all",
                             location.pathname === link.href
                               ? "text-primary bg-primary/10"
                               : "text-muted-foreground hover:text-foreground hover:bg-muted/50"
@@ -288,9 +288,10 @@ export function Navbar() {
                   <motion.div
                     initial={{ opacity: 0, x: -20 }}
                     animate={{ opacity: 1, x: 0 }}
-                    transition={{ delay: navLinks.length * 0.05 }}
+                    transition={{ delay: navLinks.length * 0.03 }}
+                    className="pt-3"
                   >
-                    <Button variant="hero" size="lg" className="w-full mt-4" asChild>
+                    <Button variant="hero" size="xl" className="w-full" asChild>
                       <Link to="/contact" onClick={() => setIsOpen(false)}>
                         Get Started
                       </Link>

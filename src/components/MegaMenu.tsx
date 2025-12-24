@@ -71,7 +71,7 @@ const services = [
       { name: "AI-Powered DevOps", icon: Workflow },
       { name: "Cloud Automation", icon: Cloud },
       { name: "Intelligent SRE", icon: Sparkles },
-      { name: "MLOps & AIOps", icon: Database },
+      { name: "DevSecOps (SAST, SCA)", icon: Shield },
     ],
   },
   {

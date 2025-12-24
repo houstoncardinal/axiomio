@@ -510,7 +510,7 @@ export default function XeroWaste() {
               Get a free cloud cost analysis and discover how much you could save with XeroWaste.
             </p>
             <MagneticButton>
-              <Button variant="premium" size="xl" className="bg-green-500 hover:bg-green-600" asChild>
+              <Button variant="hero" size="xl" className="bg-green-500 hover:bg-green-600" asChild>
                 <Link to="/contact">
                   Get Free Cost Analysis
                   <ArrowRight className="ml-2 h-5 w-5" />

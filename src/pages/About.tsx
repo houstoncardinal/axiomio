@@ -381,7 +381,7 @@ export default function About() {
               we'd welcome the conversation.
             </p>
             <MagneticButton>
-              <Button variant="premium" size="xl" asChild>
+              <Button variant="hero" size="xl" asChild>
                 <Link to="/contact">
                   Start a Conversation
                   <ArrowRight className="ml-2 h-5 w-5" />

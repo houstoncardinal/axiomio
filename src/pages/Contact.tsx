@@ -161,8 +161,8 @@ export default function Contact() {
                 
                 <Button 
                   type="submit" 
-                  variant="luxury" 
-                  size="lg" 
+                  variant="hero" 
+                  size="xl" 
                   className="w-full"
                   disabled={isSubmitting}
                 >

@@ -71,7 +71,7 @@ export function MountainVisualization() {
             transition={{ duration: 0.6, delay: 0.3 }}
             viewport={{ once: true }}
           >
-            <Button size="lg" className="shadow-glow" asChild>
+            <Button variant="hero" size="xl" asChild>
               <Link to="/xops360">
                 Discover XOPS360
                 <ArrowRight className="ml-2 h-4 w-4" />

@@ -274,7 +274,7 @@ export default function Services() {
               challenges and opportunities. Let's find the right starting point together.
             </p>
             <MagneticButton>
-              <Button variant="premium" size="xl" asChild>
+              <Button variant="hero" size="xl" asChild>
                 <Link to="/contact">
                   Schedule a Discovery Call
                   <ArrowRight className="ml-2 h-5 w-5" />

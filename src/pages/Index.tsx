@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { motion, useScroll, useTransform } from "framer-motion";
+import { motion } from "framer-motion";
 import { ArrowRight, Brain, Cpu, LineChart, Zap, Sparkles, ChevronRight, Shield } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Navbar } from "@/components/Navbar";
@@ -70,15 +70,6 @@ const stats = [{
 export default function Index() {
   const heroRef = useRef<HTMLDivElement>(null);
   const {
-    scrollYProgress
-  } = useScroll({
-    target: heroRef,
-    offset: ["start start", "end start"]
-  });
-  const heroOpacity = useTransform(scrollYProgress, [0, 0.5], [1, 0]);
-  const heroScale = useTransform(scrollYProgress, [0, 0.5], [1, 0.95]);
-  const heroY = useTransform(scrollYProgress, [0, 0.5], [0, 100]);
-  const {
     ref: xopsRef,
     inView: xopsInView
   } = useInViewOnce<HTMLDivElement>("800px");
@@ -95,11 +86,7 @@ export default function Index() {
           <div className="absolute bottom-1/4 right-1/4 w-[400px] h-[400px] bg-accent/5 rounded-full blur-3xl" />
         </div>
         
-        <motion.div style={{
-        opacity: heroOpacity,
-        scale: heroScale,
-        y: heroY
-      }} className="container relative z-10 mx-auto px-6 lg:px-8 lg:py-28 py-[50px]">
+        <div className="container relative z-10 mx-auto px-6 lg:px-8 lg:py-28 py-[50px]">
           <div className="max-w-5xl mx-auto">
             {/* Badge */}
             <motion.div initial={{
@@ -214,7 +201,7 @@ export default function Index() {
               </div>
             </motion.div>
           </div>
-        </motion.div>
+        </div>
       </header>
 
       {/* Stats Section */}
@@ -407,7 +394,7 @@ export default function Index() {
                 once: true
               }}>
                   <MagneticButton>
-                    <Button variant="premium" size="xl" asChild>
+                    <Button variant="hero" size="xl" asChild>
                       <Link to="/contact">
                         Schedule a Demo
                         <ArrowRight className="ml-2 h-4 w-4" />

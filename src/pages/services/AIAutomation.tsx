@@ -11,94 +11,94 @@ import { createBreadcrumbSchema, aiAutomationSchema, organizationSchema } from "
 
 const offerings = [
   {
+    icon: Bot,
+    title: "AIOps & Intelligent Monitoring",
+    description: "Deploy AI-driven anomaly detection, predictive alerting, and automated root cause analysis to reduce MTTR and prevent incidents before they impact users.",
+  },
+  {
+    icon: Cog,
+    title: "Automated Runbook Execution",
+    description: "Transform manual runbooks into intelligent automation workflows that self-heal infrastructure, auto-scale resources, and remediate issues autonomously.",
+  },
+  {
+    icon: Network,
+    title: "Infrastructure Intelligence",
+    description: "Leverage ML models for capacity planning, resource optimization, and predictive scaling across multi-cloud and hybrid environments.",
+  },
+  {
     icon: LineChart,
-    title: "AI Strategy & Roadmapping",
-    description: "Define comprehensive AI strategies aligned with business objectives, including use case prioritization, capability building, and governance frameworks.",
+    title: "SRE Automation Platform",
+    description: "Build comprehensive SRE tooling with automated SLO tracking, error budgets, chaos engineering, and intelligent incident management.",
   },
   {
     icon: Brain,
-    title: "Machine Learning Solutions",
-    description: "Design and deploy production ML systems for prediction, classification, recommendation, and optimization across enterprise use cases.",
-  },
-  {
-    icon: Bot,
-    title: "Intelligent Process Automation",
-    description: "Combine RPA, ML, and natural language processing to automate complex workflows that require judgment and adaptation.",
-  },
-  {
-    icon: MessageSquare,
-    title: "Conversational AI",
-    description: "Build sophisticated chatbots and virtual assistants that understand context, handle complexity, and deliver genuine value.",
-  },
-  {
-    icon: Eye,
-    title: "Computer Vision",
-    description: "Implement visual AI for quality inspection, document processing, surveillance, and augmented reality applications.",
+    title: "ChatOps & AI Assistants",
+    description: "Deploy conversational AI that integrates with Slack, Teams, and PagerDuty to streamline incident response and accelerate troubleshooting.",
   },
   {
     icon: FileSearch,
-    title: "Document Intelligence",
-    description: "Extract, classify, and process unstructured documents at scale with high accuracy and continuous learning.",
+    title: "Log & Observability Analytics",
+    description: "Implement AI-powered log analysis, distributed tracing correlation, and intelligent alerting to surface actionable insights from observability data.",
   },
 ];
 
 const capabilities = [
   {
-    title: "Foundation Models",
-    items: ["GPT integration", "Claude deployment", "Fine-tuning", "RAG systems", "Prompt engineering"],
+    title: "AIOps Stack",
+    items: ["Anomaly Detection", "Predictive Alerting", "Event Correlation", "Root Cause Analysis", "Noise Reduction"],
   },
   {
-    title: "ML Engineering",
-    items: ["Model development", "Feature engineering", "Training pipelines", "Model serving", "A/B testing"],
+    title: "Automation Platforms",
+    items: ["Ansible + AI", "Terraform Automation", "Kubernetes Operators", "Event-Driven Automation", "Self-Healing Systems"],
   },
   {
-    title: "DevSecOps",
-    items: ["SAST (Static Analysis)", "SCA (Software Composition)", "Security Pipelines", "Vulnerability Scanning", "Compliance as Code"],
+    title: "Observability AI",
+    items: ["Log Analytics ML", "Metrics Intelligence", "Trace Correlation", "SLO Automation", "Incident Prediction"],
   },
   {
-    title: "Data Infrastructure",
-    items: ["Feature stores", "Data pipelines", "Vector databases", "Data labeling", "Quality frameworks"],
+    title: "DevOps Intelligence",
+    items: ["Pipeline Optimization", "Deployment Analytics", "Change Risk Scoring", "Capacity Forecasting", "Cost Optimization"],
   },
 ];
 
 const useCases = [
   {
-    industry: "Insurance",
-    challenge: "A major insurer needed to automate claims processing for 10M+ annual claims while maintaining accuracy and compliance.",
-    outcome: "Deployed document AI system achieving 94% straight-through processing, reducing average claim cycle from 14 days to 4 hours.",
+    industry: "FinTech Platform",
+    challenge: "A global payments provider faced 500+ daily alerts, overwhelming their SRE team and causing alert fatigue with 45-minute MTTR.",
+    outcome: "Deployed AIOps platform with intelligent alert correlation, reducing noise by 85% and cutting MTTR to under 5 minutes.",
   },
   {
-    industry: "E-commerce",
-    challenge: "A leading marketplace sought to personalize product recommendations across 50M+ SKUs for 200M+ active users.",
-    outcome: "Implemented real-time recommendation engine that increased conversion by 34% and average order value by 28%.",
+    industry: "SaaS Enterprise",
+    challenge: "A B2B SaaS company struggled with unpredictable scaling and frequent outages during traffic spikes affecting 10M+ users.",
+    outcome: "Implemented predictive auto-scaling with ML models, achieving 99.99% uptime and reducing infrastructure costs by 40%.",
   },
   {
-    industry: "Energy",
-    challenge: "Utility company required predictive maintenance for 15,000+ assets across transmission and distribution network.",
-    outcome: "Built ML platform predicting failures 6 weeks in advance with 92% accuracy, preventing $180M in potential outage costs.",
+    industry: "Healthcare Tech",
+    challenge: "A telemedicine platform needed 24/7 reliability but manual incident response was slow and error-prone across 200+ microservices.",
+    outcome: "Built self-healing infrastructure with automated runbooks, resolving 78% of incidents without human intervention.",
   },
 ];
 
 const process = [
   {
-    phase: "Assess",
-    description: "Evaluate AI readiness, identify high-value use cases, and assess data and infrastructure requirements.",
+    phase: "Audit",
+    description: "Analyze current tooling, incident patterns, and operational bottlenecks to identify automation opportunities.",
   },
   {
     phase: "Design",
-    description: "Architect solutions with appropriate algorithms, infrastructure, and integration patterns for production deployment.",
+    description: "Architect AI-driven automation workflows with appropriate ML models and integration patterns.",
   },
   {
-    phase: "Build",
-    description: "Develop and train models with rigorous experimentation, validation, and performance optimization.",
+    phase: "Implement",
+    description: "Deploy automation incrementally with rigorous testing, rollback capabilities, and human-in-the-loop safeguards.",
   },
   {
-    phase: "Deploy",
-    description: "Implement production-ready solutions with monitoring, scaling, and continuous improvement capabilities.",
+    phase: "Validate",
+    description: "Measure impact on MTTR, incident volume, and team efficiency with comprehensive observability.",
   },
   {
-    phase: "Operate",
-    description: "Maintain model performance, retrain on new data, and evolve capabilities based on business feedback.",
+    phase: "Scale",
+    description: "Expand automation coverage, train models on new patterns, and continuously improve based on feedback.",
   },
 ];
 
@@ -117,9 +117,9 @@ export default function AIAutomation() {
   return (
     <main className="min-h-screen bg-background overflow-hidden">
       <SEOHead
-        title="AI & Automation Services | Machine Learning & MLOps | Axiomio"
-        description="Enterprise AI implementation, machine learning solutions, intelligent process automation, and MLOps consulting. Deploy AI that delivers measurable ROI for Fortune 500 companies."
-        keywords="AI consulting, machine learning consulting, MLOps, intelligent automation, RPA, conversational AI, computer vision, document AI, AI strategy, enterprise AI, GPT integration, LLM deployment"
+        title="AI Automation for DevOps & SRE | AIOps & Intelligent Operations | Axiomio"
+        description="Transform your DevOps and SRE operations with AI-powered automation. Reduce MTTR by 90%, automate incident response, and achieve self-healing infrastructure with our AIOps solutions."
+        keywords="AIOps, DevOps automation, SRE automation, intelligent operations, automated incident response, self-healing infrastructure, predictive alerting, automated runbooks, infrastructure automation, observability AI"
         canonicalUrl="https://axiomio.com/services/ai-automation"
         structuredData={pageSchema}
       />
@@ -164,8 +164,8 @@ export default function AIAutomation() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.1, duration: 0.6 }}
             >
-              AI &{" "}
-              <span className="text-gradient">Automation</span>
+              AI Automation for{" "}
+              <span className="text-gradient">DevOps & SRE</span>
             </motion.h1>
             
             <motion.p 
@@ -174,8 +174,8 @@ export default function AIAutomation() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.2, duration: 0.6 }}
             >
-              Deploy intelligent automation solutions that enhance decision-making, 
-              streamline operations, and unlock capabilities previously impossible.
+              Transform operational excellence with AI-powered automation. Reduce MTTR by 90%, 
+              automate incident response, and build self-healing infrastructure that scales.
             </motion.p>
             
             <motion.div
@@ -206,25 +206,25 @@ export default function AIAutomation() {
             >
               <SectionHeader
                 label="Overview"
-                title="AI that delivers real value"
+                title="Intelligent operations at scale"
                 align="left"
               />
               <div className="mt-8 space-y-6 text-muted-foreground leading-relaxed">
                 <p>
-                  Artificial intelligence has moved from experimental curiosity to strategic 
-                  imperative. Our AI & Automation practice helps organizations move beyond 
-                  pilots to deploy AI that delivers measurable business value at enterprise scale.
+                  Modern DevOps and SRE teams are drowning in alerts, manual toil, and reactive 
+                  firefighting. Our AI Automation practice transforms operations from reactive 
+                  to predictive, enabling teams to focus on innovation instead of incidents.
                 </p>
                 <p>
-                  We take a pragmatic approach: identifying high-value use cases, building 
-                  production-ready solutions, and establishing the governance and capabilities 
-                  needed for long-term success. Not every problem needs AI—but where it can 
-                  create value, we know how to make it work.
+                  We implement battle-tested AIOps solutions that integrate with your existing 
+                  toolchain—Kubernetes, Prometheus, Datadog, PagerDuty, and more. Our approach 
+                  delivers measurable outcomes: reduced MTTR, fewer incidents, and dramatically 
+                  lower operational burden.
                 </p>
                 <p>
-                  From foundation model integration to custom ML development, from intelligent 
-                  automation to computer vision, we bring the expertise to turn AI potential 
-                  into operational reality.
+                  From intelligent alerting to self-healing infrastructure, from automated 
+                  runbooks to predictive scaling, we bring the expertise to turn operational 
+                  chaos into engineering excellence.
                 </p>
               </div>
             </motion.div>
@@ -237,14 +237,14 @@ export default function AIAutomation() {
               viewport={{ once: true }}
             >
               <h3 className="font-heading text-xl font-semibold text-foreground mb-6">
-                AI Maturity Stages
+                Automation Maturity Journey
               </h3>
               <div className="space-y-6">
                 {[
-                  { stage: "Exploring", desc: "Evaluating AI potential and identifying initial use cases" },
-                  { stage: "Piloting", desc: "Running proof-of-concepts and validating technical feasibility" },
-                  { stage: "Scaling", desc: "Moving successful pilots to production deployment" },
-                  { stage: "Optimizing", desc: "Maximizing value from deployed AI and expanding capabilities" },
+                  { stage: "Reactive", desc: "Manual incident response, alert fatigue, high MTTR" },
+                  { stage: "Proactive", desc: "Intelligent alerting, automated triage, runbook automation" },
+                  { stage: "Predictive", desc: "ML-driven anomaly detection, capacity forecasting, incident prevention" },
+                  { stage: "Autonomous", desc: "Self-healing systems, auto-remediation, minimal human intervention" },
                 ].map((item, index) => (
                   <motion.div
                     key={item.stage}
@@ -280,8 +280,8 @@ export default function AIAutomation() {
           >
             <SectionHeader
               label="Offerings"
-              title="AI solutions that work in production"
-              description="End-to-end capabilities for enterprise AI, from strategy through deployment and ongoing optimization."
+              title="AIOps & automation solutions"
+              description="Production-ready automation capabilities that integrate with your existing DevOps toolchain and deliver immediate value."
             />
           </motion.div>
           
@@ -322,8 +322,8 @@ export default function AIAutomation() {
           >
             <SectionHeader
               label="Our Process"
-              title="From concept to production AI"
-              description="A proven methodology for deploying AI that delivers sustainable business value."
+              title="From toil to automation"
+              description="A proven methodology for implementing AI automation that reduces operational burden and improves reliability."
             />
           </motion.div>
           
@@ -363,7 +363,7 @@ export default function AIAutomation() {
           >
             <SectionHeader
               label="Technical Capabilities"
-              title="Full-stack AI expertise"
+              title="Full-stack AIOps expertise"
             />
           </motion.div>
           
@@ -405,8 +405,8 @@ export default function AIAutomation() {
           >
             <SectionHeader
               label="Impact"
-              title="AI at enterprise scale"
-              description="Real-world implementations driving measurable business outcomes."
+              title="Operational excellence delivered"
+              description="Real-world AIOps implementations driving measurable reliability and efficiency improvements."
             />
           </motion.div>
           

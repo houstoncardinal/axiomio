@@ -1,55 +1,44 @@
 import { motion } from "framer-motion";
 import { Award, Shield, Cloud, Code, Database, Lock } from "lucide-react";
 
-// AWS Badges
-import awsDevOpsEngineer from "@/assets/badges/aws-devops-engineer-pro.png";
-import awsDeveloperAssociate from "@/assets/badges/aws-developer-associate.png";
-import awsSolutionsArchitect from "@/assets/badges/aws-solutions-architect-associate.png";
-import awsLogo from "@/assets/badges/aws-logo.png";
-
-// Azure Badges
-import azureDeveloper from "@/assets/badges/azure-developer-associate.png";
-import azureSecurityEngineer from "@/assets/badges/azure-security-engineer.png";
-import azureDataEngineer from "@/assets/badges/azure-data-engineer.png";
-import microsoftCsp from "@/assets/badges/microsoft-csp.svg";
-
-// Partner Logos
-import acronisLogo from "@/assets/badges/acronis-logo.png";
-import citrixLogo from "@/assets/badges/citrix-logo.png";
-
 const awsCertifications = [
   {
-    name: "AWS Certified DevOps Engineer",
-    level: "Professional",
-    image: awsDevOpsEngineer,
+    name: "AWS DevOps Services Competency",
+    level: "Partner Badge",
+    image: "/logos/AWS Badges/aws_devops.png",
   },
   {
-    name: "AWS Certified Developer",
-    level: "Associate",
-    image: awsDeveloperAssociate,
+    name: "AWS Lambda Service Delivery",
+    level: "Partner Badge",
+    image: "/logos/AWS Badges/aws_lambda sdp.png",
   },
   {
-    name: "AWS Certified Solutions Architect",
-    level: "Associate",
-    image: awsSolutionsArchitect,
+    name: "AWS Qualified Software",
+    level: "Partner Badge",
+    image: "/logos/AWS Badges/qualified software.png",
+  },
+  {
+    name: "Amazon DynamoDB Delivery",
+    level: "Partner Badge",
+    image: "/logos/AWS Badges/dynamodb.png",
+  },
+  {
+    name: "Amazon API Gateway Delivery",
+    level: "Partner Badge",
+    image: "/logos/AWS Badges/api gateway.png",
+  },
+  {
+    name: "Digital Workplace Services",
+    level: "Partner Badge",
+    image: "/logos/AWS Badges/digitalworkplace.png",
   },
 ];
 
 const azureCertifications = [
   {
-    name: "Azure Developer",
-    level: "Associate",
-    image: azureDeveloper,
-  },
-  {
-    name: "Azure Security Engineer",
-    level: "Expert",
-    image: azureSecurityEngineer,
-  },
-  {
-    name: "Azure Data Engineer",
-    level: "Associate",
-    image: azureDataEngineer,
+    name: "Microsoft Azure",
+    level: "Partner",
+    image: "https://upload.wikimedia.org/wikipedia/commons/thumb/f/fa/Microsoft_Azure.svg/150px-Microsoft_Azure.svg.png",
   },
 ];
 
@@ -57,7 +46,7 @@ const partnerBadges = [
   {
     name: "AWS Advanced Partner",
     description: "Advanced Tier Services",
-    logo: awsLogo,
+    logo: "/logos/AWS Badges/tiered badge.png",
     competencies: [
       "Immersion Day",
       "Solution Provider",
@@ -68,24 +57,6 @@ const partnerBadges = [
       "L1 MSSP Services Competency",
       "Digital Workplace Services Competency",
     ],
-  },
-  {
-    name: "Microsoft",
-    description: "Cloud Solution Provider",
-    logo: microsoftCsp,
-    competencies: ["Azure", "Office 365"],
-  },
-  {
-    name: "Acronis",
-    description: "Cyber Protect Partner",
-    logo: acronisLogo,
-    competencies: ["Backup Solutions", "Cyber Protection"],
-  },
-  {
-    name: "Citrix",
-    description: "Partner Service Provider",
-    logo: citrixLogo,
-    competencies: ["Diamond Validated"],
   },
 ];
 
@@ -187,10 +158,10 @@ export function CertificationsSection() {
         >
           <div className="flex items-center gap-3 mb-8">
             <Code className="w-5 h-5 text-[#FF9900]" />
-            <h3 className="font-heading text-xl font-semibold text-foreground">AWS Certifications</h3>
+            <h3 className="font-heading text-xl font-semibold text-foreground">AWS Partner Badges</h3>
           </div>
-          
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6 gap-6">
             {awsCertifications.map((cert, index) => (
               <motion.div
                 key={cert.name}

@@ -418,24 +418,24 @@ const CentralHub = ({ animationPhase, isActive }: { animationPhase: number; isAc
       
       {/* Core hub */}
       <motion.div
-        className="relative w-20 h-20 md:w-28 md:h-28 rounded-full bg-gradient-to-br from-primary via-blue-500 to-secondary p-[3px]"
+        className="relative w-20 h-20 md:w-28 md:h-28 rounded-full bg-gradient-to-br from-primary via-blue-500 to-secondary p-[2px]"
         initial={{ boxShadow: "0 0 0 hsl(var(--primary) / 0)" }}
         animate={isPoweredUp ? {
-          boxShadow: isActive 
+          boxShadow: isActive
             ? "0 0 60px hsl(var(--primary) / 0.5), 0 0 120px hsl(var(--primary) / 0.25)"
             : "0 0 40px hsl(var(--primary) / 0.35), 0 0 80px hsl(var(--primary) / 0.15)",
         } : { boxShadow: "0 0 0 hsl(var(--primary) / 0)" }}
         transition={{ duration: 0.8 }}
       >
-        <div className="w-full h-full rounded-full bg-transparent flex items-center justify-center p-2 md:p-3">
-          <motion.span 
-            className="text-[8px] md:text-xs font-bold text-white tracking-wider"
+        <div className="w-full h-full rounded-full bg-gradient-to-br from-slate-900 via-blue-950 to-slate-950 flex items-center justify-center p-1.5 md:p-2 overflow-hidden">
+          <motion.img
+            src="/logos/xops360.svg"
+            alt="Xops360"
+            className="w-full h-full object-contain drop-shadow-[0_0_8px_rgba(59,130,246,0.5)]"
             initial={{ opacity: 0, scale: 0 }}
             animate={isPoweredUp ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0 }}
             transition={{ delay: 0.3, duration: 0.5 }}
-          >
-            Xops360
-          </motion.span>
+          />
         </div>
       </motion.div>
       

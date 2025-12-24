@@ -166,10 +166,10 @@ export default function XOPS360() {
                   initial={{ opacity: 0, y: 30 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.1 }}
-                  className="font-heading text-5xl md:text-6xl lg:text-7xl font-bold text-foreground mb-6 leading-[1.05]"
+                  className="font-heading text-5xl md:text-6xl lg:text-7xl font-bold text-foreground mb-6 leading-[1.05] tracking-tight"
                 >
                   <AnimatedGradientText>XOPS360</AnimatedGradientText>
-                  <span className="block text-3xl md:text-4xl lg:text-5xl mt-4 text-foreground/90">
+                  <span className="block text-3xl md:text-4xl lg:text-5xl mt-4 text-foreground font-medium tracking-tight">
                     The CloudOps Automation Engine
                   </span>
                 </motion.h1>
@@ -178,10 +178,10 @@ export default function XOPS360() {
                   initial={{ opacity: 0, y: 30 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.2 }}
-                  className="text-xl text-muted-foreground leading-relaxed mb-8"
+                  className="text-xl text-foreground/80 leading-relaxed mb-8 max-w-2xl"
                 >
-                  Turn your runbooks and repetitive tickets into reusable automations. 
-                  Scale operations 2-3x without scaling engineers—while improving SLAs and margins.
+                  Turn your runbooks and repetitive tickets into <span className="font-semibold text-foreground">reusable automations.</span>
+                  <span className="block mt-2 text-secondary font-semibold">Scale operations 2-3x without scaling engineers.</span>
                 </motion.p>
 
                 <motion.div
@@ -209,70 +209,155 @@ export default function XOPS360() {
                 </motion.div>
               </div>
 
-              {/* Right visual */}
+              {/* Right visual - Enhanced CloudOps Visualization */}
               <motion.div
                 initial={{ opacity: 0, scale: 0.9 }}
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ delay: 0.4, duration: 0.8 }}
                 className="relative"
               >
-                <div className="relative aspect-square max-w-lg mx-auto">
-                  {/* Central hub */}
-                  <div className="absolute inset-0 flex items-center justify-center">
-                    <motion.div
-                      className="w-40 h-40 rounded-full bg-gradient-to-br from-primary via-blue-500 to-secondary flex items-center justify-center shadow-glow-intense"
-                      animate={{ rotate: [0, 360] }}
-                      transition={{ duration: 30, repeat: Infinity, ease: 'linear' }}
-                    >
-                      <div className="w-32 h-32 rounded-full bg-background/90 flex items-center justify-center">
-                        <span className="font-heading text-3xl font-bold text-gradient">X360</span>
-                      </div>
-                    </motion.div>
-                  </div>
+                <div className="relative aspect-square max-w-lg mx-auto min-h-[500px]">
+                  {/* Central XOPS360 Hub */}
+                  <motion.div
+                    className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-36 h-36 rounded-2xl bg-gradient-to-br from-primary via-blue-500 to-secondary p-1 shadow-2xl"
+                    animate={{
+                      boxShadow: [
+                        '0 20px 60px rgba(var(--primary-rgb), 0.4)',
+                        '0 20px 80px rgba(var(--primary-rgb), 0.6)',
+                        '0 20px 60px rgba(var(--primary-rgb), 0.4)',
+                      ],
+                    }}
+                    transition={{ duration: 3, repeat: Infinity, ease: 'easeInOut' }}
+                  >
+                    <div className="w-full h-full rounded-xl bg-background/95 backdrop-blur-sm flex flex-col items-center justify-center">
+                      <Workflow className="w-10 h-10 text-primary mb-2" />
+                      <span className="font-heading text-lg font-bold text-gradient">XOPS360</span>
+                      <span className="text-[10px] text-muted-foreground uppercase tracking-wider">Automation Hub</span>
+                    </div>
+                  </motion.div>
 
-                  {/* Orbiting rings */}
-                  {[0, 1, 2].map((i) => (
-                    <motion.div
-                      key={i}
-                      className="absolute inset-0 rounded-full border border-primary/20"
-                      style={{
-                        inset: `${i * 40}px`,
-                      }}
-                      animate={{ rotate: i % 2 === 0 ? 360 : -360 }}
-                      transition={{ duration: 20 + i * 5, repeat: Infinity, ease: 'linear' }}
-                    >
-                      {/* Orbit dots */}
-                      {[0, 90, 180, 270].map((angle) => (
-                        <div
-                          key={angle}
-                          className="absolute w-3 h-3 rounded-full bg-primary/60"
-                          style={{
-                            top: '50%',
-                            left: '50%',
-                            transform: `rotate(${angle}deg) translateX(${140 - i * 40}px) translateY(-50%)`,
+                  {/* Ops Platform Nodes */}
+                  {[
+                    { label: 'DevOps', icon: Workflow, color: 'from-blue-500 to-blue-600', position: { top: '8%', left: '50%', translateX: '-50%' } },
+                    { label: 'DataOps', icon: BarChart3, color: 'from-purple-500 to-purple-600', position: { top: '30%', right: '8%' } },
+                    { label: 'MLOps', icon: Bot, color: 'from-pink-500 to-pink-600', position: { bottom: '30%', right: '8%' } },
+                    { label: 'AIOps', icon: Zap, color: 'from-orange-500 to-orange-600', position: { bottom: '8%', left: '50%', translateX: '-50%' } },
+                    { label: 'FinOps', icon: DollarSign, color: 'from-green-500 to-green-600', position: { bottom: '30%', left: '8%' } },
+                    { label: 'SecOps', icon: Shield, color: 'from-red-500 to-red-600', position: { top: '30%', left: '8%' } },
+                  ].map((ops, i) => {
+                    const IconComponent = ops.icon;
+                    return (
+                      <motion.div
+                        key={ops.label}
+                        className="absolute group cursor-default"
+                        style={ops.position}
+                        initial={{ opacity: 0, scale: 0 }}
+                        animate={{ opacity: 1, scale: 1 }}
+                        transition={{ delay: 0.6 + i * 0.1, duration: 0.5 }}
+                      >
+                        {/* Pulsing ring */}
+                        <motion.div
+                          className="absolute inset-0 -m-3 rounded-2xl border-2 border-primary/30"
+                          animate={{
+                            scale: [1, 1.15, 1],
+                            opacity: [0.3, 0.6, 0.3],
                           }}
+                          transition={{ duration: 2.5, repeat: Infinity, delay: i * 0.4 }}
                         />
-                      ))}
-                    </motion.div>
-                  ))}
 
-                  {/* Labels */}
-                  {['DevOps', 'DataOps', 'MLOps', 'AIOps', 'FinOps', 'SecOps'].map((label, i) => (
-                    <motion.div
-                      key={label}
-                      className="absolute px-3 py-1.5 rounded-full bg-muted/80 backdrop-blur-sm border border-border text-sm font-medium text-foreground"
-                      style={{
-                        top: `${15 + Math.sin((i * Math.PI * 2) / 6) * 40}%`,
-                        left: `${50 + Math.cos((i * Math.PI * 2) / 6) * 45}%`,
-                        transform: 'translate(-50%, -50%)',
-                      }}
-                      initial={{ opacity: 0, scale: 0 }}
-                      animate={{ opacity: 1, scale: 1 }}
-                      transition={{ delay: 0.6 + i * 0.1 }}
-                    >
-                      {label}
-                    </motion.div>
-                  ))}
+                        <div className="relative w-20 h-20 rounded-xl bg-gradient-to-br p-[2px] shadow-lg"
+                             style={{ backgroundImage: `linear-gradient(to bottom right, var(--tw-gradient-stops))` }}
+                             className={`bg-gradient-to-br ${ops.color}`}>
+                          <div className="w-full h-full rounded-[10px] bg-background/95 backdrop-blur-sm flex flex-col items-center justify-center relative overflow-hidden">
+                            <div className="absolute inset-0 bg-gradient-to-br from-white/10 to-transparent opacity-50" />
+                            <IconComponent className="w-6 h-6 relative z-10 text-foreground mb-1" />
+                            <span className="text-[10px] font-bold relative z-10 text-foreground">{ops.label}</span>
+                          </div>
+                        </div>
+
+                        {/* Status indicator */}
+                        <motion.div
+                          className="absolute -top-1 -right-1 w-5 h-5 rounded-full bg-green-500 border-2 border-background flex items-center justify-center"
+                          animate={{ scale: [1, 1.2, 1] }}
+                          transition={{ duration: 2, repeat: Infinity, delay: i * 0.3 }}
+                        >
+                          <CheckCircle2 className="w-3 h-3 text-white" />
+                        </motion.div>
+                      </motion.div>
+                    );
+                  })}
+
+                  {/* Animated Connection Lines */}
+                  <svg className="absolute inset-0 w-full h-full pointer-events-none" style={{ overflow: 'visible' }}>
+                    <defs>
+                      <linearGradient id="lineGradientXOPS" x1="0%" y1="0%" x2="100%" y2="0%">
+                        <stop offset="0%" stopColor="hsl(var(--primary))" stopOpacity="0" />
+                        <stop offset="50%" stopColor="hsl(var(--primary))" stopOpacity="0.6" />
+                        <stop offset="100%" stopColor="hsl(var(--primary))" stopOpacity="0" />
+                      </linearGradient>
+                    </defs>
+
+                    {/* Connection paths from center to each ops node */}
+                    {[
+                      { x1: '50%', y1: '50%', x2: '50%', y2: '8%' },
+                      { x1: '50%', y1: '50%', x2: '92%', y2: '30%' },
+                      { x1: '50%', y1: '50%', x2: '92%', y2: '70%' },
+                      { x1: '50%', y1: '50%', x2: '50%', y2: '92%' },
+                      { x1: '50%', y1: '50%', x2: '8%', y2: '70%' },
+                      { x1: '50%', y1: '50%', x2: '8%', y2: '30%' },
+                    ].map((path, i) => (
+                      <motion.line
+                        key={i}
+                        x1={path.x1}
+                        y1={path.y1}
+                        x2={path.x2}
+                        y2={path.y2}
+                        stroke="url(#lineGradientXOPS)"
+                        strokeWidth="2"
+                        strokeDasharray="5,5"
+                        initial={{ pathLength: 0, opacity: 0 }}
+                        animate={{
+                          pathLength: 1,
+                          opacity: 1,
+                          strokeDashoffset: [0, -10]
+                        }}
+                        transition={{
+                          pathLength: { delay: 0.8 + i * 0.1, duration: 0.8 },
+                          opacity: { delay: 0.8 + i * 0.1, duration: 0.4 },
+                          strokeDashoffset: { duration: 1.5, repeat: Infinity, ease: 'linear' }
+                        }}
+                      />
+                    ))}
+                  </svg>
+
+                  {/* Floating metrics badges */}
+                  <motion.div
+                    className="absolute top-[5%] right-[5%]"
+                    initial={{ opacity: 0, y: -20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 1.2 }}
+                  >
+                    <div className="px-4 py-2 rounded-full bg-green-500/10 backdrop-blur-md border border-green-500/30 shadow-lg">
+                      <div className="flex items-center gap-2">
+                        <div className="w-2 h-2 rounded-full bg-green-500 animate-pulse" />
+                        <span className="text-xs font-semibold text-green-500">Automated</span>
+                      </div>
+                    </div>
+                  </motion.div>
+
+                  <motion.div
+                    className="absolute bottom-[5%] left-[5%]"
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 1.4 }}
+                  >
+                    <div className="px-4 py-2 rounded-full bg-blue-500/10 backdrop-blur-md border border-blue-500/30 shadow-lg">
+                      <div className="flex items-center gap-2">
+                        <TrendingUp className="w-3 h-3 text-blue-500" />
+                        <span className="text-xs font-semibold text-blue-500">60% ↓ Incidents</span>
+                      </div>
+                    </div>
+                  </motion.div>
                 </div>
               </motion.div>
             </div>

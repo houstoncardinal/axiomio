@@ -1,12 +1,12 @@
 import { motion } from "framer-motion";
 
 const logos = [
-  { name: "Kuliza", initials: "Kuliza" },
-  { name: "India Accelerator", initials: "iA" },
-  { name: "SciFund Challenge", initials: "SciFund" },
-  { name: "Wipro", initials: "Wipro" },
-  { name: "FPT", initials: "FPT" },
-  { name: "KIMS Hospitals", initials: "KIMS" },
+  { name: "Kuliza", logo: "/logos/Client Logos/kuliaz.png" },
+  { name: "India Accelerator", logo: "/logos/Client Logos/indiaaccelerator.webp" },
+  { name: "SciFund Challenge", logo: "/logos/Client Logos/scifund.png" },
+  { name: "Wipro", logo: "/logos/Client Logos/wipro.png" },
+  { name: "FPT", logo: "/logos/Client Logos/FPT.png" },
+  { name: "KIMS Hospitals", logo: "/logos/Client Logos/kims.png" },
 ];
 
 export function ClientLogos() {
@@ -26,8 +26,13 @@ export function ClientLogos() {
               viewport={{ once: true }}
               className="group"
             >
-              <div className="h-12 w-24 rounded-lg bg-muted/30 border border-border/30 flex items-center justify-center text-muted-foreground/50 font-heading font-bold text-lg transition-all duration-300 group-hover:text-primary group-hover:border-primary/30 group-hover:bg-primary/5">
-                {logo.initials}
+              <div className="h-16 w-32 rounded-lg bg-muted/30 border border-border/30 flex items-center justify-center p-3 transition-all duration-300 group-hover:border-primary/30 group-hover:bg-primary/5">
+                <img
+                  src={logo.logo}
+                  alt={logo.name}
+                  className="max-h-full max-w-full object-contain filter dark:brightness-90"
+                  loading="lazy"
+                />
               </div>
             </motion.div>
           ))}

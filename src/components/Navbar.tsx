@@ -23,6 +23,7 @@ export function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [megaMenuOpen, setMegaMenuOpen] = useState(false);
+  const [mobileServicesOpen, setMobileServicesOpen] = useState(false);
   const location = useLocation();
 
   useEffect(() => {
@@ -37,6 +38,7 @@ export function Navbar() {
   useEffect(() => {
     setMegaMenuOpen(false);
     setIsOpen(false);
+    setMobileServicesOpen(false);
   }, [location.pathname]);
 
   return (
@@ -183,18 +185,104 @@ export function Navbar() {
                       animate={{ opacity: 1, x: 0 }}
                       transition={{ delay: index * 0.05 }}
                     >
-                      <Link
-                        to={link.href}
-                        onClick={() => setIsOpen(false)}
-                        className={cn(
-                          "block px-4 py-3 rounded-lg text-base font-medium transition-all",
-                          location.pathname === link.href
-                            ? "text-primary bg-primary/10"
-                            : "text-muted-foreground hover:text-foreground hover:bg-muted/50"
-                        )}
-                      >
-                        {link.label}
-                      </Link>
+                      {link.hasMegaMenu ? (
+                        <div>
+                          <button
+                            onClick={() => setMobileServicesOpen(!mobileServicesOpen)}
+                            className={cn(
+                              "w-full flex items-center justify-between px-4 py-3 rounded-lg text-base font-medium transition-all",
+                              mobileServicesOpen || location.pathname.startsWith("/services")
+                                ? "text-primary bg-primary/10"
+                                : "text-muted-foreground hover:text-foreground hover:bg-muted/50"
+                            )}
+                          >
+                            <span>{link.label}</span>
+                            <ChevronDown
+                              className={cn(
+                                "h-4 w-4 transition-transform duration-200",
+                                mobileServicesOpen && "rotate-180"
+                              )}
+                            />
+                          </button>
+                          <AnimatePresence>
+                            {mobileServicesOpen && (
+                              <motion.div
+                                initial={{ opacity: 0, height: 0 }}
+                                animate={{ opacity: 1, height: "auto" }}
+                                exit={{ opacity: 0, height: 0 }}
+                                transition={{ duration: 0.2 }}
+                                className="overflow-hidden"
+                              >
+                                <div className="mt-2 ml-4 pl-4 border-l-2 border-primary/20 space-y-1">
+                                  <Link
+                                    to="/services/strategy-advisory"
+                                    onClick={() => setIsOpen(false)}
+                                    className="block px-3 py-2 text-sm text-muted-foreground hover:text-primary hover:bg-primary/5 rounded-md transition-colors"
+                                  >
+                                    Strategy & Advisory
+                                  </Link>
+                                  <Link
+                                    to="/services/technology-systems"
+                                    onClick={() => setIsOpen(false)}
+                                    className="block px-3 py-2 text-sm text-muted-foreground hover:text-primary hover:bg-primary/5 rounded-md transition-colors"
+                                  >
+                                    Technology & Systems
+                                  </Link>
+                                  <Link
+                                    to="/services/ai-automation"
+                                    onClick={() => setIsOpen(false)}
+                                    className="block px-3 py-2 text-sm text-muted-foreground hover:text-primary hover:bg-primary/5 rounded-md transition-colors"
+                                  >
+                                    AI Automation with Cloud DevOps
+                                  </Link>
+                                  <Link
+                                    to="/services/cybersecurity"
+                                    onClick={() => setIsOpen(false)}
+                                    className="block px-3 py-2 text-sm text-muted-foreground hover:text-primary hover:bg-primary/5 rounded-md transition-colors"
+                                  >
+                                    Cyber Security Services
+                                  </Link>
+                                  <Link
+                                    to="/services/digital-transformation"
+                                    onClick={() => setIsOpen(false)}
+                                    className="block px-3 py-2 text-sm text-muted-foreground hover:text-primary hover:bg-primary/5 rounded-md transition-colors"
+                                  >
+                                    Digital Transformation
+                                  </Link>
+                                  <Link
+                                    to="/xerotrust"
+                                    onClick={() => setIsOpen(false)}
+                                    className="block px-3 py-2 text-sm text-cyan-500 hover:text-cyan-400 hover:bg-cyan-500/5 rounded-md transition-colors font-medium"
+                                  >
+                                    XeroTrust
+                                  </Link>
+                                  <div className="h-px bg-border/30 my-2" />
+                                  <Link
+                                    to="/services"
+                                    onClick={() => setIsOpen(false)}
+                                    className="block px-3 py-2 text-sm text-primary hover:text-primary/80 hover:bg-primary/5 rounded-md transition-colors font-medium"
+                                  >
+                                    View All Services →
+                                  </Link>
+                                </div>
+                              </motion.div>
+                            )}
+                          </AnimatePresence>
+                        </div>
+                      ) : (
+                        <Link
+                          to={link.href}
+                          onClick={() => setIsOpen(false)}
+                          className={cn(
+                            "block px-4 py-3 rounded-lg text-base font-medium transition-all",
+                            location.pathname === link.href
+                              ? "text-primary bg-primary/10"
+                              : "text-muted-foreground hover:text-foreground hover:bg-muted/50"
+                          )}
+                        >
+                          {link.label}
+                        </Link>
+                      )}
                     </motion.div>
                   ))}
                   <motion.div

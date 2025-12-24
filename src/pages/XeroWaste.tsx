@@ -1,19 +1,22 @@
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
-import { 
-  ArrowRight, 
-  DollarSign, 
-  TrendingDown, 
-  BarChart3, 
-  Zap, 
-  Cloud, 
+import {
+  ArrowRight,
+  DollarSign,
+  TrendingDown,
+  BarChart3,
+  Zap,
+  Cloud,
   AlertTriangle,
   CheckCircle2,
   PieChart,
   Gauge,
   Settings,
   Bot,
-  Eye
+  Eye,
+  Server,
+  Database,
+  HardDrive
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Navbar } from "@/components/Navbar";
@@ -109,90 +112,272 @@ export default function XeroWaste() {
       <Navbar />
       
       {/* Hero Section */}
-      <header className="relative pt-32 pb-20 lg:pt-40 lg:pb-28">
+      <header className="relative pt-32 pb-20 lg:pt-40 lg:pb-28 min-h-[100vh] flex items-center">
         <div className="absolute inset-0">
           <div className="absolute inset-0 bg-gradient-to-b from-green-500/5 via-background to-background" />
           <div className="absolute top-1/4 left-1/4 w-[500px] h-[500px] bg-green-500/10 rounded-full blur-3xl" />
           <div className="absolute bottom-1/4 right-1/4 w-[400px] h-[400px] bg-emerald-500/10 rounded-full blur-3xl" />
         </div>
-        
+
         <div className="container relative z-10 mx-auto px-6 lg:px-8">
-          <motion.div 
-            className="max-w-4xl mx-auto text-center"
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-          >
-            <motion.div
-              initial={{ opacity: 0, scale: 0.9 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ delay: 0.1 }}
-              className="inline-flex items-center gap-3 mb-8"
-            >
-              <span className="inline-flex items-center gap-2 text-sm font-semibold uppercase tracking-wider text-green-500 px-4 py-2 rounded-full border border-green-500/30 bg-green-500/10">
-                <DollarSign className="h-4 w-4" />
-                FinOps Platform
-              </span>
-            </motion.div>
-            
-            <motion.h1 
-              className="font-heading text-5xl md:text-6xl lg:text-7xl font-bold text-foreground leading-[1.1] mb-8"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.2, duration: 0.6 }}
-            >
-              <AnimatedGradientText className="from-green-400 via-emerald-500 to-teal-400">XeroWaste</AnimatedGradientText>
-            </motion.h1>
-            
-            <motion.p 
-              className="text-xl md:text-2xl text-muted-foreground leading-relaxed max-w-3xl mx-auto mb-10"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.3, duration: 0.6 }}
-            >
-              AI-powered cloud cost optimization that eliminates waste, maximizes savings, 
-              and delivers real-time visibility across your entire cloud infrastructure.
-            </motion.p>
+          <div className="max-w-6xl mx-auto">
+            <div className="grid lg:grid-cols-2 gap-16 items-center">
+              {/* Left content */}
+              <div>
+                <motion.div
+                  initial={{ opacity: 0, scale: 0.9 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  transition={{ delay: 0.1 }}
+                  className="mb-6"
+                >
+                  <span className="inline-flex items-center gap-3 text-sm font-semibold uppercase tracking-[0.2em] text-green-500 px-5 py-2 rounded-full border border-green-500/30 bg-green-500/10">
+                    <motion.span
+                      className="w-2 h-2 bg-green-500 rounded-full"
+                      animate={{ scale: [1, 1.5, 1] }}
+                      transition={{ duration: 1.5, repeat: Infinity }}
+                    />
+                    FinOps Platform
+                  </span>
+                </motion.div>
 
-            {/* CTAs */}
-            <motion.div
-              className="flex flex-col sm:flex-row gap-4 justify-center mb-16"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.4, duration: 0.6 }}
-            >
-              <MagneticButton>
-                <Button variant="hero" size="xl" className="bg-green-500 hover:bg-green-600" asChild>
-                  <Link to="/contact">
-                    Get Cost Analysis
-                    <ArrowRight className="ml-2 h-4 w-4" />
-                  </Link>
-                </Button>
-              </MagneticButton>
-              <MagneticButton>
-                <Button variant="hero-outline" size="xl" asChild>
-                  <Link to="/xops360">
-                    Part of XOPS360
-                  </Link>
-                </Button>
-              </MagneticButton>
-            </motion.div>
+                <motion.h1
+                  initial={{ opacity: 0, y: 30 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.1 }}
+                  className="font-heading text-5xl md:text-6xl lg:text-7xl font-bold text-foreground mb-6 leading-[1.05] tracking-tight"
+                >
+                  <AnimatedGradientText className="from-green-400 via-emerald-500 to-teal-400">XeroWaste</AnimatedGradientText>
+                  <span className="block text-3xl md:text-4xl lg:text-5xl mt-4 text-foreground font-medium tracking-tight">
+                    Eliminate Cloud Waste, Maximize Savings
+                  </span>
+                </motion.h1>
 
-            {/* Stats */}
-            <motion.div
-              className="grid grid-cols-2 md:grid-cols-4 gap-6"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.5, duration: 0.6 }}
-            >
-              {stats.map((stat) => (
-                <div key={stat.label} className="text-center p-4 rounded-xl bg-card/50 border border-border/50">
-                  <div className="text-2xl md:text-3xl font-bold text-green-500 mb-1">{stat.value}</div>
-                  <div className="text-sm text-muted-foreground">{stat.label}</div>
+                <motion.p
+                  initial={{ opacity: 0, y: 30 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.2 }}
+                  className="text-xl text-foreground/80 leading-relaxed mb-8 max-w-2xl"
+                >
+                  AI-powered cost optimization that <span className="font-semibold text-foreground">eliminates waste</span> and delivers real-time visibility.
+                  <span className="block mt-2 text-green-500 font-semibold">Average 35% savings across AWS, Azure, and GCP.</span>
+                </motion.p>
+
+                {/* CTAs */}
+                <motion.div
+                  className="flex flex-col sm:flex-row gap-4 mb-12"
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.3 }}
+                >
+                  <MagneticButton>
+                    <Button variant="hero" size="xl" className="bg-green-500 hover:bg-green-600" asChild>
+                      <Link to="/contact">
+                        Get Cost Analysis
+                        <ArrowRight className="ml-2 h-5 w-5" />
+                      </Link>
+                    </Button>
+                  </MagneticButton>
+                  <MagneticButton>
+                    <Button variant="hero-outline" size="xl" asChild>
+                      <Link to="/xops360">
+                        Part of XOPS360
+                      </Link>
+                    </Button>
+                  </MagneticButton>
+                </motion.div>
+
+                {/* Stats */}
+                <motion.div
+                  className="grid grid-cols-2 gap-4"
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.4 }}
+                >
+                  {stats.map((stat, i) => (
+                    <motion.div
+                      key={stat.label}
+                      initial={{ opacity: 0, scale: 0.9 }}
+                      animate={{ opacity: 1, scale: 1 }}
+                      transition={{ delay: 0.5 + i * 0.1 }}
+                      className="text-center p-4 rounded-xl bg-card/50 border border-border/50"
+                    >
+                      <div className="text-2xl md:text-3xl font-bold text-green-500 mb-1">{stat.value}</div>
+                      <div className="text-sm text-muted-foreground">{stat.label}</div>
+                    </motion.div>
+                  ))}
+                </motion.div>
+              </div>
+
+              {/* Right visual - Cloud Cost Optimization Visualization */}
+              <motion.div
+                initial={{ opacity: 0, scale: 0.9 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ delay: 0.4, duration: 0.8 }}
+                className="relative"
+              >
+                <div className="relative aspect-square max-w-lg mx-auto min-h-[500px]">
+                  {/* Central AI Optimization Engine */}
+                  <motion.div
+                    className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-32 h-32 rounded-2xl bg-gradient-to-br from-green-500 via-emerald-500 to-teal-500 p-1 shadow-2xl"
+                    animate={{
+                      boxShadow: [
+                        '0 20px 60px rgba(34, 197, 94, 0.4)',
+                        '0 20px 80px rgba(34, 197, 94, 0.6)',
+                        '0 20px 60px rgba(34, 197, 94, 0.4)',
+                      ],
+                    }}
+                    transition={{ duration: 3, repeat: Infinity, ease: 'easeInOut' }}
+                  >
+                    <div className="w-full h-full rounded-xl bg-background/95 backdrop-blur-sm flex flex-col items-center justify-center">
+                      <Bot className="w-10 h-10 text-green-500 mb-2" />
+                      <span className="text-[10px] text-muted-foreground uppercase tracking-wider font-semibold">AI Engine</span>
+                    </div>
+                  </motion.div>
+
+                  {/* Cloud Resource Nodes with Waste Indicators */}
+                  {[
+                    {
+                      label: 'Idle EC2',
+                      icon: Server,
+                      waste: '23%',
+                      position: { top: '10%', left: '50%', translateX: '-50%' },
+                      color: 'from-red-500 to-orange-500'
+                    },
+                    {
+                      label: 'Over-Provisioned',
+                      icon: Database,
+                      waste: '31%',
+                      position: { top: '30%', right: '10%' },
+                      color: 'from-orange-500 to-yellow-500'
+                    },
+                    {
+                      label: 'Unattached Storage',
+                      icon: HardDrive,
+                      waste: '18%',
+                      position: { bottom: '30%', right: '10%' },
+                      color: 'from-yellow-500 to-amber-500'
+                    },
+                    {
+                      label: 'Missing Reservations',
+                      icon: Cloud,
+                      waste: '28%',
+                      position: { bottom: '10%', left: '50%', translateX: '-50%' },
+                      color: 'from-amber-500 to-red-500'
+                    },
+                  ].map((resource, i) => {
+                    const IconComponent = resource.icon;
+                    return (
+                      <motion.div
+                        key={resource.label}
+                        className="absolute group cursor-default"
+                        style={resource.position}
+                        initial={{ opacity: 0, scale: 0 }}
+                        animate={{ opacity: 1, scale: 1 }}
+                        transition={{ delay: 0.6 + i * 0.1, duration: 0.5 }}
+                      >
+                        {/* Warning pulse for wasteful resources */}
+                        <motion.div
+                          className="absolute inset-0 -m-3 rounded-2xl border-2 border-red-500/40"
+                          animate={{
+                            scale: [1, 1.2, 1],
+                            opacity: [0.4, 0.8, 0.4],
+                          }}
+                          transition={{ duration: 2, repeat: Infinity, delay: i * 0.4 }}
+                        />
+
+                        <div className={`relative w-20 h-20 rounded-xl bg-gradient-to-br ${resource.color} p-[2px] shadow-lg`}>
+                          <div className="w-full h-full rounded-[10px] bg-background/95 backdrop-blur-sm flex flex-col items-center justify-center relative overflow-hidden">
+                            <IconComponent className="w-6 h-6 text-foreground mb-1" />
+                            <span className="text-[9px] font-bold text-foreground text-center px-1 leading-tight">{resource.label}</span>
+                          </div>
+                        </div>
+
+                        {/* Waste percentage badge */}
+                        <motion.div
+                          className="absolute -top-2 -right-2 px-2 py-0.5 rounded-full bg-red-500 text-white text-[10px] font-bold shadow-lg"
+                          animate={{ scale: [1, 1.1, 1] }}
+                          transition={{ duration: 2, repeat: Infinity, delay: i * 0.3 }}
+                        >
+                          {resource.waste}
+                        </motion.div>
+                      </motion.div>
+                    );
+                  })}
+
+                  {/* Animated optimization arrows from AI to resources */}
+                  <svg className="absolute inset-0 w-full h-full pointer-events-none" style={{ overflow: 'visible' }}>
+                    <defs>
+                      <linearGradient id="optimizationGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                        <stop offset="0%" stopColor="rgb(34, 197, 94)" stopOpacity="0" />
+                        <stop offset="50%" stopColor="rgb(34, 197, 94)" stopOpacity="0.8" />
+                        <stop offset="100%" stopColor="rgb(34, 197, 94)" stopOpacity="0" />
+                      </linearGradient>
+                      <marker id="arrowhead" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto">
+                        <polygon points="0 0, 10 3, 0 6" fill="rgb(34, 197, 94)" />
+                      </marker>
+                    </defs>
+
+                    {/* Optimization paths */}
+                    {[
+                      { x1: '50%', y1: '50%', x2: '50%', y2: '10%' },
+                      { x1: '50%', y1: '50%', x2: '90%', y2: '30%' },
+                      { x1: '50%', y1: '50%', x2: '90%', y2: '70%' },
+                      { x1: '50%', y1: '50%', x2: '50%', y2: '90%' },
+                    ].map((path, i) => (
+                      <motion.line
+                        key={i}
+                        x1={path.x1}
+                        y1={path.y1}
+                        x2={path.x2}
+                        y2={path.y2}
+                        stroke="url(#optimizationGradient)"
+                        strokeWidth="2"
+                        markerEnd="url(#arrowhead)"
+                        initial={{ pathLength: 0, opacity: 0 }}
+                        animate={{
+                          pathLength: [0, 1],
+                          opacity: [0, 1, 0],
+                        }}
+                        transition={{
+                          pathLength: { delay: 1 + i * 0.3, duration: 1.5, repeat: Infinity, repeatDelay: 2 },
+                          opacity: { delay: 1 + i * 0.3, duration: 1.5, repeat: Infinity, repeatDelay: 2 }
+                        }}
+                      />
+                    ))}
+                  </svg>
+
+                  {/* Savings indicators */}
+                  <motion.div
+                    className="absolute top-[5%] left-[5%]"
+                    initial={{ opacity: 0, x: -20 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ delay: 1.2 }}
+                  >
+                    <div className="px-4 py-2 rounded-full bg-green-500/10 backdrop-blur-md border border-green-500/30 shadow-lg">
+                      <div className="flex items-center gap-2">
+                        <TrendingDown className="w-3 h-3 text-green-500" />
+                        <span className="text-xs font-semibold text-green-500">35% Savings</span>
+                      </div>
+                    </div>
+                  </motion.div>
+
+                  <motion.div
+                    className="absolute bottom-[5%] right-[5%]"
+                    initial={{ opacity: 0, x: 20 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ delay: 1.4 }}
+                  >
+                    <div className="px-4 py-2 rounded-full bg-blue-500/10 backdrop-blur-md border border-blue-500/30 shadow-lg">
+                      <div className="flex items-center gap-2">
+                        <Eye className="w-3 h-3 text-blue-500" />
+                        <span className="text-xs font-semibold text-blue-500">Real-time Monitoring</span>
+                      </div>
+                    </div>
+                  </motion.div>
                 </div>
-              ))}
-            </motion.div>
-          </motion.div>
+              </motion.div>
+            </div>
+          </div>
         </div>
       </header>
 

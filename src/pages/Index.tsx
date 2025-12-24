@@ -51,8 +51,9 @@ const services = [{
 }];
 const stats = [{
   value: 100,
+  prefix: "$",
   suffix: "M+",
-  label: "Value Delivered"
+  label: "Customers"
 }, {
   value: 150,
   suffix: "+",
@@ -62,9 +63,9 @@ const stats = [{
   suffix: "%",
   label: "Client Retention"
 }, {
-  value: 14,
+  value: 15,
   suffix: "+",
-  label: "Years of Excellence"
+  label: "Industries Served"
 }];
 export default function Index() {
   const heroRef = useRef<HTMLDivElement>(null);

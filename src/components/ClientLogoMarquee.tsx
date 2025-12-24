@@ -1,48 +1,46 @@
 import { motion } from "framer-motion";
 
-// Client logos styled to match the actual branding
+// Client logos with actual image paths
 const clients = [
-  // Row 1
-  { name: "Kuliza", display: "kuliza", style: "text-blue-600 font-medium lowercase", hasIcon: true, iconStyle: "text-blue-400" },
-  { name: "India Accelerator", display: "iA", style: "font-black text-gray-900 dark:text-white italic", subtext: "INDIA ACCELERATOR" },
-  { name: "SciFund Challenge", display: "#SciFund", style: "text-cyan-500 font-bold", subtext: "CHALLENGE" },
-  { name: "ECI", display: "ECI", style: "text-gray-800 dark:text-gray-200 font-bold tracking-wide", hasPlus: true },
-  { name: "OFOFO", display: "OFOFO", style: "text-cyan-400 font-bold tracking-widest" },
-  { name: "KUN", display: "KUN", style: "text-gray-900 dark:text-white font-black tracking-wider" },
-  { name: "Pismo", display: "P", style: "text-purple-600 font-bold text-2xl" },
-  
-  // Row 2
-  { name: "Ideaspring Capital", display: "ideaspring", style: "text-blue-500 font-semibold lowercase", subtext: "CAPITAL" },
-  { name: "Phi Capital", display: "φ phi capital", style: "text-gray-700 dark:text-gray-300 font-light" },
-  { name: "PenguinAI", display: "PenguinAI", style: "text-blue-600 font-semibold", hasIcon: true },
-  { name: "Autodit", display: "Autodit", style: "text-blue-400 font-medium italic" },
-  { name: "Kalaam", display: "kalaam", style: "text-orange-500 font-semibold", hasFlower: true },
-  { name: "InfyStrat", display: "InfyStrat", style: "text-blue-700 font-medium", subtext: "Your IT Strategic Partner" },
-  { name: "Wipro", display: "wipro", style: "text-blue-800 dark:text-blue-400 font-medium lowercase", hasPattern: true },
-  
-  // Row 3
-  { name: "Cogent", display: "COGENT", style: "text-orange-500 font-bold tracking-wide" },
-  { name: "Avone", display: "AVONE", style: "text-white bg-gray-800 px-3 py-1 rounded font-medium" },
-  { name: "AIS", display: "AIS", style: "text-gray-700 dark:text-gray-300 font-bold", hasRedDot: true },
-  { name: "Alpvest Institute", display: "Alpvest Institute", style: "text-blue-600 font-medium text-xs", subtext: "for FutureTech." },
-  { name: "Cryptoforce", display: "Cryptoforce", style: "text-blue-500 font-semibold", hasX: true },
-  { name: "Fortude", display: "FORTUDE", style: "text-gray-900 dark:text-white font-bold tracking-widest" },
-  { name: "EMFOI", display: "EMFOI", style: "text-gray-700 dark:text-gray-300 font-semibold", hasIcon: true },
-  
-  // Row 4
-  { name: "KIMS Hospitals", display: "KIMS", style: "text-red-600 font-bold", subtext: "HOSPITALS™" },
-  { name: "King & Haxson", display: "KING&HAXSON", style: "text-blue-900 dark:text-blue-300 font-bold text-xs" },
-  { name: "Marshall & Sterling", display: "Marshall & Sterling", style: "text-blue-800 dark:text-blue-400 font-serif italic text-sm", subtext: "INSURANCE" },
-  { name: "OneForce", display: "ONEFORCE", style: "text-blue-700 dark:text-blue-400 font-black tracking-tight" },
-  { name: "Orchid IT", display: "ORCHID", style: "text-blue-500 font-bold italic", subtext: "IT is power..." },
-  { name: "Pay Capital", display: "PAY CAPITAL", style: "text-green-600 font-semibold text-xs", hasCircle: true },
-  { name: "Pi Tech", display: "Ⓟ", style: "text-emerald-500 font-light text-3xl" },
-  
-  // Row 5
-  { name: "Roxiler Systems", display: "ROXILER", style: "text-gray-900 dark:text-white font-bold", hasX: true, subtext: "SYSTEMS" },
-  { name: "Sharpsell", display: "sharpsell", style: "text-amber-500 font-bold lowercase", hasS: true },
-  { name: "Zertain", display: "Zertain", style: "text-gray-800 dark:text-gray-200 font-medium" },
-  { name: "FPT", display: "FPT", style: "font-black", isFPT: true },
+  { name: "Kuliza", logo: "/logos/Client Logos/kuliaz.png" },
+  { name: "India Accelerator", logo: "/logos/Client Logos/indiaaccelerator.webp" },
+  { name: "SciFund Challenge", logo: "/logos/Client Logos/scifund.png" },
+  { name: "ECI", logo: "/logos/Client Logos/eci.png" },
+  { name: "OFOFO", logo: "/logos/Client Logos/Ofofo.png" },
+  { name: "KUN", logo: "/logos/Client Logos/kun.jpg" },
+  { name: "Pi Tech", logo: "/logos/Client Logos/pi.jpg" },
+  { name: "Ideaspring Capital", logo: "/logos/Client Logos/ideaspring.webp" },
+  { name: "Phi Capital", logo: "/logos/Client Logos/phicapital.png" },
+  { name: "PenguinAI", logo: "/logos/Client Logos/penguinai.png" },
+  { name: "Autodit", logo: "/logos/Client Logos/autodit-1.png" },
+  { name: "Kalaam", logo: "/logos/Client Logos/kalaam-.png" },
+  { name: "InfyStrat", logo: "/logos/Client Logos/infystrat.png" },
+  { name: "Wipro", logo: "/logos/Client Logos/wipro.png" },
+  { name: "Cogent", logo: "/logos/Client Logos/COGENT.png" },
+  { name: "Avone", logo: "/logos/Client Logos/AWONE.png" },
+  { name: "AIS", logo: "/logos/Client Logos/AIS.png" },
+  { name: "Alpvest Institute", logo: "/logos/Client Logos/AIF.webp" },
+  { name: "Cryptoforce", logo: "/logos/Client Logos/cryptoforce.png" },
+  { name: "Fortude", logo: "/logos/Client Logos/fortude.png" },
+  { name: "EMFOI", logo: "/logos/Client Logos/emfoi.png" },
+  { name: "KIMS Hospitals", logo: "/logos/Client Logos/kims.png" },
+  { name: "King & Haxson", logo: "/logos/Client Logos/kingshaxson.png" },
+  { name: "Marshall & Sterling", logo: "/logos/Client Logos/marshall.png" },
+  { name: "OneForce", logo: "/logos/Client Logos/oneforce.png" },
+  { name: "Orchid IT", logo: "/logos/Client Logos/orchid.png" },
+  { name: "Pay Capital", logo: "/logos/Client Logos/paycapital.jpg" },
+  { name: "N2N", logo: "/logos/Client Logos/N2N.webp" },
+  { name: "Roxiler Systems", logo: "/logos/Client Logos/roxiler.png" },
+  { name: "Sharpsell", logo: "/logos/Client Logos/sharpsell.png" },
+  { name: "Zertain", logo: "/logos/Client Logos/Zertain.png" },
+  { name: "FPT", logo: "/logos/Client Logos/FPT.png" },
+  { name: "Rezorex", logo: "/logos/Client Logos/rezorex.png" },
+  { name: "Manomay", logo: "/logos/Client Logos/manomay.png" },
+  { name: "Planify", logo: "/logos/Client Logos/Planify.png" },
+  { name: "K&S", logo: "/logos/Client Logos/kands.jpg" },
+  { name: "JSJ", logo: "/logos/Client Logos/JSJ_Logo.avif" },
+  { name: "CricClubs", logo: "/logos/Client Logos/cricclubs-logo.png" },
+  { name: "The Byke", logo: "/logos/Client Logos/the_byke_logo.png" },
 ];
 
 const partners = [
@@ -61,44 +59,19 @@ const featuredIn = [
 
 interface ClientLogoProps {
   name: string;
-  display: string;
-  style: string;
-  subtext?: string;
-  hasIcon?: boolean;
-  iconStyle?: string;
-  hasPlus?: boolean;
-  hasFlower?: boolean;
-  hasPattern?: boolean;
-  hasRedDot?: boolean;
-  hasX?: boolean;
-  hasCircle?: boolean;
-  hasS?: boolean;
-  isFPT?: boolean;
+  logo: string;
 }
 
-function ClientLogo({ name, display, style, subtext, hasPlus, hasRedDot, isFPT }: ClientLogoProps) {
+function ClientLogo({ name, logo }: ClientLogoProps) {
   return (
     <div className="flex-shrink-0 group cursor-default">
-      <div className="h-20 w-40 rounded-xl bg-card/50 border border-border/30 flex flex-col items-center justify-center transition-all duration-300 group-hover:border-primary/30 group-hover:bg-primary/5 group-hover:scale-105 px-3">
-        <div className="flex items-center gap-1">
-          {hasRedDot && <span className="w-2 h-2 rounded-full bg-red-500 mr-1" />}
-          <span className={`${style} whitespace-nowrap`}>
-            {display}
-            {hasPlus && <sup className="text-cyan-400 font-normal">+</sup>}
-          </span>
-          {isFPT && (
-            <span className="flex">
-              <span className="text-blue-600 font-black">F</span>
-              <span className="text-orange-500 font-black">P</span>
-              <span className="text-green-500 font-black">T</span>
-            </span>
-          )}
-        </div>
-        {subtext && (
-          <span className="text-[9px] text-muted-foreground/70 uppercase tracking-wider mt-0.5">
-            {subtext}
-          </span>
-        )}
+      <div className="h-20 w-40 rounded-xl bg-card/50 border border-border/30 flex items-center justify-center transition-all duration-300 group-hover:border-primary/30 group-hover:bg-primary/5 group-hover:scale-105 px-4 py-3">
+        <img
+          src={logo}
+          alt={name}
+          className="max-h-full max-w-full object-contain filter dark:brightness-90"
+          loading="lazy"
+        />
       </div>
       <p className="text-[10px] text-muted-foreground/40 text-center mt-2 opacity-0 group-hover:opacity-100 transition-opacity truncate w-40">
         {name}

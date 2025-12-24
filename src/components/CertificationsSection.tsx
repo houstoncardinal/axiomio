@@ -1,41 +1,49 @@
 import { motion } from "framer-motion";
-import { Award, Shield, Cloud, Code, Database, Lock } from "lucide-react";
+import { Award, Shield, Cloud, Code, Database, Lock, CheckCircle2 } from "lucide-react";
 
-const awsCertifications = [
+// All AWS Partner Badges from public/logos/AWS Badges folder
+const awsPartnerBadges = [
   {
     name: "AWS DevOps Services Competency",
-    level: "Partner Badge",
+    level: "Competency",
     image: "/logos/AWS Badges/aws_devops.png",
+    category: "competency",
   },
   {
     name: "AWS Lambda Service Delivery",
-    level: "Partner Badge",
+    level: "Service Delivery",
     image: "/logos/AWS Badges/aws_lambda sdp.png",
+    category: "delivery",
   },
   {
     name: "AWS Qualified Software",
-    level: "Partner Badge",
+    level: "Qualified Software",
     image: "/logos/AWS Badges/qualified software.png",
+    category: "software",
   },
   {
     name: "Amazon DynamoDB Delivery",
-    level: "Partner Badge",
+    level: "Service Delivery",
     image: "/logos/AWS Badges/dynamodb.png",
+    category: "delivery",
   },
   {
     name: "Amazon API Gateway Delivery",
-    level: "Partner Badge",
+    level: "Service Delivery",
     image: "/logos/AWS Badges/api gateway.png",
+    category: "delivery",
   },
   {
     name: "Digital Workplace Services",
-    level: "Partner Badge",
+    level: "Competency",
     image: "/logos/AWS Badges/digitalworkplace.png",
+    category: "competency",
   },
   {
     name: "L1 MSSP Services Competency",
-    level: "Partner Badge",
+    level: "Security Competency",
     image: "/logos/AWS Badges/l1 mssp.png",
+    category: "security",
   },
 ];
 
@@ -47,22 +55,15 @@ const azureCertifications = [
   },
 ];
 
-const partnerBadges = [
-  {
-    name: "AWS Advanced Partner",
-    description: "Advanced Tier Services",
-    logo: "/logos/AWS Badges/tiered badge.png",
-    competencies: [
-      "Immersion Day",
-      "Solution Provider",
-      "AWS Lambda Delivery",
-      "Amazon DynamoDB Delivery",
-      "DevOps Services Competency",
-      "Amazon API Gateway Delivery",
-      "L1 MSSP Services Competency",
-      "Digital Workplace Services Competency",
-    ],
-  },
+const competencies = [
+  "Immersion Day Partner",
+  "Solution Provider",
+  "AWS Lambda Delivery",
+  "Amazon DynamoDB Delivery",
+  "DevOps Services Competency",
+  "Amazon API Gateway Delivery",
+  "L1 MSSP Services Competency",
+  "Digital Workplace Services",
 ];
 
 export function CertificationsSection() {
@@ -72,7 +73,7 @@ export function CertificationsSection() {
       <div className="absolute inset-0">
         <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-border to-transparent" />
         <div className="absolute top-1/4 left-0 w-[500px] h-[500px] bg-primary/5 rounded-full blur-3xl" />
-        <div className="absolute bottom-1/4 right-0 w-[400px] h-[400px] bg-secondary/5 rounded-full blur-3xl" />
+        <div className="absolute bottom-1/4 right-0 w-[400px] h-[400px] bg-[#FF9900]/5 rounded-full blur-3xl" />
       </div>
 
       <div className="container relative z-10 mx-auto px-6 lg:px-8">
@@ -89,71 +90,99 @@ export function CertificationsSection() {
             Industry Certifications
           </span>
           <h2 className="font-heading text-3xl md:text-4xl lg:text-5xl font-bold text-foreground mb-4">
-            Certified by <span className="text-primary">Industry Leaders</span>
+            Certified by <span className="text-[#FF9900]">AWS</span> & Industry Leaders
           </h2>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
             Our team holds the highest certifications across AWS, Microsoft Azure, and leading technology partners.
           </p>
         </motion.div>
 
-        {/* Partner Badges Section */}
+        {/* AWS Advanced Partner - Hero Card */}
         <motion.div
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
           viewport={{ once: true }}
-          className="mb-20"
+          className="mb-16"
         >
-          <div className="flex items-center gap-3 mb-8">
-            <Cloud className="w-5 h-5 text-primary" />
-            <h3 className="font-heading text-xl font-semibold text-foreground">Partner Certifications</h3>
-          </div>
-          
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {partnerBadges.map((partner, index) => (
+          <div className="relative bg-gradient-to-br from-[#232F3E] to-[#131A22] rounded-3xl p-8 lg:p-12 overflow-hidden border border-[#FF9900]/20">
+            {/* Background pattern */}
+            <div className="absolute inset-0 opacity-10">
+              <div 
+                className="absolute inset-0"
+                style={{
+                  backgroundImage: `radial-gradient(circle at 2px 2px, #FF9900 1px, transparent 0)`,
+                  backgroundSize: '40px 40px',
+                }}
+              />
+            </div>
+            
+            {/* Glow effect */}
+            <div className="absolute top-0 right-0 w-[400px] h-[400px] bg-[#FF9900]/20 rounded-full blur-3xl" />
+            
+            <div className="relative z-10 grid lg:grid-cols-[300px_1fr] gap-10 items-center">
+              {/* Main Badge */}
               <motion.div
-                key={partner.name}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ delay: index * 0.1, duration: 0.6 }}
+                initial={{ opacity: 0, scale: 0.9 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                transition={{ delay: 0.2, duration: 0.6 }}
                 viewport={{ once: true }}
-                whileHover={{ y: -5, transition: { duration: 0.3 } }}
-                className="group"
+                className="flex flex-col items-center text-center"
               >
-                <div className="bg-background rounded-2xl border border-border p-6 h-full hover:border-primary/30 hover:shadow-lg hover:shadow-primary/5 transition-all duration-300">
-                  <div className="flex flex-col items-center text-center">
-                    <div className="w-24 h-24 mb-4 flex items-center justify-center">
-                      <img
-                        src={partner.logo}
-                        alt={partner.name}
-                        className="max-w-full max-h-full object-contain"
-                      />
-                    </div>
-                    <h4 className="font-semibold text-foreground mb-1">{partner.name}</h4>
-                    <p className="text-sm text-muted-foreground mb-3">{partner.description}</p>
-                    <div className="flex flex-wrap gap-1 justify-center">
-                      {partner.competencies.slice(0, 3).map((comp) => (
-                        <span
-                          key={comp}
-                          className="text-xs px-2 py-1 rounded-full bg-primary/10 text-primary"
-                        >
-                          {comp}
-                        </span>
-                      ))}
-                      {partner.competencies.length > 3 && (
-                        <span className="text-xs px-2 py-1 rounded-full bg-muted text-muted-foreground">
-                          +{partner.competencies.length - 3} more
-                        </span>
-                      )}
-                    </div>
-                  </div>
+                <div className="w-48 h-48 mb-6 relative">
+                  <motion.div
+                    className="absolute inset-0 bg-[#FF9900]/20 rounded-full blur-2xl"
+                    animate={{
+                      scale: [1, 1.1, 1],
+                      opacity: [0.5, 0.8, 0.5],
+                    }}
+                    transition={{
+                      duration: 3,
+                      repeat: Infinity,
+                      ease: "easeInOut",
+                    }}
+                  />
+                  <img
+                    src="/logos/AWS Badges/tiered badge.png"
+                    alt="AWS Advanced Tier Services Partner"
+                    className="w-full h-full object-contain relative z-10 drop-shadow-2xl"
+                  />
                 </div>
+                <h3 className="font-heading text-2xl font-bold text-white mb-2">
+                  AWS Advanced Partner
+                </h3>
+                <p className="text-[#FF9900] font-semibold text-sm uppercase tracking-wider">
+                  Advanced Tier Services
+                </p>
               </motion.div>
-            ))}
+              
+              {/* Competencies Grid */}
+              <div>
+                <h4 className="text-white font-semibold mb-4 flex items-center gap-2">
+                  <Cloud className="w-5 h-5 text-[#FF9900]" />
+                  Partner Competencies & Deliveries
+                </h4>
+                <div className="grid sm:grid-cols-2 gap-3">
+                  {competencies.map((comp, i) => (
+                    <motion.div
+                      key={comp}
+                      initial={{ opacity: 0, x: -20 }}
+                      whileInView={{ opacity: 1, x: 0 }}
+                      transition={{ delay: 0.3 + i * 0.05, duration: 0.4 }}
+                      viewport={{ once: true }}
+                      className="flex items-center gap-2 text-sm text-gray-300"
+                    >
+                      <CheckCircle2 className="w-4 h-4 text-[#FF9900] flex-shrink-0" />
+                      {comp}
+                    </motion.div>
+                  ))}
+                </div>
+              </div>
+            </div>
           </div>
         </motion.div>
 
-        {/* AWS Certifications */}
+        {/* AWS Partner Badges Grid */}
         <motion.div
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -166,35 +195,43 @@ export function CertificationsSection() {
             <h3 className="font-heading text-xl font-semibold text-foreground">AWS Partner Badges</h3>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-7 gap-6">
-            {awsCertifications.map((cert, index) => (
+          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-7 gap-4">
+            {awsPartnerBadges.map((cert, index) => (
               <motion.div
                 key={cert.name}
                 initial={{ opacity: 0, scale: 0.9 }}
                 whileInView={{ opacity: 1, scale: 1 }}
-                transition={{ delay: index * 0.1, duration: 0.5 }}
+                transition={{ delay: index * 0.05, duration: 0.5 }}
                 viewport={{ once: true }}
-                whileHover={{ scale: 1.03, transition: { duration: 0.3 } }}
+                whileHover={{ 
+                  scale: 1.05, 
+                  y: -5,
+                  transition: { duration: 0.3 } 
+                }}
                 className="group"
               >
-                <div className="bg-background rounded-2xl border border-border p-6 hover:border-[#FF9900]/30 hover:shadow-lg hover:shadow-[#FF9900]/10 transition-all duration-300">
-                  <div className="flex items-center gap-4">
-                    <div className="w-20 h-20 flex-shrink-0">
-                      <img
-                        src={cert.image}
-                        alt={cert.name}
-                        className="w-full h-full object-contain"
-                      />
-                    </div>
-                    <div>
-                      <h4 className="font-semibold text-foreground text-sm leading-tight mb-1">
-                        {cert.name}
-                      </h4>
-                      <span className="text-xs px-2 py-0.5 rounded-full bg-[#FF9900]/10 text-[#FF9900] font-medium">
-                        {cert.level}
-                      </span>
-                    </div>
+                <div className="bg-background rounded-xl border border-border p-4 hover:border-[#FF9900]/40 hover:shadow-lg hover:shadow-[#FF9900]/10 transition-all duration-300 h-full flex flex-col items-center text-center">
+                  <div className="w-16 h-16 mb-3 flex items-center justify-center">
+                    <img
+                      src={cert.image}
+                      alt={cert.name}
+                      className="w-full h-full object-contain group-hover:scale-110 transition-transform duration-300"
+                    />
                   </div>
+                  <h4 className="font-medium text-foreground text-xs leading-tight mb-2 line-clamp-2">
+                    {cert.name}
+                  </h4>
+                  <span className={`text-[10px] px-2 py-0.5 rounded-full font-medium ${
+                    cert.category === "security" 
+                      ? "bg-red-500/10 text-red-500"
+                      : cert.category === "competency"
+                      ? "bg-[#FF9900]/10 text-[#FF9900]"
+                      : cert.category === "software"
+                      ? "bg-violet-500/10 text-violet-500"
+                      : "bg-blue-500/10 text-blue-500"
+                  }`}>
+                    {cert.level}
+                  </span>
                 </div>
               </motion.div>
             ))}

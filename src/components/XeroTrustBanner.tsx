@@ -299,19 +299,24 @@ export function XeroTrustBanner() {
               </div>
             </motion.div>
             
-            {/* Decorative shield icon */}
+            {/* XeroTrust Logo - decorative */}
             <motion.div
-              className="absolute -top-8 -right-8 w-32 h-32 opacity-10"
+              className="absolute -top-4 -right-4 w-24 h-24 opacity-40"
               animate={{
-                rotate: [0, 5, 0, -5, 0],
+                opacity: [0.3, 0.5, 0.3],
+                scale: [1, 1.05, 1],
               }}
               transition={{
-                duration: 10,
+                duration: 4,
                 repeat: Infinity,
                 ease: "easeInOut",
               }}
             >
-              <Shield className="w-full h-full text-cyan-400" />
+              <img 
+                src="/logos/Xero Trust/_XeroTrust_-darkbcg.png" 
+                alt="" 
+                className="w-full h-full object-contain"
+              />
             </motion.div>
           </div>
         </div>

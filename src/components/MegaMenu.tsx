@@ -132,6 +132,7 @@ const featuredOfferings = [
     link: "/xops360",
     color: "from-indigo-500/20 to-violet-500/10",
     accent: "bg-primary",
+    logo: "/logos/Xops360/Logo_Sky_Blue.png",
     stats: [
       { label: "Cost Reduction", value: "40%" },
       { label: "Faster Resolution", value: "10x" },
@@ -145,6 +146,7 @@ const featuredOfferings = [
     link: "/xerotrust",
     color: "from-cyan-500/20 to-emerald-500/10",
     accent: "bg-cyan-500",
+    logo: "/logos/Xero Trust/_XeroTrust_-lightbcg.png",
     stats: [
       { label: "Faster Access", value: "10x" },
       { label: "Deployment", value: "5min" },
@@ -349,10 +351,19 @@ export function MegaMenu({ isOpen, onClose }: MegaMenuProps) {
                               {offering.subtitle}
                             </div>
 
-                            {/* Title */}
-                            <h3 className="font-heading text-base font-bold text-foreground mb-1.5">
-                              {offering.title}
-                            </h3>
+                            {/* Title with logo */}
+                            <div className="flex items-center gap-2 mb-1.5">
+                              {'logo' in offering && offering.logo && (
+                                <img 
+                                  src={offering.logo} 
+                                  alt={offering.title}
+                                  className="h-5 w-auto object-contain"
+                                />
+                              )}
+                              <h3 className="font-heading text-base font-bold text-foreground">
+                                {offering.title}
+                              </h3>
+                            </div>
 
                             {/* Description */}
                             <p className="text-[10px] text-muted-foreground mb-2.5 leading-relaxed line-clamp-2">

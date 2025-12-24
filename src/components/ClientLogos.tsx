@@ -7,6 +7,8 @@ const logos = [
   { name: "Wipro", logo: "/logos/Client Logos/wipro.png" },
   { name: "FPT", logo: "/logos/Client Logos/FPT.png" },
   { name: "KIMS Hospitals", logo: "/logos/Client Logos/kims.png" },
+  { name: "Fortude", logo: "/logos/Client Logos/fortude.png" },
+  { name: "Cogent", logo: "/logos/Client Logos/COGENT.png" },
 ];
 
 export function ClientLogos() {

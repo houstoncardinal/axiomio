@@ -265,9 +265,9 @@ export default function XOPS360() {
                           transition={{ duration: 2.5, repeat: Infinity, delay: i * 0.4 }}
                         />
 
-                        <div className="relative w-20 h-20 rounded-xl bg-gradient-to-br p-[2px] shadow-lg"
-                             style={{ backgroundImage: `linear-gradient(to bottom right, var(--tw-gradient-stops))` }}
-                             className={`bg-gradient-to-br ${ops.color}`}>
+                        <div 
+                          className={`relative w-20 h-20 rounded-xl bg-gradient-to-br p-[2px] shadow-lg ${ops.color}`}
+                        >
                           <div className="w-full h-full rounded-[10px] bg-background/95 backdrop-blur-sm flex flex-col items-center justify-center relative overflow-hidden">
                             <div className="absolute inset-0 bg-gradient-to-br from-white/10 to-transparent opacity-50" />
                             <IconComponent className="w-6 h-6 relative z-10 text-foreground mb-1" />

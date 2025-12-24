@@ -651,7 +651,7 @@ export default function XeroTrust() {
                           fill="hsl(var(--secondary))"
                           filter="url(#softGlow)"
                         >
-                          <motion.animate
+                          <animate
                             attributeName="cx"
                             from={line.x1}
                             to={line.x2}
@@ -659,7 +659,7 @@ export default function XeroTrust() {
                             repeatCount="indefinite"
                             begin={`${i * 0.6}s`}
                           />
-                          <motion.animate
+                          <animate
                             attributeName="cy"
                             from={line.y1}
                             to={line.y2}
@@ -667,7 +667,7 @@ export default function XeroTrust() {
                             repeatCount="indefinite"
                             begin={`${i * 0.6}s`}
                           />
-                          <motion.animate
+                          <animate
                             attributeName="opacity"
                             values="0;0.8;1;0.8;0"
                             dur="3.5s"
@@ -684,7 +684,7 @@ export default function XeroTrust() {
                           fill="hsl(var(--primary))"
                           opacity="0.6"
                         >
-                          <motion.animate
+                          <animate
                             attributeName="cx"
                             from={line.x1}
                             to={line.x2}
@@ -692,7 +692,7 @@ export default function XeroTrust() {
                             repeatCount="indefinite"
                             begin={`${i * 0.6 + 0.3}s`}
                           />
-                          <motion.animate
+                          <animate
                             attributeName="cy"
                             from={line.y1}
                             to={line.y2}
@@ -700,7 +700,7 @@ export default function XeroTrust() {
                             repeatCount="indefinite"
                             begin={`${i * 0.6 + 0.3}s`}
                           />
-                          <motion.animate
+                          <animate
                             attributeName="opacity"
                             values="0;0.6;0.8;0.6;0"
                             dur="3.5s"
@@ -995,7 +995,7 @@ export default function XeroTrust() {
                           fill="hsl(var(--secondary))"
                           filter="url(#glow)"
                         >
-                          <motion.animate
+                          <animate
                             attributeName="cx"
                             from={line.x1}
                             to={line.x2}
@@ -1003,7 +1003,7 @@ export default function XeroTrust() {
                             repeatCount="indefinite"
                             begin={`${i * 0.5}s`}
                           />
-                          <motion.animate
+                          <animate
                             attributeName="cy"
                             from={line.y1}
                             to={line.y2}
@@ -1011,7 +1011,7 @@ export default function XeroTrust() {
                             repeatCount="indefinite"
                             begin={`${i * 0.5}s`}
                           />
-                          <motion.animate
+                          <animate
                             attributeName="opacity"
                             values="0;1;1;0"
                             dur="3s"

@@ -32,6 +32,11 @@ const awsCertifications = [
     level: "Partner Badge",
     image: "/logos/AWS Badges/digitalworkplace.png",
   },
+  {
+    name: "L1 MSSP Services Competency",
+    level: "Partner Badge",
+    image: "/logos/AWS Badges/l1 mssp.png",
+  },
 ];
 
 const azureCertifications = [
@@ -161,7 +166,7 @@ export function CertificationsSection() {
             <h3 className="font-heading text-xl font-semibold text-foreground">AWS Partner Badges</h3>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-7 gap-6">
             {awsCertifications.map((cert, index) => (
               <motion.div
                 key={cert.name}

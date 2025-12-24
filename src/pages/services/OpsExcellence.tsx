@@ -442,7 +442,7 @@ export default function OpsExcellence() {
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <MagneticButton>
-                <Button variant="premium" size="xl" asChild>
+                <Button variant="hero" size="xl" asChild>
                   <Link to="/contact">
                     Schedule a Discovery Call
                     <ArrowRight className="ml-2 h-5 w-5" />

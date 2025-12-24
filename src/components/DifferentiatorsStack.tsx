@@ -79,7 +79,7 @@ export function DifferentiatorsStack() {
               </p>
             </div>
             
-            <Button size="lg" className="mt-10 shadow-glow" asChild>
+            <Button variant="hero" size="xl" className="mt-10" asChild>
               <Link to="/about">
                 Learn More About Us
                 <ArrowRight className="ml-2 h-4 w-4" />

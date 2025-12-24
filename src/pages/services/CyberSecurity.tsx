@@ -316,7 +316,7 @@ export default function CyberSecurity() {
                     with WireGuard encryption and AI-driven threat detection.
                   </p>
                   <MagneticButton>
-                    <Button variant="hero" size="lg" className="bg-cyan-500 hover:bg-cyan-600" asChild>
+                    <Button variant="hero" size="xl" className="bg-cyan-500 hover:bg-cyan-600" asChild>
                       <Link to="/xerotrust">
                         Explore XeroTrust
                         <ArrowRight className="ml-2 h-4 w-4" />
@@ -356,7 +356,7 @@ export default function CyberSecurity() {
               a comprehensive protection strategy for your organization.
             </p>
             <MagneticButton>
-              <Button variant="premium" size="xl" asChild>
+              <Button variant="hero" size="xl" asChild>
                 <Link to="/contact">
                   Request Security Assessment
                   <ArrowRight className="ml-2 h-5 w-5" />

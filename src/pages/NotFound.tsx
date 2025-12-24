@@ -31,13 +31,13 @@ const NotFound = () => {
           Let's get you back on track.
         </p>
         <div className="flex flex-col sm:flex-row gap-4 justify-center">
-          <Button variant="default" size="lg" asChild>
+          <Button variant="hero" size="xl" asChild>
             <Link to="/">
               <Home className="mr-2 h-4 w-4" />
               Back to Home
             </Link>
           </Button>
-          <Button variant="outline" size="lg" onClick={() => window.history.back()}>
+          <Button variant="hero-outline" size="xl" onClick={() => window.history.back()}>
             <ArrowLeft className="mr-2 h-4 w-4" />
             Go Back
           </Button>

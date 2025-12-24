@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import React, { useState, useRef } from 'react';
+import { motion, useScroll, useTransform, AnimatePresence } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import {
   ArrowRight,
@@ -30,6 +30,8 @@ import { Button } from '@/components/ui/button';
 import { AnimatedGradientText } from '@/components/AnimatedGradientText';
 import { MagneticButton } from '@/components/MagneticButton';
 import { PremiumCard } from '@/components/PremiumCard';
+import { GlowingOrb } from '@/components/GlowingOrb';
+import { ParticleField } from '@/components/ParticleField';
 import { SEOHead } from '@/components/SEOHead';
 import { XeroTrustROICalculator } from '@/components/XeroTrustROICalculator';
 import { XeroTrustInteractiveDemo } from '@/components/XeroTrustInteractiveDemo';
@@ -458,6 +460,16 @@ function CustomerSuccessStories() {
 }
 
 export default function XeroTrust() {
+  const heroRef = useRef<HTMLDivElement>(null);
+  const { scrollYProgress } = useScroll({
+    target: heroRef,
+    offset: ['start start', 'end start'],
+  });
+
+  // Fade starts at 70% scroll (much later than before)
+  const heroOpacity = useTransform(scrollYProgress, [0, 0.7, 1], [1, 1, 0]);
+  const heroScale = useTransform(scrollYProgress, [0, 0.7, 1], [1, 1, 0.95]);
+
   return (
     <div className="min-h-screen bg-background overflow-hidden">
       <SEOHead
@@ -470,18 +482,22 @@ export default function XeroTrust() {
       />
       <Navbar />
 
-      {/* Hero Section - Mobile Optimized */}
-      <header className="relative min-h-screen flex items-center pt-20 pb-12 lg:pt-24 lg:pb-16 overflow-hidden">
-        {/* Simplified Background - Clean gradient without overwhelming effects */}
+      {/* Hero Section - Mobile Optimized with Animation */}
+      <header ref={heroRef} className="relative min-h-screen flex items-center pt-20 pb-12 lg:pt-24 lg:pb-16 overflow-hidden">
+        {/* Background with animated elements */}
         <div className="absolute inset-0">
           <div className="absolute inset-0 bg-gradient-to-br from-secondary/5 via-background to-primary/5" />
-          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_hsl(var(--secondary)/0.15),_transparent_50%)]" />
-          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom_left,_hsl(var(--primary)/0.1),_transparent_50%)]" />
+          <GlowingOrb size={600} color="secondary" className="-top-1/4 -right-1/4 hidden sm:block" delay={0} />
+          <GlowingOrb size={500} color="primary" className="top-1/3 -left-1/4 hidden sm:block" delay={2} />
+          <ParticleField />
           {/* Grid pattern */}
           <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.02)_1px,transparent_1px)] bg-[size:60px_60px] [mask-image:radial-gradient(ellipse_at_center,black_20%,transparent_70%)]" />
         </div>
 
-        <div className="container relative z-10 mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12 lg:py-16">
+        <motion.div 
+          className="container relative z-10 mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12 lg:py-16"
+          style={{ opacity: heroOpacity, scale: heroScale }}
+        >
           <div className="max-w-6xl mx-auto">
             <div className="grid lg:grid-cols-2 gap-8 lg:gap-16 items-center">
               {/* Left content - Mobile optimized */}
@@ -530,17 +546,17 @@ export default function XeroTrust() {
                   className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center lg:justify-start"
                 >
                   <MagneticButton>
-                    <Button variant="hero" size="lg" className="w-full sm:w-auto" asChild>
+                    <Button variant="hero" size="xl" className="w-full sm:w-auto" asChild>
                       <Link to="/contact">
                         Start Free Trial
-                        <ArrowRight className="ml-2 h-4 w-4 sm:h-5 sm:w-5" />
+                        <ArrowRight className="ml-2 h-4 w-4" />
                       </Link>
                     </Button>
                   </MagneticButton>
                   <MagneticButton>
-                    <Button variant="hero-outline" size="lg" className="w-full sm:w-auto gap-2" asChild>
+                    <Button variant="hero-outline" size="xl" className="w-full sm:w-auto gap-2" asChild>
                       <Link to="/xerotrust/compare">
-                        <Shield className="w-4 h-4 sm:w-5 sm:h-5" />
+                        <Shield className="w-4 h-4" />
                         Compare Solutions
                       </Link>
                     </Button>
@@ -548,14 +564,14 @@ export default function XeroTrust() {
                 </motion.div>
               </div>
 
-              {/* Right visual - Hidden on mobile, shown on lg+ */}
+              {/* Right visual - Show on md+ screens */}
               <motion.div
                 initial={{ opacity: 0, scale: 0.9 }}
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ delay: 0.4, duration: 0.8 }}
-                className="relative hidden lg:block"
+                className="relative hidden md:block"
               >
-                <div className="relative aspect-square max-w-lg mx-auto min-h-[450px] lg:min-h-[500px]">
+                <div className="relative aspect-square max-w-md lg:max-w-lg mx-auto min-h-[350px] md:min-h-[400px] lg:min-h-[500px]">
                   {/* Background ambient glow effect - responsive */}
                   <div className="absolute inset-0 flex items-center justify-center z-0">
                     <motion.div
@@ -1084,7 +1100,7 @@ export default function XeroTrust() {
               </motion.div>
             </div>
           </div>
-        </div>
+        </motion.div>
       </header>
 
       {/* Stats Bar */}

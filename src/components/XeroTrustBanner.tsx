@@ -110,32 +110,32 @@ export function XeroTrustBanner() {
         <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
           {/* Left Content */}
           <div>
+            {/* Badge - Above Logo */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              className="mb-4"
+            >
+              <span className="inline-flex items-center gap-2 text-[10px] md:text-xs font-bold uppercase tracking-[0.2em] text-cyan-400 bg-cyan-500/10 px-3 md:px-4 py-1.5 md:py-2 rounded-full border border-cyan-500/30">
+                <ShieldCheck className="w-3 h-3 md:w-4 md:h-4" />
+                Enterprise Security Platform
+              </span>
+            </motion.div>
+
             {/* XeroTrust Logo */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.05 }}
               viewport={{ once: true }}
-              className="mb-6"
+              className="mb-4 md:mb-5"
             >
               <img 
                 src="/logos/xero-trust/_XeroTrust_-darkbcg.png" 
                 alt="XeroTrust Logo" 
-                className="h-12 md:h-14 lg:h-16 w-auto object-contain"
+                className="h-8 sm:h-9 md:h-10 lg:h-12 w-auto object-contain"
               />
-            </motion.div>
-
-            {/* Badge */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.1 }}
-              viewport={{ once: true }}
-              className="mb-6"
-            >
-              <span className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-[0.2em] text-cyan-400 bg-cyan-500/10 px-4 py-2 rounded-full border border-cyan-500/30">
-                <ShieldCheck className="w-4 h-4" />
-                Enterprise Security Platform
-              </span>
             </motion.div>
             
             {/* Title */}

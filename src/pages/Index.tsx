@@ -317,6 +317,9 @@ export default function Index() {
       {/* Testimonials */}
       <TestimonialsSection />
 
+      {/* Featured In / Press Section */}
+      <FeaturedInSection />
+
       {/* Why Axiomio Section - Interactive Card Stack */}
       <DifferentiatorsStack />
 

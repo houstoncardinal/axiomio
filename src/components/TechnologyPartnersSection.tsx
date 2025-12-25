@@ -79,7 +79,7 @@ export function TechnologyPartnersSection() {
                 <img
                   src={partner.logo}
                   alt={`${partner.name} logo`}
-                  className="w-full h-full object-contain"
+                  className="w-full h-full object-contain dark:invert dark:brightness-200"
                   style={{ maxWidth: '100%', maxHeight: '100%' }}
                 />
               </div>

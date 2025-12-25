@@ -110,10 +110,25 @@ export function XeroTrustBanner() {
         <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
           {/* Left Content */}
           <div>
+            {/* XeroTrust Logo */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              className="mb-6"
+            >
+              <img 
+                src="/logos/xero-trust/_XeroTrust_-darkbcg.png" 
+                alt="XeroTrust Logo" 
+                className="h-12 md:h-14 lg:h-16 w-auto object-contain"
+              />
+            </motion.div>
+
             {/* Badge */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.1 }}
               viewport={{ once: true }}
               className="mb-6"
             >
@@ -127,14 +142,10 @@ export function XeroTrustBanner() {
             <motion.h2
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.1 }}
+              transition={{ delay: 0.15 }}
               viewport={{ once: true }}
               className="font-heading text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6 leading-[1.1]"
             >
-              <span className="bg-gradient-to-r from-cyan-400 via-teal-400 to-emerald-400 bg-clip-text text-transparent">
-                XeroTrust
-              </span>
-              <br />
               <span className="text-white/90">
                 Security Without Compromise
               </span>
@@ -297,26 +308,6 @@ export function XeroTrustBanner() {
                   <span className="text-xs text-cyan-400 font-medium">50+ PoPs</span>
                 </div>
               </div>
-            </motion.div>
-            
-            {/* XeroTrust Logo - decorative */}
-            <motion.div
-              className="absolute -top-4 -right-4 w-24 h-24 opacity-40"
-              animate={{
-                opacity: [0.3, 0.5, 0.3],
-                scale: [1, 1.05, 1],
-              }}
-              transition={{
-                duration: 4,
-                repeat: Infinity,
-                ease: "easeInOut",
-              }}
-            >
-              <img 
-                src="/logos/xero-trust/_XeroTrust_-darkbcg.png" 
-                alt="" 
-                className="w-full h-full object-contain"
-              />
             </motion.div>
           </div>
         </div>

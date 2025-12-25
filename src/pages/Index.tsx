@@ -21,6 +21,10 @@ import { TechnologyPartnersSection } from "@/components/TechnologyPartnersSectio
 import { XeroTrustBanner } from "@/components/XeroTrustBanner";
 import { CertificationsSection } from "@/components/CertificationsSection";
 import { FeaturedInSection } from "@/components/FeaturedInSection";
+import { CaseStudiesSection } from "@/components/CaseStudiesSection";
+import { AIMFrameworkSection } from "@/components/AIMFrameworkSection";
+import { CalendlyWidget } from "@/components/CalendlyWidget";
+import { CareersSection } from "@/components/CareersSection";
 import { lazy, Suspense, useRef } from "react";
 const LazyXOPS360Section = lazy(() => import("@/components/XOPS360Section").then(m => ({
   default: m.XOPS360Section
@@ -230,6 +234,12 @@ export default function Index() {
       {/* XeroTrust Banner */}
       <XeroTrustBanner />
 
+      {/* AIM Framework */}
+      <AIMFrameworkSection />
+
+      {/* Case Studies */}
+      <CaseStudiesSection />
+
       {/* Capabilities Grid */}
       <CapabilitiesGrid />
 
@@ -322,6 +332,12 @@ export default function Index() {
 
       {/* Why Axiomio Section - Interactive Card Stack */}
       <DifferentiatorsStack />
+
+      {/* Careers Section */}
+      <CareersSection />
+
+      {/* Calendly Booking */}
+      <CalendlyWidget />
 
       {/* CTA Section */}
       <section className="py-24 lg:py-32 relative overflow-hidden bg-muted/30">

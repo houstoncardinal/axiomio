@@ -64,7 +64,7 @@ export function TechnologyPartnersSection() {
         </motion.div>
 
         {/* Partner Logos */}
-        <div className="flex flex-wrap justify-center items-center gap-6 md:gap-10 lg:gap-14">
+        <div className="flex flex-wrap justify-center items-center gap-4 md:gap-8 lg:gap-10">
           {partners.map((partner, index) => (
             <motion.div
               key={partner.name}
@@ -72,17 +72,18 @@ export function TechnologyPartnersSection() {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ delay: index * 0.1, duration: 0.6 }}
               viewport={{ once: true }}
-              whileHover={{ scale: 1.08, y: -4, transition: { duration: 0.3 } }}
+              whileHover={{ scale: 1.05, y: -2, transition: { duration: 0.3 } }}
               className="group flex flex-col items-center"
             >
-              <div className="w-32 h-20 md:w-40 md:h-24 flex items-center justify-center p-4 rounded-2xl bg-background border border-border/50 hover:border-primary/40 hover:shadow-xl hover:shadow-primary/10 transition-all duration-300">
+              <div className="w-36 h-16 md:w-44 md:h-20 lg:w-48 lg:h-24 flex items-center justify-center px-4 py-3 rounded-xl bg-background border border-border/50 hover:border-primary/40 hover:shadow-lg hover:shadow-primary/10 transition-all duration-300">
                 <img
                   src={partner.logo}
-                  alt={partner.name}
-                  className="max-w-full max-h-full object-contain transition-all duration-300 dark:brightness-0 dark:invert"
+                  alt={`${partner.name} logo`}
+                  className="w-full h-full object-contain"
+                  style={{ maxWidth: '100%', maxHeight: '100%' }}
                 />
               </div>
-              <span className="mt-3 text-xs font-medium text-muted-foreground group-hover:text-primary transition-colors">
+              <span className="mt-2 text-[10px] md:text-xs font-medium text-muted-foreground group-hover:text-primary transition-colors">
                 {partner.description}
               </span>
             </motion.div>

@@ -49,7 +49,7 @@ export function CounterBadge({
         </div>
         
         <div className="relative z-10 flex flex-col justify-center h-full">
-          <div className="font-heading text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-foreground mb-2 tabular-nums leading-tight">
+          <div className="font-heading text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-foreground mb-2 tabular-nums leading-tight">
             <span className="text-primary">{prefix}</span>
             {displayValue.toLocaleString()}
             <span className="text-primary">{suffix}</span>

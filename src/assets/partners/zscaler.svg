@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 180 40">
+  <circle cx="15" cy="20" r="10" fill="#0090D1"/>
+  <path d="M10 15 L20 15 L10 25 L20 25" stroke="white" stroke-width="2" fill="none"/>
+  <text x="32" y="26" font-family="Arial, sans-serif" font-weight="bold" font-size="18" fill="#0090D1">zscaler</text>
+</svg>

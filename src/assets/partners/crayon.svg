@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 180 40">
+  <circle cx="15" cy="20" r="12" fill="none" stroke="#FF6B35" stroke-width="3"/>
+  <circle cx="15" cy="20" r="6" fill="#FF6B35"/>
+  <text x="35" y="27" font-family="Arial, sans-serif" font-weight="bold" font-size="20" fill="#2D2D2D">Crayon</text>
+</svg>

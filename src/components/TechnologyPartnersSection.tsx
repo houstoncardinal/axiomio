@@ -5,25 +5,30 @@ import { Handshake } from "lucide-react";
 import awsLogo from "@/assets/partners/aws-partner.svg";
 import googleCloudLogo from "@/assets/partners/google-cloud.svg";
 import azureLogo from "@/assets/partners/azure.svg";
-import acronisLogo from "@/assets/partners/acronis.svg";
-import citrixLogo from "@/assets/partners/citrix.svg";
+import cloudflarelogo from "@/assets/partners/cloudflare.svg";
+import crayonLogo from "@/assets/partners/crayon.svg";
 import veeamLogo from "@/assets/partners/veeam.svg";
 import vmwareLogo from "@/assets/partners/vmware.svg";
 import tenableLogo from "@/assets/partners/tenable.svg";
-import datadogLogo from "@/assets/partners/datadog.svg";
-import hashicorpLogo from "@/assets/partners/hashicorp.svg";
+import crowdstrikeLogo from "@/assets/partners/crowdstrike.svg";
+import zscalerLogo from "@/assets/partners/zscaler.svg";
+import acronisLogo from "@/assets/partners/acronis.svg";
 
 const partners = [
+  // Row 1
   { name: "AWS", logo: awsLogo, description: "Advanced Partner" },
-  { name: "Google Cloud", logo: googleCloudLogo, description: "Cloud Partner" },
   { name: "Microsoft Azure", logo: azureLogo, description: "Solutions Partner" },
-  { name: "Acronis", logo: acronisLogo, description: "Cyber Protect Partner" },
-  { name: "Citrix", logo: citrixLogo, description: "Diamond Partner" },
-  { name: "Veeam", logo: veeamLogo, description: "Partner" },
-  { name: "VMware", logo: vmwareLogo, description: "Partner" },
+  { name: "Google Cloud", logo: googleCloudLogo, description: "Cloud Partner" },
+  { name: "Cloudflare", logo: cloudflarelogo, description: "Security Partner" },
+  { name: "Crayon", logo: crayonLogo, description: "Software Partner" },
+  // Row 2
+  { name: "Veeam", logo: veeamLogo, description: "Backup Partner" },
+  { name: "VMware", logo: vmwareLogo, description: "Virtualization Partner" },
   { name: "Tenable", logo: tenableLogo, description: "Security Partner" },
-  { name: "Datadog", logo: datadogLogo, description: "Observability Partner" },
-  { name: "HashiCorp", logo: hashicorpLogo, description: "Infrastructure Partner" },
+  { name: "CrowdStrike", logo: crowdstrikeLogo, description: "Endpoint Security" },
+  { name: "Zscaler", logo: zscalerLogo, description: "Zero Trust Partner" },
+  // Row 3
+  { name: "Acronis", logo: acronisLogo, description: "Cyber Protect Partner" },
 ];
 
 export function TechnologyPartnersSection() {
@@ -53,19 +58,19 @@ export function TechnologyPartnersSection() {
           </h2>
         </motion.div>
 
-        {/* Partner Logos */}
-        <div className="flex flex-wrap justify-center items-center gap-4 md:gap-8 lg:gap-10">
+        {/* Partner Logos Grid */}
+        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 lg:grid-cols-5 gap-4 md:gap-6 justify-items-center">
           {partners.map((partner, index) => (
             <motion.div
               key={partner.name}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
-              transition={{ delay: index * 0.1, duration: 0.6 }}
+              transition={{ delay: index * 0.05, duration: 0.5 }}
               viewport={{ once: true }}
               whileHover={{ scale: 1.05, y: -2, transition: { duration: 0.3 } }}
-              className="group flex flex-col items-center"
+              className="group flex flex-col items-center w-full"
             >
-              <div className="w-36 h-16 md:w-44 md:h-20 lg:w-48 lg:h-24 flex items-center justify-center px-4 py-3 rounded-xl bg-background border border-border/50 hover:border-primary/40 hover:shadow-lg hover:shadow-primary/10 transition-all duration-300">
+              <div className="w-full max-w-[160px] h-20 md:h-24 flex items-center justify-center px-4 py-3 rounded-xl bg-background border border-border/50 hover:border-primary/40 hover:shadow-lg hover:shadow-primary/10 transition-all duration-300">
                 <img
                   src={partner.logo}
                   alt={`${partner.name} logo`}
@@ -73,7 +78,7 @@ export function TechnologyPartnersSection() {
                   style={{ maxWidth: '100%', maxHeight: '100%' }}
                 />
               </div>
-              <span className="mt-2 text-[10px] md:text-xs font-medium text-muted-foreground group-hover:text-primary transition-colors">
+              <span className="mt-2 text-[10px] md:text-xs font-medium text-muted-foreground group-hover:text-primary transition-colors text-center">
                 {partner.description}
               </span>
             </motion.div>

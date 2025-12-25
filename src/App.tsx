@@ -82,6 +82,7 @@ const XOPS360Runbooks = lazy(() => import("./pages/admin/xops360/Runbooks"));
 const XOPS360Integrations = lazy(() => import("./pages/admin/xops360/Integrations"));
 const XOPS360Metrics = lazy(() => import("./pages/admin/xops360/Metrics"));
 const NotFound = lazy(() => import("./pages/NotFound"));
+const XOPS360Documentation = lazy(() => import("./pages/books/XOPS360Documentation"));
 
 // Single clean loading screen - white background, smooth and fast
 const PageLoader = () => (
@@ -142,6 +143,7 @@ const AppContent = () => {
           <Route path="/contact" element={<Contact />} />
           <Route path="/request-a-demo" element={<RequestDemo />} />
           <Route path="/auth" element={<Auth />} />
+          <Route path="/books/xops-360-documentation" element={<XOPS360Documentation />} />
           
           {/* Admin Routes */}
           <Route path="/admin" element={<AdminLayout />}>

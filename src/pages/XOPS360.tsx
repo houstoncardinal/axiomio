@@ -34,6 +34,7 @@ import {
   Lock,
   Cloud,
   Cpu,
+  BookOpen,
 } from 'lucide-react';
 import { Navbar } from '@/components/Navbar';
 import { Footer } from '@/components/Footer';
@@ -307,6 +308,14 @@ export default function XOPS360() {
                       <span className="text-xs font-medium text-foreground">Azure Marketplace</span>
                     </div>
                   </div>
+                  <Link 
+                    to="/books/xops-360-documentation" 
+                    className="inline-flex items-center gap-2 mt-4 text-sm text-primary hover:text-primary/80 transition-colors group"
+                  >
+                    <BookOpen className="w-4 h-4" />
+                    <span>View Full Documentation</span>
+                    <ArrowRight className="w-3 h-3 group-hover:translate-x-1 transition-transform" />
+                  </Link>
                 </motion.div>
               </div>
 

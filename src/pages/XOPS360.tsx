@@ -1,5 +1,5 @@
 import React, { useRef } from 'react';
-import { motion } from 'framer-motion';
+import { motion, useScroll, useTransform } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import {
   ArrowRight,
@@ -28,6 +28,12 @@ import {
   Mail,
   Phone,
   ExternalLink,
+  Play,
+  ArrowUpRight,
+  Activity,
+  Lock,
+  Cloud,
+  Cpu,
 } from 'lucide-react';
 import { Navbar } from '@/components/Navbar';
 import { Footer } from '@/components/Footer';
@@ -42,149 +48,134 @@ const problems = [
   {
     icon: TrendingUp,
     title: 'Unpredictable Cost Escalation',
-    description: 'Cloud bills surge monthly with no transparent breakdown of spending drivers. Finance teams lack visibility into which services, teams, or workloads are consuming budget.',
+    description: 'Cloud bills surge monthly with no transparent breakdown of spending drivers.',
+    stat: '40%',
+    statLabel: 'avg overspend',
   },
   {
     icon: AlertTriangle,
     title: 'Hidden Security Exposures',
-    description: 'Image vulnerabilities in cloud AMIs and ECR containers remain undetected until scheduled audits, creating critical security windows and compliance risks.',
+    description: 'Vulnerabilities remain undetected until audits, creating critical security windows.',
+    stat: '287',
+    statLabel: 'days avg detection',
   },
   {
     icon: DollarSign,
     title: 'Silent Budget Erosion',
-    description: 'Idle instances, over-provisioned resources, and forgotten workloads continuously drain budget. Without real-time visibility, waste compounds across quarters.',
+    description: 'Idle instances and over-provisioned resources continuously drain budget.',
+    stat: '35%',
+    statLabel: 'waste typical',
   },
   {
     icon: Layers,
-    title: 'The Multi-Account Challenge',
-    description: 'Distributed cloud environments spanning multiple accounts, regions, and services eliminate unified visibility. Teams operate reactively through disparate tools.',
-  },
-  {
-    icon: Calendar,
-    title: 'Annual Reviews Aren\'t Enough',
-    description: 'Traditional cloud Well-Architected Reviews occur once yearly, leaving 364 days of potential inefficiencies unaddressed and optimization opportunities unrealized.',
+    title: 'Multi-Account Chaos',
+    description: 'Distributed environments eliminate unified visibility across services.',
+    stat: '12+',
+    statLabel: 'tools needed',
   },
 ];
 
 const capabilities = [
   {
     icon: Bot,
-    title: 'Cloud Cost Optimization Agent',
-    description: 'Conversational AI agent provides instant answers about cost drivers, optimization opportunities, and resource utilization patterns across your entire cloud footprint.',
-    features: ['Discover idle and over-provisioned resources', 'See cost drivers by account, team, or workload', 'Get prioritized optimization recommendations'],
+    title: 'AI Cost Optimization Agent',
+    description: 'Conversational AI provides instant answers about cost drivers and optimization opportunities.',
+    features: ['Discover idle resources', 'Cost attribution by team', 'Automated recommendations'],
+    gradient: 'from-violet-500/20 to-purple-500/10',
+    iconColor: 'text-violet-400',
   },
   {
     icon: BarChart3,
     title: 'Real-Time Cost Intelligence',
-    description: 'Live visibility into cloud spending patterns with actionable recommendations. Identify savings opportunities as they emerge, not months later in quarterly reviews.',
-    features: ['Live views of spend across regions and services', 'Early warnings on anomalies and budget overruns', 'Recommendations that translate directly into savings'],
+    description: 'Live visibility into cloud spending with actionable recommendations as they emerge.',
+    features: ['Live spend tracking', 'Anomaly detection', 'Budget forecasting'],
+    gradient: 'from-emerald-500/20 to-green-500/10',
+    iconColor: 'text-emerald-400',
   },
   {
     icon: Shield,
-    title: 'Continuous Cloud Security Posture Management (CSPM)',
-    description: 'Continuous security posture management identifies, prioritizes, and remediates misconfigurations and vulnerabilities.',
-    features: ['Continuous scanning against leading security frameworks', 'Risk-ranked findings with clear remediation guidance', 'Always-on monitoring to maintain compliance posture'],
+    title: 'Cloud Security Posture (CSPM)',
+    description: 'Continuous security monitoring identifies and remediates misconfigurations.',
+    features: ['Framework compliance', 'Risk prioritization', 'Auto-remediation'],
+    gradient: 'from-red-500/20 to-orange-500/10',
+    iconColor: 'text-red-400',
   },
   {
     icon: Eye,
-    title: 'Image & Container Vulnerability Scanning',
-    description: 'Automated security assessments for cloud AMIs and ECR container images detect vulnerabilities before deployment, preventing security incidents.',
-    features: ['Automated checks for cloud images and containers', 'Catch vulnerabilities pre-deployment', 'Reduce security windows and compliance gaps'],
+    title: 'Container Vulnerability Scanning',
+    description: 'Automated security for AMIs and ECR images before deployment.',
+    features: ['Pre-deploy scanning', 'CVE detection', 'Compliance checks'],
+    gradient: 'from-cyan-500/20 to-blue-500/10',
+    iconColor: 'text-cyan-400',
   },
   {
     icon: FileCheck,
     title: 'Cloud WAR AI Module',
-    description: 'Continuous Well-Architected Review insights covering cost optimization, reliability, performance efficiency, security, and operational excellence pillars.',
-    features: ['Ongoing insights across WAR pillars', 'Recommendations aligned with cloud best practices', 'Track improvements and prove ROI over time'],
-  },
-  {
-    icon: Search,
-    title: 'Agentic Security – NLP Vulnerability Detection',
-    description: 'Natural language-driven security scanning for websites, IPs, and domains. Input any target and receive comprehensive vulnerability reports.',
-    features: ['Open ports and exposure mapping', 'Vulnerability reporting in clear, human language', 'Instant security snapshots for any domain/IP'],
+    description: 'Continuous Well-Architected Review across all pillars.',
+    features: ['5 pillar analysis', 'Best practice alignment', 'ROI tracking'],
+    gradient: 'from-amber-500/20 to-yellow-500/10',
+    iconColor: 'text-amber-400',
   },
   {
     icon: Network,
-    title: 'Unified Asset & Idle Resource Management',
-    description: 'Single-pane visibility across all cloud assets, regions, and accounts. Instantly identify idle resources, obsolete workloads, and optimization candidates.',
-    features: ['Single-pane view across all cloud assets', 'Instant identification of idle workloads', 'One place to drive ongoing optimization'],
+    title: 'Unified Asset Management',
+    description: 'Single-pane visibility across all cloud assets and regions.',
+    features: ['Asset inventory', 'Idle detection', 'Optimization candidates'],
+    gradient: 'from-indigo-500/20 to-blue-500/10',
+    iconColor: 'text-indigo-400',
   },
 ];
 
 const caseStudies = [
   {
     company: 'Sharpsell',
-    industry: 'Financial Services • Insurance',
-    location: 'India',
-    results: ['22% reduction in cloud costs', 'Compliance maintained with cloud Well-Architected Reviews', 'Continuous optimization via posture checks and vulnerability scans'],
-    quote: 'Xops360 transformed our cloud operations while ensuring insurance compliance standards.',
+    industry: 'Financial Services',
+    logo: '/logos/client-logos/sharpsell.png',
+    results: ['22% cost reduction', 'Continuous compliance', 'Automated optimization'],
+    quote: 'Xops360 transformed our cloud operations while ensuring compliance.',
+    color: 'from-blue-500 to-indigo-600',
   },
   {
     company: 'King & Shaxson',
-    industry: 'Financial Services • Trading',
-    location: 'United Kingdom • Top UK Banks',
-    results: ['25% lower operational costs via smart resource optimization', 'Enhanced security through regular vulnerability scanning', 'Proactive monitoring enables continuous optimization'],
-    quote: 'Security and cost optimization delivered simultaneously—exactly what banking requires.',
+    industry: 'Banking & Trading',
+    logo: '/logos/client-logos/kingshaxson.png',
+    results: ['25% lower costs', 'Enhanced security', 'Proactive monitoring'],
+    quote: 'Security and cost optimization delivered simultaneously.',
+    color: 'from-emerald-500 to-teal-600',
   },
   {
     company: 'DreamCasino',
-    industry: 'Online Gaming Platform',
-    location: 'Norway • Global Operations',
-    results: ['25%+ reduction in costs via architecture optimization', 'Enhanced scalability supporting high-traffic demand', 'Performance improvements delivering superior user experiences'],
-    quote: 'Handling millions of concurrent users while cutting costs—Xops360 made it possible.',
+    industry: 'Gaming Platform',
+    logo: '/logos/client-logos/rezorex.png',
+    results: ['25%+ savings', 'Improved scalability', 'Better performance'],
+    quote: 'Handling millions of users while cutting costs.',
+    color: 'from-purple-500 to-pink-600',
   },
 ];
 
-const testimonials = [
-  {
-    metric: '42%',
-    metricLabel: 'Cost Reduction',
-    quote: "Xops360's AI-driven cost optimization helped us reduce our AWS spending by 42% in just three months. Their platform identified idle resources and provided actionable insights that our team could implement immediately.",
-    author: 'Samba',
-    role: 'VP of Engineering',
-    company: 'Cryptoforce',
-    logo: '/logos/client-logos/cryptoforce.png',
-  },
-  {
-    metric: '6 months',
-    metricLabel: 'Faster Compliance',
-    quote: "The continuous security posture management from Xops360 transformed our compliance journey. We achieved SOC 2 certification 6 months ahead of schedule, with clear remediation guidance every step of the way.",
-    author: 'Kishore',
-    role: 'CTO',
-    company: 'AWONE',
-    logo: '/logos/client-logos/AWONE.png',
-  },
-  {
-    metric: '100%',
-    metricLabel: 'Visibility',
-    quote: "Managing multi-cloud environments was a nightmare until we found Xops360. Their unified dashboard gives us complete visibility across AWS and Azure, helping us optimize costs and maintain security standards effortlessly.",
-    author: 'Ganesh',
-    role: 'Cloud Infrastructure Lead',
-    company: 'CricClubs',
-    logo: '/logos/client-logos/cricclubs-logo.png',
-  },
+const metrics = [
+  { value: '22%', label: 'Average Cost Reduction', icon: TrendingDown },
+  { value: '100%', label: 'Compliance Maintained', icon: Shield },
+  { value: '24/7', label: 'Active Monitoring', icon: Activity },
+  { value: '99.9%', label: 'Uptime SLA', icon: Server },
 ];
 
 const steps = [
-  { number: '1', title: 'Connect', description: 'Plug in your cloud accounts with secure, read-only access in minutes.' },
-  { number: '2', title: 'Observe', description: 'Xops360 builds a 360° view of cost, risk, and compliance posture.' },
-  { number: '3', title: 'Optimize', description: 'Use AI-driven insights to right-size resources, remove waste, and fix vulnerabilities.' },
-  { number: '4', title: 'Continuously Improve', description: 'Keep your environment optimized and audit-ready with ongoing reviews and alerts.' },
-];
-
-const clientLogos = [
-  '/logos/client-logos/cryptoforce.png',
-  '/logos/client-logos/AWONE.png',
-  '/logos/client-logos/sharpsell.png',
-  '/logos/client-logos/Ofofo.png',
-  '/logos/client-logos/cricclubs-logo.png',
-  '/logos/client-logos/penguinai.png',
-  '/logos/client-logos/rezorex.png',
-  '/logos/client-logos/kands.jpg',
+  { number: '01', title: 'Connect', description: 'Plug in your cloud accounts with secure, read-only access.', icon: Cloud },
+  { number: '02', title: 'Observe', description: 'Build a 360° view of cost, risk, and compliance.', icon: Eye },
+  { number: '03', title: 'Optimize', description: 'AI-driven insights to right-size and remove waste.', icon: Cpu },
+  { number: '04', title: 'Improve', description: 'Continuous optimization and audit-ready posture.', icon: Target },
 ];
 
 export default function XOPS360() {
   const heroRef = useRef<HTMLDivElement>(null);
+  const { scrollYProgress } = useScroll({
+    target: heroRef,
+    offset: ["start start", "end start"]
+  });
+  
+  const heroY = useTransform(scrollYProgress, [0, 1], [0, 150]);
+  const heroOpacity = useTransform(scrollYProgress, [0, 0.5], [1, 0]);
 
   const openCalendly = () => {
     window.open("https://calendly.com/kishan-k", "_blank", "noopener,noreferrer");
@@ -201,57 +192,90 @@ export default function XOPS360() {
       />
       <Navbar />
 
-      {/* Hero Section */}
-      <header ref={heroRef} className="relative min-h-screen flex items-center pt-20 pb-12 overflow-hidden">
+      {/* Hero Section - Immersive */}
+      <header ref={heroRef} className="relative min-h-[100vh] flex items-center overflow-hidden">
+        {/* Background Elements */}
         <div className="absolute inset-0">
-          <div className="absolute inset-0 bg-gradient-to-b from-primary/5 via-background to-background" />
-          <div className="absolute top-0 left-1/4 w-[600px] h-[600px] bg-primary/10 rounded-full blur-[150px]" />
-          <div className="absolute bottom-1/4 right-1/4 w-[400px] h-[400px] bg-secondary/8 rounded-full blur-[120px]" />
+          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,hsl(var(--primary)/0.15),transparent_50%)]" />
+          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom_right,hsl(var(--secondary)/0.1),transparent_50%)]" />
+          
+          {/* Animated Grid */}
+          <div className="absolute inset-0 bg-[linear-gradient(to_right,hsl(var(--border)/0.3)_1px,transparent_1px),linear-gradient(to_bottom,hsl(var(--border)/0.3)_1px,transparent_1px)] bg-[size:60px_60px] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_50%,black_40%,transparent_100%)]" />
+          
+          {/* Floating Orbs */}
+          <motion.div 
+            className="absolute top-1/4 left-1/4 w-[500px] h-[500px] bg-primary/20 rounded-full blur-[150px]"
+            animate={{ 
+              scale: [1, 1.2, 1],
+              opacity: [0.3, 0.5, 0.3]
+            }}
+            transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
+          />
+          <motion.div 
+            className="absolute bottom-1/4 right-1/4 w-[400px] h-[400px] bg-cyan-500/15 rounded-full blur-[120px]"
+            animate={{ 
+              scale: [1.2, 1, 1.2],
+              opacity: [0.2, 0.4, 0.2]
+            }}
+            transition={{ duration: 10, repeat: Infinity, ease: "easeInOut" }}
+          />
         </div>
 
-        <div className="container relative z-10 mx-auto px-6 lg:px-8 py-16 lg:py-24">
-          <div className="max-w-6xl mx-auto">
-            <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+        <motion.div 
+          style={{ y: heroY, opacity: heroOpacity }}
+          className="container relative z-10 mx-auto px-6 lg:px-8 py-32"
+        >
+          <div className="max-w-7xl mx-auto">
+            <div className="grid lg:grid-cols-[1.2fr_1fr] gap-16 items-center">
               {/* Left Content */}
               <div className="text-center lg:text-left">
                 <motion.div
-                  initial={{ opacity: 0, y: 20 }}
+                  initial={{ opacity: 0, y: 30 }}
                   animate={{ opacity: 1, y: 0 }}
-                  className="mb-6"
+                  transition={{ duration: 0.6 }}
+                  className="mb-8"
                 >
-                  <span className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-[0.2em] text-primary px-4 py-2 rounded-full border border-primary/30 bg-primary/10">
-                    <Sparkles className="w-4 h-4" />
-                    AI-Powered Cloud Optimization
-                  </span>
+                  <div className="inline-flex items-center gap-3 px-5 py-2.5 rounded-full border border-primary/30 bg-primary/5 backdrop-blur-sm">
+                    <div className="flex items-center gap-1.5">
+                      <span className="relative flex h-2 w-2">
+                        <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
+                        <span className="relative inline-flex rounded-full h-2 w-2 bg-green-500"></span>
+                      </span>
+                      <span className="text-xs font-medium text-green-500">Live Platform</span>
+                    </div>
+                    <span className="h-4 w-px bg-border" />
+                    <span className="text-xs font-bold uppercase tracking-[0.2em] text-primary">AI-Powered Cloud Ops</span>
+                  </div>
                 </motion.div>
 
                 <motion.h1
-                  initial={{ opacity: 0, y: 30 }}
+                  initial={{ opacity: 0, y: 40 }}
                   animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.1 }}
-                  className="font-heading text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-foreground mb-6 leading-[1.05]"
+                  transition={{ delay: 0.1, duration: 0.7 }}
+                  className="font-heading text-5xl sm:text-6xl md:text-7xl lg:text-[5rem] font-bold text-foreground leading-[1.05] mb-8"
                 >
-                  Slash Cloud Spend, Close Security Gaps, and Stay Audit-Ready
-                  <span className="block text-gradient mt-2">With One 360° View</span>
+                  <span className="block">Slash Cloud Spend.</span>
+                  <span className="block">Close Security Gaps.</span>
+                  <span className="block text-gradient">Stay Audit-Ready.</span>
                 </motion.h1>
 
                 <motion.p
                   initial={{ opacity: 0, y: 30 }}
                   animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.2 }}
-                  className="text-lg lg:text-xl text-muted-foreground leading-relaxed mb-8 max-w-xl mx-auto lg:mx-0"
+                  transition={{ delay: 0.2, duration: 0.6 }}
+                  className="text-xl lg:text-2xl text-muted-foreground leading-relaxed mb-10 max-w-2xl mx-auto lg:mx-0"
                 >
-                  Give your teams an AI co-pilot that explains every spike, flags every risk, and finds savings in real time—without changing a single line of code.
+                  Give your teams an AI co-pilot that explains every spike, flags every risk, and finds savings in real time.
                 </motion.p>
 
                 <motion.div
                   initial={{ opacity: 0, y: 30 }}
                   animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.3 }}
-                  className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start mb-8"
+                  transition={{ delay: 0.3, duration: 0.6 }}
+                  className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start"
                 >
                   <MagneticButton>
-                    <Button variant="hero" size="xl" asChild>
+                    <Button variant="hero" size="xl" asChild className="text-base px-8 py-6">
                       <a href="https://xops360.ai" target="_blank" rel="noopener noreferrer">
                         Start Free Trial
                         <ArrowRight className="ml-2 h-5 w-5" />
@@ -259,63 +283,75 @@ export default function XOPS360() {
                     </Button>
                   </MagneticButton>
                   <MagneticButton>
-                    <Button variant="hero-outline" size="xl" onClick={openCalendly}>
-                      Talk to a Cloud Expert
+                    <Button variant="hero-outline" size="xl" onClick={openCalendly} className="text-base px-8 py-6">
+                      Talk to an Expert
                     </Button>
                   </MagneticButton>
                 </motion.div>
 
-                {/* Trust Indicators */}
+                {/* Trust Badges */}
                 <motion.div
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
-                  transition={{ delay: 0.5 }}
-                  className="text-sm text-muted-foreground"
+                  transition={{ delay: 0.6 }}
+                  className="mt-12 pt-8 border-t border-border/50"
                 >
-                  <p className="mb-3">Trusted by enterprises in Healthcare, Finance, Education, and Gaming</p>
-                  <p className="text-xs">Available on AWS Marketplace and Microsoft Azure Marketplace</p>
+                  <p className="text-sm text-muted-foreground mb-4">Available on</p>
+                  <div className="flex items-center gap-6 justify-center lg:justify-start">
+                    <div className="flex items-center gap-2 px-4 py-2 rounded-lg bg-muted/50 border border-border/50">
+                      <img src="/logos/aws-badges/tiered-badge.png" alt="AWS" className="h-6 w-auto" />
+                      <span className="text-xs font-medium text-foreground">AWS Marketplace</span>
+                    </div>
+                    <div className="flex items-center gap-2 px-4 py-2 rounded-lg bg-muted/50 border border-border/50">
+                      <img src="/src/assets/partners/azure.png" alt="Azure" className="h-6 w-auto" />
+                      <span className="text-xs font-medium text-foreground">Azure Marketplace</span>
+                    </div>
+                  </div>
                 </motion.div>
               </div>
 
-              {/* Right - Dashboard Preview */}
+              {/* Right - Interactive Dashboard */}
               <motion.div
-                initial={{ opacity: 0, scale: 0.95 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ delay: 0.4, duration: 0.8 }}
-                className="relative"
+                initial={{ opacity: 0, scale: 0.9, x: 50 }}
+                animate={{ opacity: 1, scale: 1, x: 0 }}
+                transition={{ delay: 0.4, duration: 0.8, ease: "easeOut" }}
+                className="relative lg:block hidden"
               >
-                <div className="bg-card rounded-2xl border border-border shadow-2xl p-6 lg:p-8">
-                  {/* Window Controls */}
-                  <div className="flex gap-2 mb-6">
-                    <div className="w-3 h-3 rounded-full bg-red-500" />
-                    <div className="w-3 h-3 rounded-full bg-yellow-500" />
-                    <div className="w-3 h-3 rounded-full bg-green-500" />
+                {/* Glow Effect */}
+                <div className="absolute -inset-4 bg-gradient-to-r from-primary/20 via-cyan-500/20 to-primary/20 rounded-3xl blur-2xl opacity-50" />
+                
+                <div className="relative bg-card/80 backdrop-blur-xl rounded-2xl border border-border/50 shadow-2xl overflow-hidden">
+                  {/* Header Bar */}
+                  <div className="flex items-center justify-between px-6 py-4 border-b border-border/50 bg-muted/30">
+                    <div className="flex items-center gap-3">
+                      <div className="flex gap-2">
+                        <div className="w-3 h-3 rounded-full bg-red-500" />
+                        <div className="w-3 h-3 rounded-full bg-yellow-500" />
+                        <div className="w-3 h-3 rounded-full bg-green-500" />
+                      </div>
+                      <span className="text-xs font-medium text-muted-foreground">XOPS360 Dashboard</span>
+                    </div>
+                    <div className="flex items-center gap-2">
+                      <span className="relative flex h-2 w-2">
+                        <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
+                        <span className="relative inline-flex rounded-full h-2 w-2 bg-green-500"></span>
+                      </span>
+                      <span className="text-xs text-green-500">Live</span>
+                    </div>
                   </div>
 
-                  {/* Dashboard Stats */}
-                  <div className="space-y-4">
-                    <div className="flex items-center justify-between p-4 rounded-xl bg-muted/50 border border-border">
-                      <div>
-                        <p className="text-xs text-muted-foreground mb-1">Total Cloud Spend</p>
-                        <p className="text-2xl lg:text-3xl font-bold text-foreground">$847,230</p>
+                  <div className="p-6 space-y-4">
+                    {/* Main Stat */}
+                    <div className="p-5 rounded-xl bg-gradient-to-br from-primary/10 to-transparent border border-primary/20">
+                      <div className="flex items-center justify-between mb-2">
+                        <span className="text-sm text-muted-foreground">Monthly Cloud Spend</span>
+                        <span className="flex items-center gap-1 text-green-500 text-sm font-medium">
+                          <TrendingDown className="w-4 h-4" />
+                          -22%
+                        </span>
                       </div>
-                      <span className="px-3 py-1 rounded-full bg-green-500/10 text-green-500 text-sm font-bold">-22%</span>
-                    </div>
-
-                    <div className="grid grid-cols-2 gap-4">
-                      <div className="p-4 rounded-xl bg-red-500/5 border border-red-500/20">
-                        <p className="text-xs text-muted-foreground mb-1">Critical Risks</p>
-                        <p className="text-2xl font-bold text-red-500">3</p>
-                      </div>
-                      <div className="p-4 rounded-xl bg-green-500/5 border border-green-500/20">
-                        <p className="text-xs text-muted-foreground mb-1">Compliance</p>
-                        <p className="text-2xl font-bold text-green-500">100%</p>
-                      </div>
-                    </div>
-
-                    <div className="p-4 rounded-xl bg-primary/5 border border-primary/20">
-                      <p className="text-xs text-muted-foreground mb-2">Cost Optimization</p>
-                      <div className="w-full h-2 rounded-full bg-muted overflow-hidden">
+                      <p className="text-4xl font-bold text-foreground">$847,230</p>
+                      <div className="mt-3 h-2 rounded-full bg-muted overflow-hidden">
                         <motion.div 
                           className="h-full bg-gradient-to-r from-primary to-green-500 rounded-full"
                           initial={{ width: 0 }}
@@ -325,365 +361,357 @@ export default function XOPS360() {
                       </div>
                     </div>
 
-                    {/* AI Insight */}
-                    <div className="p-4 rounded-xl bg-gradient-to-r from-primary/10 to-secondary/10 border border-primary/20">
-                      <div className="flex items-start gap-3">
-                        <Bot className="w-5 h-5 text-primary shrink-0 mt-0.5" />
-                        <p className="text-sm text-foreground">
-                          <span className="font-semibold text-primary">AI Insight:</span> 15 idle EC2 instances detected. Estimated monthly savings: $4,200
-                        </p>
+                    {/* Stats Grid */}
+                    <div className="grid grid-cols-3 gap-3">
+                      <div className="p-4 rounded-xl bg-red-500/5 border border-red-500/20 text-center">
+                        <p className="text-2xl font-bold text-red-500">3</p>
+                        <p className="text-xs text-muted-foreground">Critical Risks</p>
+                      </div>
+                      <div className="p-4 rounded-xl bg-green-500/5 border border-green-500/20 text-center">
+                        <p className="text-2xl font-bold text-green-500">100%</p>
+                        <p className="text-xs text-muted-foreground">Compliance</p>
+                      </div>
+                      <div className="p-4 rounded-xl bg-cyan-500/5 border border-cyan-500/20 text-center">
+                        <p className="text-2xl font-bold text-cyan-500">47</p>
+                        <p className="text-xs text-muted-foreground">Optimizations</p>
                       </div>
                     </div>
+
+                    {/* AI Insight Card */}
+                    <motion.div 
+                      className="p-4 rounded-xl bg-gradient-to-r from-violet-500/10 to-purple-500/10 border border-violet-500/20"
+                      initial={{ opacity: 0, y: 10 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ delay: 1.5 }}
+                    >
+                      <div className="flex items-start gap-3">
+                        <div className="p-2 rounded-lg bg-violet-500/20">
+                          <Bot className="w-4 h-4 text-violet-400" />
+                        </div>
+                        <div>
+                          <p className="text-xs font-semibold text-violet-400 mb-1">AI Insight</p>
+                          <p className="text-sm text-foreground">15 idle EC2 instances detected. Estimated savings: <span className="font-bold text-green-500">$4,200/mo</span></p>
+                        </div>
+                      </div>
+                    </motion.div>
                   </div>
                 </div>
               </motion.div>
             </div>
           </div>
-        </div>
+        </motion.div>
+
+        {/* Scroll Indicator */}
+        <motion.div 
+          className="absolute bottom-8 left-1/2 -translate-x-1/2"
+          animate={{ y: [0, 10, 0] }}
+          transition={{ duration: 2, repeat: Infinity }}
+        >
+          <div className="flex flex-col items-center gap-2 text-muted-foreground">
+            <span className="text-xs uppercase tracking-widest">Scroll</span>
+            <div className="w-6 h-10 rounded-full border-2 border-muted-foreground/30 flex justify-center pt-2">
+              <motion.div 
+                className="w-1.5 h-1.5 rounded-full bg-primary"
+                animate={{ y: [0, 12, 0] }}
+                transition={{ duration: 1.5, repeat: Infinity }}
+              />
+            </div>
+          </div>
+        </motion.div>
       </header>
 
-      {/* Problems Section */}
-      <section className="py-24 lg:py-32 relative bg-muted/20">
-        <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-border to-transparent" />
+      {/* Problems Section - Bento Style */}
+      <section className="py-32 relative bg-muted/30">
+        <div className="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-border to-transparent" />
         <div className="container mx-auto px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="text-center max-w-3xl mx-auto mb-16"
+            className="text-center max-w-3xl mx-auto mb-20"
           >
-            <span className="inline-block text-sm font-semibold uppercase tracking-[0.2em] text-primary mb-4">
+            <span className="inline-block text-sm font-bold uppercase tracking-[0.3em] text-primary mb-6">
               The Challenge
             </span>
-            <h2 className="font-heading text-3xl md:text-4xl lg:text-5xl font-bold text-foreground mb-6">
-              Tackling Issues <AnimatedGradientText>Before They Become Problems</AnimatedGradientText>
+            <h2 className="font-heading text-4xl md:text-5xl lg:text-6xl font-bold text-foreground mb-6">
+              Problems We <AnimatedGradientText>Solve</AnimatedGradientText>
             </h2>
-            <p className="text-lg text-muted-foreground">
-              Enterprise cloud environments face mounting pressure: costs escalate without clear attribution, security vulnerabilities go undetected, and operational complexity obscures optimization opportunities.
-            </p>
           </motion.div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {problems.slice(0, 3).map((problem, index) => (
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+            {problems.map((problem, index) => (
               <motion.div
                 key={problem.title}
-                initial={{ opacity: 0, y: 30 }}
+                initial={{ opacity: 0, y: 40 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ delay: index * 0.1 }}
                 viewport={{ once: true }}
-                className="p-6 rounded-2xl bg-card border border-border hover:border-red-500/30 transition-colors"
+                className="group relative"
               >
-                <div className="p-3 rounded-xl bg-red-500/10 text-red-500 w-fit mb-4">
-                  <problem.icon className="w-6 h-6" />
+                <div className="absolute inset-0 bg-gradient-to-b from-red-500/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-2xl blur-xl" />
+                <div className="relative h-full p-6 rounded-2xl bg-card border border-border hover:border-red-500/30 transition-all duration-300">
+                  <div className="flex items-center justify-between mb-6">
+                    <div className="p-3 rounded-xl bg-red-500/10 text-red-500 group-hover:scale-110 transition-transform">
+                      <problem.icon className="w-6 h-6" />
+                    </div>
+                    <div className="text-right">
+                      <p className="text-2xl font-bold text-red-500">{problem.stat}</p>
+                      <p className="text-xs text-muted-foreground">{problem.statLabel}</p>
+                    </div>
+                  </div>
+                  <h3 className="font-heading text-lg font-bold text-foreground mb-3">{problem.title}</h3>
+                  <p className="text-sm text-muted-foreground leading-relaxed">{problem.description}</p>
                 </div>
-                <h3 className="font-heading text-lg font-bold text-foreground mb-2">{problem.title}</h3>
-                <p className="text-muted-foreground text-sm leading-relaxed">{problem.description}</p>
-              </motion.div>
-            ))}
-          </div>
-
-          <div className="grid md:grid-cols-2 gap-6 mt-6 max-w-2xl mx-auto">
-            {problems.slice(3).map((problem, index) => (
-              <motion.div
-                key={problem.title}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ delay: (index + 3) * 0.1 }}
-                viewport={{ once: true }}
-                className="p-6 rounded-2xl bg-card border border-border hover:border-red-500/30 transition-colors"
-              >
-                <div className="p-3 rounded-xl bg-red-500/10 text-red-500 w-fit mb-4">
-                  <problem.icon className="w-6 h-6" />
-                </div>
-                <h3 className="font-heading text-lg font-bold text-foreground mb-2">{problem.title}</h3>
-                <p className="text-muted-foreground text-sm leading-relaxed">{problem.description}</p>
               </motion.div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* Solution Intro */}
-      <section className="py-24 lg:py-32 relative">
+      {/* Solution Intro - Large Typography */}
+      <section className="py-32 relative overflow-hidden">
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,hsl(var(--primary)/0.05),transparent_70%)]" />
         <div className="container mx-auto px-6 lg:px-8">
           <motion.div
-            initial={{ opacity: 0, y: 30 }}
+            initial={{ opacity: 0, y: 40 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="max-w-4xl mx-auto text-center"
+            className="max-w-5xl mx-auto text-center"
           >
-            <span className="inline-block text-sm font-semibold uppercase tracking-[0.2em] text-primary mb-4">
-              Meet Xops360
-            </span>
-            <h2 className="font-heading text-3xl md:text-4xl lg:text-5xl font-bold text-foreground mb-6">
-              AI-Powered Cloud Optimization, <AnimatedGradientText>Risk Mitigation & Compliance</AnimatedGradientText>
+            <motion.div
+              initial={{ scale: 0.8, opacity: 0 }}
+              whileInView={{ scale: 1, opacity: 1 }}
+              viewport={{ once: true }}
+              className="inline-flex items-center gap-3 mb-8"
+            >
+              <img src="/logos/Xops360/Logo_Sky_Blue.png" alt="XOPS360" className="h-16 w-auto" />
+            </motion.div>
+            
+            <h2 className="font-heading text-4xl md:text-5xl lg:text-6xl font-bold text-foreground mb-8 leading-tight">
+              AI-Powered Cloud Optimization,{' '}
+              <AnimatedGradientText>Risk Mitigation & Compliance</AnimatedGradientText>
             </h2>
-            <p className="text-lg text-muted-foreground mb-8 max-w-3xl mx-auto">
-              Xops360 delivers comprehensive cloud management through an integrated platform combining AI-driven cost optimization, continuous security monitoring, and proactive compliance management. Bringing everything into one seamless view so finance, security, and engineering teams stay aligned in real time.
+            
+            <p className="text-xl lg:text-2xl text-muted-foreground leading-relaxed mb-12 max-w-4xl mx-auto">
+              Xops360 delivers comprehensive cloud management through an integrated platform combining AI-driven cost optimization, continuous security monitoring, and proactive compliance management.
             </p>
-            <blockquote className="text-xl lg:text-2xl font-medium text-foreground italic border-l-4 border-primary pl-6 text-left max-w-2xl mx-auto">
-              "Know what you're spending, what's at risk, and what to fix—instantly."
-            </blockquote>
+            
+            <div className="relative max-w-3xl mx-auto">
+              <div className="absolute -left-4 top-0 bottom-0 w-1 bg-gradient-to-b from-primary via-cyan-500 to-primary rounded-full" />
+              <blockquote className="text-2xl lg:text-3xl font-medium text-foreground italic text-left pl-8">
+                "Know what you're spending, what's at risk, and what to fix—instantly."
+              </blockquote>
+            </div>
           </motion.div>
         </div>
       </section>
 
-      {/* Metrics Bar */}
-      <section className="py-12 border-y border-border/50 bg-muted/20">
+      {/* Metrics Bar - Floating Cards */}
+      <section className="py-16 relative">
         <div className="container mx-auto px-6 lg:px-8">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
-            {[
-              { value: '22%', label: 'Average Cost Reduction', sublabel: 'Cost savings via smart resource optimization' },
-              { value: '100%', label: 'Compliance Maintained', sublabel: 'Continuous monitoring ensures compliance' },
-              { value: '24/7', label: 'Active Monitoring', sublabel: 'Always-on security and performance oversight' },
-              { value: '99.9%', label: 'Uptime SLA', sublabel: 'Enterprise-grade reliability' },
-            ].map((stat, i) => (
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-6">
+            {metrics.map((stat, i) => (
               <motion.div
                 key={stat.label}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
+                initial={{ opacity: 0, y: 30, scale: 0.9 }}
+                whileInView={{ opacity: 1, y: 0, scale: 1 }}
                 transition={{ delay: i * 0.1 }}
                 viewport={{ once: true }}
-                className="text-center"
+                className="group"
               >
-                <p className="font-heading text-3xl md:text-4xl lg:text-5xl font-bold text-gradient mb-2">{stat.value}</p>
-                <p className="text-foreground font-medium text-sm">{stat.label}</p>
-                <p className="text-muted-foreground text-xs mt-1">{stat.sublabel}</p>
+                <div className="relative p-8 rounded-2xl bg-card border border-border hover:border-primary/30 transition-all duration-300 text-center">
+                  <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity rounded-2xl" />
+                  <stat.icon className="w-8 h-8 text-primary mx-auto mb-4" />
+                  <p className="font-heading text-4xl lg:text-5xl font-bold text-gradient mb-2">{stat.value}</p>
+                  <p className="text-sm text-muted-foreground">{stat.label}</p>
+                </div>
               </motion.div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* Key Capabilities */}
-      <section className="py-24 lg:py-32 relative">
+      {/* Key Capabilities - Premium Grid */}
+      <section className="py-32 relative bg-muted/30">
+        <div className="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-border to-transparent" />
         <div className="container mx-auto px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="text-center max-w-3xl mx-auto mb-16"
+            className="text-center max-w-3xl mx-auto mb-20"
           >
-            <span className="inline-block text-sm font-semibold uppercase tracking-[0.2em] text-primary mb-4">
-              Key Capabilities
+            <span className="inline-block text-sm font-bold uppercase tracking-[0.3em] text-primary mb-6">
+              Platform Capabilities
             </span>
-            <h2 className="font-heading text-3xl md:text-4xl lg:text-5xl font-bold text-foreground mb-6">
+            <h2 className="font-heading text-4xl md:text-5xl lg:text-6xl font-bold text-foreground">
               Comprehensive Cloud Management <AnimatedGradientText>Powered by AI</AnimatedGradientText>
             </h2>
           </motion.div>
 
-          <div className="grid lg:grid-cols-2 gap-6">
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
             {capabilities.map((cap, index) => (
               <motion.div
                 key={cap.title}
-                initial={{ opacity: 0, y: 30 }}
+                initial={{ opacity: 0, y: 40 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                transition={{ delay: index * 0.05 }}
+                transition={{ delay: index * 0.08 }}
                 viewport={{ once: true }}
+                className="group"
               >
-                <PremiumCard className="h-full">
-                  <div className="p-6 lg:p-8">
-                    <div className="flex items-start gap-4 mb-4">
-                      <div className="p-3 rounded-xl bg-primary/10 text-primary border border-primary/20">
-                        <cap.icon className="w-6 h-6" />
-                      </div>
-                      <h3 className="font-heading text-xl font-bold text-foreground pt-2">{cap.title}</h3>
+                <div className={`relative h-full p-8 rounded-2xl bg-card border border-border hover:border-primary/30 transition-all duration-500 overflow-hidden`}>
+                  {/* Gradient Background */}
+                  <div className={`absolute inset-0 bg-gradient-to-br ${cap.gradient} opacity-0 group-hover:opacity-100 transition-opacity duration-500`} />
+                  
+                  <div className="relative">
+                    <div className={`p-4 rounded-xl bg-gradient-to-br ${cap.gradient} w-fit mb-6 group-hover:scale-110 transition-transform duration-300`}>
+                      <cap.icon className={`w-7 h-7 ${cap.iconColor}`} />
                     </div>
-                    <p className="text-muted-foreground mb-4 leading-relaxed">{cap.description}</p>
-                    <ul className="space-y-2">
+                    
+                    <h3 className="font-heading text-xl font-bold text-foreground mb-3">{cap.title}</h3>
+                    <p className="text-muted-foreground mb-6 leading-relaxed">{cap.description}</p>
+                    
+                    <ul className="space-y-3">
                       {cap.features.map((feature) => (
-                        <li key={feature} className="flex items-start gap-2 text-sm text-foreground">
-                          <CheckCircle2 className="w-4 h-4 text-primary shrink-0 mt-0.5" />
+                        <li key={feature} className="flex items-center gap-3 text-sm text-foreground">
+                          <CheckCircle2 className="w-4 h-4 text-primary shrink-0" />
                           {feature}
                         </li>
                       ))}
                     </ul>
                   </div>
-                </PremiumCard>
+                </div>
               </motion.div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* Case Studies */}
-      <section className="py-24 lg:py-32 relative bg-muted/20">
-        <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-border to-transparent" />
+      {/* Case Studies - Cards with Gradient */}
+      <section className="py-32 relative">
         <div className="container mx-auto px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="text-center max-w-3xl mx-auto mb-16"
+            className="text-center max-w-3xl mx-auto mb-20"
           >
-            <span className="inline-block text-sm font-semibold uppercase tracking-[0.2em] text-primary mb-4">
+            <span className="inline-block text-sm font-bold uppercase tracking-[0.3em] text-primary mb-6">
               Customer Success
             </span>
-            <h2 className="font-heading text-3xl md:text-4xl lg:text-5xl font-bold text-foreground mb-6">
-              Driving Measurable Cost Savings <AnimatedGradientText>Across Industries</AnimatedGradientText>
+            <h2 className="font-heading text-4xl md:text-5xl lg:text-6xl font-bold text-foreground">
+              Driving Measurable Results <AnimatedGradientText>Across Industries</AnimatedGradientText>
             </h2>
           </motion.div>
 
-          <div className="grid lg:grid-cols-3 gap-6">
+          <div className="grid lg:grid-cols-3 gap-8">
             {caseStudies.map((study, index) => (
               <motion.div
                 key={study.company}
-                initial={{ opacity: 0, y: 30 }}
+                initial={{ opacity: 0, y: 40 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                transition={{ delay: index * 0.1 }}
+                transition={{ delay: index * 0.15 }}
                 viewport={{ once: true }}
-                className="bg-card rounded-2xl border border-border p-6 lg:p-8"
+                className="group relative"
               >
-                <div className="mb-4">
-                  <h3 className="font-heading text-xl font-bold text-foreground">{study.company}</h3>
-                  <p className="text-sm text-primary">{study.industry}</p>
-                  <p className="text-xs text-muted-foreground mt-1">📍 {study.location}</p>
-                </div>
-
-                <ul className="space-y-3 mb-6">
-                  {study.results.map((result) => (
-                    <li key={result} className="flex items-start gap-2 text-sm text-foreground">
-                      <CheckCircle2 className="w-4 h-4 text-green-500 shrink-0 mt-0.5" />
-                      {result}
-                    </li>
-                  ))}
-                </ul>
-
-                <blockquote className="text-sm text-muted-foreground italic border-l-2 border-primary/50 pl-4">
-                  "{study.quote}"
-                </blockquote>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Testimonials */}
-      <section className="py-24 lg:py-32 relative">
-        <div className="container mx-auto px-6 lg:px-8">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="text-center max-w-3xl mx-auto mb-16"
-          >
-            <span className="inline-block text-sm font-semibold uppercase tracking-[0.2em] text-primary mb-4">
-              Client Success Stories
-            </span>
-            <h2 className="font-heading text-3xl md:text-4xl lg:text-5xl font-bold text-foreground">
-              Trusted by <AnimatedGradientText>Industry Leaders</AnimatedGradientText>
-            </h2>
-          </motion.div>
-
-          <div className="grid lg:grid-cols-3 gap-6">
-            {testimonials.map((testimonial, index) => (
-              <motion.div
-                key={testimonial.company}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ delay: index * 0.1 }}
-                viewport={{ once: true }}
-              >
-                <PremiumCard className="h-full">
-                  <div className="p-6 lg:p-8">
-                    <div className="text-center mb-6">
-                      <p className="font-heading text-4xl font-bold text-gradient">{testimonial.metric}</p>
-                      <p className="text-sm text-muted-foreground">{testimonial.metricLabel}</p>
-                    </div>
-
-                    <blockquote className="text-foreground leading-relaxed mb-6">
-                      "{testimonial.quote}"
-                    </blockquote>
-
-                    <div className="flex items-center gap-4">
-                      <img src={testimonial.logo} alt={testimonial.company} className="h-10 w-auto object-contain dark:invert" />
+                {/* Glow Effect */}
+                <div className={`absolute -inset-1 bg-gradient-to-r ${study.color} rounded-3xl blur-xl opacity-0 group-hover:opacity-30 transition-opacity duration-500`} />
+                
+                <div className="relative h-full bg-card rounded-2xl border border-border overflow-hidden">
+                  {/* Header */}
+                  <div className={`p-6 bg-gradient-to-r ${study.color}`}>
+                    <div className="flex items-center justify-between">
                       <div>
-                        <p className="font-medium text-foreground">{testimonial.author}</p>
-                        <p className="text-sm text-muted-foreground">{testimonial.role}, {testimonial.company}</p>
+                        <h3 className="font-heading text-2xl font-bold text-white">{study.company}</h3>
+                        <p className="text-white/80 text-sm">{study.industry}</p>
                       </div>
+                      <img src={study.logo} alt={study.company} className="h-12 w-auto object-contain brightness-0 invert" />
                     </div>
                   </div>
-                </PremiumCard>
+                  
+                  {/* Content */}
+                  <div className="p-6">
+                    <ul className="space-y-3 mb-6">
+                      {study.results.map((result) => (
+                        <li key={result} className="flex items-center gap-3 text-foreground">
+                          <CheckCircle2 className="w-5 h-5 text-green-500 shrink-0" />
+                          <span className="font-medium">{result}</span>
+                        </li>
+                      ))}
+                    </ul>
+                    
+                    <blockquote className="text-muted-foreground italic border-l-2 border-primary/50 pl-4">
+                      "{study.quote}"
+                    </blockquote>
+                  </div>
+                </div>
               </motion.div>
             ))}
           </div>
-
-          {/* Client Logos */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="mt-16"
-          >
-            <p className="text-center text-sm text-muted-foreground mb-8">Powering Innovation for Leading Organizations</p>
-            <div className="flex flex-wrap justify-center items-center gap-8 lg:gap-12">
-              {clientLogos.map((logo, index) => (
-                <motion.img
-                  key={index}
-                  src={logo}
-                  alt="Client logo"
-                  className="h-8 lg:h-10 w-auto object-contain grayscale hover:grayscale-0 transition-all opacity-60 hover:opacity-100 dark:invert"
-                  initial={{ opacity: 0 }}
-                  whileInView={{ opacity: 0.6 }}
-                  whileHover={{ opacity: 1 }}
-                  viewport={{ once: true }}
-                />
-              ))}
-            </div>
-          </motion.div>
         </div>
       </section>
 
-      {/* How It Works */}
-      <section className="py-24 lg:py-32 relative bg-muted/20">
-        <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-border to-transparent" />
+      {/* How It Works - Timeline */}
+      <section className="py-32 relative bg-muted/30">
+        <div className="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-border to-transparent" />
         <div className="container mx-auto px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="text-center max-w-3xl mx-auto mb-16"
+            className="text-center max-w-3xl mx-auto mb-20"
           >
-            <span className="inline-block text-sm font-semibold uppercase tracking-[0.2em] text-primary mb-4">
+            <span className="inline-block text-sm font-bold uppercase tracking-[0.3em] text-primary mb-6">
               Getting Started
             </span>
-            <h2 className="font-heading text-3xl md:text-4xl lg:text-5xl font-bold text-foreground mb-6">
-              How Xops360 <AnimatedGradientText>Fits Into Your Stack</AnimatedGradientText>
+            <h2 className="font-heading text-4xl md:text-5xl lg:text-6xl font-bold text-foreground mb-6">
+              How XOPS360 <AnimatedGradientText>Works</AnimatedGradientText>
             </h2>
-            <p className="text-lg text-muted-foreground">Four simple steps to transform your cloud operations</p>
+            <p className="text-xl text-muted-foreground">Four simple steps to transform your cloud operations</p>
           </motion.div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {steps.map((step, index) => (
-              <motion.div
-                key={step.title}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ delay: index * 0.1 }}
-                viewport={{ once: true }}
-                className="relative text-center"
-              >
-                <div className="w-16 h-16 mx-auto mb-4 rounded-2xl bg-gradient-to-br from-primary to-primary/70 flex items-center justify-center text-2xl font-bold text-primary-foreground shadow-lg">
-                  {step.number}
-                </div>
-                <h3 className="font-heading text-xl font-bold text-foreground mb-2">{step.title}</h3>
-                <p className="text-muted-foreground text-sm">{step.description}</p>
-
-                {index < steps.length - 1 && (
-                  <div className="hidden lg:block absolute top-8 left-[60%] w-[80%] h-px bg-gradient-to-r from-primary/50 to-transparent" />
-                )}
-              </motion.div>
-            ))}
+          <div className="relative max-w-5xl mx-auto">
+            {/* Connection Line */}
+            <div className="hidden lg:block absolute top-1/2 left-0 right-0 h-0.5 bg-gradient-to-r from-primary via-cyan-500 to-primary -translate-y-1/2" />
+            
+            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+              {steps.map((step, index) => (
+                <motion.div
+                  key={step.title}
+                  initial={{ opacity: 0, y: 40 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ delay: index * 0.15 }}
+                  viewport={{ once: true }}
+                  className="relative"
+                >
+                  <div className="flex flex-col items-center text-center">
+                    {/* Number Circle */}
+                    <div className="relative z-10 mb-6">
+                      <div className="w-20 h-20 rounded-2xl bg-gradient-to-br from-primary to-primary/70 flex items-center justify-center shadow-xl shadow-primary/20">
+                        <span className="text-2xl font-bold text-primary-foreground">{step.number}</span>
+                      </div>
+                    </div>
+                    
+                    <div className="p-3 rounded-xl bg-primary/10 text-primary mb-4">
+                      <step.icon className="w-6 h-6" />
+                    </div>
+                    
+                    <h3 className="font-heading text-xl font-bold text-foreground mb-2">{step.title}</h3>
+                    <p className="text-muted-foreground text-sm">{step.description}</p>
+                  </div>
+                </motion.div>
+              ))}
+            </div>
           </div>
 
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="text-center mt-12"
+            className="text-center mt-16"
           >
             <MagneticButton>
-              <Button variant="hero" size="xl" asChild>
+              <Button variant="hero" size="xl" asChild className="text-base px-10 py-6">
                 <a href="https://xops360.ai" target="_blank" rel="noopener noreferrer">
                   Get Started Today
                   <ExternalLink className="ml-2 h-5 w-5" />
@@ -695,96 +723,90 @@ export default function XOPS360() {
       </section>
 
       {/* CTA Section */}
-      <section className="py-24 lg:py-32 relative">
+      <section className="py-32 relative overflow-hidden">
         <div className="absolute inset-0">
-          <div className="absolute top-1/2 left-1/4 -translate-y-1/2 w-[500px] h-[500px] bg-primary/10 rounded-full blur-[150px]" />
-          <div className="absolute top-1/2 right-1/4 -translate-y-1/2 w-[400px] h-[400px] bg-secondary/10 rounded-full blur-[120px]" />
+          <div className="absolute top-1/2 left-1/4 -translate-y-1/2 w-[600px] h-[600px] bg-primary/15 rounded-full blur-[200px]" />
+          <div className="absolute top-1/2 right-1/4 -translate-y-1/2 w-[500px] h-[500px] bg-cyan-500/10 rounded-full blur-[150px]" />
         </div>
 
         <div className="container relative z-10 mx-auto px-6 lg:px-8">
-          <div className="max-w-5xl mx-auto">
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              className="bg-card rounded-3xl border border-border p-8 lg:p-16"
-            >
-              <div className="grid lg:grid-cols-2 gap-12 items-center">
-                <div>
-                  <h2 className="font-heading text-3xl lg:text-4xl font-bold text-foreground mb-4">
-                    Ready to Transform Your <span className="text-gradient">Cloud Operations?</span>
-                  </h2>
-                  <p className="text-muted-foreground mb-8">
-                    See how Xops360 can reduce costs, strengthen security, and ensure compliance for your enterprise.
-                  </p>
+          <motion.div
+            initial={{ opacity: 0, y: 40 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="max-w-5xl mx-auto"
+          >
+            <div className="relative rounded-3xl overflow-hidden">
+              {/* Gradient Border */}
+              <div className="absolute inset-0 bg-gradient-to-r from-primary via-cyan-500 to-primary p-px rounded-3xl">
+                <div className="absolute inset-px bg-card rounded-[calc(1.5rem-1px)]" />
+              </div>
+              
+              <div className="relative p-12 lg:p-20">
+                <div className="grid lg:grid-cols-[1.5fr_1fr] gap-12 items-center">
+                  <div>
+                    <h2 className="font-heading text-4xl lg:text-5xl font-bold text-foreground mb-6">
+                      Ready to Transform Your{' '}
+                      <span className="text-gradient">Cloud Operations?</span>
+                    </h2>
+                    <p className="text-xl text-muted-foreground mb-10">
+                      See how XOPS360 can reduce costs, strengthen security, and ensure compliance for your enterprise.
+                    </p>
 
-                  <div className="flex flex-col sm:flex-row gap-4 mb-8">
-                    <MagneticButton>
-                      <Button variant="hero" size="xl" asChild>
-                        <a href="https://xops360.ai" target="_blank" rel="noopener noreferrer">
-                          Start Free Trial
-                          <ArrowRight className="ml-2 h-5 w-5" />
-                        </a>
-                      </Button>
-                    </MagneticButton>
-                    <MagneticButton>
-                      <Button variant="hero-outline" size="xl" onClick={openCalendly}>
-                        Talk to a Cloud Expert
-                      </Button>
-                    </MagneticButton>
+                    <div className="flex flex-col sm:flex-row gap-4 mb-8">
+                      <MagneticButton>
+                        <Button variant="hero" size="xl" asChild className="text-base px-8">
+                          <a href="https://xops360.ai" target="_blank" rel="noopener noreferrer">
+                            Start Free Trial
+                            <ArrowRight className="ml-2 h-5 w-5" />
+                          </a>
+                        </Button>
+                      </MagneticButton>
+                      <MagneticButton>
+                        <Button variant="hero-outline" size="xl" onClick={openCalendly} className="text-base px-8">
+                          Schedule a Demo
+                        </Button>
+                      </MagneticButton>
+                    </div>
+
+                    <p className="text-sm text-muted-foreground">No credit card required • Setup in minutes</p>
                   </div>
 
-                  <p className="text-xs text-muted-foreground">No credit card required • Setup in minutes</p>
-                </div>
+                  <div className="space-y-4">
+                    <a href="mailto:hello@axiomio.com" className="flex items-center gap-4 p-5 rounded-xl bg-muted/50 border border-border hover:border-primary/30 transition-all group">
+                      <div className="p-3 rounded-lg bg-primary/10 text-primary group-hover:scale-110 transition-transform">
+                        <Mail className="w-5 h-5" />
+                      </div>
+                      <div>
+                        <p className="font-medium text-foreground group-hover:text-primary transition-colors">hello@axiomio.com</p>
+                        <p className="text-sm text-muted-foreground">Email us anytime</p>
+                      </div>
+                    </a>
 
-                <div className="space-y-4">
-                  <a href="mailto:hello@axiomio.com" className="flex items-center gap-4 p-4 rounded-xl bg-muted/50 border border-border hover:border-primary/30 transition-colors group">
-                    <div className="p-3 rounded-lg bg-primary/10 text-primary group-hover:bg-primary/20 transition-colors">
-                      <Mail className="w-5 h-5" />
-                    </div>
-                    <div>
-                      <p className="text-sm text-muted-foreground">Email</p>
-                      <p className="font-medium text-foreground">hello@axiomio.com</p>
-                    </div>
-                  </a>
+                    <a href="tel:+918069290089" className="flex items-center gap-4 p-5 rounded-xl bg-muted/50 border border-border hover:border-primary/30 transition-all group">
+                      <div className="p-3 rounded-lg bg-primary/10 text-primary group-hover:scale-110 transition-transform">
+                        <Phone className="w-5 h-5" />
+                      </div>
+                      <div>
+                        <p className="font-medium text-foreground group-hover:text-primary transition-colors">+91 8069290089</p>
+                        <p className="text-sm text-muted-foreground">Call our team</p>
+                      </div>
+                    </a>
 
-                  <a href="https://axiomio.com/xops360" className="flex items-center gap-4 p-4 rounded-xl bg-muted/50 border border-border hover:border-primary/30 transition-colors group">
-                    <div className="p-3 rounded-lg bg-primary/10 text-primary group-hover:bg-primary/20 transition-colors">
-                      <Globe2 className="w-5 h-5" />
-                    </div>
-                    <div>
-                      <p className="text-sm text-muted-foreground">Website</p>
-                      <p className="font-medium text-foreground">axiomio.com/xops360</p>
-                    </div>
-                  </a>
-
-                  <a href="tel:+13234993203" className="flex items-center gap-4 p-4 rounded-xl bg-muted/50 border border-border hover:border-primary/30 transition-colors group">
-                    <div className="p-3 rounded-lg bg-primary/10 text-primary group-hover:bg-primary/20 transition-colors">
-                      <Phone className="w-5 h-5" />
-                    </div>
-                    <div>
-                      <p className="text-sm text-muted-foreground">Call Us (USA)</p>
-                      <p className="font-medium text-foreground">+1 323 499 3203</p>
-                    </div>
-                  </a>
+                    <button onClick={openCalendly} className="flex items-center gap-4 p-5 rounded-xl bg-muted/50 border border-border hover:border-primary/30 transition-all group w-full text-left">
+                      <div className="p-3 rounded-lg bg-primary/10 text-primary group-hover:scale-110 transition-transform">
+                        <Calendar className="w-5 h-5" />
+                      </div>
+                      <div>
+                        <p className="font-medium text-foreground group-hover:text-primary transition-colors">Book a Demo</p>
+                        <p className="text-sm text-muted-foreground">30-min consultation</p>
+                      </div>
+                    </button>
+                  </div>
                 </div>
               </div>
-            </motion.div>
-
-            {/* Trust Badges */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              className="flex justify-center gap-6 mt-8"
-            >
-              {['99.9% Uptime', 'SOC 2 Compliant', 'Enterprise Grade'].map((badge) => (
-                <span key={badge} className="text-xs font-medium text-muted-foreground px-4 py-2 rounded-full border border-border bg-muted/30">
-                  {badge}
-                </span>
-              ))}
-            </motion.div>
-          </div>
+            </div>
+          </motion.div>
         </div>
       </section>
 

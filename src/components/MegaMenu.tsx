@@ -31,96 +31,120 @@ const services = [
     slug: "strategy-advisory",
     icon: LineChart,
     title: "Strategy & Advisory",
-    subtitle: "Executive guidance for complex decisions",
-    description: "Navigate uncertainty with frameworks built on deep analysis and industry insight.",
+    subtitle: "Executive guidance",
+    description: "Navigate uncertainty with deep analysis and industry insight.",
     color: "from-blue-500/20 to-indigo-500/10",
     accent: "text-blue-400",
-    capabilities: [
-      { name: "Strategic Roadmap Development", icon: Target },
-      { name: "Market & Competitive Analysis", icon: TrendingUp },
-      { name: "Organizational Design", icon: Users },
-      { name: "Investment Thesis Development", icon: BarChart3 },
-    ],
   },
   {
     id: "technology",
     slug: "technology-systems",
     icon: Cpu,
     title: "Technology & Systems",
-    subtitle: "Architecture that scales with ambition",
-    description: "Enterprise-grade systems delivering reliability today, adaptable for tomorrow.",
+    subtitle: "Scalable architecture",
+    description: "Enterprise-grade systems delivering reliability today.",
     color: "from-emerald-500/20 to-teal-500/10",
     accent: "text-emerald-400",
-    capabilities: [
-      { name: "Enterprise Architecture", icon: Layers },
-      { name: "Cloud Infrastructure", icon: Cloud },
-      { name: "System Integration", icon: Network },
-      { name: "Platform Modernization", icon: Settings2 },
-    ],
   },
   {
     id: "ai",
     slug: "ai-automation",
     icon: Brain,
-    title: "AI Automation with Cloud DevOps",
-    subtitle: "AI workforce for modern operations",
-    description: "AI-driven automation for DevOps, SRE, and cloud operations—replacing manual processes with intelligent automation.",
+    title: "AI & Cloud DevOps",
+    subtitle: "Intelligent operations",
+    description: "AI-driven automation for DevOps, SRE, and cloud operations.",
     color: "from-violet-500/20 to-purple-500/10",
     accent: "text-violet-400",
-    capabilities: [
-      { name: "AI-Powered DevOps", icon: Workflow },
-      { name: "Cloud Automation", icon: Cloud },
-      { name: "Intelligent SRE", icon: Sparkles },
-      { name: "DevSecOps (SAST, SCA)", icon: Shield },
-    ],
   },
   {
     id: "cybersecurity",
     slug: "cybersecurity",
     icon: Shield,
-    title: "Cyber Security Services",
-    subtitle: "End-to-end enterprise protection",
-    description: "Comprehensive cybersecurity across cloud, network, and endpoints with AI-driven threat detection.",
+    title: "Cyber Security",
+    subtitle: "Enterprise protection",
+    description: "Comprehensive cybersecurity with AI-driven threat detection.",
     color: "from-red-500/20 to-orange-500/10",
     accent: "text-red-400",
-    capabilities: [
-      { name: "Cloud Security (CSPM/CWPP)", icon: Cloud },
-      { name: "Network Security", icon: Network },
-      { name: "Threat Detection & Response", icon: Shield },
-      { name: "Compliance & Governance", icon: Lock },
-    ],
   },
   {
     id: "transformation",
     slug: "digital-transformation",
     icon: Zap,
     title: "Digital Transformation",
-    subtitle: "Change that creates lasting value",
-    description: "Complex organizational change with methodologies ensuring adoption and sustainability.",
+    subtitle: "Lasting change",
+    description: "Complex organizational change ensuring adoption.",
     color: "from-amber-500/20 to-orange-500/10",
     accent: "text-amber-400",
-    capabilities: [
-      { name: "Transformation Strategy", icon: Rocket },
-      { name: "Change Management", icon: Users },
-      { name: "Process Redesign", icon: Workflow },
-      { name: "Capability Building", icon: Shield },
-    ],
   },
   {
-    id: "xerotrust",
-    slug: "xerotrust",
+    id: "cloud-security",
+    slug: "cloud-security",
+    icon: Cloud,
+    title: "Cloud Security",
+    subtitle: "CSPM/CWPP",
+    description: "Secure cloud environments with posture management.",
+    color: "from-sky-500/20 to-blue-500/10",
+    accent: "text-sky-400",
+  },
+  {
+    id: "devops",
+    slug: "devops-services",
+    icon: Workflow,
+    title: "DevOps Services",
+    subtitle: "CI/CD & automation",
+    description: "Streamlined development and deployment pipelines.",
+    color: "from-orange-500/20 to-red-500/10",
+    accent: "text-orange-400",
+  },
+  {
+    id: "finops",
+    slug: "cloud-finops",
+    icon: BarChart3,
+    title: "Cloud FinOps",
+    subtitle: "Cost optimization",
+    description: "Maximize cloud ROI with intelligent cost management.",
+    color: "from-green-500/20 to-emerald-500/10",
+    accent: "text-green-400",
+  },
+  {
+    id: "kubernetes",
+    slug: "kubernetes",
+    icon: Layers,
+    title: "Kubernetes",
+    subtitle: "Container orchestration",
+    description: "Enterprise Kubernetes deployment and management.",
+    color: "from-indigo-500/20 to-violet-500/10",
+    accent: "text-indigo-400",
+  },
+  {
+    id: "migration",
+    slug: "migration-modernization",
+    icon: Rocket,
+    title: "Migration & Modernization",
+    subtitle: "Cloud journey",
+    description: "Seamless cloud migration and legacy modernization.",
+    color: "from-pink-500/20 to-rose-500/10",
+    accent: "text-pink-400",
+  },
+  {
+    id: "ops-excellence",
+    slug: "ops-excellence",
+    icon: Target,
+    title: "Ops Excellence",
+    subtitle: "Operational maturity",
+    description: "Achieve operational excellence across your organization.",
+    color: "from-teal-500/20 to-cyan-500/10",
+    accent: "text-teal-400",
+  },
+  {
+    id: "vulnerability",
+    slug: "vulnerability-management",
     icon: Lock,
-    title: "XeroTrust",
-    subtitle: "Zero-Trust Network Access",
-    description: "Enterprise security without VPN complexity. 10x faster with AI-driven protection.",
-    color: "from-cyan-500/20 to-emerald-500/10",
-    accent: "text-cyan-400",
-    capabilities: [
-      { name: "Zero-Trust Architecture", icon: Shield },
-      { name: "WireGuard Encryption", icon: Lock },
-      { name: "SSO & MFA Integration", icon: Users },
-      { name: "AI-Driven Security", icon: Brain },
-    ],
+    title: "Vulnerability Management",
+    subtitle: "Threat mitigation",
+    description: "Proactive vulnerability detection and remediation.",
+    color: "from-rose-500/20 to-red-500/10",
+    accent: "text-rose-400",
   },
 ];
 
@@ -151,19 +175,6 @@ const featuredOfferings = [
       { label: "Faster Access", value: "10x" },
       { label: "Deployment", value: "5min" },
       { label: "Cost Savings", value: "60%" },
-    ],
-  },
-  {
-    title: "XeroWaste",
-    subtitle: "FinOps & Cost Optimization",
-    description: "Eliminate cloud waste with AI-powered cost optimization. Real-time insights and automated rightsizing.",
-    link: "/xerowaste",
-    color: "from-green-500/20 to-emerald-500/10",
-    accent: "bg-green-500",
-    stats: [
-      { label: "Avg Savings", value: "35%" },
-      { label: "Detection", value: "Real-time" },
-      { label: "ROI", value: "10x" },
     ],
   },
 ];
@@ -230,13 +241,13 @@ export function MegaMenu({ isOpen, onClose }: MegaMenuProps) {
                       </Link>
                     </div>
 
-                    <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-3">
+                    <div className="grid sm:grid-cols-3 lg:grid-cols-4 gap-2.5">
                       {services.map((service, index) => (
                         <motion.div
                           key={service.id}
                           initial={{ opacity: 0, y: 20 }}
                           animate={{ opacity: 1, y: 0 }}
-                          transition={{ delay: index * 0.05 }}
+                          transition={{ delay: index * 0.03 }}
                           onMouseEnter={() => setHoveredService(service.id)}
                           onMouseLeave={() => setHoveredService(null)}
                         >
@@ -246,7 +257,7 @@ export function MegaMenu({ isOpen, onClose }: MegaMenuProps) {
                             className="group block"
                           >
                             <div className={cn(
-                              "relative p-3.5 rounded-lg border border-border/50 transition-all duration-300",
+                              "relative p-3 rounded-lg border border-border/50 transition-all duration-300",
                               "hover:border-primary/30 hover:shadow-lg hover:shadow-primary/5",
                               hoveredService === service.id && "border-primary/30 bg-primary/5"
                             )}>
@@ -259,56 +270,33 @@ export function MegaMenu({ isOpen, onClose }: MegaMenuProps) {
 
                               <div className="relative">
                                 {/* Header */}
-                                <div className="flex items-start gap-2.5 mb-2">
+                                <div className="flex items-start gap-2 mb-1.5">
                                   <div className={cn(
-                                    "p-2 rounded-md bg-gradient-to-br border transition-all duration-300",
+                                    "p-1.5 rounded-md bg-gradient-to-br border transition-all duration-300",
                                     "from-primary/20 to-primary/5 border-primary/20",
                                     hoveredService === service.id && "scale-110"
                                   )}>
                                     <service.icon className={cn(
-                                      "h-4 w-4 transition-colors",
+                                      "h-3.5 w-3.5 transition-colors",
                                       hoveredService === service.id ? service.accent : "text-primary"
                                     )} />
                                   </div>
                                   <div className="flex-1 min-w-0">
-                                    <h4 className="font-heading font-semibold text-sm text-foreground group-hover:text-primary transition-colors line-clamp-1">
+                                    <h4 className="font-heading font-semibold text-xs text-foreground group-hover:text-primary transition-colors line-clamp-1">
                                       {service.title}
                                     </h4>
-                                    <p className="text-[10px] text-muted-foreground line-clamp-1">
+                                    <p className="text-[9px] text-muted-foreground line-clamp-1">
                                       {service.subtitle}
                                     </p>
                                   </div>
                                 </div>
 
-                                {/* Description */}
-                                <p className="text-xs text-muted-foreground mb-2 line-clamp-2 leading-relaxed">
-                                  {service.description}
-                                </p>
-
-                                {/* Capabilities - show only first 2 */}
-                                <div className="space-y-1">
-                                  {service.capabilities.slice(0, 2).map((cap) => (
-                                    <div
-                                      key={cap.name}
-                                      className="flex items-center gap-1.5 text-[10px] text-muted-foreground/80 group-hover:text-muted-foreground transition-colors"
-                                    >
-                                      <cap.icon className="h-2.5 w-2.5 text-primary/60" />
-                                      <span className="line-clamp-1">{cap.name}</span>
-                                    </div>
-                                  ))}
-                                  {service.capabilities.length > 2 && (
-                                    <div className="text-[10px] text-muted-foreground/60">
-                                      +{service.capabilities.length - 2} more capabilities
-                                    </div>
-                                  )}
-                                </div>
-
                                 {/* Arrow indicator */}
                                 <div className={cn(
-                                  "absolute top-3 right-3 opacity-0 transition-all duration-300",
+                                  "absolute top-2 right-2 opacity-0 transition-all duration-300",
                                   hoveredService === service.id && "opacity-100"
                                 )}>
-                                  <ArrowRight className={cn("h-3.5 w-3.5", service.accent)} />
+                                  <ArrowRight className={cn("h-3 w-3", service.accent)} />
                                 </div>
                               </div>
                             </div>
@@ -352,12 +340,12 @@ export function MegaMenu({ isOpen, onClose }: MegaMenuProps) {
                             </div>
 
                             {/* Title with logo */}
-                            <div className="flex items-center gap-2 mb-1.5">
+                            <div className="flex items-center gap-3 mb-1.5">
                               {'logo' in offering && offering.logo && (
                                 <img 
                                   src={offering.logo} 
                                   alt={offering.title}
-                                  className="h-5 w-auto object-contain"
+                                  className="h-8 w-auto object-contain"
                                 />
                               )}
                               <h3 className="font-heading text-base font-bold text-foreground">

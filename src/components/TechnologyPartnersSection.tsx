@@ -2,16 +2,16 @@ import { motion } from "framer-motion";
 import { Handshake } from "lucide-react";
 
 // Partner logos
-import awsLogo from "@/assets/partners/aws-partner.svg";
-import googleCloudLogo from "@/assets/partners/google-cloud.svg";
-import azureLogo from "@/assets/partners/azure.svg";
-import cloudflarelogo from "@/assets/partners/cloudflare.svg";
-import crayonLogo from "@/assets/partners/crayon.svg";
-import veeamLogo from "@/assets/partners/veeam.svg";
-import vmwareLogo from "@/assets/partners/vmware.svg";
-import tenableLogo from "@/assets/partners/tenable.svg";
-import crowdstrikeLogo from "@/assets/partners/crowdstrike.svg";
-import zscalerLogo from "@/assets/partners/zscaler.svg";
+import awsLogo from "@/assets/partners/aws.png";
+import azureLogo from "@/assets/partners/azure.png";
+import googleCloudLogo from "@/assets/partners/google-cloud.png";
+import cloudflarelogo from "@/assets/partners/cloudflare.png";
+import crayonLogo from "@/assets/partners/crayon.png";
+import veeamLogo from "@/assets/partners/veeam.png";
+import vmwareLogo from "@/assets/partners/vmware.png";
+import tenableLogo from "@/assets/partners/tenable.png";
+import crowdstrikeLogo from "@/assets/partners/crowdstrike.png";
+import zscalerLogo from "@/assets/partners/zscaler.png";
 import acronisLogo from "@/assets/partners/acronis.svg";
 
 const partners = [

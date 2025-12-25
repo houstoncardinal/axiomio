@@ -66,6 +66,7 @@ const Careers = lazy(() => import("./pages/Careers"));
 const XeroTrust = lazy(() => import("./pages/XeroTrust"));
 const XeroTrustCompare = lazy(() => import("./pages/XeroTrustCompare"));
 const XeroWaste = lazy(() => import("./pages/XeroWaste"));
+const RequestDemo = lazy(() => import("./pages/RequestDemo"));
 const AdminLayout = lazy(() => import("./pages/admin/AdminLayout"));
 const Dashboard = lazy(() => import("./pages/admin/Dashboard"));
 const Analytics = lazy(() => import("./pages/admin/Analytics"));
@@ -139,6 +140,7 @@ const AppContent = () => {
           <Route path="/xops360" element={<XOPS360 />} />
           <Route path="/approach" element={<Approach />} />
           <Route path="/contact" element={<Contact />} />
+          <Route path="/request-a-demo" element={<RequestDemo />} />
           <Route path="/auth" element={<Auth />} />
           
           {/* Admin Routes */}

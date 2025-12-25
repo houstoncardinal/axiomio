@@ -20,6 +20,7 @@ import { ClientLogoMarquee } from "@/components/ClientLogoMarquee";
 import { TechnologyPartnersSection } from "@/components/TechnologyPartnersSection";
 import { XeroTrustBanner } from "@/components/XeroTrustBanner";
 import { CertificationsSection } from "@/components/CertificationsSection";
+import { FeaturedInSection } from "@/components/FeaturedInSection";
 import { lazy, Suspense, useRef } from "react";
 const LazyXOPS360Section = lazy(() => import("@/components/XOPS360Section").then(m => ({
   default: m.XOPS360Section

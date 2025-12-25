@@ -11,6 +11,7 @@ import { GridBackground } from "@/components/GridBackground";
 import { useToast } from "@/hooks/use-toast";
 import { SEOHead } from "@/components/SEOHead";
 import { contactPageSchema } from "@/lib/seo-schemas-enhanced";
+import { OfficeLocationsSection } from "@/components/OfficeLocationsSection";
 
 
 export default function Contact() {
@@ -255,6 +256,9 @@ export default function Contact() {
           </div>
         </div>
       </section>
+
+      {/* Office Locations */}
+      <OfficeLocationsSection />
 
       <Footer />
     </main>

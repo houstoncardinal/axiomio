@@ -7,33 +7,23 @@ import googleCloudLogo from "@/assets/partners/google-cloud.svg";
 import azureLogo from "@/assets/partners/azure.svg";
 import acronisLogo from "@/assets/partners/acronis.svg";
 import citrixLogo from "@/assets/partners/citrix.svg";
+import veeamLogo from "@/assets/partners/veeam.svg";
+import vmwareLogo from "@/assets/partners/vmware.svg";
+import tenableLogo from "@/assets/partners/tenable.svg";
+import datadogLogo from "@/assets/partners/datadog.svg";
+import hashicorpLogo from "@/assets/partners/hashicorp.svg";
 
 const partners = [
-  {
-    name: "AWS",
-    logo: awsLogo,
-    description: "Advanced Partner",
-  },
-  {
-    name: "Google Cloud",
-    logo: googleCloudLogo,
-    description: "Cloud Partner",
-  },
-  {
-    name: "Microsoft Azure",
-    logo: azureLogo,
-    description: "Solutions Partner",
-  },
-  {
-    name: "Acronis",
-    logo: acronisLogo,
-    description: "Cyber Protect Partner",
-  },
-  {
-    name: "Citrix",
-    logo: citrixLogo,
-    description: "Diamond Partner",
-  },
+  { name: "AWS", logo: awsLogo, description: "Advanced Partner" },
+  { name: "Google Cloud", logo: googleCloudLogo, description: "Cloud Partner" },
+  { name: "Microsoft Azure", logo: azureLogo, description: "Solutions Partner" },
+  { name: "Acronis", logo: acronisLogo, description: "Cyber Protect Partner" },
+  { name: "Citrix", logo: citrixLogo, description: "Diamond Partner" },
+  { name: "Veeam", logo: veeamLogo, description: "Partner" },
+  { name: "VMware", logo: vmwareLogo, description: "Partner" },
+  { name: "Tenable", logo: tenableLogo, description: "Security Partner" },
+  { name: "Datadog", logo: datadogLogo, description: "Observability Partner" },
+  { name: "HashiCorp", logo: hashicorpLogo, description: "Infrastructure Partner" },
 ];
 
 export function TechnologyPartnersSection() {

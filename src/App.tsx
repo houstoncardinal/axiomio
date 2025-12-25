@@ -1,5 +1,6 @@
 import { Suspense, lazy, Component, ReactNode } from "react";
 import { Toaster } from "@/components/ui/toaster";
+const Blog = lazy(() => import("./pages/Blog"));
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
@@ -61,6 +62,7 @@ const DevOpsServices = lazy(() => import("./pages/services/DevOpsServices"));
 const CloudSecurity = lazy(() => import("./pages/services/CloudSecurity"));
 const MigrationModernization = lazy(() => import("./pages/services/MigrationModernization"));
 const Kubernetes = lazy(() => import("./pages/services/Kubernetes"));
+const Blog = lazy(() => import("./pages/Blog"));
 const XeroTrust = lazy(() => import("./pages/XeroTrust"));
 const XeroTrustCompare = lazy(() => import("./pages/XeroTrustCompare"));
 const XeroWaste = lazy(() => import("./pages/XeroWaste"));
@@ -114,6 +116,7 @@ const AppContent = () => {
       <Suspense fallback={<PageLoader />}>
         <Routes>
           <Route path="/" element={<Index />} />
+          <Route path="/blog" element={<Blog />} />
           <Route path="/about" element={<About />} />
           <Route path="/services" element={<Services />} />
           <Route path="/services/strategy-advisory" element={<StrategyAdvisory />} />

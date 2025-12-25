@@ -1,65 +1,15 @@
 import { motion } from "framer-motion";
-import { Quote, ChevronLeft, ChevronRight, Play, X } from "lucide-react";
-import {
-  Carousel,
-  CarouselContent,
-  CarouselItem,
-  CarouselNext,
-  CarouselPrevious,
-} from "@/components/ui/carousel";
-import Autoplay from "embla-carousel-autoplay";
-import { useRef, useState } from "react";
-import { Button } from "@/components/ui/button";
-
-const testimonials = [
-  {
-    quote: "XOPS360 transformed our operations in ways we didn't think possible. We reduced deployment times by 70% and eliminated nearly all manual interventions.",
-    author: "Sarah Chen",
-    role: "CTO",
-    company: "Global FinTech Leader",
-    metric: "70%",
-    metricLabel: "Faster Deployments",
-  },
-  {
-    quote: "The unified approach to DevOps, DataOps, and MLOps gave us unprecedented visibility. Decision-making has never been faster or more informed.",
-    author: "Marcus Williams",
-    role: "VP of Engineering",
-    company: "Fortune 100 Enterprise",
-    metric: "5x",
-    metricLabel: "Faster Decisions",
-  },
-  {
-    quote: "Axiomio's strategic insight combined with XOPS360's capabilities helped us achieve 99.99% uptime while scaling 5x. Exceptional partnership.",
-    author: "Elena Rodriguez",
-    role: "Head of Infrastructure",
-    company: "Leading Healthcare Provider",
-    metric: "99.99%",
-    metricLabel: "Uptime Achieved",
-  },
-  {
-    quote: "XeroTrust's zero-trust architecture reduced our security incidents by 85% in the first quarter. The ROI was immediate and substantial.",
-    author: "David Park",
-    role: "CISO",
-    company: "Major Retail Chain",
-    metric: "85%",
-    metricLabel: "Fewer Incidents",
-  },
-  {
-    quote: "The integration was seamless. Within weeks, we had complete visibility across our entire cloud infrastructure with automated remediation.",
-    author: "Amanda Foster",
-    role: "Director of Cloud Operations",
-    company: "Enterprise SaaS Platform",
-    metric: "3 weeks",
-    metricLabel: "Time to Value",
-  },
-];
+import { ChevronLeft, ChevronRight, Play, X } from "lucide-react";
+import { useState } from "react";
 
 // Featured video testimonials
 const videoTestimonials = [
   {
     name: "Andy Zhulenev",
+    firstName: "ANDY",
+    lastName: "ZHULENEV",
     role: "CEO",
-    company: "OneForce",
+    company: "Oneforce",
     companyLogo: "/logos/client-logos/oneforce.png",
     quote: "We decided to partner with Axiom to move fast in building our AWS application. Axiom's cloud proficiency and strategic partnership were key to the success of our AWS application development.",
     videoId: "c_leaFmNUVs",
@@ -67,6 +17,8 @@ const videoTestimonials = [
   },
   {
     name: "Hanuman Kamma",
+    firstName: "HANUMAN",
+    lastName: "KAMMA",
     role: "Co-founder and CEO",
     company: "EnParadigm",
     companyLogo: null,
@@ -77,130 +29,19 @@ const videoTestimonials = [
   },
 ];
 
-function VideoTestimonialCard({ testimonial, isActive }: { testimonial: typeof videoTestimonials[0]; isActive: boolean }) {
+export function TestimonialsSection() {
+  const [currentVideoIndex, setCurrentVideoIndex] = useState(0);
   const [isPlaying, setIsPlaying] = useState(false);
 
-  return (
-    <div className="grid lg:grid-cols-2 gap-8 items-center bg-gradient-to-br from-muted/40 to-muted/10 rounded-3xl overflow-hidden border border-border/50">
-      {/* Video Player */}
-      <div className="relative aspect-video lg:aspect-auto lg:h-full min-h-[300px]">
-        {isPlaying ? (
-          <div className="absolute inset-0">
-            <iframe
-              src={`https://www.youtube.com/embed/${testimonial.videoId}?autoplay=1&rel=0`}
-              title="Client Testimonial Video"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-              allowFullScreen
-              className="w-full h-full"
-            />
-            <button
-              onClick={() => setIsPlaying(false)}
-              className="absolute top-4 right-4 p-2 rounded-full bg-background/80 hover:bg-background transition-colors z-10"
-              aria-label="Close video"
-            >
-              <X className="w-5 h-5" />
-            </button>
-          </div>
-        ) : (
-          <div 
-            className="absolute inset-0 cursor-pointer group"
-            onClick={() => setIsPlaying(true)}
-          >
-            <img
-              src={testimonial.thumbnail}
-              alt={`${testimonial.name} testimonial`}
-              className="w-full h-full object-cover"
-            />
-            <div className="absolute inset-0 bg-gradient-to-r from-background/60 to-transparent" />
-            
-            {/* Play Button */}
-            <div className="absolute inset-0 flex items-center justify-center">
-              <motion.div
-                whileHover={{ scale: 1.1 }}
-                whileTap={{ scale: 0.95 }}
-                className="w-20 h-20 rounded-full bg-primary/90 flex items-center justify-center shadow-2xl group-hover:bg-primary transition-colors"
-              >
-                <Play className="w-8 h-8 text-primary-foreground ml-1" fill="currentColor" />
-              </motion.div>
-            </div>
-
-            {/* Watch Video Badge */}
-            <div className="absolute top-4 left-4 flex items-center gap-2 px-4 py-2 rounded-full bg-primary text-primary-foreground text-sm font-medium">
-              <Play className="w-4 h-4" fill="currentColor" />
-              Watch Video
-            </div>
-
-            {/* Name overlay on image */}
-            <div className="absolute top-1/3 right-8 text-right hidden lg:block">
-              <span className="font-heading text-5xl xl:text-6xl font-bold text-white/20 uppercase tracking-wider">
-                {testimonial.name.split(' ')[0]}
-              </span>
-              <br />
-              <span className="font-heading text-5xl xl:text-6xl font-bold text-white/20 uppercase tracking-wider">
-                {testimonial.name.split(' ')[1]}
-              </span>
-            </div>
-          </div>
-        )}
-      </div>
-
-      {/* Content */}
-      <div className="p-8 lg:p-12">
-        <div className="mb-6">
-          <span className="text-sm font-medium uppercase tracking-[0.15em] text-primary">
-            Hear From Clients
-          </span>
-        </div>
-
-        {/* Company Logo or Name */}
-        <div className="mb-8">
-          {testimonial.companyLogo ? (
-            <img 
-              src={testimonial.companyLogo} 
-              alt={`${testimonial.company} logo`} 
-              className="h-10 object-contain dark:invert"
-            />
-          ) : (
-            <span className="font-heading text-2xl font-bold text-foreground">
-              {testimonial.companyName}
-              <span className="text-primary">▪</span>
-            </span>
-          )}
-        </div>
-
-        {/* Divider */}
-        <div className="w-16 h-px bg-primary/30 mb-6" />
-
-        {/* Quote */}
-        <blockquote className="text-lg lg:text-xl text-foreground leading-relaxed mb-8">
-          "{testimonial.quote}"
-        </blockquote>
-
-        {/* Author */}
-        <div>
-          <div className="font-heading text-xl font-bold text-foreground uppercase tracking-wide">
-            {testimonial.name}
-          </div>
-          <div className="text-sm text-muted-foreground">
-            {testimonial.role} at {testimonial.company}
-          </div>
-        </div>
-      </div>
-    </div>
-  );
-}
-
-export function TestimonialsSection() {
-  const plugin = useRef(
-    Autoplay({ delay: 5000, stopOnInteraction: true })
-  );
-  const [currentVideoIndex, setCurrentVideoIndex] = useState(0);
+  const currentTestimonial = videoTestimonials[currentVideoIndex];
 
   const nextVideo = () => {
+    setIsPlaying(false);
     setCurrentVideoIndex((prev) => (prev + 1) % videoTestimonials.length);
   };
 
   const prevVideo = () => {
+    setIsPlaying(false);
     setCurrentVideoIndex((prev) => (prev - 1 + videoTestimonials.length) % videoTestimonials.length);
   };
 
@@ -252,129 +93,194 @@ export function TestimonialsSection() {
           </motion.p>
         </div>
 
-        {/* Featured Video Testimonials Carousel */}
+        {/* Featured Video Testimonial - Full Width Layout */}
         <motion.div
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.2, duration: 0.6 }}
           viewport={{ once: true }}
-          className="mb-20"
+          className="max-w-6xl mx-auto"
         >
-          <div className="max-w-5xl mx-auto">
-            <motion.div
-              key={currentVideoIndex}
-              initial={{ opacity: 0, x: 20 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.3 }}
-            >
-              <VideoTestimonialCard 
-                testimonial={videoTestimonials[currentVideoIndex]} 
-                isActive={true}
-              />
-            </motion.div>
-
-            {/* Video Navigation */}
-            <div className="flex justify-center items-center gap-4 mt-6">
-              <button
-                onClick={prevVideo}
-                className="p-2 rounded-full bg-background border border-border hover:border-primary/50 hover:bg-primary/10 transition-colors"
-                aria-label="Previous testimonial"
-              >
-                <ChevronLeft className="w-5 h-5 text-foreground" />
-              </button>
-
-              {/* Dots */}
-              <div className="flex gap-2">
-                {videoTestimonials.map((_, index) => (
-                  <button
-                    key={index}
-                    onClick={() => setCurrentVideoIndex(index)}
-                    className={`w-2 h-2 rounded-full transition-colors ${
-                      index === currentVideoIndex ? "bg-primary" : "bg-border"
-                    }`}
-                    aria-label={`Go to testimonial ${index + 1}`}
-                  />
-                ))}
-              </div>
-
-              <button
-                onClick={nextVideo}
-                className="p-2 rounded-full bg-background border border-border hover:border-primary/50 hover:bg-primary/10 transition-colors"
-                aria-label="Next testimonial"
-              >
-                <ChevronRight className="w-5 h-5 text-foreground" />
-              </button>
-            </div>
-          </div>
-        </motion.div>
-
-        {/* Testimonials Carousel */}
-        <motion.div
-          initial={{ opacity: 0, y: 40 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.3, duration: 0.6 }}
-          viewport={{ once: true }}
-        >
-          <Carousel
-            plugins={[plugin.current]}
-            className="w-full max-w-5xl mx-auto"
-            opts={{
-              align: "center",
-              loop: true,
-            }}
+          <motion.div
+            key={currentVideoIndex}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.4 }}
+            className="relative rounded-3xl overflow-hidden bg-muted/30"
           >
-            <CarouselContent className="-ml-4">
-              {testimonials.map((testimonial, index) => (
-                <CarouselItem key={index} className="pl-4 md:basis-1/2 lg:basis-1/2">
-                  <div className="h-full">
-                    <div className="relative p-8 lg:p-10 rounded-2xl bg-gradient-to-br from-muted/60 to-muted/20 border border-border/50 hover:border-primary/30 transition-all duration-300 h-full flex flex-col group">
-                      {/* Metric badge */}
-                      <div className="absolute -top-4 right-8 px-4 py-2 rounded-full bg-primary/10 border border-primary/20">
-                        <span className="text-primary font-bold">{testimonial.metric}</span>
-                        <span className="text-xs text-muted-foreground ml-1">{testimonial.metricLabel}</span>
-                      </div>
-
-                      {/* Quote icon */}
-                      <div className="mb-6 mt-4">
-                        <Quote className="h-10 w-10 text-primary/30 group-hover:text-primary/50 transition-colors" />
-                      </div>
-
-                      {/* Quote */}
-                      <p className="text-lg text-foreground/90 leading-relaxed mb-8 flex-grow">
-                        "{testimonial.quote}"
-                      </p>
-
-                      {/* Author */}
-                      <div className="flex items-center gap-4">
-                        <div className="w-12 h-12 rounded-full bg-gradient-to-br from-primary/20 to-secondary/20 flex items-center justify-center text-primary font-semibold">
-                          {testimonial.author.split(' ').map(n => n[0]).join('')}
-                        </div>
-                        <div>
-                          <div className="font-semibold text-foreground">
-                            {testimonial.author}
-                          </div>
-                          <div className="text-sm text-muted-foreground">
-                            {testimonial.role}, {testimonial.company}
-                          </div>
-                        </div>
-                      </div>
-
-                      {/* Gradient border on hover */}
-                      <div className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none">
-                        <div className="absolute inset-0 rounded-2xl p-px bg-gradient-to-br from-primary/30 via-transparent to-secondary/30">
-                          <div className="absolute inset-px rounded-2xl bg-card" />
-                        </div>
-                      </div>
+            {/* Main Layout Container */}
+            <div className="relative min-h-[500px] lg:min-h-[600px]">
+              
+              {/* Background with gradient */}
+              <div className="absolute inset-0 bg-gradient-to-br from-muted/60 via-muted/40 to-muted/20" />
+              
+              {/* Person Image - Right Side */}
+              <div className="absolute right-0 top-0 bottom-0 w-full lg:w-[55%]">
+                {isPlaying ? (
+                  <div className="absolute inset-0">
+                    <iframe
+                      src={`https://www.youtube.com/embed/${currentTestimonial.videoId}?autoplay=1&rel=0`}
+                      title="Client Testimonial Video"
+                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                      allowFullScreen
+                      className="w-full h-full"
+                    />
+                    <button
+                      onClick={() => setIsPlaying(false)}
+                      className="absolute top-4 right-4 p-2 rounded-full bg-background/80 hover:bg-background transition-colors z-10"
+                      aria-label="Close video"
+                    >
+                      <X className="w-5 h-5" />
+                    </button>
+                  </div>
+                ) : (
+                  <div 
+                    className="absolute inset-0 cursor-pointer group"
+                    onClick={() => setIsPlaying(true)}
+                  >
+                    <img
+                      src={currentTestimonial.thumbnail}
+                      alt={`${currentTestimonial.name} testimonial`}
+                      className="w-full h-full object-cover object-center"
+                    />
+                    
+                    {/* Gradient overlay from left */}
+                    <div className="absolute inset-0 bg-gradient-to-r from-muted via-muted/70 to-transparent lg:via-muted/40" />
+                    
+                    {/* Name in background - behind the person */}
+                    <div className="absolute top-1/4 left-1/2 transform -translate-x-1/4 text-right hidden lg:block pointer-events-none">
+                      <span className="font-heading text-6xl xl:text-7xl font-bold text-primary/10 uppercase tracking-wider block">
+                        {currentTestimonial.firstName}
+                      </span>
+                      <span className="font-heading text-6xl xl:text-7xl font-bold text-primary/10 uppercase tracking-wider block">
+                        {currentTestimonial.lastName}
+                      </span>
+                    </div>
+                    
+                    {/* Play Button - Center */}
+                    <div className="absolute inset-0 flex items-center justify-center lg:justify-end lg:pr-[20%]">
+                      <motion.div
+                        whileHover={{ scale: 1.1 }}
+                        whileTap={{ scale: 0.95 }}
+                        className="w-20 h-20 lg:w-24 lg:h-24 rounded-full bg-primary/90 flex items-center justify-center shadow-2xl group-hover:bg-primary transition-colors"
+                      >
+                        <Play className="w-8 h-8 lg:w-10 lg:h-10 text-primary-foreground ml-1" fill="currentColor" />
+                      </motion.div>
                     </div>
                   </div>
-                </CarouselItem>
-              ))}
-            </CarouselContent>
-            <div className="flex items-center justify-center gap-4 mt-8">
-              <CarouselPrevious className="static translate-y-0 bg-muted/50 border-border/50 hover:bg-primary/10 hover:border-primary/30" />
-              <CarouselNext className="static translate-y-0 bg-muted/50 border-border/50 hover:bg-primary/10 hover:border-primary/30" />
+                )}
+              </div>
+
+              {/* Watch Video Badge - Top Left */}
+              <div className="absolute top-4 left-4 lg:top-6 lg:left-6 flex items-center gap-2 px-4 py-2 rounded-full bg-gradient-to-r from-primary to-primary/80 text-primary-foreground text-sm font-medium z-20 shadow-lg">
+                <Play className="w-4 h-4" fill="currentColor" />
+                WATCH VIDEO
+              </div>
+
+              {/* Left Content - Hear From Clients + Logo */}
+              <div className="relative z-10 p-8 lg:p-12 lg:w-[50%] flex flex-col justify-center min-h-[300px] lg:min-h-[400px]">
+                <div className="mb-4 lg:mb-6">
+                  <span className="text-sm lg:text-base font-semibold uppercase tracking-[0.15em] text-primary">
+                    HEAR FROM CLIENTS
+                  </span>
+                </div>
+
+                {/* Company Logo or Name */}
+                <div className="mb-0">
+                  {currentTestimonial.companyLogo ? (
+                    <img 
+                      src={currentTestimonial.companyLogo} 
+                      alt={`${currentTestimonial.company} logo`} 
+                      className="h-10 lg:h-12 object-contain dark:invert"
+                    />
+                  ) : (
+                    <span className="font-heading text-2xl lg:text-3xl font-bold text-foreground">
+                      {currentTestimonial.companyName}
+                      <span className="text-orange-500 ml-0.5">▪</span>
+                    </span>
+                  )}
+                </div>
+              </div>
+
+              {/* Quote Card - Bottom Left Overlay */}
+              <div className="relative z-20 mx-4 mb-4 lg:absolute lg:bottom-8 lg:left-8 lg:max-w-md lg:mx-0 lg:mb-0">
+                <div className="bg-background/95 backdrop-blur-sm rounded-2xl p-6 lg:p-8 shadow-xl border border-border/50">
+                  {/* Company Logo in Card */}
+                  <div className="mb-4">
+                    {currentTestimonial.companyLogo ? (
+                      <img 
+                        src={currentTestimonial.companyLogo} 
+                        alt={`${currentTestimonial.company} logo`} 
+                        className="h-6 lg:h-8 object-contain dark:invert"
+                      />
+                    ) : (
+                      <span className="font-heading text-xl font-bold text-foreground">
+                        {currentTestimonial.companyName}
+                        <span className="text-orange-500 ml-0.5">▪</span>
+                      </span>
+                    )}
+                  </div>
+
+                  {/* Divider */}
+                  <div className="w-12 h-0.5 bg-primary/40 mb-4" />
+
+                  {/* Quote */}
+                  <p className="text-sm lg:text-base text-foreground leading-relaxed mb-6">
+                    {currentTestimonial.quote}
+                  </p>
+
+                  {/* Author */}
+                  <div>
+                    <div className="font-heading text-base lg:text-lg font-bold text-primary uppercase tracking-wide">
+                      {currentTestimonial.name.toUpperCase()}
+                    </div>
+                    <div className="text-xs lg:text-sm text-muted-foreground">
+                      {currentTestimonial.role} - {currentTestimonial.company}
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* Navy Bar at Bottom */}
+              <div className="absolute bottom-0 left-0 right-0 h-16 lg:h-20 bg-primary/90 hidden lg:block" />
+              
+              {/* Navigation - Bottom Right on Navy Bar */}
+              <div className="absolute bottom-4 right-8 lg:bottom-6 lg:right-12 flex items-center gap-4 z-30">
+                <button
+                  onClick={prevVideo}
+                  className="p-2 rounded-full bg-background border border-border hover:border-primary/50 hover:bg-primary/10 transition-colors"
+                  aria-label="Previous testimonial"
+                >
+                  <ChevronLeft className="w-5 h-5 text-foreground" />
+                </button>
+
+                {/* Dots */}
+                <div className="flex gap-2">
+                  {videoTestimonials.map((_, index) => (
+                    <button
+                      key={index}
+                      onClick={() => {
+                        setIsPlaying(false);
+                        setCurrentVideoIndex(index);
+                      }}
+                      className={`w-2 h-2 rounded-full transition-colors ${
+                        index === currentVideoIndex ? "bg-primary" : "bg-border"
+                      }`}
+                      aria-label={`Go to testimonial ${index + 1}`}
+                    />
+                  ))}
+                </div>
+
+                <button
+                  onClick={nextVideo}
+                  className="p-2 rounded-full bg-background border border-border hover:border-primary/50 hover:bg-primary/10 transition-colors"
+                  aria-label="Next testimonial"
+                >
+                  <ChevronRight className="w-5 h-5 text-foreground" />
+                </button>
+              </div>
             </div>
-          </Carousel>
+          </motion.div>
         </motion.div>
       </div>
     </section>

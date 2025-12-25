@@ -5,7 +5,8 @@ import {
   ArrowLeft, Book, Cloud, Shield, Settings, Users, Database, 
   Cpu, Lock, Globe, Server, FileText, ChevronRight, ChevronDown,
   Zap, DollarSign, Eye, Target, CheckCircle, AlertTriangle,
-  Layers, GitBranch, Key, Mail, Phone, ExternalLink
+  Layers, GitBranch, Key, Mail, Phone, ExternalLink, Bot,
+  HelpCircle, Download, Clock, Terminal, Box, Workflow
 } from 'lucide-react';
 import { Navbar } from '@/components/Navbar';
 import { Footer } from '@/components/Footer';
@@ -91,6 +92,40 @@ const sections = [
     icon: Layers,
     subsections: [
       { id: 'eks-deployment', title: 'EKS Deployment Guide' },
+    ]
+  },
+  {
+    id: 'cloud-automation',
+    title: 'Cloud Automation',
+    icon: Workflow,
+    subsections: [
+      { id: 'aws-automation', title: 'AWS Automation Suite' },
+      { id: 'azure-automation', title: 'Azure Automation Suite' },
+    ]
+  },
+  {
+    id: 'ai-assistant-guide',
+    title: 'AI Assistant',
+    icon: Bot,
+    subsections: [
+      { id: 'finops-report', title: 'Cloud FinOps Report' },
+      { id: 'cybersecurity-report', title: 'Cyber Security Report' },
+    ]
+  },
+  {
+    id: 'reports',
+    title: 'Historical Reports',
+    icon: FileText,
+    subsections: [
+      { id: 'report-history', title: 'Managing Report History' },
+    ]
+  },
+  {
+    id: 'support',
+    title: 'Support',
+    icon: HelpCircle,
+    subsections: [
+      { id: 'support-requests', title: 'Submitting Requests' },
     ]
   },
 ];
@@ -1231,31 +1266,607 @@ const XOPS360Documentation = () => {
                       </div>
                     </div>
 
-                    <div className="p-5 rounded-xl bg-card border border-border/50">
-                      <h4 className="font-semibold mb-3">Required IAM Permissions</h4>
-                      <p className="text-sm text-muted-foreground mb-3">
-                        Your IAM role needs permissions including but not limited to:
+                    {/* Full IAM Policy */}
+                    <div className="p-5 rounded-xl bg-card border border-border/50 mb-6">
+                      <h4 className="font-semibold mb-3">Required IAM Policy</h4>
+                      <p className="text-sm text-muted-foreground mb-4">
+                        Your IAM role needs the following policy for EKS deployment:
                       </p>
-                      <div className="grid md:grid-cols-3 gap-2 text-xs font-mono">
-                        {[
-                          'ec2:AuthorizeSecurityGroupIngress',
-                          'ec2:DescribeInstances',
-                          'ec2:AttachInternetGateway',
-                          'iam:PutRolePolicy',
-                          'iam:AddRoleToInstanceProfile',
-                          'ec2:CreateRoute',
-                          'ec2:CreateInternetGateway',
-                          'eks:DescribeAddon',
-                          'iam:DeleteRole',
-                          'ec2:RunInstances',
-                          'eks:UpdateNodegroupConfig',
-                          'eks:ListClusters',
-                        ].map((perm, i) => (
-                          <div key={i} className="p-2 rounded bg-muted/50 text-muted-foreground">
-                            {perm}
-                          </div>
-                        ))}
+                      <div className="bg-muted/50 rounded-lg p-4 overflow-x-auto">
+                        <pre className="text-xs font-mono text-muted-foreground whitespace-pre-wrap">
+{`{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Sid": "EksPermissions",
+      "Effect": "Allow",
+      "Action": [
+        "ec2:AuthorizeSecurityGroupIngress",
+        "ec2:DescribeInstances",
+        "ec2:AttachInternetGateway",
+        "iam:PutRolePolicy",
+        "iam:AddRoleToInstanceProfile",
+        "ec2:DeleteRouteTable",
+        "eks:DescribeAddon",
+        "ec2:RevokeSecurityGroupEgress",
+        "ec2:CreateRoute",
+        "ec2:CreateInternetGateway",
+        "ec2:DeleteInternetGateway",
+        "iam:ListRolePolicies",
+        "iam:DeleteOpenIDConnectProvider",
+        "iam:GetRole",
+        "iam:GetPolicy",
+        "ec2:CreateTags",
+        "iam:ListEntitiesForPolicy",
+        "iam:DeleteRole",
+        "ec2:RunInstances",
+        "ec2:DisassociateRouteTable",
+        "ec2:ReplaceNetworkAclAssociation",
+        "ec2:RevokeSecurityGroupIngress",
+        "ec2:DeleteNatGateway",
+        "eks:UpdateNodegroupConfig",
+        "eks:ListClusters",
+        "iam:GetOpenIDConnectProvider",
+        "ec2:CreateSubnet",
+        "ec2:DescribeSubnets",
+        "ec2:DeleteNetworkAclEntry",
+        "iam:CreateInstanceProfile",
+        "ec2:DisassociateAddress",
+        "ec2:CreateNatGateway",
+        "ec2:CreateVpc",
+        "ec2:DescribeAddressesAttribute",
+        "ec2:DescribeVpcAttribute",
+        "iam:ListInstanceProfilesForRole",
+        "iam:PassRole",
+        "ec2:DescribeAvailabilityZones",
+        "iam:DeleteRolePolicy",
+        "sts:DecodeAuthorizationMessage",
+        "ec2:DeleteLaunchTemplateVersions",
+        "ec2:DeleteNetworkAcl",
+        "eks:CreateCluster",
+        "iam:DeleteInstanceProfile",
+        "ec2:ReleaseAddress",
+        "ec2:DeleteLaunchTemplate",
+        "eks:UntagResource",
+        "eks:AssociateAccessPolicy",
+        "eks:UpdateAccessEntry",
+        "ec2:DescribeSecurityGroups",
+        "iam:CreatePolicy",
+        "iam:CreateServiceLinkedRole",
+        "ec2:CreateLaunchTemplate",
+        "ec2:DescribeVpcs",
+        "eks:TagResource",
+        "eks:CreateAccessEntry",
+        "iam:UpdateAssumeRolePolicy",
+        "iam:GetPolicyVersion",
+        "ec2:DeleteSubnet",
+        "iam:RemoveRoleFromInstanceProfile",
+        "iam:CreateRole",
+        "iam:AttachRolePolicy",
+        "eks:UpdateClusterConfig",
+        "ssm:GetParameter",
+        "ec2:AssociateRouteTable",
+        "ec2:DescribeInternetGateways",
+        "eks:DescribeNodegroup",
+        "iam:DetachRolePolicy",
+        "iam:ListAttachedRolePolicies",
+        "ec2:DescribeNetworkAcls",
+        "ec2:DescribeRouteTables",
+        "eks:ListNodegroups",
+        "ec2:DescribeLaunchTemplates",
+        "ec2:CreateRouteTable",
+        "ec2:DetachInternetGateway",
+        "eks:DescribeAccessEntry",
+        "eks:DeleteCluster",
+        "eks:DeleteNodegroup",
+        "ec2:DescribeInstanceTypes",
+        "eks:CreateAddon",
+        "eks:DescribeCluster",
+        "ec2:DeleteVpc",
+        "eks:DeleteAccessEntry",
+        "eks:UpdateClusterVersion",
+        "ec2:DescribeAddresses",
+        "ec2:DeleteTags",
+        "iam:DeletePolicy",
+        "eks:UpdateNodegroupVersion",
+        "eks:ListAssociatedAccessPolicies",
+        "ec2:DescribeNetworkInterfaces",
+        "ec2:CreateSecurityGroup",
+        "ec2:CreateNetworkAcl",
+        "ec2:ModifyVpcAttribute",
+        "ec2:AuthorizeSecurityGroupEgress",
+        "ec2:DeleteRoute",
+        "ec2:DescribeLaunchTemplateVersions",
+        "ec2:DescribeNatGateways",
+        "eks:CreateNodegroup",
+        "ec2:AllocateAddress",
+        "ec2:CreateLaunchTemplateVersion",
+        "iam:CreateOpenIDConnectProvider",
+        "ec2:DescribeImages",
+        "iam:ListPolicyVersions",
+        "eks:DeleteAddon",
+        "eks:DescribeUpdate",
+        "eks:DisassociateAccessPolicy",
+        "ec2:DeleteSecurityGroup",
+        "ec2:CreateNetworkAclEntry"
+      ],
+      "Resource": "*"
+    },
+    {
+      "Sid": "ExplicitDeny",
+      "Effect": "Deny",
+      "Action": [
+        "lambda:GetFunction",
+        "secretsmanager:GetSecretValue",
+        "iam:ListAccessKeys",
+        "s3:GetObject",
+        "codecommit:GitPull"
+      ],
+      "Resource": "*"
+    }
+  ]
+}`}
+                        </pre>
                       </div>
+                    </div>
+
+                    {/* EKS Deployment Steps */}
+                    <div className="space-y-4">
+                      <div className="p-5 rounded-xl bg-card border border-border/50">
+                        <h4 className="font-semibold mb-3">Step 1: Getting Started</h4>
+                        <ol className="space-y-2 text-sm text-muted-foreground">
+                          <li>1. Log in to the Platform with your credentials.</li>
+                          <li>2. Navigate to <strong>CloudOps → Kubernetes Automation → EKS</strong>.</li>
+                          <li>3. Click on <strong>Get Started</strong> on the EKS page.</li>
+                        </ol>
+                      </div>
+
+                      <div className="p-5 rounded-xl bg-card border border-border/50">
+                        <h4 className="font-semibold mb-3">Step 2: AWS Account Selection</h4>
+                        <div className="grid md:grid-cols-2 gap-4">
+                          <div>
+                            <p className="font-medium text-sm mb-2">New Account:</p>
+                            <ul className="text-sm text-muted-foreground space-y-1">
+                              <li>• Click on <strong>New Account</strong></li>
+                              <li>• Provide a suitable name in the AWS Account Name field</li>
+                              <li>• Paste the AWS Role ARN</li>
+                            </ul>
+                          </div>
+                          <div>
+                            <p className="font-medium text-sm mb-2">Existing Account:</p>
+                            <ul className="text-sm text-muted-foreground space-y-1">
+                              <li>• Click on <strong>Existing Account</strong></li>
+                              <li>• Select the desired AWS account from the list</li>
+                              <li>• Click <strong>Proceed</strong></li>
+                            </ul>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div className="p-5 rounded-xl bg-card border border-border/50">
+                        <h4 className="font-semibold mb-3">Step 3: Cluster Details</h4>
+                        <ul className="space-y-2 text-sm text-muted-foreground">
+                          <li>• Enter a unique <strong>Deployment Name</strong></li>
+                          <li>• Select the preferred <strong>AWS Region</strong> for EKS deployment</li>
+                          <li>• Enter the preferred <strong>Cluster Name</strong></li>
+                          <li>• Choose the required <strong>Kubernetes Version</strong></li>
+                          <li>• Select <strong>Amazon Linux 2</strong> as the Operating System</li>
+                          <li>• Click <strong>Next</strong> to proceed</li>
+                        </ul>
+                      </div>
+
+                      <div className="p-5 rounded-xl bg-card border border-border/50">
+                        <h4 className="font-semibold mb-3">Step 4: Networking</h4>
+                        <div className="grid md:grid-cols-2 gap-4">
+                          <div>
+                            <p className="font-medium text-sm mb-2">Use Existing VPC:</p>
+                            <ul className="text-sm text-muted-foreground space-y-1">
+                              <li>• Select <strong>Use Existing</strong></li>
+                              <li>• Choose the VPC ID from dropdown</li>
+                              <li>• Select two Private Subnets with different Availability Zones</li>
+                            </ul>
+                          </div>
+                          <div>
+                            <p className="font-medium text-sm mb-2">Create New VPC:</p>
+                            <ul className="text-sm text-muted-foreground space-y-1">
+                              <li>• Select <strong>Create New</strong></li>
+                              <li>• Enter the VPC CIDR</li>
+                              <li>• Add Public and Private Subnets with different AZs</li>
+                            </ul>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div className="p-5 rounded-xl bg-card border border-border/50">
+                        <h4 className="font-semibold mb-3">Step 5: Node Groups</h4>
+                        <ul className="space-y-2 text-sm text-muted-foreground">
+                          <li>• Click <strong>+</strong> to Add a Node Group</li>
+                          <li>• Provide a <strong>Node Group Name</strong></li>
+                          <li>• Select the desired <strong>Instance Types</strong></li>
+                          <li>• Configure <strong>Scaling Settings</strong>: Minimum, Desired, and Maximum nodes</li>
+                          <li>• Add <strong>Labels</strong> by entering Key-Value pairs</li>
+                          <li>• Define <strong>Volume Size</strong> (Minimum 30GB)</li>
+                          <li>• Click <strong>Save</strong> and then <strong>Next</strong></li>
+                        </ul>
+                        <div className="mt-3 p-3 rounded-lg bg-blue-500/10 border border-blue-500/30">
+                          <p className="text-sm text-blue-600 dark:text-blue-400 m-0">
+                            <strong>Tip:</strong> Taints can be applied from the second node group. Enter Key, Value, and choose the Effect for pod scheduling.
+                          </p>
+                        </div>
+                      </div>
+
+                      <div className="p-5 rounded-xl bg-card border border-border/50">
+                        <h4 className="font-semibold mb-3">Step 6: Add-ons</h4>
+                        <ul className="space-y-2 text-sm text-muted-foreground">
+                          <li>• Choose required <strong>AWS Managed Add-ons</strong> from dropdown</li>
+                          <li>• Choose desired <strong>Custom Add-ons</strong> from dropdown</li>
+                          <li>• Click <strong>Next</strong></li>
+                        </ul>
+                      </div>
+
+                      <div className="p-5 rounded-xl bg-card border border-border/50">
+                        <h4 className="font-semibold mb-3">Step 7: Authentication</h4>
+                        <ul className="space-y-2 text-sm text-muted-foreground">
+                          <li>• Choose existing IAM Users and Roles to grant <strong>ADMIN access</strong> to EKS</li>
+                          <li>• The Role with suffix <code className="px-1 py-0.5 rounded bg-muted">-XopsRole-###</code> is created during account integration and gets admin role by default</li>
+                          <li>• Click <strong>Next</strong></li>
+                        </ul>
+                      </div>
+
+                      <div className="p-5 rounded-xl bg-card border border-border/50">
+                        <h4 className="font-semibold mb-3">Step 8: Tags</h4>
+                        <ul className="space-y-2 text-sm text-muted-foreground">
+                          <li>• Click <strong>Add</strong> to enter Key-Value pairs for tagging resources</li>
+                          <li>• Click <strong>Submit</strong> and then <strong>Next</strong></li>
+                        </ul>
+                      </div>
+
+                      <div className="p-5 rounded-xl bg-card border border-border/50">
+                        <h4 className="font-semibold mb-3">Step 9: Review and Deployment</h4>
+                        <ul className="space-y-2 text-sm text-muted-foreground">
+                          <li>• Review all configuration details</li>
+                          <li>• Click <strong>Submit</strong> to start deployment</li>
+                          <li>• The system redirects to the Deployments Page with a loader</li>
+                          <li>• Once completed, click on the Deployment to view Inputs, Outputs, Instructions, and Logs</li>
+                        </ul>
+                        <div className="mt-3 p-3 rounded-lg bg-amber-500/10 border border-amber-500/30">
+                          <p className="text-sm text-amber-600 dark:text-amber-400 m-0">
+                            <strong>Note:</strong> In case of deployment failure, click on the failure message to access detailed logs and analyze the root cause.
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </section>
+
+                <Separator className="my-12" />
+
+                {/* Cloud Automation */}
+                <section id="cloud-automation" className="scroll-mt-24 mb-16">
+                  <div className="flex items-center gap-3 mb-6">
+                    <div className="p-2 rounded-xl bg-primary/10">
+                      <Workflow className="w-6 h-6 text-primary" />
+                    </div>
+                    <h2 className="text-3xl font-bold m-0">Cloud Automation</h2>
+                  </div>
+
+                  <p className="text-muted-foreground mb-8">
+                    Your Gateway to Effortless Infrastructure Excellence. Production-ready automation suites for AWS and Azure.
+                  </p>
+
+                  <div id="aws-automation" className="scroll-mt-24 mb-10">
+                    <h3 className="text-2xl font-semibold mb-4 flex items-center gap-2">
+                      <Cloud className="w-6 h-6 text-orange-500" />
+                      AWS Automation Suite
+                    </h3>
+
+                    <div className="p-5 rounded-xl bg-card border border-border/50 mb-6">
+                      <h4 className="font-semibold mb-3">AWS Cloud Automation Deployment Guide</h4>
+                      <ol className="space-y-3 text-sm text-muted-foreground">
+                        <li className="flex items-start gap-3">
+                          <span className="flex items-center justify-center w-6 h-6 rounded-full bg-orange-500 text-white text-xs font-bold shrink-0">1</span>
+                          <span><strong>Select an AWS Service</strong> – Navigate to CloudOps → AWS Automation and click on the desired service (VPC, EC2, S3, etc.)</span>
+                        </li>
+                        <li className="flex items-start gap-3">
+                          <span className="flex items-center justify-center w-6 h-6 rounded-full bg-orange-500 text-white text-xs font-bold shrink-0">2</span>
+                          <span><strong>Review Prerequisites</strong> – Check the Overview, confirm Terraform (≥1.0) and AWS Provider versions, ensure IAM role permissions</span>
+                        </li>
+                        <li className="flex items-start gap-3">
+                          <span className="flex items-center justify-center w-6 h-6 rounded-full bg-orange-500 text-white text-xs font-bold shrink-0">3</span>
+                          <span><strong>Configure Inputs</strong> – Open the Inputs section, fill in required parameters, accept or customize optional settings</span>
+                        </li>
+                        <li className="flex items-start gap-3">
+                          <span className="flex items-center justify-center w-6 h-6 rounded-full bg-orange-500 text-white text-xs font-bold shrink-0">4</span>
+                          <span><strong>Copy and Customize Terraform</strong> – Scroll to Usage, click Copy Code, paste into main.tf and replace placeholders</span>
+                        </li>
+                        <li className="flex items-start gap-3">
+                          <span className="flex items-center justify-center w-6 h-6 rounded-full bg-orange-500 text-white text-xs font-bold shrink-0">5</span>
+                          <span><strong>Initialize and Deploy</strong> – Run <code>terraform init</code>, <code>terraform plan</code>, then <code>terraform apply</code></span>
+                        </li>
+                        <li className="flex items-start gap-3">
+                          <span className="flex items-center justify-center w-6 h-6 rounded-full bg-orange-500 text-white text-xs font-bold shrink-0">6</span>
+                          <span><strong>Verify Outputs</strong> – Check the Outputs section for IDs, IPs, and endpoints. Confirm in AWS Console</span>
+                        </li>
+                      </ol>
+                    </div>
+
+                    <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+                      {[
+                        { title: 'Virtual Private Cloud (VPC)', desc: 'Automatically provisions secure network infrastructure with public/private subnets, NAT gateways, and routing tables.', perfect: 'Multi-tier architecture' },
+                        { title: 'Elastic Container Service (ECS)', desc: 'Sets up container clusters, task definitions, and load balancing for your applications.', perfect: 'Microservices architectures' },
+                        { title: 'Simple Storage Service (S3)', desc: 'Creates secure, scalable storage buckets with lifecycle policies and access controls.', perfect: 'Data backup and data lakes' },
+                        { title: 'Application Load Balancer (ALB)', desc: 'Routes traffic intelligently across multiple availability zones with health checks.', perfect: 'High availability apps' },
+                        { title: 'Relational Database Service (RDS)', desc: 'Deploys managed databases with automated backups, patches, and monitoring.', perfect: 'ACID-compliant applications' },
+                        { title: 'Amazon CloudFront', desc: 'Sets up global edge locations for fast content delivery with SSL/TLS encryption.', perfect: 'Global content distribution' },
+                        { title: 'Elastic Compute Cloud (EC2)', desc: 'Launches configured virtual machines with auto-scaling and security groups.', perfect: 'Web servers and dev environments' },
+                        { title: 'Elastic Kubernetes Service (EKS)', desc: 'Deploys production-ready Kubernetes clusters with worker nodes and networking.', perfect: 'Container orchestration' },
+                        { title: 'Identity and Access Management (IAM)', desc: 'Creates secure access policies, roles, and permissions for your AWS resources.', perfect: 'Enterprise security governance' },
+                      ].map((service, i) => (
+                        <div key={i} className="p-4 rounded-xl bg-gradient-to-br from-orange-500/5 to-transparent border border-orange-500/20">
+                          <h5 className="font-semibold text-sm mb-2">{service.title}</h5>
+                          <p className="text-xs text-muted-foreground mb-2">{service.desc}</p>
+                          <p className="text-xs text-orange-500">Perfect for: {service.perfect}</p>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+
+                  <div id="azure-automation" className="scroll-mt-24">
+                    <h3 className="text-2xl font-semibold mb-4 flex items-center gap-2">
+                      <Cloud className="w-6 h-6 text-blue-500" />
+                      Azure Automation Suite
+                    </h3>
+
+                    <div className="p-5 rounded-xl bg-card border border-border/50 mb-6">
+                      <h4 className="font-semibold mb-3">Azure Cloud Automation Deployment Guide</h4>
+                      <ol className="space-y-3 text-sm text-muted-foreground">
+                        <li className="flex items-start gap-3">
+                          <span className="flex items-center justify-center w-6 h-6 rounded-full bg-blue-500 text-white text-xs font-bold shrink-0">1</span>
+                          <span><strong>Select an Azure Service</strong> – Navigate to CloudOps → Azure Automation and click on the desired service</span>
+                        </li>
+                        <li className="flex items-start gap-3">
+                          <span className="flex items-center justify-center w-6 h-6 rounded-full bg-blue-500 text-white text-xs font-bold shrink-0">2</span>
+                          <span><strong>Review Prerequisites</strong> – Check capabilities, confirm Terraform and Azure Provider versions, ensure RBAC roles</span>
+                        </li>
+                        <li className="flex items-start gap-3">
+                          <span className="flex items-center justify-center w-6 h-6 rounded-full bg-blue-500 text-white text-xs font-bold shrink-0">3</span>
+                          <span><strong>Configure Inputs</strong> – Complete required fields (resource_group_name, location), tailor optional parameters</span>
+                        </li>
+                        <li className="flex items-start gap-3">
+                          <span className="flex items-center justify-center w-6 h-6 rounded-full bg-blue-500 text-white text-xs font-bold shrink-0">4</span>
+                          <span><strong>Copy and Customize Terraform</strong> – Paste into main.tf, adjust subnets, VM sizes, and tags</span>
+                        </li>
+                        <li className="flex items-start gap-3">
+                          <span className="flex items-center justify-center w-6 h-6 rounded-full bg-blue-500 text-white text-xs font-bold shrink-0">5</span>
+                          <span><strong>Initialize and Deploy</strong> – Run terraform init, validate, plan, and apply</span>
+                        </li>
+                        <li className="flex items-start gap-3">
+                          <span className="flex items-center justify-center w-6 h-6 rounded-full bg-blue-500 text-white text-xs font-bold shrink-0">6</span>
+                          <span><strong>Verify Outputs</strong> – Check resource IDs and endpoints, confirm in Azure Portal</span>
+                        </li>
+                      </ol>
+                    </div>
+
+                    <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+                      {[
+                        { title: 'Virtual Network', desc: 'Creates secure network infrastructure with subnets, security groups, and routing.', perfect: 'Multi-tier applications' },
+                        { title: 'Storage Account', desc: 'Provisions secure storage with lifecycle management and redundancy options.', perfect: 'Data archiving and backup' },
+                        { title: 'Virtual Machine', desc: 'Deploys configured VMs with networking, storage, and security settings.', perfect: 'Legacy applications' },
+                        { title: 'Key Vault', desc: 'Centralized secret management with access policies and audit logging.', perfect: 'Application secrets' },
+                        { title: 'Load Balancer', desc: 'Distributes traffic across healthy instances with automatic failover.', perfect: 'High availability apps' },
+                        { title: 'Cosmos DB', desc: 'Globally distributed, multi-model database with automatic scaling.', perfect: 'Global applications' },
+                        { title: 'MySQL Database', desc: 'Managed MySQL instances with automated maintenance.', perfect: 'Web applications and CMS' },
+                        { title: 'Azure Kubernetes Service (AKS)', desc: 'Managed Kubernetes clusters with integrated monitoring.', perfect: 'Cloud-native applications' },
+                        { title: 'App Service', desc: 'Deploys web applications with automatic scaling and SSL certificates.', perfect: 'Rapid deployment' },
+                      ].map((service, i) => (
+                        <div key={i} className="p-4 rounded-xl bg-gradient-to-br from-blue-500/5 to-transparent border border-blue-500/20">
+                          <h5 className="font-semibold text-sm mb-2">{service.title}</h5>
+                          <p className="text-xs text-muted-foreground mb-2">{service.desc}</p>
+                          <p className="text-xs text-blue-500">Perfect for: {service.perfect}</p>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                </section>
+
+                <Separator className="my-12" />
+
+                {/* AI Assistant Guide */}
+                <section id="ai-assistant-guide" className="scroll-mt-24 mb-16">
+                  <div className="flex items-center gap-3 mb-6">
+                    <div className="p-2 rounded-xl bg-primary/10">
+                      <Bot className="w-6 h-6 text-primary" />
+                    </div>
+                    <h2 className="text-3xl font-bold m-0">AI Assistant</h2>
+                  </div>
+
+                  <p className="text-muted-foreground mb-8">
+                    Generate FinOps and security reports for cost and risk optimization using the X-Ops AI Assistant.
+                  </p>
+
+                  <div id="finops-report" className="scroll-mt-24 mb-10">
+                    <h3 className="text-2xl font-semibold mb-4">Generating a Cloud FinOps Report</h3>
+                    
+                    <div className="p-5 rounded-xl bg-gradient-to-br from-violet-500/10 to-purple-500/5 border border-violet-500/20">
+                      <ol className="space-y-4">
+                        <li className="flex items-start gap-3">
+                          <span className="flex items-center justify-center w-8 h-8 rounded-full bg-violet-500 text-white text-sm font-bold shrink-0">1</span>
+                          <div>
+                            <p className="font-medium text-foreground">Access AI Assistant</p>
+                            <p className="text-sm text-muted-foreground">Locate the AI Assistant icon in the top right corner and click on it. It will open as a side panel.</p>
+                          </div>
+                        </li>
+                        <li className="flex items-start gap-3">
+                          <span className="flex items-center justify-center w-8 h-8 rounded-full bg-violet-500 text-white text-sm font-bold shrink-0">2</span>
+                          <div>
+                            <p className="font-medium text-foreground">Select Report Type</p>
+                            <p className="text-sm text-muted-foreground">Select <strong>"Generate a Cloud FinOps Report"</strong> from the options displayed.</p>
+                          </div>
+                        </li>
+                        <li className="flex items-start gap-3">
+                          <span className="flex items-center justify-center w-8 h-8 rounded-full bg-violet-500 text-white text-sm font-bold shrink-0">3</span>
+                          <div>
+                            <p className="font-medium text-foreground">Wait for Generation</p>
+                            <p className="text-sm text-muted-foreground">The AI Assistant will automatically begin generating the FinOps report. This typically takes 5-10 minutes.</p>
+                          </div>
+                        </li>
+                        <li className="flex items-start gap-3">
+                          <span className="flex items-center justify-center w-8 h-8 rounded-full bg-violet-500 text-white text-sm font-bold shrink-0">4</span>
+                          <div>
+                            <p className="font-medium text-foreground">View & Download</p>
+                            <p className="text-sm text-muted-foreground">Click <strong>"Open Report"</strong> to view. Use the Download button at the top right to save to your device.</p>
+                          </div>
+                        </li>
+                      </ol>
+                    </div>
+                  </div>
+
+                  <div id="cybersecurity-report" className="scroll-mt-24">
+                    <h3 className="text-2xl font-semibold mb-4">Generating a Cyber Security Report</h3>
+                    
+                    <div className="p-5 rounded-xl bg-gradient-to-br from-red-500/10 to-orange-500/5 border border-red-500/20">
+                      <ol className="space-y-4">
+                        <li className="flex items-start gap-3">
+                          <span className="flex items-center justify-center w-8 h-8 rounded-full bg-red-500 text-white text-sm font-bold shrink-0">1</span>
+                          <div>
+                            <p className="font-medium text-foreground">Access AI Assistant</p>
+                            <p className="text-sm text-muted-foreground">Locate the AI Assistant icon in the top right corner and click to open the side panel.</p>
+                          </div>
+                        </li>
+                        <li className="flex items-start gap-3">
+                          <span className="flex items-center justify-center w-8 h-8 rounded-full bg-red-500 text-white text-sm font-bold shrink-0">2</span>
+                          <div>
+                            <p className="font-medium text-foreground">Select Report Type</p>
+                            <p className="text-sm text-muted-foreground">Select <strong>"Generate a Cyber Security Report"</strong> from the options displayed.</p>
+                          </div>
+                        </li>
+                        <li className="flex items-start gap-3">
+                          <span className="flex items-center justify-center w-8 h-8 rounded-full bg-red-500 text-white text-sm font-bold shrink-0">3</span>
+                          <div>
+                            <p className="font-medium text-foreground">Enter Domain/IP</p>
+                            <p className="text-sm text-muted-foreground">When prompted, enter the domain or IP address for which you want to generate the report.</p>
+                          </div>
+                        </li>
+                        <li className="flex items-start gap-3">
+                          <span className="flex items-center justify-center w-8 h-8 rounded-full bg-red-500 text-white text-sm font-bold shrink-0">4</span>
+                          <div>
+                            <p className="font-medium text-foreground">Wait for Generation</p>
+                            <p className="text-sm text-muted-foreground">The report generation typically takes 5-10 minutes.</p>
+                          </div>
+                        </li>
+                        <li className="flex items-start gap-3">
+                          <span className="flex items-center justify-center w-8 h-8 rounded-full bg-red-500 text-white text-sm font-bold shrink-0">5</span>
+                          <div>
+                            <p className="font-medium text-foreground">View & Download</p>
+                            <p className="text-sm text-muted-foreground">Click <strong>"Open Report"</strong> to view the complete report. Download using the button at the top right.</p>
+                          </div>
+                        </li>
+                      </ol>
+                    </div>
+                  </div>
+                </section>
+
+                <Separator className="my-12" />
+
+                {/* Historical Reports */}
+                <section id="reports" className="scroll-mt-24 mb-16">
+                  <div className="flex items-center gap-3 mb-6">
+                    <div className="p-2 rounded-xl bg-primary/10">
+                      <FileText className="w-6 h-6 text-primary" />
+                    </div>
+                    <h2 className="text-3xl font-bold m-0">Reviewing Historical Reports</h2>
+                  </div>
+
+                  <div id="report-history" className="scroll-mt-24">
+                    <h3 className="text-2xl font-semibold mb-4">Accessing and Managing Report History</h3>
+                    
+                    <div className="p-5 rounded-xl bg-card border border-border/50">
+                      <ol className="space-y-4">
+                        <li className="flex items-start gap-3">
+                          <span className="flex items-center justify-center w-6 h-6 rounded-full bg-primary text-primary-foreground text-sm font-bold shrink-0">1</span>
+                          <div>
+                            <p className="font-medium text-foreground">Navigate to Reports Section</p>
+                            <p className="text-sm text-muted-foreground">Locate the <strong>Reports</strong> option in the side navigation bar and click to access the report management dashboard.</p>
+                          </div>
+                        </li>
+                        <li className="flex items-start gap-3">
+                          <span className="flex items-center justify-center w-6 h-6 rounded-full bg-primary text-primary-foreground text-sm font-bold shrink-0">2</span>
+                          <div>
+                            <p className="font-medium text-foreground">Search and Filter Reports</p>
+                            <p className="text-sm text-muted-foreground">Apply filters such as: <strong>Date Range</strong>, <strong>Status</strong> (In Progress, Pending, Completed, Error), and <strong>Scan Type</strong>.</p>
+                          </div>
+                        </li>
+                        <li className="flex items-start gap-3">
+                          <span className="flex items-center justify-center w-6 h-6 rounded-full bg-primary text-primary-foreground text-sm font-bold shrink-0">3</span>
+                          <div>
+                            <p className="font-medium text-foreground">View Report</p>
+                            <p className="text-sm text-muted-foreground">Locate the desired report and click on the <strong>View Report</strong> link to open it.</p>
+                          </div>
+                        </li>
+                        <li className="flex items-start gap-3">
+                          <span className="flex items-center justify-center w-6 h-6 rounded-full bg-primary text-primary-foreground text-sm font-bold shrink-0">4</span>
+                          <div>
+                            <p className="font-medium text-foreground">View Error Messages</p>
+                            <p className="text-sm text-muted-foreground">Click the <strong>"View Error"</strong> button under the Actions column to access detailed error information for failed reports.</p>
+                          </div>
+                        </li>
+                      </ol>
+                    </div>
+                  </div>
+                </section>
+
+                <Separator className="my-12" />
+
+                {/* Support */}
+                <section id="support" className="scroll-mt-24 mb-16">
+                  <div className="flex items-center gap-3 mb-6">
+                    <div className="p-2 rounded-xl bg-primary/10">
+                      <HelpCircle className="w-6 h-6 text-primary" />
+                    </div>
+                    <h2 className="text-3xl font-bold m-0">Support and Assistance</h2>
+                  </div>
+
+                  <div id="support-requests" className="scroll-mt-24">
+                    <h3 className="text-2xl font-semibold mb-4">Submitting Support Requests</h3>
+                    
+                    <p className="text-muted-foreground mb-6">
+                      To ensure a smooth experience, users can submit support requests through the platform's dedicated help section.
+                    </p>
+                    
+                    <div className="p-5 rounded-xl bg-card border border-border/50">
+                      <ol className="space-y-4">
+                        <li className="flex items-start gap-3">
+                          <span className="flex items-center justify-center w-6 h-6 rounded-full bg-primary text-primary-foreground text-sm font-bold shrink-0">1</span>
+                          <div>
+                            <p className="font-medium text-foreground">Locate the "Need Help" Button</p>
+                            <p className="text-sm text-muted-foreground">Navigate to the side menu and click on the <strong>"Need Help"</strong> button. This will open a pop-up form.</p>
+                          </div>
+                        </li>
+                        <li className="flex items-start gap-3">
+                          <span className="flex items-center justify-center w-6 h-6 rounded-full bg-primary text-primary-foreground text-sm font-bold shrink-0">2</span>
+                          <div>
+                            <p className="font-medium text-foreground">Fill in the Help Request Form</p>
+                            <div className="mt-2 space-y-2 text-sm text-muted-foreground">
+                              <p><strong>Subject Field:</strong> Enter a concise and descriptive title (e.g., "Issue with Scan Results" or "Access Request Assistance")</p>
+                              <p><strong>Description Field:</strong> Provide detailed information including error messages, steps to reproduce, or any relevant details.</p>
+                            </div>
+                          </div>
+                        </li>
+                        <li className="flex items-start gap-3">
+                          <span className="flex items-center justify-center w-6 h-6 rounded-full bg-primary text-primary-foreground text-sm font-bold shrink-0">3</span>
+                          <div>
+                            <p className="font-medium text-foreground">Submit the Request</p>
+                            <p className="text-sm text-muted-foreground">Review your input, ensure accuracy, and click the <strong>Submit</strong> button.</p>
+                          </div>
+                        </li>
+                        <li className="flex items-start gap-3">
+                          <span className="flex items-center justify-center w-6 h-6 rounded-full bg-primary text-primary-foreground text-sm font-bold shrink-0">4</span>
+                          <div>
+                            <p className="font-medium text-foreground">Confirmation</p>
+                            <p className="text-sm text-muted-foreground">A confirmation message will appear once the request is successfully submitted.</p>
+                          </div>
+                        </li>
+                      </ol>
                     </div>
                   </div>
                 </section>

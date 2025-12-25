@@ -1,6 +1,5 @@
 import { Suspense, lazy, Component, ReactNode } from "react";
 import { Toaster } from "@/components/ui/toaster";
-const Blog = lazy(() => import("./pages/Blog"));
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";

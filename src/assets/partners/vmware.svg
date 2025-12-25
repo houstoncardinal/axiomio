@@ -1,3 +1,5 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 50">
-  <text x="10" y="35" font-family="Arial, sans-serif" font-weight="bold" font-size="24" fill="currentColor">VMware</text>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 50" fill="none">
+  <path d="M10 14l12 22 12-22h7l-16 28h-6L3 14h7z" fill="#696566"/>
+  <path d="M43 14h7v28h-7V14z" fill="#696566"/>
+  <text x="58" y="36" font-family="Arial, sans-serif" font-weight="bold" font-size="24" fill="#696566">VMware</text>
 </svg>

@@ -55,6 +55,12 @@ const DigitalTransformation = lazy(() => import("./pages/services/DigitalTransfo
 const OpsExcellence = lazy(() => import("./pages/services/OpsExcellence"));
 const XeroTrustService = lazy(() => import("./pages/services/XeroTrust"));
 const CyberSecurity = lazy(() => import("./pages/services/CyberSecurity"));
+const VulnerabilityManagement = lazy(() => import("./pages/services/VulnerabilityManagement"));
+const CloudFinOps = lazy(() => import("./pages/services/CloudFinOps"));
+const DevOpsServices = lazy(() => import("./pages/services/DevOpsServices"));
+const CloudSecurity = lazy(() => import("./pages/services/CloudSecurity"));
+const MigrationModernization = lazy(() => import("./pages/services/MigrationModernization"));
+const Kubernetes = lazy(() => import("./pages/services/Kubernetes"));
 const XeroTrust = lazy(() => import("./pages/XeroTrust"));
 const XeroTrustCompare = lazy(() => import("./pages/XeroTrustCompare"));
 const XeroWaste = lazy(() => import("./pages/XeroWaste"));
@@ -117,6 +123,12 @@ const AppContent = () => {
           <Route path="/services/ops-excellence" element={<OpsExcellence />} />
           <Route path="/services/xerotrust" element={<XeroTrustService />} />
           <Route path="/services/cybersecurity" element={<CyberSecurity />} />
+          <Route path="/services/vulnerability-management" element={<VulnerabilityManagement />} />
+          <Route path="/services/cloud-finops" element={<CloudFinOps />} />
+          <Route path="/services/devops-services" element={<DevOpsServices />} />
+          <Route path="/services/cloud-security" element={<CloudSecurity />} />
+          <Route path="/services/migration-and-modernization" element={<MigrationModernization />} />
+          <Route path="/services/kubernetes" element={<Kubernetes />} />
           <Route path="/xerotrust" element={<XeroTrust />} />
           <Route path="/xerotrust/compare" element={<XeroTrustCompare />} />
           <Route path="/xerowaste" element={<XeroWaste />} />

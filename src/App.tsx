@@ -1,4 +1,4 @@
-import { Suspense, lazy, Component, ReactNode, useState, useEffect } from "react";
+import { Suspense, lazy, Component, ReactNode } from "react";
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
@@ -6,7 +6,6 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { AuthProvider } from "@/contexts/AuthContext";
 import { ThemeProvider } from "next-themes";
-import LoadingScreen from "@/components/LoadingScreen";
 import AIChatWidget from "@/components/AIChatWidget";
 import { ScrollToTop } from "@/components/ScrollToTop";
 
@@ -75,12 +74,26 @@ const XOPS360Integrations = lazy(() => import("./pages/admin/xops360/Integration
 const XOPS360Metrics = lazy(() => import("./pages/admin/xops360/Metrics"));
 const NotFound = lazy(() => import("./pages/NotFound"));
 
-// Loading fallback with inline styles for reliability - Light enterprise theme
+// Single clean loading screen - white background, smooth and fast
 const PageLoader = () => (
-  <div style={{ minHeight: '100vh', backgroundColor: '#f5f7fa', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-    <div style={{ textAlign: 'center', color: '#1a1f36' }}>
-      <div style={{ width: 40, height: 40, border: '3px solid #5046e5', borderTopColor: 'transparent', borderRadius: '50%', margin: '0 auto 16px', animation: 'spin 1s linear infinite' }} />
-      <p style={{ fontWeight: 500 }}>Loading...</p>
+  <div style={{ 
+    minHeight: '100vh', 
+    backgroundColor: '#ffffff', 
+    display: 'flex', 
+    alignItems: 'center', 
+    justifyContent: 'center',
+    transition: 'opacity 0.3s ease-out'
+  }}>
+    <div style={{ textAlign: 'center' }}>
+      <div style={{ 
+        width: 32, 
+        height: 32, 
+        border: '2px solid #e5e7eb', 
+        borderTopColor: '#5046e5', 
+        borderRadius: '50%', 
+        margin: '0 auto', 
+        animation: 'spin 0.8s linear infinite' 
+      }} />
       <style>{`@keyframes spin { to { transform: rotate(360deg); } }`}</style>
     </div>
   </div>
@@ -89,21 +102,9 @@ const PageLoader = () => (
 const queryClient = new QueryClient();
 
 const AppContent = () => {
-  const [isLoading, setIsLoading] = useState(true);
-
-  useEffect(() => {
-    // Quick loading - just wait for initial render
-    const timer = setTimeout(() => {
-      setIsLoading(false);
-    }, 1200);
-
-    return () => clearTimeout(timer);
-  }, []);
-
   return (
     <>
       <ScrollToTop />
-      <LoadingScreen isLoading={isLoading} />
       <Suspense fallback={<PageLoader />}>
         <Routes>
           <Route path="/" element={<Index />} />

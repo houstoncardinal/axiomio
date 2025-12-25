@@ -1,5 +1,12 @@
 import { motion } from "framer-motion";
 
+// Partner logos
+import awsLogo from "@/assets/partners/aws-partner.svg";
+import googleCloudLogo from "@/assets/partners/google-cloud.svg";
+import azureLogo from "@/assets/partners/azure.svg";
+import acronisLogo from "@/assets/partners/acronis.svg";
+import citrixLogo from "@/assets/partners/citrix.svg";
+
 // Client logos with actual image paths
 const clients = [
   { name: "Kuliza", logo: "/logos/Client Logos/kuliaz.png" },
@@ -44,11 +51,11 @@ const clients = [
 ];
 
 const partners = [
-  { name: "AWS", display: "AWS", style: "text-orange-500 font-bold" },
-  { name: "Google Cloud", display: "Google Cloud", style: "text-blue-500 font-medium" },
-  { name: "Microsoft Azure", display: "Azure", style: "text-blue-600 font-semibold" },
-  { name: "Acronis", display: "Acronis", style: "text-red-500 font-bold" },
-  { name: "Citrix", display: "Citrix", style: "text-gray-700 dark:text-gray-300 font-semibold" },
+  { name: "AWS", logo: awsLogo, description: "Advanced Partner" },
+  { name: "Google Cloud", logo: googleCloudLogo, description: "Cloud Partner" },
+  { name: "Microsoft Azure", logo: azureLogo, description: "Solutions Partner" },
+  { name: "Acronis", logo: acronisLogo, description: "Cyber Protect Partner" },
+  { name: "Citrix", logo: citrixLogo, description: "Diamond Partner" },
 ];
 
 const featuredIn = [
@@ -178,7 +185,7 @@ export function ClientLogoMarquee() {
         </motion.div>
 
         <motion.div
-          className="flex flex-wrap justify-center items-center gap-8 lg:gap-12"
+          className="flex flex-wrap justify-center items-center gap-4 md:gap-8 lg:gap-10"
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           transition={{ duration: 0.6, delay: 0.2 }}
@@ -191,11 +198,18 @@ export function ClientLogoMarquee() {
               whileInView={{ opacity: 1, scale: 1 }}
               transition={{ delay: index * 0.1, duration: 0.4 }}
               viewport={{ once: true }}
-              className="group"
+              className="group flex flex-col items-center"
             >
-              <div className="h-16 px-8 rounded-2xl bg-gradient-to-br from-primary/10 to-primary/5 border border-primary/20 flex items-center justify-center transition-all duration-300 group-hover:from-primary/20 group-hover:to-primary/10 group-hover:scale-105 group-hover:shadow-lg group-hover:shadow-primary/10">
-                <span className={`${partner.style} text-lg`}>{partner.display}</span>
+              <div className="w-32 h-14 md:w-40 md:h-16 lg:w-44 lg:h-20 px-4 py-2 rounded-xl bg-card/80 border border-border/40 flex items-center justify-center transition-all duration-300 group-hover:border-primary/40 group-hover:shadow-lg group-hover:shadow-primary/10 group-hover:scale-105">
+                <img
+                  src={partner.logo}
+                  alt={`${partner.name} logo`}
+                  className="w-full h-full object-contain"
+                />
               </div>
+              <span className="mt-2 text-[10px] md:text-xs font-medium text-muted-foreground group-hover:text-primary transition-colors">
+                {partner.description}
+              </span>
             </motion.div>
           ))}
         </motion.div>

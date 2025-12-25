@@ -58,19 +58,19 @@ const stats = [{
   value: 100,
   prefix: "$",
   suffix: "M+",
-  label: "Customers"
+  label: "VALUE DELIVERED"
 }, {
   value: 150,
   suffix: "+",
-  label: "Clients"
+  label: "ENTERPRISE CLIENTS"
 }, {
   value: 98,
   suffix: "%",
-  label: "Client Retention"
+  label: "CLIENT RETENTION"
 }, {
-  value: 15,
+  value: 40,
   suffix: "+",
-  label: "Industries Served"
+  label: "COUNTRIES SERVED"
 }];
 export default function Index() {
   const heroRef = useRef<HTMLDivElement>(null);
@@ -210,10 +210,10 @@ export default function Index() {
       </header>
 
       {/* Stats Section */}
-      <section className="py-16 lg:py-20 relative">
+      <section className="-mt-8 pb-12 lg:pb-16 relative">
         <div className="container mx-auto px-6 lg:px-8">
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8">
-            {stats.map((stat, index) => <CounterBadge key={stat.label} value={stat.value} suffix={stat.suffix} prefix={stat.label === "Value Delivered" ? "$" : ""} label={stat.label} duration={2 + index * 0.3} />)}
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-6">
+            {stats.map((stat, index) => <CounterBadge key={stat.label} value={stat.value} suffix={stat.suffix} prefix={stat.prefix || ""} label={stat.label} duration={2 + index * 0.3} />)}
           </div>
         </div>
       </section>

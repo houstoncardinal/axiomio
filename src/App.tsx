@@ -62,6 +62,7 @@ const CloudSecurity = lazy(() => import("./pages/services/CloudSecurity"));
 const MigrationModernization = lazy(() => import("./pages/services/MigrationModernization"));
 const Kubernetes = lazy(() => import("./pages/services/Kubernetes"));
 const Blog = lazy(() => import("./pages/Blog"));
+const Careers = lazy(() => import("./pages/Careers"));
 const XeroTrust = lazy(() => import("./pages/XeroTrust"));
 const XeroTrustCompare = lazy(() => import("./pages/XeroTrustCompare"));
 const XeroWaste = lazy(() => import("./pages/XeroWaste"));
@@ -115,6 +116,7 @@ const AppContent = () => {
       <Suspense fallback={<PageLoader />}>
         <Routes>
           <Route path="/" element={<Index />} />
+          <Route path="/careers" element={<Careers />} />
           <Route path="/blog" element={<Blog />} />
           <Route path="/about" element={<About />} />
           <Route path="/services" element={<Services />} />

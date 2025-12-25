@@ -1,48 +1,48 @@
 import { motion } from "framer-motion";
 import { Award, Shield, Cloud, Code, Database, Lock, CheckCircle2 } from "lucide-react";
 
-// All AWS Partner Badges from public/logos/AWS Badges folder
+// All AWS Partner Badges from public/logos/aws-badges folder
 const awsPartnerBadges = [
   {
     name: "AWS DevOps Services Competency",
     level: "Competency",
-    image: "/logos/AWS Badges/aws_devops.png",
+    image: "/logos/aws-badges/aws_devops.png",
     category: "competency",
   },
   {
     name: "AWS Lambda Service Delivery",
     level: "Service Delivery",
-    image: "/logos/AWS Badges/aws_lambda sdp.png",
+    image: "/logos/aws-badges/aws-lambda-sdp.png",
     category: "delivery",
   },
   {
     name: "AWS Qualified Software",
     level: "Qualified Software",
-    image: "/logos/AWS Badges/qualified software.png",
+    image: "/logos/aws-badges/qualified-software.png",
     category: "software",
   },
   {
     name: "Amazon DynamoDB Delivery",
     level: "Service Delivery",
-    image: "/logos/AWS Badges/dynamodb.png",
+    image: "/logos/aws-badges/dynamodb.png",
     category: "delivery",
   },
   {
     name: "Amazon API Gateway Delivery",
     level: "Service Delivery",
-    image: "/logos/AWS Badges/api gateway.png",
+    image: "/logos/aws-badges/api-gateway.png",
     category: "delivery",
   },
   {
     name: "Digital Workplace Services",
     level: "Competency",
-    image: "/logos/AWS Badges/digitalworkplace.png",
+    image: "/logos/aws-badges/digitalworkplace.png",
     category: "competency",
   },
   {
     name: "L1 MSSP Services Competency",
     level: "Security Competency",
-    image: "/logos/AWS Badges/l1 mssp.png",
+    image: "/logos/aws-badges/l1-mssp.png",
     category: "security",
   },
 ];
@@ -143,7 +143,7 @@ export function CertificationsSection() {
                     }}
                   />
                   <img
-                    src="/logos/AWS Badges/tiered badge.png"
+                    src="/logos/aws-badges/tiered-badge.png"
                     alt="AWS Advanced Tier Services Partner"
                     className="w-full h-full object-contain relative z-10 drop-shadow-2xl"
                   />

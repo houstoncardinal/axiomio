@@ -313,7 +313,7 @@ export function XeroTrustBanner() {
               }}
             >
               <img 
-                src="/logos/Xero Trust/_XeroTrust_-darkbcg.png" 
+                src="/logos/xero-trust/_XeroTrust_-darkbcg.png" 
                 alt="" 
                 className="w-full h-full object-contain"
               />

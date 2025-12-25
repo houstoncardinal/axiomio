@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { Quote, ChevronLeft, ChevronRight } from "lucide-react";
+import { Quote, ChevronLeft, ChevronRight, Play, X } from "lucide-react";
 import {
   Carousel,
   CarouselContent,
@@ -8,7 +8,8 @@ import {
   CarouselPrevious,
 } from "@/components/ui/carousel";
 import Autoplay from "embla-carousel-autoplay";
-import { useRef } from "react";
+import { useRef, useState } from "react";
+import { Button } from "@/components/ui/button";
 
 const testimonials = [
   {
@@ -53,10 +54,21 @@ const testimonials = [
   },
 ];
 
+// Featured video testimonial
+const videoTestimonial = {
+  name: "Andy Zhulenev",
+  role: "CEO",
+  company: "OneForce",
+  quote: "We decided to partner with Axiom to move fast in building our AWS application. Axiom's cloud proficiency and strategic partnership were key to the success of our AWS application development.",
+  videoId: "c_leaFmNUVs",
+  thumbnail: "https://img.youtube.com/vi/c_leaFmNUVs/maxresdefault.jpg",
+};
+
 export function TestimonialsSection() {
   const plugin = useRef(
     Autoplay({ delay: 5000, stopOnInteraction: true })
   );
+  const [isVideoPlaying, setIsVideoPlaying] = useState(false);
 
   return (
     <section className="py-32 lg:py-44 relative overflow-hidden">
@@ -93,7 +105,7 @@ export function TestimonialsSection() {
             viewport={{ once: true }}
             className="font-heading text-4xl md:text-5xl lg:text-6xl font-bold text-foreground mb-6"
           >
-            Trusted by industry leaders
+            Why Clients Trust and Love To Work With Us
           </motion.h2>
           <motion.p
             initial={{ opacity: 0, y: 20 }}
@@ -105,6 +117,117 @@ export function TestimonialsSection() {
             See how enterprises achieve transformational results with Axiomio
           </motion.p>
         </div>
+
+        {/* Featured Video Testimonial */}
+        <motion.div
+          initial={{ opacity: 0, y: 40 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.2, duration: 0.6 }}
+          viewport={{ once: true }}
+          className="mb-20"
+        >
+          <div className="max-w-5xl mx-auto">
+            <div className="grid lg:grid-cols-2 gap-8 items-center bg-gradient-to-br from-muted/40 to-muted/10 rounded-3xl overflow-hidden border border-border/50">
+              {/* Video Player */}
+              <div className="relative aspect-video lg:aspect-auto lg:h-full min-h-[300px]">
+                {isVideoPlaying ? (
+                  <div className="absolute inset-0">
+                    <iframe
+                      src={`https://www.youtube.com/embed/${videoTestimonial.videoId}?autoplay=1&rel=0`}
+                      title="Client Testimonial Video"
+                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                      allowFullScreen
+                      className="w-full h-full"
+                    />
+                    <button
+                      onClick={() => setIsVideoPlaying(false)}
+                      className="absolute top-4 right-4 p-2 rounded-full bg-background/80 hover:bg-background transition-colors z-10"
+                      aria-label="Close video"
+                    >
+                      <X className="w-5 h-5" />
+                    </button>
+                  </div>
+                ) : (
+                  <div 
+                    className="absolute inset-0 cursor-pointer group"
+                    onClick={() => setIsVideoPlaying(true)}
+                  >
+                    <img
+                      src={videoTestimonial.thumbnail}
+                      alt={`${videoTestimonial.name} testimonial`}
+                      className="w-full h-full object-cover"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-r from-background/60 to-transparent" />
+                    
+                    {/* Play Button */}
+                    <div className="absolute inset-0 flex items-center justify-center">
+                      <motion.div
+                        whileHover={{ scale: 1.1 }}
+                        whileTap={{ scale: 0.95 }}
+                        className="w-20 h-20 rounded-full bg-primary/90 flex items-center justify-center shadow-2xl group-hover:bg-primary transition-colors"
+                      >
+                        <Play className="w-8 h-8 text-primary-foreground ml-1" fill="currentColor" />
+                      </motion.div>
+                    </div>
+
+                    {/* Watch Video Badge */}
+                    <div className="absolute top-4 left-4 flex items-center gap-2 px-4 py-2 rounded-full bg-primary text-primary-foreground text-sm font-medium">
+                      <Play className="w-4 h-4" fill="currentColor" />
+                      Watch Video
+                    </div>
+
+                    {/* Name overlay on image */}
+                    <div className="absolute top-1/3 right-8 text-right hidden lg:block">
+                      <span className="font-heading text-6xl font-bold text-white/20 uppercase tracking-wider">
+                        {videoTestimonial.name.split(' ')[0]}
+                      </span>
+                      <br />
+                      <span className="font-heading text-6xl font-bold text-white/20 uppercase tracking-wider">
+                        {videoTestimonial.name.split(' ')[1]}
+                      </span>
+                    </div>
+                  </div>
+                )}
+              </div>
+
+              {/* Content */}
+              <div className="p-8 lg:p-12">
+                <div className="mb-6">
+                  <span className="text-sm font-medium uppercase tracking-[0.15em] text-primary">
+                    Hear From Clients
+                  </span>
+                </div>
+
+                {/* Company Logo */}
+                <div className="mb-8">
+                  <img 
+                    src="/logos/client-logos/oneforce.png" 
+                    alt="OneForce logo" 
+                    className="h-10 object-contain dark:invert"
+                  />
+                </div>
+
+                {/* Divider */}
+                <div className="w-16 h-px bg-primary/30 mb-6" />
+
+                {/* Quote */}
+                <blockquote className="text-lg lg:text-xl text-foreground leading-relaxed mb-8">
+                  "{videoTestimonial.quote}"
+                </blockquote>
+
+                {/* Author */}
+                <div>
+                  <div className="font-heading text-xl font-bold text-foreground uppercase tracking-wide">
+                    {videoTestimonial.name}
+                  </div>
+                  <div className="text-sm text-muted-foreground">
+                    {videoTestimonial.role} - {videoTestimonial.company}
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </motion.div>
 
         {/* Testimonials Carousel */}
         <motion.div

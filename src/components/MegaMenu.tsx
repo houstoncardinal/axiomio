@@ -1,12 +1,12 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
-import { 
-  Brain, 
-  Cpu, 
-  LineChart, 
-  Zap, 
-  ArrowRight, 
+import {
+  Brain,
+  Cpu,
+  LineChart,
+  Zap,
+  ArrowRight,
   Sparkles,
   Target,
   Layers,
@@ -21,7 +21,13 @@ import {
   Lock,
   Lightbulb,
   Users,
-  Rocket
+  Rocket,
+  Eye,
+  RefreshCw,
+  FileCode,
+  AlertTriangle,
+  Monitor,
+  PackageCheck
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 
@@ -118,7 +124,7 @@ const services = [
   },
   {
     id: "migration",
-    slug: "migration-modernization",
+    slug: "migration-and-modernization",
     icon: Rocket,
     title: "Migration & Modernization",
     subtitle: "Cloud journey",
@@ -145,6 +151,76 @@ const services = [
     description: "Proactive vulnerability detection and remediation.",
     color: "from-rose-500/20 to-red-500/10",
     accent: "text-rose-400",
+  },
+  {
+    id: "observability",
+    slug: "observability-monitoring",
+    icon: Eye,
+    title: "Observability & Monitoring",
+    subtitle: "Full-stack visibility",
+    description: "360° visibility across infrastructure with real-time insights.",
+    color: "from-blue-500/20 to-cyan-500/10",
+    accent: "text-blue-400",
+  },
+  {
+    id: "business-continuity",
+    slug: "business-continuity",
+    icon: RefreshCw,
+    title: "Business Continuity",
+    subtitle: "Disaster recovery",
+    description: "Comprehensive data protection and rapid recovery capabilities.",
+    color: "from-emerald-500/20 to-green-500/10",
+    accent: "text-emerald-400",
+  },
+  {
+    id: "supply-chain-security",
+    slug: "software-supply-chain-security",
+    icon: PackageCheck,
+    title: "Software Supply Chain Security",
+    subtitle: "DevSecOps",
+    description: "Secure your software supply chain with DevSecOps practices.",
+    color: "from-violet-500/20 to-purple-500/10",
+    accent: "text-violet-400",
+  },
+  {
+    id: "iac",
+    slug: "infrastructure-as-code",
+    icon: FileCode,
+    title: "Infrastructure as Code",
+    subtitle: "IaC automation",
+    description: "Automate infrastructure with Terraform, Ansible, and more.",
+    color: "from-orange-500/20 to-amber-500/10",
+    accent: "text-orange-400",
+  },
+  {
+    id: "zero-trust",
+    slug: "zero-trust-security",
+    icon: Shield,
+    title: "Zero Trust Security",
+    subtitle: "Never trust, verify",
+    description: "Implement zero trust architecture across your organization.",
+    color: "from-red-500/20 to-rose-500/10",
+    accent: "text-red-400",
+  },
+  {
+    id: "threat-detection",
+    slug: "threat-detection-ransomware",
+    icon: AlertTriangle,
+    title: "Threat Detection & Ransomware",
+    subtitle: "Advanced protection",
+    description: "Detect and neutralize threats with 24/7 SOC services.",
+    color: "from-amber-500/20 to-yellow-500/10",
+    accent: "text-amber-400",
+  },
+  {
+    id: "digital-workspace",
+    slug: "digital-workspace",
+    icon: Monitor,
+    title: "Digital Workspace",
+    subtitle: "Remote enablement",
+    description: "Empower your remote workforce with secure digital workspace solutions.",
+    color: "from-indigo-500/20 to-blue-500/10",
+    accent: "text-indigo-400",
   },
 ];
 
@@ -219,14 +295,19 @@ export function MegaMenu({ isOpen, onClose }: MegaMenuProps) {
                 <div className="absolute inset-0 bg-gradient-to-br from-primary/3 via-transparent to-primary/3 pointer-events-none" />
                 <div className="absolute top-0 left-1/2 -translate-x-1/2 w-1/2 h-px bg-gradient-to-r from-transparent via-primary/30 to-transparent" />
                 
-                <div className="relative grid lg:grid-cols-[1fr_300px] gap-0">
+                <div className="relative grid lg:grid-cols-[1fr_340px] gap-0">
                   {/* Services Grid */}
-                  <div className="p-6 lg:p-7">
-                    <div className="flex items-center justify-between mb-5">
+                  <div className="p-3 lg:p-4">
+                    <div className="flex items-center justify-between mb-3">
                       <div>
-                        <h3 className="text-xs font-semibold text-primary uppercase tracking-[0.2em] mb-0.5">
-                          Our Services
-                        </h3>
+                        <div className="flex items-center gap-2 mb-1">
+                          <div className="p-1.5 rounded-lg bg-primary/10 border border-primary/20">
+                            <Sparkles className="w-4 h-4 text-primary" />
+                          </div>
+                          <h3 className="text-sm font-bold text-primary uppercase tracking-[0.2em]">
+                            Our Services
+                          </h3>
+                        </div>
                         <p className="text-xs text-muted-foreground">
                           Enterprise-grade capabilities for consequential challenges
                         </p>
@@ -234,69 +315,82 @@ export function MegaMenu({ isOpen, onClose }: MegaMenuProps) {
                       <Link
                         to="/services"
                         onClick={onClose}
-                        className="hidden sm:flex items-center gap-2 text-xs font-medium text-muted-foreground hover:text-primary transition-colors group"
+                        className="hidden sm:flex items-center gap-2 text-sm font-semibold text-muted-foreground hover:text-primary transition-colors group"
                       >
                         View all
-                        <ArrowRight className="h-3.5 w-3.5 group-hover:translate-x-1 transition-transform" />
+                        <ArrowRight className="h-4 w-4 group-hover:translate-x-1 transition-transform" />
                       </Link>
                     </div>
 
-                    <div className="grid sm:grid-cols-3 lg:grid-cols-4 gap-2.5">
+                    <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-2">
                       {services.map((service, index) => (
                         <motion.div
                           key={service.id}
                           initial={{ opacity: 0, y: 20 }}
                           animate={{ opacity: 1, y: 0 }}
-                          transition={{ delay: index * 0.03 }}
+                          transition={{ delay: index * 0.02 }}
                           onMouseEnter={() => setHoveredService(service.id)}
                           onMouseLeave={() => setHoveredService(null)}
                         >
                           <Link
                             to={`/services/${service.slug}`}
                             onClick={onClose}
-                            className="group block"
+                            className="group block h-full"
                           >
                             <div className={cn(
-                              "relative p-3 rounded-lg border border-border/50 transition-all duration-300",
-                              "hover:border-primary/30 hover:shadow-lg hover:shadow-primary/5",
+                              "relative p-2.5 rounded-xl border border-border/50 transition-all duration-300 h-full",
+                              "hover:border-primary/30 hover:shadow-xl hover:shadow-primary/5 hover:-translate-y-1 hover:scale-x-105 hover:z-10",
                               hoveredService === service.id && "border-primary/30 bg-primary/5"
                             )}>
                               {/* Gradient background on hover */}
                               <div className={cn(
-                                "absolute inset-0 rounded-lg bg-gradient-to-br opacity-0 transition-opacity duration-300",
+                                "absolute inset-0 rounded-xl bg-gradient-to-br opacity-0 transition-opacity duration-300",
                                 service.color,
                                 hoveredService === service.id && "opacity-100"
                               )} />
 
+                              {/* Glow effect */}
+                              <div className={cn(
+                                "absolute -inset-1 rounded-xl bg-gradient-to-br opacity-0 blur-lg transition-opacity duration-300",
+                                service.color,
+                                hoveredService === service.id && "opacity-50"
+                              )} />
+
                               <div className="relative">
-                                {/* Header */}
-                                <div className="flex items-start gap-2 mb-1.5">
-                                  <div className={cn(
-                                    "p-1.5 rounded-md bg-gradient-to-br border transition-all duration-300",
-                                    "from-primary/20 to-primary/5 border-primary/20",
-                                    hoveredService === service.id && "scale-110"
-                                  )}>
-                                    <service.icon className={cn(
-                                      "h-3.5 w-3.5 transition-colors",
-                                      hoveredService === service.id ? service.accent : "text-primary"
-                                    )} />
-                                  </div>
-                                  <div className="flex-1 min-w-0">
-                                    <h4 className="font-heading font-semibold text-xs text-foreground group-hover:text-primary transition-colors line-clamp-1">
-                                      {service.title}
-                                    </h4>
-                                    <p className="text-[9px] text-muted-foreground line-clamp-1">
-                                      {service.subtitle}
-                                    </p>
-                                  </div>
+                                {/* Icon */}
+                                <div className={cn(
+                                  "inline-flex p-2 rounded-lg bg-gradient-to-br border transition-all duration-300 mb-2",
+                                  "from-primary/20 to-primary/5 border-primary/20",
+                                  hoveredService === service.id && "scale-110 shadow-lg"
+                                )}>
+                                  <service.icon className={cn(
+                                    "h-4 w-4 transition-colors",
+                                    hoveredService === service.id ? service.accent : "text-primary"
+                                  )} />
                                 </div>
+
+                                {/* Title & Subtitle */}
+                                <div className="mb-1.5">
+                                  <h4 className="font-heading font-bold text-xs text-foreground group-hover:text-primary transition-colors mb-0.5 leading-tight">
+                                    {service.title}
+                                  </h4>
+                                  <p className="text-[9px] font-semibold text-muted-foreground uppercase tracking-wide">
+                                    {service.subtitle}
+                                  </p>
+                                </div>
+
+                                {/* Description */}
+                                <p className="text-[11px] text-muted-foreground leading-relaxed mb-1.5">
+                                  {service.description}
+                                </p>
 
                                 {/* Arrow indicator */}
                                 <div className={cn(
-                                  "absolute top-2 right-2 opacity-0 transition-all duration-300",
+                                  "flex items-center gap-1.5 text-[9px] font-semibold text-foreground opacity-0 transition-all duration-300",
                                   hoveredService === service.id && "opacity-100"
                                 )}>
-                                  <ArrowRight className={cn("h-3 w-3", service.accent)} />
+                                  Learn more
+                                  <ArrowRight className="h-2.5 w-2.5" />
                                 </div>
                               </div>
                             </div>
@@ -340,12 +434,15 @@ export function MegaMenu({ isOpen, onClose }: MegaMenuProps) {
                             </div>
 
                             {/* Title with logo */}
-                            <div className="flex items-center gap-3 mb-1.5">
+                            <div className="flex items-center gap-2 mb-1.5">
                               {'logo' in offering && offering.logo && (
-                                <img 
-                                  src={offering.logo} 
+                                <img
+                                  src={offering.logo}
                                   alt={offering.title}
-                                  className="h-8 w-auto object-contain"
+                                  className={cn(
+                                    "w-auto object-contain",
+                                    offering.title === "XOPS360" ? "h-7" : "h-5"
+                                  )}
                                 />
                               )}
                               <h3 className="font-heading text-base font-bold text-foreground">

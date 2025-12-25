@@ -517,6 +517,19 @@ export default function XeroTrust() {
                   </span>
                 </motion.div>
 
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.15, duration: 0.6 }}
+                  className="mb-4 sm:mb-6"
+                >
+                  <img
+                    src="/logos/xero-trust/_XeroTrust_-lightbcg.png"
+                    alt="XeroTrust Logo"
+                    className="h-12 w-auto mx-auto lg:mx-0"
+                  />
+                </motion.div>
+
                 <motion.h1
                   initial={{ opacity: 0, y: 30 }}
                   animate={{ opacity: 1, y: 0 }}
@@ -547,10 +560,10 @@ export default function XeroTrust() {
                 >
                   <MagneticButton>
                     <Button variant="hero" size="xl" className="w-full sm:w-auto" asChild>
-                      <Link to="/contact">
+                      <a href="https://calendly.com/hello-axiomio/30min?back=1&month=2025-12" target="_blank" rel="noopener noreferrer">
                         Start Free Trial
                         <ArrowRight className="ml-2 h-4 w-4" />
-                      </Link>
+                      </a>
                     </Button>
                   </MagneticButton>
                   <MagneticButton>
@@ -2413,10 +2426,10 @@ export default function XeroTrust() {
                 <div className="flex flex-col sm:flex-row gap-4 justify-center">
                   <MagneticButton>
                     <Button variant="hero" size="xl" asChild>
-                      <Link to="/contact">
+                      <a href="https://calendly.com/hello-axiomio/30min?back=1&month=2025-12" target="_blank" rel="noopener noreferrer">
                         Start Free Trial
                         <ArrowRight className="ml-2 h-4 w-4" />
-                      </Link>
+                      </a>
                     </Button>
                   </MagneticButton>
                   <MagneticButton>

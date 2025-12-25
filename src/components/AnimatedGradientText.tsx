@@ -11,7 +11,7 @@ export function AnimatedGradientText({ children, className = "" }: AnimatedGradi
     <motion.span
       className={`relative inline-block ${className}`}
       style={{
-        backgroundImage: "linear-gradient(90deg, hsl(192 100% 65%), hsl(220 100% 70%), hsl(265 70% 68%), hsl(192 100% 65%))",
+        backgroundImage: "linear-gradient(90deg, #283072, #3d4a8f, #283072, #1f2557, #283072)",
         backgroundSize: "300% 100%",
         backgroundClip: "text",
         WebkitBackgroundClip: "text",

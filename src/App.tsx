@@ -61,6 +61,13 @@ const DevOpsServices = lazy(() => import("./pages/services/DevOpsServices"));
 const CloudSecurity = lazy(() => import("./pages/services/CloudSecurity"));
 const MigrationModernization = lazy(() => import("./pages/services/MigrationModernization"));
 const Kubernetes = lazy(() => import("./pages/services/Kubernetes"));
+const ObservabilityMonitoring = lazy(() => import("./pages/services/ObservabilityMonitoring"));
+const BusinessContinuity = lazy(() => import("./pages/services/BusinessContinuity"));
+const SoftwareSupplyChainSecurity = lazy(() => import("./pages/services/SoftwareSupplyChainSecurity"));
+const InfrastructureAsCode = lazy(() => import("./pages/services/InfrastructureAsCode"));
+const ZeroTrustSecurity = lazy(() => import("./pages/services/ZeroTrustSecurity"));
+const ThreatDetectionRansomware = lazy(() => import("./pages/services/ThreatDetectionRansomware"));
+const DigitalWorkspace = lazy(() => import("./pages/services/DigitalWorkspace"));
 const Blog = lazy(() => import("./pages/Blog"));
 const Careers = lazy(() => import("./pages/Careers"));
 const XeroTrust = lazy(() => import("./pages/XeroTrust"));
@@ -135,6 +142,13 @@ const AppContent = () => {
           <Route path="/services/cloud-security" element={<CloudSecurity />} />
           <Route path="/services/migration-and-modernization" element={<MigrationModernization />} />
           <Route path="/services/kubernetes" element={<Kubernetes />} />
+          <Route path="/services/observability-monitoring" element={<ObservabilityMonitoring />} />
+          <Route path="/services/business-continuity" element={<BusinessContinuity />} />
+          <Route path="/services/software-supply-chain-security" element={<SoftwareSupplyChainSecurity />} />
+          <Route path="/services/infrastructure-as-code" element={<InfrastructureAsCode />} />
+          <Route path="/services/zero-trust-security" element={<ZeroTrustSecurity />} />
+          <Route path="/services/threat-detection-ransomware" element={<ThreatDetectionRansomware />} />
+          <Route path="/services/digital-workspace" element={<DigitalWorkspace />} />
           <Route path="/xerotrust" element={<XeroTrust />} />
           <Route path="/xerotrust/compare" element={<XeroTrustCompare />} />
           <Route path="/xerowaste" element={<XeroWaste />} />

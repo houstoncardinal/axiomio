@@ -51,7 +51,7 @@ const clients = [
 ];
 
 const partners = [
-  { name: "AWS", logo: awsLogo, description: "Advanced Partner" },
+  { name: "AWS", logo: awsLogo, description: "AWS Advanced Partner" },
   { name: "Google Cloud", logo: googleCloudLogo, description: "Cloud Partner" },
   { name: "Microsoft Azure", logo: azureLogo, description: "Solutions Partner" },
   { name: "Acronis", logo: acronisLogo, description: "Cyber Protect Partner" },

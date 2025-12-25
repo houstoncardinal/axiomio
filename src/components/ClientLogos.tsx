@@ -32,7 +32,7 @@ export function ClientLogos() {
                 <img
                   src={logo.logo}
                   alt={logo.name}
-                  className="max-h-full max-w-full object-contain filter dark:brightness-90"
+                  className="max-h-full max-w-full object-contain dark:brightness-110 dark:contrast-110"
                   loading="lazy"
                 />
               </div>

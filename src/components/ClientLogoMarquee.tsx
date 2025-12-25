@@ -76,7 +76,7 @@ function ClientLogo({ name, logo }: ClientLogoProps) {
         <img
           src={logo}
           alt={name}
-          className="max-h-full max-w-full object-contain filter dark:brightness-90"
+          className="max-h-full max-w-full object-contain dark:brightness-110 dark:contrast-110"
           loading="lazy"
         />
       </div>
@@ -204,7 +204,7 @@ export function ClientLogoMarquee() {
                 <img
                   src={partner.logo}
                   alt={`${partner.name} logo`}
-                  className="w-full h-full object-contain"
+                  className="w-full h-full object-contain dark:invert dark:brightness-200"
                 />
               </div>
               <span className="mt-2 text-[10px] md:text-xs font-medium text-muted-foreground group-hover:text-primary transition-colors">

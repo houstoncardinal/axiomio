@@ -1,3 +1,5 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 50">
-  <text x="10" y="35" font-family="Arial, sans-serif" font-weight="bold" font-size="24" fill="currentColor">Tenable</text>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 50" fill="none">
+  <rect x="6" y="10" width="30" height="30" rx="4" fill="#1C1B1F"/>
+  <path d="M14 20h14v4H14v-4zm0 8h10v4H14v-4z" fill="#00C1DE"/>
+  <text x="44" y="34" font-family="Arial, sans-serif" font-weight="bold" font-size="24" fill="#1C1B1F">tenable</text>
 </svg>

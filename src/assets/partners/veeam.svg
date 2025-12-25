@@ -1,3 +1,5 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 50">
-  <text x="10" y="35" font-family="Arial, sans-serif" font-weight="bold" font-size="28" fill="currentColor">Veeam</text>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 50" fill="none">
+  <path d="M10 38L25 12h8l15 26h-9l-10-18-10 18H10z" fill="#00b336"/>
+  <path d="M56 12h8v26h-8V12z" fill="#00b336"/>
+  <text x="70" y="34" font-family="Arial, sans-serif" font-weight="bold" font-size="26" fill="#00b336">Veeam</text>
 </svg>

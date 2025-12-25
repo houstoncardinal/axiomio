@@ -13,9 +13,16 @@ const navLinks = [
   { href: "/", label: "Home" },
   { href: "/xops360", label: "XOPS360", highlight: true },
   { href: "/xerotrust", label: "XeroTrust", highlight: true, secondary: true },
-  { href: "/about", label: "About" },
+  { 
+    href: "/about", 
+    label: "About", 
+    hasDropdown: true,
+    dropdownItems: [
+      { href: "/about", label: "About Us" },
+      { href: "/approach", label: "Our Approach" },
+    ]
+  },
   { href: "/services", label: "Services", hasMegaMenu: true },
-  { href: "/approach", label: "Approach" },
   { href: "/contact", label: "Contact" },
 ];
 
@@ -24,6 +31,8 @@ export function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [megaMenuOpen, setMegaMenuOpen] = useState(false);
   const [mobileServicesOpen, setMobileServicesOpen] = useState(false);
+  const [aboutDropdownOpen, setAboutDropdownOpen] = useState(false);
+  const [mobileAboutOpen, setMobileAboutOpen] = useState(false);
   const location = useLocation();
 
   useEffect(() => {
@@ -34,12 +43,25 @@ export function Navbar() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  // Close mega menu on route change
+  // Close menus on route change
   useEffect(() => {
     setMegaMenuOpen(false);
     setIsOpen(false);
     setMobileServicesOpen(false);
+    setAboutDropdownOpen(false);
+    setMobileAboutOpen(false);
   }, [location.pathname]);
+
+  // Close dropdown when clicking outside
+  useEffect(() => {
+    const handleClickOutside = () => {
+      setAboutDropdownOpen(false);
+    };
+    if (aboutDropdownOpen) {
+      document.addEventListener("click", handleClickOutside);
+      return () => document.removeEventListener("click", handleClickOutside);
+    }
+  }, [aboutDropdownOpen]);
 
   return (
     <>
@@ -92,6 +114,59 @@ export function Navbar() {
                         )} 
                       />
                     </button>
+                  ) : link.hasDropdown ? (
+                    <div className="relative">
+                      <button
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          setAboutDropdownOpen(!aboutDropdownOpen);
+                        }}
+                        className={cn(
+                          "relative px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200 flex items-center gap-1",
+                          aboutDropdownOpen || location.pathname === "/about" || location.pathname === "/approach"
+                            ? "text-primary bg-primary/5"
+                            : "text-foreground/70 hover:text-foreground hover:bg-muted/50"
+                        )}
+                      >
+                        {link.label}
+                        <ChevronDown 
+                          className={cn(
+                            "h-3.5 w-3.5 transition-transform duration-200",
+                            aboutDropdownOpen && "rotate-180"
+                          )} 
+                        />
+                      </button>
+                      
+                      {/* About Dropdown */}
+                      <AnimatePresence>
+                        {aboutDropdownOpen && (
+                          <motion.div
+                            initial={{ opacity: 0, y: 10 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            exit={{ opacity: 0, y: 10 }}
+                            transition={{ duration: 0.15 }}
+                            className="absolute top-full left-0 mt-2 w-48 py-2 bg-background border border-border rounded-xl shadow-lg z-50"
+                            onClick={(e) => e.stopPropagation()}
+                          >
+                            {link.dropdownItems?.map((item) => (
+                              <Link
+                                key={item.href}
+                                to={item.href}
+                                className={cn(
+                                  "block px-4 py-2.5 text-sm transition-colors",
+                                  location.pathname === item.href
+                                    ? "text-primary bg-primary/5"
+                                    : "text-foreground/70 hover:text-foreground hover:bg-muted/50"
+                                )}
+                                onClick={() => setAboutDropdownOpen(false)}
+                              >
+                                {item.label}
+                              </Link>
+                            ))}
+                          </motion.div>
+                        )}
+                      </AnimatePresence>
+                    </div>
                   ) : (
                     <Link
                       to={link.href}
@@ -124,12 +199,6 @@ export function Navbar() {
             {/* CTA Button */}
             <div className="hidden md:flex items-center gap-3">
               <ThemeToggle />
-              <Link 
-                to="/xops360"
-                className="text-sm font-medium text-foreground/70 hover:text-primary transition-colors"
-              >
-                XOPS360
-              </Link>
               <Button variant="default" size="default" className="shadow-glow" asChild>
                 <Link to="/contact">Get Started</Link>
               </Button>
@@ -264,6 +333,55 @@ export function Navbar() {
                                   >
                                     View All Services →
                                   </Link>
+                                </div>
+                              </motion.div>
+                            )}
+                          </AnimatePresence>
+                        </div>
+                      ) : link.hasDropdown ? (
+                        <div>
+                          <button
+                            onClick={() => setMobileAboutOpen(!mobileAboutOpen)}
+                            className={cn(
+                              "w-full flex items-center justify-between px-3 py-2.5 rounded-lg text-sm font-medium transition-all",
+                              mobileAboutOpen || location.pathname === "/about" || location.pathname === "/approach"
+                                ? "text-primary bg-primary/10"
+                                : "text-muted-foreground hover:text-foreground hover:bg-muted/50"
+                            )}
+                          >
+                            <span>{link.label}</span>
+                            <ChevronDown
+                              className={cn(
+                                "h-4 w-4 transition-transform duration-200",
+                                mobileAboutOpen && "rotate-180"
+                              )}
+                            />
+                          </button>
+                          <AnimatePresence>
+                            {mobileAboutOpen && (
+                              <motion.div
+                                initial={{ opacity: 0, height: 0 }}
+                                animate={{ opacity: 1, height: "auto" }}
+                                exit={{ opacity: 0, height: 0 }}
+                                transition={{ duration: 0.2 }}
+                                className="overflow-hidden"
+                              >
+                                <div className="mt-1 ml-3 pl-3 border-l-2 border-primary/20 space-y-0.5">
+                                  {link.dropdownItems?.map((item) => (
+                                    <Link
+                                      key={item.href}
+                                      to={item.href}
+                                      onClick={() => setIsOpen(false)}
+                                      className={cn(
+                                        "block px-3 py-2 text-sm rounded-md transition-colors",
+                                        location.pathname === item.href
+                                          ? "text-primary bg-primary/5"
+                                          : "text-muted-foreground hover:text-primary hover:bg-primary/5"
+                                      )}
+                                    >
+                                      {item.label}
+                                    </Link>
+                                  ))}
                                 </div>
                               </motion.div>
                             )}

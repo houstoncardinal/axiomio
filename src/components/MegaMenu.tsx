@@ -146,7 +146,7 @@ const featuredOfferings = [
     link: "/xerotrust",
     color: "from-cyan-500/20 to-emerald-500/10",
     accent: "bg-cyan-500",
-    logo: "/logos/Xero Trust/_XeroTrust_-lightbcg.png",
+    logo: "/logos/xero-trust/_XeroTrust_-lightbcg.png",
     stats: [
       { label: "Faster Access", value: "10x" },
       { label: "Deployment", value: "5min" },

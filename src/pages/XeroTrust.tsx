@@ -787,7 +787,7 @@ export default function XeroTrust() {
                           transition={{ duration: 0.3 }}
                         >
                           <img
-                            src="/logos/Xero Trust/_XeroTrust_-lightbcg.png"
+                            src="/logos/xero-trust/_XeroTrust_-lightbcg.png"
                             alt="XeroTrust"
                             className="w-full h-full object-contain select-none drop-shadow-2xl"
                             style={{ transform: 'rotate(0deg)' }}

@@ -1,14 +1,14 @@
 import { motion } from "framer-motion";
 
 const logos = [
-  { name: "Kuliza", logo: "/logos/Client Logos/kuliaz.png" },
-  { name: "India Accelerator", logo: "/logos/Client Logos/indiaaccelerator.webp" },
-  { name: "SciFund Challenge", logo: "/logos/Client Logos/scifund.png" },
-  { name: "Wipro", logo: "/logos/Client Logos/wipro.png" },
-  { name: "FPT", logo: "/logos/Client Logos/FPT.png" },
-  { name: "KIMS Hospitals", logo: "/logos/Client Logos/kims.png" },
-  { name: "Fortude", logo: "/logos/Client Logos/fortude.png" },
-  { name: "Cogent", logo: "/logos/Client Logos/COGENT.png" },
+  { name: "Kuliza", logo: "/logos/client-logos/kuliaz.png" },
+  { name: "India Accelerator", logo: "/logos/client-logos/indiaaccelerator.webp" },
+  { name: "SciFund Challenge", logo: "/logos/client-logos/scifund.png" },
+  { name: "Wipro", logo: "/logos/client-logos/wipro.png" },
+  { name: "FPT", logo: "/logos/client-logos/FPT.png" },
+  { name: "KIMS Hospitals", logo: "/logos/client-logos/kims.png" },
+  { name: "Fortude", logo: "/logos/client-logos/fortude.png" },
+  { name: "Cogent", logo: "/logos/client-logos/COGENT.png" },
 ];
 
 export function ClientLogos() {

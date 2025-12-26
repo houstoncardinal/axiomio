@@ -10,7 +10,6 @@ import { SectionHeader } from "@/components/SectionHeader";
 import { ProcessTimeline } from "@/components/ProcessTimeline";
 import { TestimonialsSection } from "@/components/TestimonialsSection";
 import { MetricsShowcase } from "@/components/MetricsShowcase";
-import { DifferentiatorsStack } from "@/components/DifferentiatorsStack";
 import { SEOHead } from "@/components/SEOHead";
 import { homepageSchema } from "@/lib/seo-schemas-enhanced";
 import { MagneticButton } from "@/components/MagneticButton";
@@ -454,10 +453,6 @@ export default function Index() {
 
       {/* Featured In / Press Section */}
       <FeaturedInSection />
-
-      {/* Why Axiomio Section - Interactive Card Stack */}
-      <DifferentiatorsStack />
-
 
       {/* Calendly Booking */}
       <CalendlyWidget />

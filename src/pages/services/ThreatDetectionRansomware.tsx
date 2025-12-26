@@ -186,9 +186,6 @@ export default function ThreatDetectionRansomware() {
                         <h3 className="font-heading text-xl font-semibold text-foreground group-hover:text-amber-500 transition-colors">
                           {service.title}
                         </h3>
-                        {service.subtitle && (
-                          <p className="text-sm text-amber-500/70">{service.subtitle}</p>
-                        )}
                       </div>
                     </div>
 

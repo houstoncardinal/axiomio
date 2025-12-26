@@ -107,23 +107,23 @@ function useAnimatedCounter(end: number, duration: number = 2, shouldStart: bool
   return count;
 }
 
-// Responsive node positions
+// Responsive node positions - tighter for compact view
 function useNodePositions(isMobile: boolean) {
   if (isMobile) {
-    // Mobile: 2x2 grid layout with more spacing
+    // Mobile: tighter 2x2 grid
     return [
-      { x: -70, y: -90 },   // Top-left - DevOps
-      { x: 70, y: -90 },    // Top-right - SecOps
-      { x: 70, y: 90 },     // Bottom-right - CloudOps
-      { x: -70, y: 90 },    // Bottom-left - AIOps
+      { x: -60, y: -70 },   // Top-left - DevOps
+      { x: 60, y: -70 },    // Top-right - SecOps
+      { x: 60, y: 70 },     // Bottom-right - CloudOps
+      { x: -60, y: 70 },    // Bottom-left - AIOps
     ];
   }
-  // Desktop: wider spread
+  // Desktop: tighter spread
   return [
-    { x: -160, y: -130 }, // Top-left - DevOps
-    { x: 160, y: -130 },  // Top-right - SecOps
-    { x: 160, y: 130 },   // Bottom-right - CloudOps
-    { x: -160, y: 130 },  // Bottom-left - AIOps
+    { x: -130, y: -100 }, // Top-left - DevOps
+    { x: 130, y: -100 },  // Top-right - SecOps
+    { x: 130, y: 100 },   // Bottom-right - CloudOps
+    { x: -130, y: 100 },  // Bottom-left - AIOps
   ];
 }
 
@@ -153,11 +153,12 @@ const EnterpriseNode = ({
   const isActive = isHovered || isSelected;
   const shouldAnimate = animationPhase >= 3; // Phase 3: nodes snap in
   
-  const nodeSize = isMobile ? "w-24 h-24" : "w-32 h-32";
-  const iconSize = isMobile ? "w-5 h-5" : "w-6 h-6";
-  const iconPadding = isMobile ? "p-2" : "p-2.5";
-  const fontSize = isMobile ? "text-xs" : "text-sm";
-  const statSize = isMobile ? "text-[8px]" : "text-[10px]";
+  // Smaller node sizes for compact view
+  const nodeSize = isMobile ? "w-20 h-20" : "w-24 h-24";
+  const iconSize = isMobile ? "w-4 h-4" : "w-5 h-5";
+  const iconPadding = isMobile ? "p-1.5" : "p-2";
+  const fontSize = isMobile ? "text-[10px]" : "text-xs";
+  const statSize = isMobile ? "text-[7px]" : "text-[9px]";
   
   return (
     <motion.div
@@ -199,25 +200,25 @@ const EnterpriseNode = ({
       
       {/* Main node card */}
       <motion.div
-        className={`relative ${nodeSize} rounded-2xl p-[2px] shadow-xl`}
+        className={`relative ${nodeSize} rounded-xl p-[2px] shadow-lg`}
         style={{
           background: `linear-gradient(135deg, ${node.color}, ${node.secondaryColor})`,
         }}
         animate={{
           boxShadow: isActive 
-            ? `0 20px 40px -10px ${node.color}60, 0 0 60px ${node.color}30`
-            : `0 10px 30px -10px ${node.color}40`,
+            ? `0 15px 30px -8px ${node.color}50, 0 0 40px ${node.color}25`
+            : `0 8px 20px -8px ${node.color}35`,
         }}
       >
-        <div className="w-full h-full rounded-[14px] bg-background/95 backdrop-blur-sm flex flex-col items-center justify-center gap-1.5 p-2">
+        <div className="w-full h-full rounded-[10px] bg-background/95 backdrop-blur-sm flex flex-col items-center justify-center gap-1 p-1.5">
           <div 
-            className={`${iconPadding} rounded-xl`}
+            className={`${iconPadding} rounded-lg`}
             style={{ backgroundColor: `${node.color}20` }}
           >
             <Icon className={iconSize} style={{ color: node.color }} />
           </div>
-          <span className={`${fontSize} font-bold text-foreground`}>{node.label}</span>
-          <span className={`${statSize} text-muted-foreground font-medium`}>{node.stat}</span>
+          <span className={`${fontSize} font-bold text-foreground leading-tight`}>{node.label}</span>
+          <span className={`${statSize} text-muted-foreground font-medium leading-tight`}>{node.stat}</span>
         </div>
       </motion.div>
       
@@ -362,9 +363,9 @@ const CentralHub = ({ animationPhase, isActive }: { animationPhase: number; isAc
       animate={shouldShow ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0 }}
       transition={{ duration: 0.8, type: "spring", stiffness: 150, damping: 15 }}
     >
-      {/* Rotating outer ring */}
+      {/* Rotating outer ring - smaller */}
       <motion.div
-        className="absolute inset-0 w-40 h-40 -translate-x-1/2 -translate-y-1/2 left-1/2 top-1/2"
+        className="absolute inset-0 w-28 h-28 md:w-32 md:h-32 -translate-x-1/2 -translate-y-1/2 left-1/2 top-1/2"
         initial={{ opacity: 0, scale: 0.5 }}
         animate={isPoweredUp ? { rotate: 360, opacity: 1, scale: 1 } : { opacity: 0, scale: 0.5 }}
         transition={{ 
@@ -387,15 +388,15 @@ const CentralHub = ({ animationPhase, isActive }: { animationPhase: number; isAc
             r="90"
             fill="none"
             stroke="url(#hubRingGradient)"
-            strokeWidth="2"
-            strokeDasharray="8 6"
+            strokeWidth="1.5"
+            strokeDasharray="6 5"
           />
         </svg>
       </motion.div>
       
       {/* Inner ring - counter rotate */}
       <motion.div
-        className="absolute inset-0 w-28 h-28 -translate-x-1/2 -translate-y-1/2 left-1/2 top-1/2"
+        className="absolute inset-0 w-20 h-20 md:w-24 md:h-24 -translate-x-1/2 -translate-y-1/2 left-1/2 top-1/2"
         initial={{ opacity: 0 }}
         animate={isPoweredUp ? { rotate: -360, opacity: 1 } : { opacity: 0 }}
         transition={{ 
@@ -410,28 +411,28 @@ const CentralHub = ({ animationPhase, isActive }: { animationPhase: number; isAc
             r="85"
             fill="none"
             stroke="hsl(var(--primary) / 0.25)"
-            strokeWidth="1.5"
-            strokeDasharray="12 8"
+            strokeWidth="1"
+            strokeDasharray="10 6"
           />
         </svg>
       </motion.div>
       
-      {/* Core hub */}
+      {/* Core hub - smaller */}
       <motion.div
-        className="relative w-20 h-20 md:w-28 md:h-28 rounded-full bg-gradient-to-br from-primary via-blue-500 to-secondary p-[2px]"
+        className="relative w-16 h-16 md:w-20 md:h-20 rounded-full bg-gradient-to-br from-primary via-blue-500 to-secondary p-[2px]"
         initial={{ boxShadow: "0 0 0 hsl(var(--primary) / 0)" }}
         animate={isPoweredUp ? {
           boxShadow: isActive
-            ? "0 0 60px hsl(var(--primary) / 0.5), 0 0 120px hsl(var(--primary) / 0.25)"
-            : "0 0 40px hsl(var(--primary) / 0.35), 0 0 80px hsl(var(--primary) / 0.15)",
+            ? "0 0 40px hsl(var(--primary) / 0.5), 0 0 80px hsl(var(--primary) / 0.25)"
+            : "0 0 25px hsl(var(--primary) / 0.35), 0 0 50px hsl(var(--primary) / 0.15)",
         } : { boxShadow: "0 0 0 hsl(var(--primary) / 0)" }}
         transition={{ duration: 0.8 }}
       >
-        <div className="w-full h-full rounded-full bg-gradient-to-br from-slate-900 via-blue-950 to-slate-950 flex items-center justify-center p-1.5 md:p-2 overflow-hidden">
+        <div className="w-full h-full rounded-full bg-gradient-to-br from-slate-900 via-blue-950 to-slate-950 flex items-center justify-center p-1 md:p-1.5 overflow-hidden">
           <motion.img
             src="/logos/xops360.svg"
             alt="Xops360"
-            className="w-full h-full object-contain drop-shadow-[0_0_8px_rgba(59,130,246,0.5)]"
+            className="w-full h-full object-contain drop-shadow-[0_0_6px_rgba(59,130,246,0.5)]"
             initial={{ opacity: 0, scale: 0 }}
             animate={isPoweredUp ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0 }}
             transition={{ delay: 0.3, duration: 0.5 }}
@@ -439,13 +440,13 @@ const CentralHub = ({ animationPhase, isActive }: { animationPhase: number; isAc
         </div>
       </motion.div>
       
-      {/* Pulse rings */}
+      {/* Pulse rings - smaller */}
       {[0, 1, 2].map((i) => (
         <motion.div
           key={i}
-          className="absolute inset-0 w-20 h-20 md:w-28 md:h-28 rounded-full border-2 border-primary/30"
+          className="absolute inset-0 w-16 h-16 md:w-20 md:h-20 rounded-full border border-primary/30"
           initial={{ scale: 1, opacity: 0 }}
-          animate={isPoweredUp ? { scale: [1, 2, 2.5], opacity: [0.5, 0.2, 0] } : { scale: 1, opacity: 0 }}
+          animate={isPoweredUp ? { scale: [1, 1.8, 2.2], opacity: [0.4, 0.15, 0] } : { scale: 1, opacity: 0 }}
           transition={{ 
             duration: 2.5, 
             repeat: Infinity, 
@@ -472,20 +473,21 @@ const ConnectionLines = ({
 }) => {
   const shouldDraw = animationPhase >= 2;
   
+  // Adjusted positions for compact view
   const positions = isMobile ? [
-    { x: 180 - 70, y: 150 - 90 }, // DevOps
-    { x: 180 + 70, y: 150 - 90 }, // SecOps
-    { x: 180 + 70, y: 150 + 90 }, // CloudOps
-    { x: 180 - 70, y: 150 + 90 }, // AIOps
+    { x: 160 - 60, y: 130 - 70 }, // DevOps
+    { x: 160 + 60, y: 130 - 70 }, // SecOps
+    { x: 160 + 60, y: 130 + 70 }, // CloudOps
+    { x: 160 - 60, y: 130 + 70 }, // AIOps
   ] : [
-    { x: 250 - 160, y: 200 - 130 }, // DevOps
-    { x: 250 + 160, y: 200 - 130 }, // SecOps
-    { x: 250 + 160, y: 200 + 130 }, // CloudOps
-    { x: 250 - 160, y: 200 + 130 }, // AIOps
+    { x: 210 - 130, y: 170 - 100 }, // DevOps
+    { x: 210 + 130, y: 170 - 100 }, // SecOps
+    { x: 210 + 130, y: 170 + 100 }, // CloudOps
+    { x: 210 - 130, y: 170 + 100 }, // AIOps
   ];
   
-  const centerX = isMobile ? 180 : 250;
-  const centerY = isMobile ? 150 : 200;
+  const centerX = isMobile ? 160 : 210;
+  const centerY = isMobile ? 130 : 170;
   
   const activeNode = hoveredNode || selectedNode;
   
@@ -493,7 +495,7 @@ const ConnectionLines = ({
     <svg 
       className="absolute inset-0 w-full h-full pointer-events-none" 
       style={{ zIndex: 5 }}
-      viewBox={isMobile ? "0 0 360 300" : "0 0 500 400"}
+      viewBox={isMobile ? "0 0 320 260" : "0 0 420 340"}
       preserveAspectRatio="xMidYMid meet"
     >
       <defs>
@@ -720,7 +722,7 @@ export function XOPS360Section() {
   const scale = useTransform(scrollYProgress, [0, 0.15], [0.95, 1]);
 
   return (
-    <section ref={containerRef} className="py-16 md:py-20 lg:py-24 relative overflow-hidden">
+    <section ref={containerRef} className="py-10 md:py-14 lg:py-16 relative overflow-hidden">
       {/* Background */}
       <div className="absolute inset-0">
         <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-primary/40 to-transparent" />
@@ -748,17 +750,17 @@ export function XOPS360Section() {
         className="container relative z-10 mx-auto px-4 md:px-6 lg:px-8"
         style={{ opacity, scale }}
       >
-        {/* Header */}
-        <div className="text-center max-w-4xl mx-auto mb-10 md:mb-16">
+        {/* Header - Compact */}
+        <div className="text-center max-w-3xl mx-auto mb-6 md:mb-8">
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 15 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="mb-4 md:mb-6"
+            className="mb-3"
           >
-            <span className="inline-flex items-center gap-2 text-xs md:text-sm font-semibold uppercase tracking-[0.15em] md:tracking-[0.2em] text-primary px-4 md:px-5 py-2 rounded-full border border-primary/30 bg-primary/10">
+            <span className="inline-flex items-center gap-2 text-[10px] md:text-xs font-semibold uppercase tracking-[0.15em] text-primary px-3 py-1.5 rounded-full border border-primary/30 bg-primary/10">
               <motion.span
-                className="w-2 h-2 bg-primary rounded-full"
+                className="w-1.5 h-1.5 bg-primary rounded-full"
                 animate={{ scale: [1, 1.4, 1], opacity: [1, 0.6, 1] }}
                 transition={{ duration: 2, repeat: Infinity }}
               />
@@ -767,34 +769,33 @@ export function XOPS360Section() {
           </motion.div>
 
           <motion.h2
-            initial={{ opacity: 0, y: 30 }}
+            initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.1 }}
             viewport={{ once: true }}
-            className="font-heading text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold text-foreground mb-4 md:mb-6"
+            className="font-heading text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-foreground mb-2 md:mb-3"
           >
             Introducing <AnimatedGradientText>XOPS360</AnimatedGradientText>
           </motion.h2>
 
           <motion.p
-            initial={{ opacity: 0, y: 30 }}
+            initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.2 }}
             viewport={{ once: true }}
-            className="text-base md:text-xl lg:text-2xl text-muted-foreground leading-relaxed px-2"
+            className="text-sm md:text-base lg:text-lg text-muted-foreground leading-relaxed"
           >
-            The AI-powered operations platform that replaces traditional manual processes with an 
-            intelligent AI workforce.{" "}
+            AI-powered operations replacing manual processes with intelligent automation.{" "}
             <span className="text-primary font-medium hidden md:inline">Click any node to explore.</span>
-            <span className="text-primary font-medium md:hidden">Tap any node to explore.</span>
+            <span className="text-primary font-medium md:hidden">Tap to explore.</span>
           </motion.p>
         </div>
 
-        {/* Central visualization with proper containment */}
+        {/* Central visualization - more compact */}
         <div 
           ref={visualRef}
-          className="relative w-full max-w-[360px] md:max-w-[500px] mx-auto"
-          style={{ aspectRatio: isMobile ? "360/300" : "500/400" }}
+          className="relative w-full max-w-[320px] md:max-w-[420px] mx-auto"
+          style={{ aspectRatio: isMobile ? "320/260" : "420/340" }}
         >
           <div className="relative w-full h-full">
             {/* Connection lines */}
@@ -832,31 +833,31 @@ export function XOPS360Section() {
           </div>
         </div>
         
-        {/* Key metrics - now outside the visualization to prevent overlap */}
+        {/* Key metrics - compact inline */}
         <KeyMetrics animationPhase={animationPhase} isMobile={isMobile} />
 
-        {/* Features grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6 mt-16 md:mt-20">
+        {/* Features grid - 2 rows of 3 compact cards */}
+        <div className="grid grid-cols-2 md:grid-cols-3 gap-3 md:gap-4 mt-8 md:mt-10">
           {features.map((feature, index) => (
             <motion.div
               key={feature.title}
-              initial={{ opacity: 0, y: 40 }}
+              initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
-              transition={{ delay: index * 0.08, duration: 0.5 }}
+              transition={{ delay: index * 0.05, duration: 0.4 }}
               viewport={{ once: true }}
-              whileHover={{ y: -4, transition: { duration: 0.2 } }}
-              className="group relative p-6 md:p-8 rounded-2xl bg-gradient-to-br from-muted/50 to-muted/20 border border-border/50 hover:border-primary/30 transition-all duration-300"
+              whileHover={{ y: -3, transition: { duration: 0.2 } }}
+              className="group relative p-3 md:p-5 rounded-xl bg-gradient-to-br from-muted/50 to-muted/20 border border-border/50 hover:border-primary/30 transition-all duration-300"
             >
-              <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+              <div className="absolute inset-0 rounded-xl bg-gradient-to-br from-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
               
               <div className="relative z-10">
-                <div className="p-2.5 md:p-3 rounded-xl bg-primary/10 text-primary w-fit mb-4 md:mb-5 border border-primary/20 group-hover:bg-primary/20 transition-colors">
-                  <feature.icon className="h-5 w-5 md:h-6 md:w-6" />
+                <div className="p-2 rounded-lg bg-primary/10 text-primary w-fit mb-2 md:mb-3 border border-primary/20 group-hover:bg-primary/20 transition-colors">
+                  <feature.icon className="h-4 w-4 md:h-5 md:w-5" />
                 </div>
-                <h3 className="font-heading text-lg md:text-xl font-semibold text-foreground mb-2 md:mb-3 group-hover:text-primary transition-colors">
+                <h3 className="font-heading text-sm md:text-base font-semibold text-foreground mb-1 group-hover:text-primary transition-colors">
                   {feature.title}
                 </h3>
-                <p className="text-sm md:text-base text-muted-foreground leading-relaxed">
+                <p className="text-xs md:text-sm text-muted-foreground leading-relaxed line-clamp-2">
                   {feature.description}
                 </p>
               </div>
@@ -864,19 +865,19 @@ export function XOPS360Section() {
           ))}
         </div>
 
-        {/* CTA */}
+        {/* CTA - compact */}
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
+          initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.4 }}
+          transition={{ delay: 0.3 }}
           viewport={{ once: true }}
-          className="text-center mt-12 md:mt-16"
+          className="text-center mt-8 md:mt-10"
         >
           <MagneticButton>
-            <Button variant="hero" size="xl" asChild>
+            <Button variant="hero" size="lg" asChild>
               <Link to="/xops360">
                 Explore XOPS360
-                <ArrowRight className="ml-2 h-4 w-4 md:h-5 md:w-5" />
+                <ArrowRight className="ml-2 h-4 w-4" />
               </Link>
             </Button>
           </MagneticButton>

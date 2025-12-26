@@ -9,7 +9,6 @@ import { CounterBadge } from "@/components/CounterBadge";
 import { SectionHeader } from "@/components/SectionHeader";
 import { ProcessTimeline } from "@/components/ProcessTimeline";
 import { TestimonialsSection } from "@/components/TestimonialsSection";
-import { CapabilitiesGrid } from "@/components/CapabilitiesGrid";
 import { MetricsShowcase } from "@/components/MetricsShowcase";
 import { DifferentiatorsStack } from "@/components/DifferentiatorsStack";
 import { SEOHead } from "@/components/SEOHead";
@@ -368,9 +367,6 @@ export default function Index() {
 
       {/* Case Studies */}
       <CaseStudiesSection />
-
-      {/* Capabilities Grid */}
-      <CapabilitiesGrid />
 
       {/* Process Timeline */}
       <ProcessTimeline />

@@ -44,6 +44,7 @@ import { MagneticButton } from '@/components/MagneticButton';
 import { PremiumCard } from '@/components/PremiumCard';
 import { SEOHead } from '@/components/SEOHead';
 import { xops360PageSchema } from '@/lib/seo-schemas-enhanced';
+import { CapabilitiesGrid } from '@/components/CapabilitiesGrid';
 
 const problems = [
   {
@@ -629,6 +630,9 @@ export default function XOPS360() {
           </div>
         </div>
       </section>
+
+      {/* XOPS360 Capabilities Grid */}
+      <CapabilitiesGrid />
 
       {/* Case Studies - Cards with Gradient */}
       <section className="py-32 relative overflow-hidden">

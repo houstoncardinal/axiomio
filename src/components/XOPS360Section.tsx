@@ -107,23 +107,23 @@ function useAnimatedCounter(end: number, duration: number = 2, shouldStart: bool
   return count;
 }
 
-// Responsive node positions - tighter for compact view
+// Responsive node positions - perfectly centered in container
 function useNodePositions(isMobile: boolean) {
+  // These positions are relative to center (0,0)
   if (isMobile) {
-    // Mobile: tighter 2x2 grid
     return [
-      { x: -60, y: -70 },   // Top-left - DevOps
-      { x: 60, y: -70 },    // Top-right - SecOps
-      { x: 60, y: 70 },     // Bottom-right - CloudOps
-      { x: -60, y: 70 },    // Bottom-left - AIOps
+      { x: -55, y: -60 },   // Top-left - DevOps
+      { x: 55, y: -60 },    // Top-right - SecOps
+      { x: 55, y: 60 },     // Bottom-right - CloudOps
+      { x: -55, y: 60 },    // Bottom-left - AIOps
     ];
   }
-  // Desktop: tighter spread
+  // Desktop/tablet: wider spread
   return [
-    { x: -130, y: -100 }, // Top-left - DevOps
-    { x: 130, y: -100 },  // Top-right - SecOps
-    { x: 130, y: 100 },   // Bottom-right - CloudOps
-    { x: -130, y: 100 },  // Bottom-left - AIOps
+    { x: -110, y: -95 },  // Top-left - DevOps
+    { x: 110, y: -95 },   // Top-right - SecOps
+    { x: 110, y: 95 },    // Bottom-right - CloudOps
+    { x: -110, y: 95 },   // Bottom-left - AIOps
   ];
 }
 
@@ -473,21 +473,24 @@ const ConnectionLines = ({
 }) => {
   const shouldDraw = animationPhase >= 2;
   
-  // Adjusted positions for compact view
-  const positions = isMobile ? [
-    { x: 160 - 60, y: 130 - 70 }, // DevOps
-    { x: 160 + 60, y: 130 - 70 }, // SecOps
-    { x: 160 + 60, y: 130 + 70 }, // CloudOps
-    { x: 160 - 60, y: 130 + 70 }, // AIOps
-  ] : [
-    { x: 210 - 130, y: 170 - 100 }, // DevOps
-    { x: 210 + 130, y: 170 - 100 }, // SecOps
-    { x: 210 + 130, y: 170 + 100 }, // CloudOps
-    { x: 210 - 130, y: 170 + 100 }, // AIOps
+  // Centered positions matching the fixed-size container
+  const containerWidth = isMobile ? 280 : 400;
+  const containerHeight = isMobile ? 220 : 320;
+  const halfW = containerWidth / 2;
+  const halfH = containerHeight / 2;
+  
+  const spreadX = isMobile ? 55 : 110;
+  const spreadY = isMobile ? 60 : 95;
+  
+  const positions = [
+    { x: halfW - spreadX, y: halfH - spreadY }, // DevOps - top left
+    { x: halfW + spreadX, y: halfH - spreadY }, // SecOps - top right
+    { x: halfW + spreadX, y: halfH + spreadY }, // CloudOps - bottom right
+    { x: halfW - spreadX, y: halfH + spreadY }, // AIOps - bottom left
   ];
   
-  const centerX = isMobile ? 160 : 210;
-  const centerY = isMobile ? 130 : 170;
+  const centerX = halfW;
+  const centerY = halfH;
   
   const activeNode = hoveredNode || selectedNode;
   
@@ -495,7 +498,7 @@ const ConnectionLines = ({
     <svg 
       className="absolute inset-0 w-full h-full pointer-events-none" 
       style={{ zIndex: 5 }}
-      viewBox={isMobile ? "0 0 320 260" : "0 0 420 340"}
+      viewBox={`0 0 ${containerWidth} ${containerHeight}`}
       preserveAspectRatio="xMidYMid meet"
     >
       <defs>
@@ -583,7 +586,7 @@ const ConnectionLines = ({
   );
 };
 
-// Key metrics display with count-up animation
+// Key metrics display with count-up animation - centered inline bar
 const KeyMetrics = ({ animationPhase, isMobile }: { animationPhase: number; isMobile: boolean }) => {
   const shouldAnimate = animationPhase >= 4;
   
@@ -596,30 +599,31 @@ const KeyMetrics = ({ animationPhase, isMobile }: { animationPhase: number; isMo
   
   return (
     <motion.div
-      className="flex flex-wrap justify-center gap-2 md:gap-3 mt-8 md:mt-12"
-      initial={{ opacity: 0, y: 30 }}
-      animate={shouldAnimate ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
-      transition={{ duration: 0.6 }}
+      className="flex items-center justify-center mt-6 md:mt-8"
+      initial={{ opacity: 0, y: 20 }}
+      animate={shouldAnimate ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+      transition={{ duration: 0.5 }}
     >
-      {metricsData.map((metric, i) => (
-        <motion.div
-          key={metric.label}
-          className="flex flex-col items-center px-3 md:px-5 py-2 md:py-3 bg-card/90 backdrop-blur-sm rounded-xl border border-border/50 shadow-lg"
-          initial={{ opacity: 0, scale: 0.8, y: 20 }}
-          animate={shouldAnimate ? { opacity: 1, scale: 1, y: 0 } : { opacity: 0, scale: 0.8, y: 20 }}
-          transition={{ delay: i * 0.1, duration: 0.4 }}
-          whileHover={{ scale: 1.05, borderColor: "hsl(var(--primary) / 0.4)" }}
-        >
-          <AnimatedMetricValue 
-            value={metric.value} 
-            prefix={metric.prefix} 
-            suffix={metric.suffix} 
-            shouldAnimate={shouldAnimate}
-            delay={i * 0.15}
-          />
-          <div className="text-[9px] md:text-[10px] text-muted-foreground mt-0.5">{metric.label}</div>
-        </motion.div>
-      ))}
+      <div className="inline-flex items-center gap-1 sm:gap-2 md:gap-3 px-3 sm:px-4 md:px-6 py-2 md:py-3 bg-card/80 backdrop-blur-md rounded-full border border-border/60 shadow-xl">
+        {metricsData.map((metric, i) => (
+          <motion.div
+            key={metric.label}
+            className="flex flex-col items-center px-2 sm:px-3 md:px-4"
+            initial={{ opacity: 0, scale: 0.8 }}
+            animate={shouldAnimate ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.8 }}
+            transition={{ delay: i * 0.08, duration: 0.3 }}
+          >
+            <AnimatedMetricValue 
+              value={metric.value} 
+              prefix={metric.prefix} 
+              suffix={metric.suffix} 
+              shouldAnimate={shouldAnimate}
+              delay={i * 0.1}
+            />
+            <div className="text-[8px] sm:text-[9px] md:text-[10px] text-muted-foreground whitespace-nowrap">{metric.label}</div>
+          </motion.div>
+        ))}
+      </div>
     </motion.div>
   );
 };
@@ -791,47 +795,65 @@ export function XOPS360Section() {
           </motion.p>
         </div>
 
-        {/* Central visualization - more compact */}
-        <div 
-          ref={visualRef}
-          className="relative w-full max-w-[320px] md:max-w-[420px] mx-auto"
-          style={{ aspectRatio: isMobile ? "320/260" : "420/340" }}
+        {/* Central visualization container - perfectly centered */}
+        <motion.div
+          initial={{ opacity: 0, scale: 0.9 }}
+          whileInView={{ opacity: 1, scale: 1 }}
+          transition={{ delay: 0.3, duration: 0.6 }}
+          viewport={{ once: true }}
+          className="relative flex items-center justify-center"
         >
-          <div className="relative w-full h-full">
-            {/* Connection lines */}
-            <ConnectionLines 
-              animationPhase={animationPhase}
-              hoveredNode={hoveredNode} 
-              selectedNode={selectedNode}
-              isMobile={isMobile}
+          {/* Decorative outer glow ring */}
+          <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+            <div 
+              className="w-[280px] h-[220px] md:w-[380px] md:h-[300px] lg:w-[440px] lg:h-[340px] rounded-[50%] opacity-20"
+              style={{
+                background: "radial-gradient(ellipse at center, hsl(var(--primary) / 0.3) 0%, transparent 70%)",
+              }}
             />
-            
-            {/* Central hub */}
-            <CentralHub 
-              animationPhase={animationPhase}
-              isActive={hoveredNode !== null || selectedNode !== null} 
-            />
-            
-            {/* Floating particles around hub */}
-            <HubParticles animationPhase={animationPhase} />
-            
-            {/* Operation nodes */}
-            {opsNodes.map((node, index) => (
-              <EnterpriseNode
-                key={node.id}
-                node={node}
-                index={index}
-                isHovered={hoveredNode === node.id}
-                isSelected={selectedNode === node.id}
-                onHover={setHoveredNode}
-                onSelect={setSelectedNode}
-                position={nodePositions[index]}
+          </div>
+
+          {/* Visualization wrapper with fixed aspect ratio */}
+          <div 
+            ref={visualRef}
+            className="relative w-[280px] h-[220px] sm:w-[320px] sm:h-[260px] md:w-[400px] md:h-[320px] lg:w-[460px] lg:h-[360px]"
+          >
+            <div className="absolute inset-0 flex items-center justify-center">
+              {/* Connection lines */}
+              <ConnectionLines 
                 animationPhase={animationPhase}
+                hoveredNode={hoveredNode} 
+                selectedNode={selectedNode}
                 isMobile={isMobile}
               />
-            ))}
+              
+              {/* Central hub */}
+              <CentralHub 
+                animationPhase={animationPhase}
+                isActive={hoveredNode !== null || selectedNode !== null} 
+              />
+              
+              {/* Floating particles around hub */}
+              <HubParticles animationPhase={animationPhase} />
+              
+              {/* Operation nodes */}
+              {opsNodes.map((node, index) => (
+                <EnterpriseNode
+                  key={node.id}
+                  node={node}
+                  index={index}
+                  isHovered={hoveredNode === node.id}
+                  isSelected={selectedNode === node.id}
+                  onHover={setHoveredNode}
+                  onSelect={setSelectedNode}
+                  position={nodePositions[index]}
+                  animationPhase={animationPhase}
+                  isMobile={isMobile}
+                />
+              ))}
+            </div>
           </div>
-        </div>
+        </motion.div>
         
         {/* Key metrics - compact inline */}
         <KeyMetrics animationPhase={animationPhase} isMobile={isMobile} />

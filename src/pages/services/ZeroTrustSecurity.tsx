@@ -186,9 +186,6 @@ export default function ZeroTrustSecurity() {
                         <h3 className="font-heading text-xl font-semibold text-foreground group-hover:text-red-500 transition-colors">
                           {service.title}
                         </h3>
-                        {service.subtitle && (
-                          <p className="text-sm text-red-500/70">{service.subtitle}</p>
-                        )}
                       </div>
                     </div>
 

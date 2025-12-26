@@ -17,6 +17,7 @@ const phases = [
     bgColor: "bg-blue-500/10",
     borderColor: "border-blue-500/30",
     description: "Deep-dive discovery into your current state—infrastructure, security posture, processes, and costs.",
+    outcome: "Clarity replaces assumptions",
     deliverables: [
       "Infrastructure audit & health check",
       "Security vulnerability assessment",
@@ -38,6 +39,7 @@ const phases = [
     bgColor: "bg-primary/10",
     borderColor: "border-primary/30",
     description: "Execute targeted improvements based on assessment findings with measurable outcomes.",
+    outcome: "Risk becomes measurable and manageable",
     deliverables: [
       "Architecture modernization",
       "Security hardening & compliance",
@@ -59,6 +61,7 @@ const phases = [
     bgColor: "bg-emerald-500/10",
     borderColor: "border-emerald-500/30",
     description: "Ongoing management and optimization to ensure sustained performance and security.",
+    outcome: "Operations run without constant intervention",
     deliverables: [
       "24/7 monitoring & alerting",
       "Proactive incident response",
@@ -71,58 +74,49 @@ const phases = [
 
 export function AIMFrameworkSection() {
   return (
-    <section className="py-32 lg:py-40 relative overflow-hidden bg-gradient-to-b from-background via-muted/30 to-background">
-      {/* Enhanced Background Elements */}
+    <section className="py-20 lg:py-24 relative overflow-hidden bg-gradient-to-b from-background via-slate-50/30 to-background">
+      {/* Subtle Professional Background */}
       <div className="absolute inset-0">
-        {/* Gradient Mesh */}
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,hsl(var(--primary)/0.08),transparent_50%)]" />
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom_right,hsl(var(--secondary)/0.06),transparent_50%)]" />
-
-        {/* Animated Grid Pattern */}
-        <div className="absolute inset-0 bg-[linear-gradient(to_right,hsl(var(--border)/0.1)_1px,transparent_1px),linear-gradient(to_bottom,hsl(var(--border)/0.1)_1px,transparent_1px)] bg-[size:80px_80px] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_50%,black_40%,transparent_100%)]" />
-
-        {/* Floating Orbs */}
-        <div className="absolute top-1/4 left-10 w-96 h-96 bg-blue-500/8 rounded-full blur-[100px]" />
-        <div className="absolute top-1/2 right-10 w-96 h-96 bg-primary/8 rounded-full blur-[100px]" />
-        <div className="absolute bottom-1/4 left-1/3 w-96 h-96 bg-emerald-500/8 rounded-full blur-[100px]" />
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,hsl(var(--primary)/0.03),transparent_70%)]" />
+        <div className="absolute inset-0 bg-[linear-gradient(to_right,hsl(var(--border)/0.05)_1px,transparent_1px),linear-gradient(to_bottom,hsl(var(--border)/0.05)_1px,transparent_1px)] bg-[size:60px_60px] [mask-image:radial-gradient(ellipse_50%_50%_at_50%_50%,black_30%,transparent_100%)]" />
       </div>
 
-      <div className="container relative z-10 mx-auto px-6 lg:px-8">
-        {/* Enhanced Header */}
+      <div className="container relative z-10 mx-auto px-6 lg:px-8 max-w-7xl">
+        {/* Compact Professional Header */}
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
+          initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
+          transition={{ duration: 0.5 }}
           viewport={{ once: true }}
-          className="text-center max-w-4xl mx-auto mb-20"
+          className="text-center max-w-4xl mx-auto mb-12"
         >
           <motion.div
-            initial={{ scale: 0.9, opacity: 0 }}
+            initial={{ scale: 0.95, opacity: 0 }}
             whileInView={{ scale: 1, opacity: 1 }}
-            transition={{ delay: 0.2, duration: 0.5 }}
+            transition={{ delay: 0.1, duration: 0.4 }}
             viewport={{ once: true }}
-            className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/5 border border-primary/20 mb-6"
+            className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-slate-100/80 border border-slate-200/60 mb-4 backdrop-blur-sm"
           >
-            <Sparkles className="w-4 h-4 text-primary" />
-            <span className="text-sm font-bold uppercase tracking-[0.2em] text-primary">Our Methodology</span>
+            <Target className="w-3.5 h-3.5 text-slate-600" />
+            <span className="text-xs font-semibold uppercase tracking-[0.15em] text-slate-700">Our Methodology</span>
           </motion.div>
 
           <motion.h2
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 15 }}
             whileInView={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.3, duration: 0.6 }}
+            transition={{ delay: 0.2, duration: 0.5 }}
             viewport={{ once: true }}
-            className="font-heading text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-foreground mb-6 leading-tight"
+            className="font-heading text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-slate-900 mb-3 leading-tight"
           >
-            The <span className="text-gradient bg-gradient-to-r from-blue-500 via-primary to-emerald-500 bg-clip-text">AIM Framework</span>
+            The <span className="text-slate-700">AIM Framework</span>
           </motion.h2>
 
           <motion.p
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 10 }}
             whileInView={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.4, duration: 0.6 }}
+            transition={{ delay: 0.3, duration: 0.4 }}
             viewport={{ once: true }}
-            className="text-lg lg:text-xl text-muted-foreground leading-relaxed max-w-2xl mx-auto"
+            className="text-base text-slate-600 max-w-2xl mx-auto leading-relaxed"
           >
             A proven three-phase approach to transform your technology operations and deliver measurable business outcomes.
           </motion.p>
@@ -198,9 +192,32 @@ export function AIMFrameworkSection() {
                     </div>
 
                     {/* Description */}
-                    <p className="text-muted-foreground leading-relaxed mb-8 text-sm lg:text-base">
+                    <p className="text-muted-foreground leading-relaxed mb-6 text-sm lg:text-base">
                       {phase.description}
                     </p>
+
+                    {/* Outcome Anchor - Emotional Relief */}
+                    <motion.div
+                      initial={{ opacity: 0, scale: 0.95 }}
+                      whileInView={{ opacity: 1, scale: 1 }}
+                      transition={{ delay: index * 0.15 + 0.1, duration: 0.4 }}
+                      viewport={{ once: true }}
+                      className={`relative p-4 rounded-xl bg-gradient-to-r ${phase.bgColor} border ${phase.borderColor} mb-8`}
+                    >
+                      <div className="flex items-center gap-3">
+                        <div className={`p-2 rounded-lg bg-gradient-to-br ${phase.color} shadow-lg`}>
+                          <Sparkles className={`w-4 h-4 text-white`} />
+                        </div>
+                        <div>
+                          <p className="text-xs font-bold uppercase tracking-wider text-muted-foreground mb-1">
+                            What You'll Experience
+                          </p>
+                          <p className={`text-base font-bold ${phase.accentColor} leading-tight`}>
+                            {phase.outcome}
+                          </p>
+                        </div>
+                      </div>
+                    </motion.div>
 
                     {/* Deliverables Section - Enhanced */}
                     <div className="space-y-4">
@@ -250,97 +267,89 @@ export function AIMFrameworkSection() {
           </div>
         </div>
 
-        {/* Enhanced CTA Section */}
+        {/* Compact Professional CTA */}
         <motion.div
-          className="mt-20 relative"
-          initial={{ opacity: 0, y: 30 }}
+          className="mt-12 relative"
+          initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.3, duration: 0.6 }}
+          transition={{ delay: 0.2, duration: 0.5 }}
           viewport={{ once: true }}
         >
-          <div className="relative rounded-3xl overflow-hidden max-w-4xl mx-auto">
-            {/* Gradient Border Effect */}
-            <div className="absolute inset-0 bg-gradient-to-r from-blue-500 via-primary to-emerald-500 p-px rounded-3xl">
-              <div className="absolute inset-px bg-card rounded-[calc(1.5rem-1px)]" />
-            </div>
-
-            {/* Content */}
-            <div className="relative p-12 lg:p-16 text-center">
-              {/* Background decoration */}
-              <div className="absolute top-0 left-1/4 w-64 h-64 bg-primary/10 rounded-full blur-3xl" />
-              <div className="absolute bottom-0 right-1/4 w-64 h-64 bg-emerald-500/10 rounded-full blur-3xl" />
-
-              <div className="relative z-10">
+          <div className="relative rounded-2xl overflow-hidden max-w-6xl mx-auto bg-gradient-to-r from-slate-50/80 via-white to-slate-50/80 border border-slate-200/60 shadow-lg">
+            <div className="grid lg:grid-cols-2 gap-0">
+              {/* Left Content */}
+              <div className="p-8 lg:p-12 flex flex-col justify-center">
                 <motion.div
-                  initial={{ scale: 0.9, opacity: 0 }}
-                  whileInView={{ scale: 1, opacity: 1 }}
+                  initial={{ opacity: 0, x: -20 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  transition={{ delay: 0.3 }}
+                  viewport={{ once: true }}
+                >
+                  <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-slate-100 border border-slate-200 mb-4">
+                    <Zap className="w-4 h-4 text-slate-600" />
+                    <span className="text-sm font-semibold text-slate-700">Ready to Transform?</span>
+                  </div>
+
+                  <h3 className="font-heading text-xl lg:text-2xl font-bold text-slate-900 mb-3">
+                    Start with a <span className="text-slate-700">Free Assessment</span>
+                  </h3>
+
+                  <p className="text-slate-600 mb-6 text-sm lg:text-base leading-relaxed">
+                    Discover opportunities for improvement and get a customized roadmap to operational excellence.
+                  </p>
+
+                  <div className="flex flex-col sm:flex-row gap-3">
+                    <Button variant="default" size="lg" asChild className="bg-slate-900 hover:bg-slate-800 text-white">
+                      <Link to="/contact">
+                        Get Your Free Assessment
+                        <ArrowRight className="ml-2 h-4 w-4" />
+                      </Link>
+                    </Button>
+
+                    <Button variant="outline" size="lg" asChild className="border-slate-300 text-slate-700 hover:bg-slate-50">
+                      <Link to="/about">
+                        Learn More
+                      </Link>
+                    </Button>
+                  </div>
+                </motion.div>
+              </div>
+
+              {/* Right Content - Trust Indicators */}
+              <div className="p-8 lg:p-12 bg-gradient-to-br from-slate-900 to-slate-800 flex flex-col justify-center">
+                <motion.div
+                  initial={{ opacity: 0, x: 20 }}
+                  whileInView={{ opacity: 1, x: 0 }}
                   transition={{ delay: 0.4 }}
                   viewport={{ once: true }}
-                  className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 border border-primary/20 mb-6"
                 >
-                  <Zap className="w-4 h-4 text-primary" />
-                  <span className="text-sm font-semibold text-primary">Ready to Transform?</span>
-                </motion.div>
+                  <h4 className="text-white font-semibold mb-6 text-lg">Why Choose Our Assessment?</h4>
 
-                <motion.h3
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.5 }}
-                  viewport={{ once: true }}
-                  className="font-heading text-2xl sm:text-3xl lg:text-4xl font-bold text-foreground mb-4"
-                >
-                  Start with a <span className="text-gradient bg-gradient-to-r from-blue-500 via-primary to-emerald-500 bg-clip-text">Free Assessment</span>
-                </motion.h3>
-
-                <motion.p
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.6 }}
-                  viewport={{ once: true }}
-                  className="text-muted-foreground mb-8 text-lg max-w-2xl mx-auto"
-                >
-                  Discover opportunities for improvement and get a customized roadmap to operational excellence.
-                </motion.p>
-
-                <motion.div
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.7 }}
-                  viewport={{ once: true }}
-                  className="flex flex-col sm:flex-row gap-4 justify-center items-center"
-                >
-                  <Button variant="hero" size="xl" asChild className="group">
-                    <Link to="/contact">
-                      Get Your Free Assessment
-                      <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
-                    </Link>
-                  </Button>
-
-                  <Link to="/about" className="text-sm text-muted-foreground hover:text-foreground transition-colors flex items-center gap-1">
-                    Learn more about our approach
-                    <ChevronRight className="w-4 h-4" />
-                  </Link>
-                </motion.div>
-
-                {/* Trust indicators */}
-                <motion.div
-                  initial={{ opacity: 0 }}
-                  whileInView={{ opacity: 1 }}
-                  transition={{ delay: 0.8 }}
-                  viewport={{ once: true }}
-                  className="mt-8 flex items-center justify-center gap-6 text-xs text-muted-foreground"
-                >
-                  <div className="flex items-center gap-2">
-                    <CheckCircle className="w-4 h-4 text-green-500" />
-                    <span>No commitment required</span>
-                  </div>
-                  <div className="flex items-center gap-2">
-                    <CheckCircle className="w-4 h-4 text-green-500" />
-                    <span>Expert consultation</span>
-                  </div>
-                  <div className="hidden sm:flex items-center gap-2">
-                    <CheckCircle className="w-4 h-4 text-green-500" />
-                    <span>Tailored recommendations</span>
+                  <div className="space-y-4">
+                    <div className="flex items-center gap-3">
+                      <div className="w-5 h-5 rounded-full bg-green-500 flex items-center justify-center flex-shrink-0">
+                        <CheckCircle className="w-3 h-3 text-white" />
+                      </div>
+                      <span className="text-slate-200 text-sm">No commitment required</span>
+                    </div>
+                    <div className="flex items-center gap-3">
+                      <div className="w-5 h-5 rounded-full bg-green-500 flex items-center justify-center flex-shrink-0">
+                        <CheckCircle className="w-3 h-3 text-white" />
+                      </div>
+                      <span className="text-slate-200 text-sm">Expert consultation included</span>
+                    </div>
+                    <div className="flex items-center gap-3">
+                      <div className="w-5 h-5 rounded-full bg-green-500 flex items-center justify-center flex-shrink-0">
+                        <CheckCircle className="w-3 h-3 text-white" />
+                      </div>
+                      <span className="text-slate-200 text-sm">Tailored recommendations</span>
+                    </div>
+                    <div className="flex items-center gap-3">
+                      <div className="w-5 h-5 rounded-full bg-blue-500 flex items-center justify-center flex-shrink-0">
+                        <CheckCircle className="w-3 h-3 text-white" />
+                      </div>
+                      <span className="text-slate-200 text-sm">Actionable insights within 48 hours</span>
+                    </div>
                   </div>
                 </motion.div>
               </div>

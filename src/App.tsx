@@ -90,6 +90,7 @@ const XOPS360Integrations = lazy(() => import("./pages/admin/xops360/Integration
 const XOPS360Metrics = lazy(() => import("./pages/admin/xops360/Metrics"));
 const NotFound = lazy(() => import("./pages/NotFound"));
 const XOPS360Documentation = lazy(() => import("./pages/books/XOPS360Documentation"));
+const ScifferCaseStudy = lazy(() => import("./pages/case-studies/sciffer-enhances-security-with-axiom"));
 
 // Single clean loading screen - white background, smooth and fast
 const PageLoader = () => (
@@ -158,7 +159,8 @@ const AppContent = () => {
           <Route path="/request-a-demo" element={<RequestDemo />} />
           <Route path="/auth" element={<Auth />} />
           <Route path="/books/xops-360-documentation" element={<XOPS360Documentation />} />
-          
+          <Route path="/case-studies/sciffer-enhances-security-with-axiom" element={<ScifferCaseStudy />} />
+
           {/* Admin Routes */}
           <Route path="/admin" element={<AdminLayout />}>
             <Route index element={<Dashboard />} />

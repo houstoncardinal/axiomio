@@ -117,8 +117,11 @@ export function ClientLogoMarquee() {
           <h2 className="font-heading text-3xl md:text-4xl font-bold text-foreground mb-4">
             Our Esteemed Clients
           </h2>
-          <p className="text-muted-foreground max-w-2xl mx-auto">
+          <p className="text-muted-foreground max-w-2xl mx-auto mb-6">
             Powering digital transformation for industry leaders across fintech, healthcare, enterprise, and technology sectors
+          </p>
+          <p className="text-sm text-muted-foreground/80 font-medium max-w-3xl mx-auto italic">
+            Trusted by enterprises where downtime costs millions, and security failures aren't an option.
           </p>
         </motion.div>
       </div>
@@ -170,50 +173,7 @@ export function ClientLogoMarquee() {
         </div>
       </div>
 
-      {/* Partners section */}
-      <div className="container mx-auto px-6 lg:px-8 mt-20">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          viewport={{ once: true }}
-          className="text-center mb-10"
-        >
-          <p className="text-xs uppercase tracking-[0.2em] text-muted-foreground/60 font-medium">
-            Technology Partners
-          </p>
-        </motion.div>
 
-        <motion.div
-          className="flex flex-wrap justify-center items-center gap-4 md:gap-8 lg:gap-10"
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          transition={{ duration: 0.6, delay: 0.2 }}
-          viewport={{ once: true }}
-        >
-          {partners.map((partner, index) => (
-            <motion.div
-              key={partner.name}
-              initial={{ opacity: 0, scale: 0.8 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              transition={{ delay: index * 0.1, duration: 0.4 }}
-              viewport={{ once: true }}
-              className="group flex flex-col items-center"
-            >
-              <div className="w-32 h-14 md:w-40 md:h-16 lg:w-44 lg:h-20 px-4 py-2 rounded-xl bg-card/80 border border-border/40 flex items-center justify-center transition-all duration-300 group-hover:border-primary/40 group-hover:shadow-lg group-hover:shadow-primary/10 group-hover:scale-105">
-                <img
-                  src={partner.logo}
-                  alt={`${partner.name} logo`}
-                  className="w-full h-full object-contain dark:invert dark:brightness-200"
-                />
-              </div>
-              <span className="mt-2 text-[10px] md:text-xs font-medium text-muted-foreground group-hover:text-primary transition-colors">
-                {partner.description}
-              </span>
-            </motion.div>
-          ))}
-        </motion.div>
-      </div>
 
       {/* Featured In section */}
       <div className="container mx-auto px-6 lg:px-8 mt-16">

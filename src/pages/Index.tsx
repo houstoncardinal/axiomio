@@ -103,11 +103,11 @@ export default function Index() {
           }} transition={{
             duration: 0.6
           }} className="mb-8 flex flex-wrap gap-3 justify-center lg:justify-start">
-              <Link to="/xops360" className="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.15em] text-primary bg-primary/10 px-4 py-2 rounded-full border border-primary/20 hover:bg-primary/20 transition-colors">
+              <Link to="/xops360" className="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.15em] text-primary bg-primary/10 px-4 py-2 rounded-lg border border-primary/20 hover:bg-primary/20 transition-colors">
                 <Sparkles className="w-3.5 h-3.5" />
                 XOPS360
               </Link>
-              <Link to="/xerotrust" className="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.15em] text-secondary bg-secondary/10 px-4 py-2 rounded-full border border-secondary/20 hover:bg-secondary/20 transition-colors">
+              <Link to="/xerotrust" className="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.15em] text-secondary bg-secondary/10 px-4 py-2 rounded-lg border border-secondary/20 hover:bg-secondary/20 transition-colors">
                 <Shield className="w-3.5 h-3.5" />
                 XeroTrust
               </Link>
@@ -230,6 +230,139 @@ export default function Index() {
 
       {/* Metrics Showcase */}
       <MetricsShowcase />
+
+      {/* Psychological Enhancement - Before vs After */}
+      <section className="py-12 lg:py-16 relative overflow-hidden bg-gradient-to-b from-background via-muted/5 to-background">
+        <div className="container relative z-10 mx-auto px-6 lg:px-8">
+          {/* Ultra-Compact Header */}
+          <motion.div
+            initial={{ opacity: 0, y: 15 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
+            viewport={{ once: true }}
+            className="text-center max-w-4xl mx-auto mb-8"
+          >
+            <div className="inline-flex items-center gap-3 px-4 py-2 rounded-full bg-gradient-to-r from-primary/10 via-primary/5 to-primary/10 border border-primary/20 mb-4">
+              <div className="w-2 h-2 rounded-full bg-primary animate-pulse" />
+              <span className="text-xs font-bold uppercase tracking-[0.15em] text-primary">Transformation</span>
+              <ArrowRight className="w-3 h-3 text-primary" />
+            </div>
+            <h2 className="font-heading text-xl md:text-2xl lg:text-3xl font-bold text-foreground mb-2">
+              From Chaos to Strategic Control
+            </h2>
+            <p className="text-sm text-muted-foreground max-w-2xl mx-auto leading-relaxed">
+              The measurable transformation XOPS360 delivers
+            </p>
+          </motion.div>
+
+          {/* Ultra-Compact Before/After Cards */}
+          <div className="max-w-6xl mx-auto">
+            <div className="grid md:grid-cols-2 gap-4 lg:gap-6">
+              {/* Before XOPS360 - Ultra Compact */}
+              <motion.div
+                initial={{ opacity: 0, x: -20 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.5 }}
+                viewport={{ once: true }}
+                className="group"
+              >
+                <div className="relative p-5 rounded-lg bg-card border border-red-500/20 shadow-lg shadow-red-500/5 hover:shadow-xl hover:shadow-red-500/10 transition-all duration-300 overflow-hidden">
+                  {/* Light yellow accent */}
+                  <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-yellow-300/60 via-yellow-400/40 to-yellow-300/60" />
+
+                  <div className="flex items-center gap-2.5 mb-3">
+                    <div className="w-6 h-6 rounded-md bg-red-500/15 flex items-center justify-center shadow-sm">
+                      <div className="w-2 h-2 rounded-full bg-red-500" />
+                    </div>
+                    <h3 className="font-heading text-base font-semibold text-foreground">Before XOPS360</h3>
+                  </div>
+
+                  <div className="space-y-2 mb-4">
+                    <div className="flex items-start gap-2.5">
+                      <div className="w-1 h-1 rounded-full bg-red-500 mt-2 flex-shrink-0" />
+                      <p className="text-xs text-muted-foreground leading-tight">Manual firefighting, siloed tools, fragile pipelines</p>
+                    </div>
+                    <div className="flex items-start gap-2.5">
+                      <div className="w-1 h-1 rounded-full bg-red-500 mt-2 flex-shrink-0" />
+                      <p className="text-xs text-muted-foreground leading-tight">Reactive alerts, constant downtime, budget overruns</p>
+                    </div>
+                    <div className="flex items-start gap-2.5">
+                      <div className="w-1 h-1 rounded-full bg-red-500 mt-2 flex-shrink-0" />
+                      <p className="text-xs text-muted-foreground leading-tight">Executive frustration, team burnout, missed deadlines</p>
+                    </div>
+                  </div>
+
+                  <div className="p-2.5 rounded-md bg-red-500/5 border border-red-500/15 shadow-inner">
+                    <p className="text-[10px] text-red-600/90 italic font-medium leading-tight">
+                      "Every deployment felt like rolling the dice..."
+                    </p>
+                  </div>
+                </div>
+              </motion.div>
+
+              {/* After XOPS360 - Ultra Compact */}
+              <motion.div
+                initial={{ opacity: 0, x: 20 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.5, delay: 0.1 }}
+                viewport={{ once: true }}
+                className="group"
+              >
+                <div className="relative p-5 rounded-lg bg-card border border-green-500/20 shadow-lg shadow-green-500/5 hover:shadow-xl hover:shadow-green-500/10 transition-all duration-300 overflow-hidden">
+                  {/* Light yellow accent */}
+                  <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-yellow-300/60 via-yellow-400/40 to-yellow-300/60" />
+
+                  <div className="flex items-center gap-2.5 mb-3">
+                    <div className="w-6 h-6 rounded-md bg-green-500/15 flex items-center justify-center shadow-sm">
+                      <div className="w-2 h-2 rounded-full bg-green-500" />
+                    </div>
+                    <h3 className="font-heading text-base font-semibold text-foreground">After XOPS360</h3>
+                  </div>
+
+                  <div className="space-y-2 mb-4">
+                    <div className="flex items-start gap-2.5">
+                      <div className="w-1 h-1 rounded-full bg-green-500 mt-2 flex-shrink-0" />
+                      <p className="text-xs text-muted-foreground leading-tight">Self-healing systems, predictable releases, executive visibility</p>
+                    </div>
+                    <div className="flex items-start gap-2.5">
+                      <div className="w-1 h-1 rounded-full bg-green-500 mt-2 flex-shrink-0" />
+                      <p className="text-xs text-muted-foreground leading-tight">Proactive insights, 99.99% uptime, cost optimization</p>
+                    </div>
+                    <div className="flex items-start gap-2.5">
+                      <div className="w-1 h-1 rounded-full bg-green-500 mt-2 flex-shrink-0" />
+                      <p className="text-xs text-muted-foreground leading-tight">Strategic focus, team empowerment, business acceleration</p>
+                    </div>
+                  </div>
+
+                  <div className="p-2.5 rounded-md bg-green-500/5 border border-green-500/15 shadow-inner">
+                    <p className="text-[10px] text-green-600/90 italic font-medium leading-tight">
+                      "Finally, operations that work for us, not against us..."
+                    </p>
+                  </div>
+                </div>
+              </motion.div>
+            </div>
+
+            {/* Powerful CTA */}
+            <motion.div
+              initial={{ opacity: 0, scale: 0.9 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              transition={{ delay: 0.3, duration: 0.4 }}
+              viewport={{ once: true }}
+              className="flex justify-center mt-8"
+            >
+              <MagneticButton>
+                <Button variant="hero" size="lg" className="px-6 py-3 text-sm" asChild>
+                  <Link to="/xops360">
+                    See How Enterprises Use XOPS360
+                    <ArrowRight className="ml-2 h-4 w-4" />
+                  </Link>
+                </Button>
+              </MagneticButton>
+            </motion.div>
+          </div>
+        </div>
+      </section>
 
       {/* XeroTrust Banner */}
       <XeroTrustBanner />

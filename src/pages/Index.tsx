@@ -22,7 +22,6 @@ import { XeroTrustBanner } from "@/components/XeroTrustBanner";
 import { CertificationsSection } from "@/components/CertificationsSection";
 import { FeaturedInSection } from "@/components/FeaturedInSection";
 import { CaseStudiesSection } from "@/components/CaseStudiesSection";
-import { AIMFrameworkSection } from "@/components/AIMFrameworkSection";
 import { CalendlyWidget } from "@/components/CalendlyWidget";
 
 import { lazy, Suspense, useRef } from "react";
@@ -366,9 +365,6 @@ export default function Index() {
 
       {/* XeroTrust Banner */}
       <XeroTrustBanner />
-
-      {/* AIM Framework */}
-      <AIMFrameworkSection />
 
       {/* Case Studies */}
       <CaseStudiesSection />

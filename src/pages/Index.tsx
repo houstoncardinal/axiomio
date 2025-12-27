@@ -57,17 +57,9 @@ const stats = [{
   suffix: "M+",
   label: "VALUE DELIVERED"
 }, {
-  value: 150,
-  suffix: "+",
-  label: "ENTERPRISE CLIENTS"
-}, {
   value: 98,
   suffix: "%",
   label: "CLIENT RETENTION"
-}, {
-  value: 40,
-  suffix: "+",
-  label: "COUNTRIES SERVED"
 }];
 export default function Index() {
   const heroRef = useRef<HTMLDivElement>(null);
@@ -209,8 +201,40 @@ export default function Index() {
       {/* Stats Section */}
       <section className="-mt-8 pb-12 lg:pb-16 relative">
         <div className="container mx-auto px-6 lg:px-8">
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-6">
-            {stats.map((stat, index) => <CounterBadge key={stat.label} value={stat.value} suffix={stat.suffix} prefix={stat.prefix || ""} label={stat.label} duration={2 + index * 0.3} />)}
+          <div className="max-w-4xl mx-auto">
+            {/* Elegant divider */}
+            <div className="flex items-center justify-center mb-8">
+              <div className="h-px bg-gradient-to-r from-transparent via-border to-transparent flex-1" />
+              <div className="px-6">
+                <div className="w-2 h-2 rounded-full bg-primary/30" />
+              </div>
+              <div className="h-px bg-gradient-to-r from-transparent via-border to-transparent flex-1" />
+            </div>
+
+            {/* Premium stats layout */}
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-8 lg:gap-12">
+              {stats.map((stat, index) => (
+                <div key={stat.label} className="flex-1 max-w-xs">
+                  <div className="text-center group">
+                    {/* Subtle background glow */}
+                    <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-secondary/5 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 -z-10" />
+
+                    <CounterBadge
+                      value={stat.value}
+                      suffix={stat.suffix}
+                      prefix={stat.prefix || ""}
+                      label={stat.label}
+                      duration={2 + index * 0.3}
+                    />
+                  </div>
+                </div>
+              ))}
+            </div>
+
+            {/* Bottom accent */}
+            <div className="flex items-center justify-center mt-8">
+              <div className="h-px bg-gradient-to-r from-transparent via-primary/20 to-transparent flex-1 max-w-xs" />
+            </div>
           </div>
         </div>
       </section>

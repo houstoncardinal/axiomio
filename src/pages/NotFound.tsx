@@ -14,8 +14,8 @@ const NotFound = () => {
   return (
     <main className="flex min-h-screen items-center justify-center bg-background">
       <SEOHead
-        title="Page Not Found | 404 Error | Axiomio"
-        description="The page you're looking for doesn't exist or has been moved. Return to Axiomio homepage for enterprise technology consulting, XOPS360 platform, and digital transformation services."
+        title="Page Not Found | 404 Error | AXIOMIO"
+        description="The page you're looking for doesn't exist or has been moved. Return to AXIOMIO homepage for enterprise technology consulting, Xops360 platform, and digital transformation services."
         noIndex={true}
         pageType="error"
       />

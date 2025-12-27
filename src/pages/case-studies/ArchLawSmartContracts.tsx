@@ -26,8 +26,8 @@ const ArchLawSmartContracts = () => {
   return (
     <div className="min-h-screen bg-slate-50">
       <SEOHead
-        title="Arch Law Case Study | Cloud-Based Smart Contracts Platform Enhancement | Axiomio"
-        description="How Axiomio enhanced Arch Law's OpenLaw platform with Annature eSignature integration, Firebase backend, and Vue.js frontend for collaborative legal document management."
+        title="Arch Law Case Study | Cloud-Based Smart Contracts Platform Enhancement | AXIOMIO"
+        description="How AXIOMIO enhanced Arch Law's OpenLaw platform with Annature eSignature integration, Firebase backend, and Vue.js frontend for collaborative legal document management."
         keywords="Arch Law, OpenLaw, smart contracts, legal tech, Vue.js, Firebase, Annature, eSignature, digital law, legal platform"
         canonicalUrl="https://axiomio.com/case-studies/arch-law-smart-contracts"
       />

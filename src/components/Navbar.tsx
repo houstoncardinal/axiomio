@@ -7,11 +7,12 @@ import { MegaMenu } from "@/components/MegaMenu";
 import { ThemeToggle } from "@/components/ThemeToggle";
 import { cn } from "@/lib/utils";
 import axiomioLogo from "@/assets/axiomio-logo-transparent.png";
+import { SERVICE_CATEGORIES } from "@/config/services.config";
 
 
 const navLinks = [
   { href: "/", label: "Home" },
-  { href: "/xops360", label: "XOPS360", highlight: true },
+  { href: "/xops360", label: "Xops360", highlight: true },
   { href: "/xerotrust", label: "XeroTrust", highlight: true, secondary: true },
   {
     href: "/about",
@@ -284,48 +285,16 @@ export function Navbar() {
                                 className="overflow-hidden"
                               >
                                 <div className="mt-1 ml-3 pl-3 border-l-2 border-primary/20 space-y-0.5">
-                                  <Link
-                                    to="/services/strategy-advisory"
-                                    onClick={() => setIsOpen(false)}
-                                    className="block px-3 py-2 text-sm text-muted-foreground hover:text-primary hover:bg-primary/5 rounded-md transition-colors"
-                                  >
-                                    Strategy & Advisory
-                                  </Link>
-                                  <Link
-                                    to="/services/technology-systems"
-                                    onClick={() => setIsOpen(false)}
-                                    className="block px-3 py-2 text-sm text-muted-foreground hover:text-primary hover:bg-primary/5 rounded-md transition-colors"
-                                  >
-                                    Technology & Systems
-                                  </Link>
-                                  <Link
-                                    to="/services/ai-automation"
-                                    onClick={() => setIsOpen(false)}
-                                    className="block px-3 py-2 text-sm text-muted-foreground hover:text-primary hover:bg-primary/5 rounded-md transition-colors"
-                                  >
-                                    AI Automation with Cloud DevOps
-                                  </Link>
-                                  <Link
-                                    to="/services/cybersecurity"
-                                    onClick={() => setIsOpen(false)}
-                                    className="block px-3 py-2 text-sm text-muted-foreground hover:text-primary hover:bg-primary/5 rounded-md transition-colors"
-                                  >
-                                    Cyber Security Services
-                                  </Link>
-                                  <Link
-                                    to="/services/digital-transformation"
-                                    onClick={() => setIsOpen(false)}
-                                    className="block px-3 py-2 text-sm text-muted-foreground hover:text-primary hover:bg-primary/5 rounded-md transition-colors"
-                                  >
-                                    Digital Transformation
-                                  </Link>
-                                  <Link
-                                    to="/xerotrust"
-                                    onClick={() => setIsOpen(false)}
-                                    className="block px-3 py-2 text-sm text-secondary hover:text-secondary/80 hover:bg-secondary/5 rounded-md transition-colors font-medium"
-                                  >
-                                    XeroTrust
-                                  </Link>
+                                  {SERVICE_CATEGORIES.map((category) => (
+                                    <Link
+                                      key={category.id}
+                                      to={category.route}
+                                      onClick={() => setIsOpen(false)}
+                                      className="block px-3 py-2 text-sm text-muted-foreground hover:text-primary hover:bg-primary/5 rounded-md transition-colors"
+                                    >
+                                      {category.title}
+                                    </Link>
+                                  ))}
                                   <div className="h-px bg-border/30 my-1" />
                                   <Link
                                     to="/services"

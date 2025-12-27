@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
-import { ArrowRight, Brain, Cpu, LineChart, Zap, ChevronRight, Shield } from "lucide-react";
+import { ArrowRight, ChevronRight, CheckCircle2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
@@ -9,121 +9,15 @@ import { SectionHeader } from "@/components/SectionHeader";
 import { SEOHead } from "@/components/SEOHead";
 import { servicesPageSchema } from "@/lib/seo-schemas-enhanced";
 import { MagneticButton } from "@/components/MagneticButton";
+import { SERVICE_CATEGORIES, PRODUCTS } from "@/config/services.config";
 
-const services = [
-  {
-    id: "ops",
-    slug: "ops-excellence",
-    icon: Cpu,
-    title: "Ops Excellence",
-    subtitle: "FinOps · SecOps · CloudOps · DevOps",
-    description: "Master your operations with unified precision. AI-powered automation across financial, security, cloud, and development operations.",
-    capabilities: [
-      "Cloud cost optimization (FinOps)",
-      "Security operations & compliance",
-      "Multi-cloud orchestration",
-      "CI/CD pipeline automation",
-      "Self-healing infrastructure",
-    ],
-  },
-  {
-    id: "strategy",
-    slug: "strategy-advisory",
-    icon: LineChart,
-    title: "Strategy & Advisory",
-    subtitle: "Executive guidance for complex decisions",
-    description: "Navigate uncertainty with frameworks built on deep analysis, industry insight, and a commitment to outcomes that compound over time.",
-    capabilities: [
-      "Strategic roadmap development",
-      "Market and competitive analysis",
-      "Organizational design",
-      "Executive decision support",
-      "Investment thesis development",
-    ],
-  },
-  {
-    id: "technology",
-    slug: "technology-systems",
-    icon: Cpu,
-    title: "Technology & Systems",
-    subtitle: "Architecture that scales with ambition",
-    description: "Design and implement enterprise-grade systems that deliver reliability today while adapting to tomorrow's requirements.",
-    capabilities: [
-      "Enterprise architecture",
-      "Cloud infrastructure design",
-      "System integration",
-      "Platform modernization",
-      "Technical due diligence",
-    ],
-  },
-  {
-    id: "ai",
-    slug: "ai-automation",
-    icon: Brain,
-    title: "AI Automation with Cloud DevOps",
-    subtitle: "AI workforce for modern operations",
-    description: "Deploy AI-powered automation that replaces manual DevOps and SRE processes with an intelligent AI workforce for cloud operations.",
-    capabilities: [
-      "AI-powered DevOps automation",
-      "Intelligent SRE workflows",
-      "Cloud infrastructure automation",
-      "MLOps & AIOps integration",
-      "Self-healing systems",
-    ],
-  },
-  {
-    id: "cybersecurity",
-    slug: "cybersecurity",
-    icon: Shield,
-    title: "Cyber Security Services",
-    subtitle: "End-to-end enterprise protection",
-    description: "Comprehensive cybersecurity services spanning cloud security, network security, and endpoint protection with AI-driven threat detection.",
-    capabilities: [
-      "Cloud Security (CSPM/CWPP)",
-      "Network Security & Zero Trust",
-      "Threat Detection & Response",
-      "Compliance & Governance",
-      "Security Operations Center",
-    ],
-  },
-  {
-    id: "transformation",
-    slug: "digital-transformation",
-    icon: Zap,
-    title: "Digital Transformation",
-    subtitle: "Change that creates lasting value",
-    description: "Guide complex organizational change with methodologies that ensure adoption, minimize disruption, and deliver sustainable outcomes.",
-    capabilities: [
-      "Transformation strategy",
-      "Change management",
-      "Process redesign",
-      "Technology adoption",
-      "Capability building",
-    ],
-  },
-  {
-    id: "xerotrust",
-    slug: "xerotrust",
-    icon: Shield,
-    title: "XeroTrust",
-    subtitle: "Zero-Trust Network Access",
-    description: "Enterprise security without VPN complexity. 10x faster than traditional VPNs with AI-driven protection, WireGuard encryption, and seamless SSO integration.",
-    capabilities: [
-      "Zero-trust architecture",
-      "WireGuard encryption",
-      "SSO & MFA integration",
-      "Device posture checks",
-      "AI-driven security engine",
-    ],
-  },
-];
 
 export default function Services() {
   return (
     <main className="min-h-screen bg-background overflow-hidden">
       <SEOHead
-        title="Enterprise Consulting Services | Strategy, AI, Digital Transformation | Axiomio"
-        description="Axiomio's enterprise consulting services: Strategy & Advisory, Technology & Systems, AI & Automation, and Digital Transformation. XOPS360 platform for intelligent operations. Trusted by Fortune 500."
+        title="Enterprise Consulting Services | Strategy, AI, Digital Transformation | AXIOMIO"
+        description="AXIOMIO's enterprise consulting services: Strategy & Advisory, Technology & Systems, AI & Automation, and Digital Transformation. Xops360 platform for intelligent operations. Trusted by Fortune 500."
         keywords="enterprise consulting services, technology consulting, strategy consulting, AI consulting, digital transformation services, enterprise architecture, DevOps consulting, MLOps, AIOps, cloud consulting, IT strategy"
         canonicalUrl="https://axiomio.com/services"
         pageType="services"
@@ -178,71 +72,99 @@ export default function Services() {
       <section className="py-24 lg:py-32">
         <div className="container mx-auto px-6 lg:px-8">
           <div className="space-y-16">
-            {services.map((service, index) => (
-              <motion.div 
-                key={service.id}
-                id={service.id}
+            {SERVICE_CATEGORIES.map((category, index) => (
+              <motion.div
+                key={category.id}
+                id={category.id}
                 className="scroll-mt-32"
                 initial={{ opacity: 0, y: 50 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6 }}
                 viewport={{ once: true, margin: "-100px" }}
               >
-                <Link 
-                  to={`/services/${service.slug}`}
+                <Link
+                  to={category.route}
                   className="block group"
                 >
                   <div className="glass-card rounded-2xl p-8 lg:p-12 transition-all duration-500 hover:shadow-glow hover:border-primary/30">
                     <div className="grid lg:grid-cols-3 gap-8 items-start">
                       <div className="lg:col-span-2">
                         <div className="flex items-start gap-6">
-                          <motion.div 
-                            className="p-4 rounded-xl bg-gradient-to-br from-primary/20 to-primary/5 text-primary border border-primary/20 flex-shrink-0"
+                          <motion.div
+                            className={`p-4 rounded-xl bg-gradient-to-br ${category.color}/20 to-${category.color}/5 border border-${category.accent}/20 flex-shrink-0`}
                             whileHover={{ scale: 1.1, rotate: 5 }}
                             transition={{ type: "spring", stiffness: 400 }}
+                            style={{
+                              background: `linear-gradient(to bottom right, ${category.color.replace('from-', 'var(--color-')}20, ${category.color.replace('from-', 'var(--color-')}05)`,
+                              borderColor: `${category.accent}33`
+                            }}
                           >
-                            <service.icon className="h-8 w-8" />
+                            <category.icon className="h-8 w-8" style={{ color: category.accent }} />
                           </motion.div>
                           <div className="flex-1">
                             <h2 className="font-heading text-2xl md:text-3xl font-bold text-foreground mb-2 group-hover:text-primary transition-colors">
-                              {service.title}
+                              {category.title}
                             </h2>
-                            <p className="text-lg text-primary mb-4">
-                              {service.subtitle}
+                            <p className="text-lg mb-4" style={{ color: category.accent }}>
+                              {category.subtitle}
                             </p>
-                            <p className="text-muted-foreground leading-relaxed">
-                              {service.description}
+                            <p className="text-muted-foreground leading-relaxed mb-6">
+                              {category.description}
                             </p>
                           </div>
                         </div>
                       </div>
-                      
-                      <div className="flex flex-col gap-4">
-                        <h4 className="font-heading font-semibold text-sm text-muted-foreground uppercase tracking-wider">
-                          Key Capabilities
-                        </h4>
-                        <ul className="space-y-2">
-                          {service.capabilities.slice(0, 4).map((capability) => (
-                            <li 
-                              key={capability} 
-                              className="flex items-center gap-2 text-sm text-muted-foreground"
-                            >
-                              <div className="w-1.5 h-1.5 rounded-full bg-primary/50" />
-                              {capability}
-                            </li>
-                          ))}
-                        </ul>
-                        <div className="mt-4 flex items-center text-primary font-medium group-hover:gap-3 transition-all">
-                          <span>Explore service</span>
+
+                      <div className="flex flex-col gap-6">
+                        <div>
+                          <h4 className="font-heading font-semibold text-sm text-muted-foreground uppercase tracking-wider mb-4">
+                            Includes
+                          </h4>
+                          <ul className="space-y-2">
+                            {category.subServices.map((sub) => (
+                              <li
+                                key={sub.id}
+                                className="flex items-start gap-2 text-sm text-muted-foreground"
+                              >
+                                <CheckCircle2 className="w-4 h-4 flex-shrink-0 mt-0.5" style={{ color: category.accent }} />
+                                <span>{sub.title}</span>
+                              </li>
+                            ))}
+                          </ul>
+                        </div>
+
+                        {category.relatedProducts && category.relatedProducts.length > 0 && (
+                          <div className="pt-4 border-t border-border/50">
+                            <p className="text-xs text-muted-foreground mb-2">Powered by</p>
+                            <div className="flex flex-wrap gap-2">
+                              {category.relatedProducts.map(productKey => {
+                                const product = PRODUCTS[productKey];
+                                return (
+                                  <Link
+                                    key={productKey}
+                                    to={product.route}
+                                    className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md bg-muted/50 hover:bg-muted text-xs font-medium transition-colors"
+                                  >
+                                    <product.icon className="w-3 h-3" />
+                                    {product.name}
+                                  </Link>
+                                );
+                              })}
+                            </div>
+                          </div>
+                        )}
+
+                        <div className="mt-auto flex items-center text-primary font-medium group-hover:gap-3 transition-all">
+                          <span>Explore category</span>
                           <ChevronRight className="h-4 w-4 ml-1 group-hover:translate-x-1 transition-transform" />
                         </div>
                       </div>
                     </div>
                   </div>
                 </Link>
-                
-                {index < services.length - 1 && (
-                  <motion.div 
+
+                {index < SERVICE_CATEGORIES.length - 1 && (
+                  <motion.div
                     className="mt-16 h-px bg-gradient-to-r from-transparent via-border to-transparent"
                     initial={{ scaleX: 0 }}
                     whileInView={{ scaleX: 1 }}

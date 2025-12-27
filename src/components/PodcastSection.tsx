@@ -16,8 +16,8 @@ const mediaContent = [
   },
   {
     type: "video",
-    title: "XOPS360 Platform Demo",
-    description: "A comprehensive walkthrough of the XOPS360 unified operations platform.",
+    title: "Xops360 Platform Demo",
+    description: "A comprehensive walkthrough of the Xops360 unified operations platform.",
     thumbnail: "https://images.unsplash.com/photo-1551434678-e076c223a692?auto=format&fit=crop&q=80&w=800",
     duration: "12 min",
     platform: "YouTube",

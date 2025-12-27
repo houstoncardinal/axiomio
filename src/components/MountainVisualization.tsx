@@ -60,7 +60,7 @@ export function MountainVisualization() {
             className="text-lg text-muted-foreground leading-relaxed mb-10 max-w-2xl mx-auto"
           >
             Like the ever-shifting landscape you see, enterprise operations are dynamic and complex. 
-            XOPS360 brings clarity to chaos—unifying your DevOps, DataOps, MLOps, and AIOps 
+            Xops360 brings clarity to chaos—unifying your DevOps, DataOps, MLOps, and AIOps 
             into a single, intelligent platform.
           </motion.p>
           
@@ -73,7 +73,7 @@ export function MountainVisualization() {
           >
             <Button variant="hero" size="xl" asChild>
               <Link to="/xops360">
-                Discover XOPS360
+                Discover Xops360
                 <ArrowRight className="ml-2 h-4 w-4" />
               </Link>
             </Button>

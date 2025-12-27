@@ -84,7 +84,7 @@ export default function CloudSecurity() {
   return (
     <main className="min-h-screen bg-background overflow-hidden">
       <SEOHead
-        title="Cloud Security Services | CSPM, CWPP & Container Security | Axiomio"
+        title="Cloud Security Services | CSPM, CWPP & Container Security | AXIOMIO"
         description="Enterprise cloud security: CSPM, CWPP, container security, and cloud IAM. Protect AWS, Azure, and GCP workloads with continuous monitoring and automated remediation."
         keywords="cloud security, CSPM, CWPP, container security, kubernetes security, cloud IAM, AWS security, Azure security, GCP security, cloud compliance"
         canonicalUrl="https://axiomio.com/services/cloud-security"

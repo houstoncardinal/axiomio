@@ -11,7 +11,7 @@ const processSteps = [
   {
     number: "02",
     title: "Design",
-    description: "Architect a tailored XOPS360 implementation strategy aligned with your business objectives and technical requirements.",
+    description: "Architect a tailored transformation strategy aligned with your business objectives, technical landscape, and growth ambitions.",
     color: "from-blue-400 to-violet-500",
   },
   {

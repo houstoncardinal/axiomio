@@ -46,14 +46,13 @@ const About = lazy(() => import("./pages/About"));
 const Services = lazy(() => import("./pages/Services"));
 const Approach = lazy(() => import("./pages/Approach"));
 const Contact = lazy(() => import("./pages/Contact"));
-const XOPS360 = lazy(() => import("./pages/XOPS360"));
+const Xops360 = lazy(() => import("./pages/Xops360"));
 const Auth = lazy(() => import("./pages/Auth"));
 const StrategyAdvisory = lazy(() => import("./pages/services/StrategyAdvisory"));
 const TechnologySystems = lazy(() => import("./pages/services/TechnologySystems"));
 const AIAutomation = lazy(() => import("./pages/services/AIAutomation"));
 const DigitalTransformation = lazy(() => import("./pages/services/DigitalTransformation"));
 const OpsExcellence = lazy(() => import("./pages/services/OpsExcellence"));
-const XeroTrustService = lazy(() => import("./pages/services/XeroTrust"));
 const CyberSecurity = lazy(() => import("./pages/services/CyberSecurity"));
 const VulnerabilityManagement = lazy(() => import("./pages/services/VulnerabilityManagement"));
 const CloudFinOps = lazy(() => import("./pages/services/CloudFinOps"));
@@ -68,6 +67,17 @@ const InfrastructureAsCode = lazy(() => import("./pages/services/InfrastructureA
 const ZeroTrustSecurity = lazy(() => import("./pages/services/ZeroTrustSecurity"));
 const ThreatDetectionRansomware = lazy(() => import("./pages/services/ThreatDetectionRansomware"));
 const DigitalWorkspace = lazy(() => import("./pages/services/DigitalWorkspace"));
+
+// Parent Service Category Pages
+const StrategyTransformationAdvisory = lazy(() => import("./pages/services/StrategyTransformationAdvisory"));
+const CloudPlatformEngineering = lazy(() => import("./pages/services/CloudPlatformEngineering"));
+const DevOpsPlatformOpsAutomation = lazy(() => import("./pages/services/DevOpsPlatformOpsAutomation"));
+const CloudSecurityZeroTrust = lazy(() => import("./pages/services/CloudSecurityZeroTrust"));
+const ThreatDetectionVulnerabilityResponse = lazy(() => import("./pages/services/ThreatDetectionVulnerabilityResponse"));
+const ObservabilityReliabilityEngineering = lazy(() => import("./pages/services/ObservabilityReliabilityEngineering"));
+const FinOpsCostValueOptimization = lazy(() => import("./pages/services/FinOpsCostValueOptimization"));
+const BusinessContinuityDigitalWorkplace = lazy(() => import("./pages/services/BusinessContinuityDigitalWorkplace"));
+
 const Blog = lazy(() => import("./pages/Blog"));
 const Careers = lazy(() => import("./pages/Careers"));
 const XeroTrust = lazy(() => import("./pages/XeroTrust"));
@@ -82,14 +92,14 @@ const Content = lazy(() => import("./pages/admin/Content"));
 const Users = lazy(() => import("./pages/admin/Users"));
 const Settings = lazy(() => import("./pages/admin/Settings"));
 const Leads = lazy(() => import("./pages/admin/Leads"));
-const XOPS360Overview = lazy(() => import("./pages/admin/xops360/Overview"));
-const XOPS360Clients = lazy(() => import("./pages/admin/xops360/Clients"));
-const XOPS360Deployments = lazy(() => import("./pages/admin/xops360/Deployments"));
-const XOPS360Runbooks = lazy(() => import("./pages/admin/xops360/Runbooks"));
-const XOPS360Integrations = lazy(() => import("./pages/admin/xops360/Integrations"));
-const XOPS360Metrics = lazy(() => import("./pages/admin/xops360/Metrics"));
+const Xops360Overview = lazy(() => import("./pages/admin/xops360/Overview"));
+const Xops360Clients = lazy(() => import("./pages/admin/xops360/Clients"));
+const Xops360Deployments = lazy(() => import("./pages/admin/xops360/Deployments"));
+const Xops360Runbooks = lazy(() => import("./pages/admin/xops360/Runbooks"));
+const Xops360Integrations = lazy(() => import("./pages/admin/xops360/Integrations"));
+const Xops360Metrics = lazy(() => import("./pages/admin/xops360/Metrics"));
 const NotFound = lazy(() => import("./pages/NotFound"));
-const XOPS360Documentation = lazy(() => import("./pages/books/XOPS360Documentation"));
+const Xops360Documentation = lazy(() => import("./pages/books/Xops360Documentation"));
 const ScifferCaseStudy = lazy(() => import("./pages/case-studies/sciffer-enhances-security-with-axiom"));
 const EnParadigmCaseStudy = lazy(() => import("./pages/case-studies/EnParadigmCaseStudy"));
 const EnParadigmSOC = lazy(() => import("./pages/case-studies/EnParadigmSOC"));
@@ -139,12 +149,23 @@ const AppContent = () => {
           <Route path="/blog" element={<Blog />} />
           <Route path="/about" element={<About />} />
           <Route path="/services" element={<Services />} />
+
+          {/* Parent Service Category Routes */}
+          <Route path="/services/strategy-transformation-advisory" element={<StrategyTransformationAdvisory />} />
+          <Route path="/services/cloud-platform-engineering" element={<CloudPlatformEngineering />} />
+          <Route path="/services/devops-platformops-automation" element={<DevOpsPlatformOpsAutomation />} />
+          <Route path="/services/cloud-security-zerotrust" element={<CloudSecurityZeroTrust />} />
+          <Route path="/services/threat-detection-vulnerability-response" element={<ThreatDetectionVulnerabilityResponse />} />
+          <Route path="/services/observability-reliability-engineering" element={<ObservabilityReliabilityEngineering />} />
+          <Route path="/services/finops-cost-value-optimization" element={<FinOpsCostValueOptimization />} />
+          <Route path="/services/business-continuity-digital-workplace" element={<BusinessContinuityDigitalWorkplace />} />
+
+          {/* Individual Service Routes */}
           <Route path="/services/strategy-advisory" element={<StrategyAdvisory />} />
           <Route path="/services/technology-systems" element={<TechnologySystems />} />
           <Route path="/services/ai-automation" element={<AIAutomation />} />
           <Route path="/services/digital-transformation" element={<DigitalTransformation />} />
           <Route path="/services/ops-excellence" element={<OpsExcellence />} />
-          <Route path="/services/xerotrust" element={<XeroTrustService />} />
           <Route path="/services/cybersecurity" element={<CyberSecurity />} />
           <Route path="/services/vulnerability-management" element={<VulnerabilityManagement />} />
           <Route path="/services/cloud-finops" element={<CloudFinOps />} />
@@ -162,12 +183,12 @@ const AppContent = () => {
           <Route path="/xerotrust" element={<XeroTrust />} />
           <Route path="/xerotrust/compare" element={<XeroTrustCompare />} />
           <Route path="/xerowaste" element={<XeroWaste />} />
-          <Route path="/xops360" element={<XOPS360 />} />
+          <Route path="/xops360" element={<Xops360 />} />
           <Route path="/approach" element={<Approach />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/request-a-demo" element={<RequestDemo />} />
           <Route path="/auth" element={<Auth />} />
-          <Route path="/books/xops-360-documentation" element={<XOPS360Documentation />} />
+          <Route path="/books/xops-360-documentation" element={<Xops360Documentation />} />
           <Route path="/case-studies" element={<CaseStudies />} />
           <Route path="/case-studies/sciffer-enhances-security-with-axiom" element={<ScifferCaseStudy />} />
           <Route path="/case-studies/enparadigm" element={<EnParadigmCaseStudy />} />
@@ -188,12 +209,12 @@ const AppContent = () => {
             <Route path="users" element={<Users />} />
             <Route path="settings" element={<Settings />} />
             <Route path="leads" element={<Leads />} />
-            <Route path="xops360" element={<XOPS360Overview />} />
-            <Route path="xops360/clients" element={<XOPS360Clients />} />
-            <Route path="xops360/deployments" element={<XOPS360Deployments />} />
-            <Route path="xops360/runbooks" element={<XOPS360Runbooks />} />
-            <Route path="xops360/integrations" element={<XOPS360Integrations />} />
-            <Route path="xops360/metrics" element={<XOPS360Metrics />} />
+            <Route path="xops360" element={<Xops360Overview />} />
+            <Route path="xops360/clients" element={<Xops360Clients />} />
+            <Route path="xops360/deployments" element={<Xops360Deployments />} />
+            <Route path="xops360/runbooks" element={<Xops360Runbooks />} />
+            <Route path="xops360/integrations" element={<Xops360Integrations />} />
+            <Route path="xops360/metrics" element={<Xops360Metrics />} />
           </Route>
           
           <Route path="*" element={<NotFound />} />

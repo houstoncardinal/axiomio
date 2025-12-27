@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import {
@@ -30,8 +30,9 @@ import {
   PackageCheck
 } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { SERVICE_CATEGORIES, PRODUCTS } from "@/config/services.config";
 
-const services = [
+const servicesOLD = [
   {
     id: "strategy",
     slug: "strategy-advisory",
@@ -226,7 +227,7 @@ const services = [
 
 const featuredOfferings = [
   {
-    title: "XOPS360",
+    title: "Xops360",
     subtitle: "AI Operations Platform",
     description: "Our intelligent operations engine powered by AI workforce—transforming how enterprises manage cloud, security, and automation.",
     link: "/xops360",
@@ -262,6 +263,24 @@ interface MegaMenuProps {
 
 export function MegaMenu({ isOpen, onClose }: MegaMenuProps) {
   const [hoveredService, setHoveredService] = useState<string | null>(null);
+  const hideTimeoutRef = useRef<NodeJS.Timeout | null>(null);
+
+  // Clear any pending timeout
+  const clearHideTimeout = () => {
+    if (hideTimeoutRef.current) {
+      clearTimeout(hideTimeoutRef.current);
+      hideTimeoutRef.current = null;
+    }
+  };
+
+  // Cleanup on unmount or when menu closes
+  useEffect(() => {
+    if (!isOpen) {
+      clearHideTimeout();
+      setHoveredService(null);
+    }
+    return () => clearHideTimeout();
+  }, [isOpen]);
 
   return (
     <AnimatePresence>
@@ -323,17 +342,26 @@ export function MegaMenu({ isOpen, onClose }: MegaMenuProps) {
                     </div>
 
                     <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-2">
-                      {services.map((service, index) => (
+                      {SERVICE_CATEGORIES.map((service, index) => (
                         <motion.div
                           key={service.id}
                           initial={{ opacity: 0, y: 20 }}
                           animate={{ opacity: 1, y: 0 }}
                           transition={{ delay: index * 0.02 }}
-                          onMouseEnter={() => setHoveredService(service.id)}
-                          onMouseLeave={() => setHoveredService(null)}
+                          onMouseEnter={() => {
+                            clearHideTimeout();
+                            setHoveredService(service.id);
+                          }}
+                          onMouseLeave={() => {
+                            clearHideTimeout();
+                            hideTimeoutRef.current = setTimeout(() => {
+                              setHoveredService(null);
+                            }, 200);
+                          }}
+                          className="relative"
                         >
                           <Link
-                            to={`/services/${service.slug}`}
+                            to={service.route}
                             onClick={onClose}
                             className="group block h-full"
                           >
@@ -395,6 +423,53 @@ export function MegaMenu({ isOpen, onClose }: MegaMenuProps) {
                               </div>
                             </div>
                           </Link>
+
+                          {/* Sub-services hover panel */}
+                          {hoveredService === service.id && service.subServices && service.subServices.length > 0 && (
+                            <motion.div
+                              initial={{ opacity: 0, y: 10 }}
+                              animate={{ opacity: 1, y: 0 }}
+                              exit={{ opacity: 0, y: 10 }}
+                              onMouseEnter={() => {
+                                clearHideTimeout();
+                                setHoveredService(service.id);
+                              }}
+                              onMouseLeave={() => {
+                                clearHideTimeout();
+                                hideTimeoutRef.current = setTimeout(() => {
+                                  setHoveredService(null);
+                                }, 200);
+                              }}
+                              className="absolute top-full left-0 mt-2 bg-background border border-border rounded-xl shadow-2xl p-3 min-w-[220px] z-50"
+                            >
+                              <div className="text-[9px] font-semibold text-muted-foreground uppercase tracking-wider mb-2">
+                                {service.subServices.length} Services
+                              </div>
+                              <div className="space-y-1">
+                                {service.subServices.map((subService) => {
+                                  const SubIcon = subService.icon;
+                                  return (
+                                    <Link
+                                      key={subService.id}
+                                      to={subService.route}
+                                      onClick={onClose}
+                                      className="flex items-center gap-2 px-2 py-1.5 rounded-lg hover:bg-muted transition-colors group"
+                                    >
+                                      <SubIcon className="w-3.5 h-3.5 text-muted-foreground group-hover:text-primary transition-colors" />
+                                      <div className="flex-1 min-w-0">
+                                        <div className="text-[11px] font-semibold text-foreground group-hover:text-primary transition-colors truncate">
+                                          {subService.title}
+                                        </div>
+                                        <div className="text-[9px] text-muted-foreground truncate">
+                                          {subService.subtitle}
+                                        </div>
+                                      </div>
+                                    </Link>
+                                  );
+                                })}
+                              </div>
+                            </motion.div>
+                          )}
                         </motion.div>
                       ))}
                     </div>
@@ -425,7 +500,7 @@ export function MegaMenu({ isOpen, onClose }: MegaMenuProps) {
                             {/* Badge */}
                             <div className={cn(
                               "inline-flex items-center gap-1 text-[9px] font-semibold uppercase tracking-[0.15em] mb-2 px-1.5 py-0.5 rounded-full border",
-                              offering.title === "XOPS360"
+                              offering.title === "Xops360"
                                 ? "text-primary border-primary/30 bg-primary/10"
                                 : "text-cyan-500 border-cyan-500/30 bg-cyan-500/10"
                             )}>
@@ -441,7 +516,7 @@ export function MegaMenu({ isOpen, onClose }: MegaMenuProps) {
                                   alt={offering.title}
                                   className={cn(
                                     "w-auto object-contain",
-                                    offering.title === "XOPS360" ? "h-7" : "h-5"
+                                    offering.title === "Xops360" ? "h-9" : "h-5"
                                   )}
                                 />
                               )}
@@ -464,7 +539,7 @@ export function MegaMenu({ isOpen, onClose }: MegaMenuProps) {
                                 >
                                   <div className={cn(
                                     "text-xs font-bold",
-                                    offering.title === "XOPS360" ? "text-primary" : "text-cyan-500"
+                                    offering.title === "Xops360" ? "text-primary" : "text-cyan-500"
                                   )}>
                                     {stat.value}
                                   </div>
@@ -481,7 +556,7 @@ export function MegaMenu({ isOpen, onClose }: MegaMenuProps) {
                               onClick={onClose}
                               className={cn(
                                 "group flex items-center justify-center gap-1.5 w-full px-2.5 py-1.5 rounded-md font-medium text-[10px] transition-all",
-                                offering.title === "XOPS360"
+                                offering.title === "Xops360"
                                   ? "bg-primary text-primary-foreground hover:bg-primary/90"
                                   : "bg-cyan-500 text-white hover:bg-cyan-600"
                               )}

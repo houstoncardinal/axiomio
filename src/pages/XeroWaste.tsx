@@ -102,7 +102,7 @@ export default function XeroWaste() {
   return (
     <main className="min-h-screen bg-background overflow-hidden">
       <SEOHead
-        title="XeroWaste | AI-Powered Cloud Cost Optimization | FinOps | Axiomio"
+        title="XeroWaste | AI-Powered Cloud Cost Optimization | FinOps | AXIOMIO"
         description="Eliminate cloud waste with AI-powered cost optimization. Real-time visibility, automated rightsizing, and FinOps best practices. Average 35% savings across AWS, Azure, GCP."
         keywords="cloud cost optimization, FinOps, cloud waste, AWS cost management, Azure cost optimization, GCP billing, cloud savings, rightsizing, reserved instances, cloud financial management"
         canonicalUrl="https://axiomio.com/xerowaste"
@@ -180,7 +180,7 @@ export default function XeroWaste() {
                   <MagneticButton>
                     <Button variant="hero-outline" size="xl" asChild>
                       <Link to="/xops360">
-                        Part of XOPS360
+                        Part of Xops360
                       </Link>
                     </Button>
                   </MagneticButton>

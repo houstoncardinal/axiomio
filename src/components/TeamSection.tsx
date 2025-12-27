@@ -81,7 +81,7 @@ export function TeamSection() {
           <SectionHeader
             label="Our Team"
             title="Dedicated Leadership"
-            description="Meet the experts driving innovation and excellence at Axiomio."
+            description="Meet the experts driving innovation and excellence at AXIOMIO."
           />
         </motion.div>
 

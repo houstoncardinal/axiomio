@@ -208,7 +208,7 @@ export default function MigrationModernization() {
   return (
     <main className="min-h-screen bg-background overflow-hidden">
       <SEOHead
-        title="Cloud Migration & Modernization Services | AWS, Azure Migration | Axiomio"
+        title="Cloud Migration & Modernization Services | AWS, Azure Migration | AXIOMIO"
         description="Transform legacy systems with expert cloud migration and modernization. 30% cost reduction, 3x faster delivery. Seamless AWS & Azure migration, application modernization, containerization, microservices. Well-Architected Framework certified."
         keywords="cloud migration, application modernization, AWS migration, Azure migration, GCP migration, legacy application migration, containerization, microservices, cloud native development, lift and shift, infrastructure optimization, cloud transformation, digital transformation, well architected framework"
         canonicalUrl="https://axiomio.com/services/migration-and-modernization"

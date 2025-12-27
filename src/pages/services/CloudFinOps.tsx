@@ -82,7 +82,7 @@ export default function CloudFinOps() {
   return (
     <main className="min-h-screen bg-background overflow-hidden">
       <SEOHead
-        title="Cloud FinOps Services | Cost Optimization & Financial Management | Axiomio"
+        title="Cloud FinOps Services | Cost Optimization & Financial Management | AXIOMIO"
         description="Expert Cloud FinOps services: cost visibility, optimization, governance, and automation. Achieve 248% ROI with our cloud financial management solutions."
         keywords="cloud finops, cloud cost optimization, finops services, cloud financial management, cost visibility, cloud governance, AWS cost optimization, Azure cost management"
         canonicalUrl="https://axiomio.com/services/cloud-finops"

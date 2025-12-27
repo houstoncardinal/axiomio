@@ -683,7 +683,7 @@ const AnimatedMetricValue = ({
   );
 };
 
-export function XOPS360Section() {
+export function Xops360Section() {
   const containerRef = useRef<HTMLDivElement>(null);
   const visualRef = useRef<HTMLDivElement>(null);
   const [hoveredNode, setHoveredNode] = useState<string | null>(null);
@@ -783,7 +783,7 @@ export function XOPS360Section() {
               <div className="absolute inset-0 blur-3xl opacity-30 bg-primary/50 scale-150" />
               <img
                 src="/logos/Xops360/Logo_Colored_v1.png"
-                alt="XOPS360"
+                alt="Xops360"
                 className="relative h-16 md:h-20 lg:h-24 w-auto drop-shadow-2xl"
               />
             </motion.div>
@@ -929,7 +929,7 @@ export function XOPS360Section() {
             <Button variant="hero" size="xl" asChild className="group/btn shadow-xl hover:shadow-2xl">
               <Link to="/xops360">
                 <Zap className="mr-2 h-5 w-5 group-hover/btn:rotate-12 transition-transform duration-300" />
-                Explore XOPS360 Platform
+                Explore Xops360 Platform
                 <ArrowRight className="ml-2 h-5 w-5 group-hover/btn:translate-x-1 transition-transform duration-300" />
               </Link>
             </Button>
@@ -940,4 +940,4 @@ export function XOPS360Section() {
   );
 }
 
-export default XOPS360Section;
+export default Xops360Section;

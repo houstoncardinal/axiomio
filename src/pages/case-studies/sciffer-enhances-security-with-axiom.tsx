@@ -29,8 +29,8 @@ const ScifferCaseStudy = () => {
   return (
     <div className="min-h-screen bg-slate-50">
       <SEOHead
-        title="Sciffer Analytics Case Study | DevSecOps & ISO 27001 Implementation | Axiomio"
-        description="How Axiomio helped Sciffer Analytics implement comprehensive DevSecOps framework and achieve ISO 27001 compliance for their AI platform Reflexion.ai."
+        title="Sciffer Analytics Case Study | DevSecOps & ISO 27001 Implementation | AXIOMIO"
+        description="How AXIOMIO helped Sciffer Analytics implement comprehensive DevSecOps framework and achieve ISO 27001 compliance for their AI platform Reflexion.ai."
         keywords="Sciffer Analytics, Reflexion.ai, DevSecOps, ISO 27001, security implementation, AI platform security, penetration testing, compliance certification"
         canonicalUrl="https://axiomio.com/case-studies/sciffer-enhances-security-with-axiom"
       />

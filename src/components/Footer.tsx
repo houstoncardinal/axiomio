@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import axiomioLogo from "@/assets/axiomio-logo-transparent.png";
+import { SERVICE_CATEGORIES } from "@/config/services.config";
 
 const footerLinks = {
   company: [
@@ -9,16 +10,13 @@ const footerLinks = {
     { href: "/contact", label: "Contact" },
   ],
   products: [
-    { href: "/xops360", label: "XOPS360", description: "Unified CloudOps Platform" },
+    { href: "/xops360", label: "Xops360", description: "Unified CloudOps Platform" },
     { href: "/xerotrust", label: "XeroTrust", description: "Zero Trust Security" },
   ],
-  services: [
-    { href: "/services/strategy-advisory", label: "Strategy & Advisory" },
-    { href: "/services/technology-systems", label: "Technology & Systems" },
-    { href: "/services/ai-automation", label: "AI & Automation" },
-    { href: "/services/digital-transformation", label: "Digital Transformation" },
-    { href: "/services/cybersecurity", label: "Cyber Security" },
-  ],
+  services: SERVICE_CATEGORIES.slice(0, 6).map(cat => ({
+    href: cat.route,
+    label: cat.title
+  })),
 };
 
 export function Footer() {
@@ -43,10 +41,10 @@ export function Footer() {
             {/* Product logos */}
             <div className="flex items-center gap-4">
               <Link to="/xops360" className="group">
-                <img 
-                  src="/logos/Xops360/Logo_Sky_Blue.png" 
-                  alt="XOPS360" 
-                  className="h-8 w-auto object-contain opacity-60 group-hover:opacity-100 transition-opacity"
+                <img
+                  src="/logos/Xops360/Logo_Sky_Blue.png"
+                  alt="Xops360"
+                  className="h-10 w-auto object-contain opacity-60 group-hover:opacity-100 transition-opacity"
                 />
               </Link>
               <Link to="/xerotrust" className="group">

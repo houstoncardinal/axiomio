@@ -73,7 +73,7 @@ const LoadingScreen = ({ isLoading }: LoadingScreenProps) => {
               
               <img
                 src={logo}
-                alt="Axiom.io"
+                alt="AXIOMIO"
                 className="relative h-20 w-auto object-contain drop-shadow-2xl"
               />
             </motion.div>

@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
-import { ArrowRight, Brain, Cpu, LineChart, Zap, Sparkles, ChevronRight, Shield } from "lucide-react";
+import { ArrowRight, Sparkles, ChevronRight, Shield } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
@@ -23,34 +23,19 @@ import { CaseStudiesSection } from "@/components/CaseStudiesSection";
 import { CalendlyWidget } from "@/components/CalendlyWidget";
 
 import { lazy, Suspense, useRef } from "react";
-const LazyXOPS360Section = lazy(() => import("@/components/XOPS360Section").then(m => ({
-  default: m.XOPS360Section
+import { getFeaturedServices } from "@/config/services.config";
+
+const LazyXops360Section = lazy(() => import("@/components/Xops360Section").then(m => ({
+  default: m.Xops360Section
 })));
-const services = [{
-  icon: LineChart,
-  title: "Strategy & Advisory",
-  description: "Executive-level strategic guidance that transforms vision into measurable outcomes through systematic analysis.",
-  gradient: "from-primary/20 to-blue-500/10",
-  link: "/services/strategy-advisory"
-}, {
-  icon: Cpu,
-  title: "Technology & Systems",
-  description: "Architect and implement enterprise-grade systems designed for scale, reliability, and operational excellence.",
-  gradient: "from-blue-500/20 to-violet-500/10",
-  link: "/services/technology-systems"
-}, {
-  icon: Brain,
-  title: "AI Automation with Cloud DevOps",
-  description: "AI workforce for DevOps, SRE, and cloud operations with intelligent DevSecOps automation including SAST & SCA.",
-  gradient: "from-violet-500/20 to-secondary/10",
-  link: "/services/ai-automation"
-}, {
-  icon: Shield,
-  title: "Cyber Security Services",
-  description: "End-to-end cybersecurity: cloud security, network security, threat detection with AI-driven protection.",
-  gradient: "from-red-500/20 to-orange-500/10",
-  link: "/services/cybersecurity"
-}];
+
+const services = getFeaturedServices().map(cat => ({
+  icon: cat.icon,
+  title: cat.title,
+  description: cat.description,
+  gradient: `${cat.color}/20 to-primary/10`,
+  link: cat.route
+}));
 const stats = [{
   value: 100,
   prefix: "$",
@@ -68,7 +53,7 @@ export default function Index() {
     inView: xopsInView
   } = useInViewOnce<HTMLDivElement>("800px");
   return <div className="min-h-screen bg-background overflow-hidden">
-      <SEOHead title="Axiomio | Enterprise Technology & Strategy Consulting | XOPS360 Platform" description="Axiomio is a global technology and strategy consulting firm. Our XOPS360 platform unifies DevOps, SecOps, CloudOps & AI Agents. Digital transformation, AI automation & enterprise systems for Fortune 500 companies." keywords="technology consulting, strategy consulting, digital transformation, AI automation, enterprise architecture, DevOps, SecOps, CloudOps, AI Agents, XOPS360, cloud consulting, machine learning consulting, enterprise systems, IT consulting, Deloitte alternative, Accenture alternative" canonicalUrl="https://axiomio.com/" ogType="website" structuredData={homepageSchema} />
+      <SEOHead title="Axiomio | Enterprise Technology & Strategy Consulting | Xops360 Platform" description="AXIOMIO is a global technology and strategy consulting firm. Our Xops360 platform unifies DevOps, SecOps, CloudOps & AI Agents. Digital transformation, AI automation & enterprise systems for Fortune 500 companies." keywords="technology consulting, strategy consulting, digital transformation, AI automation, enterprise architecture, DevOps, SecOps, CloudOps, AI Agents, Xops360, cloud consulting, machine learning consulting, enterprise systems, IT consulting, Deloitte alternative, Accenture alternative" canonicalUrl="https://axiomio.com/" ogType="website" structuredData={homepageSchema} />
       <Navbar />
       
       {/* Hero Section */}
@@ -94,7 +79,7 @@ export default function Index() {
           }} className="mb-8 flex flex-wrap gap-3 justify-center lg:justify-start">
               <Link to="/xops360" className="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.15em] text-primary bg-primary/10 px-4 py-2 rounded-lg border border-primary/20 hover:bg-primary/20 transition-colors">
                 <Sparkles className="w-3.5 h-3.5" />
-                XOPS360
+                Xops360
               </Link>
               <Link to="/xerotrust" className="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.15em] text-secondary bg-secondary/10 px-4 py-2 rounded-lg border border-secondary/20 hover:bg-secondary/20 transition-colors">
                 <Shield className="w-3.5 h-3.5" />
@@ -130,7 +115,7 @@ export default function Index() {
             duration: 0.8,
             delay: 0.4
           }}>
-              Axiomio's XOPS360 platform unifies DevOps, SecOps, CloudOps, and AI Agents into a single 
+              Axiomio's Xops360 platform unifies DevOps, SecOps, CloudOps, and AI Agents into a single 
               intelligent ecosystem—transforming operational complexity into competitive advantage.
             </motion.p>
             
@@ -156,7 +141,7 @@ export default function Index() {
               <MagneticButton>
                 <Button variant="hero-outline" size="xl" asChild>
                   <Link to="/xops360">
-                    Explore XOPS360
+                    Explore Xops360
                   </Link>
                 </Button>
               </MagneticButton>
@@ -242,10 +227,10 @@ export default function Index() {
       {/* Technology Partners */}
       <TechnologyPartnersSection />
 
-      {/* XOPS360 Feature Section (lazy-mounted) */}
+      {/* Xops360 Feature Section (lazy-mounted) */}
       <div ref={xopsRef}>
         {xopsInView ? <Suspense fallback={<div className="py-20 lg:py-24 bg-muted/10 animate-pulse" aria-label="Loading section" />}>
-            <LazyXOPS360Section />
+            <LazyXops360Section />
           </Suspense> : <div className="py-20 lg:py-24 bg-muted/10" aria-hidden="true" />}
       </div>
 
@@ -272,14 +257,14 @@ export default function Index() {
               From Chaos to Strategic Control
             </h2>
             <p className="text-sm text-muted-foreground max-w-2xl mx-auto leading-relaxed">
-              The measurable transformation XOPS360 delivers
+              The measurable transformation Xops360 delivers
             </p>
           </motion.div>
 
           {/* Ultra-Compact Before/After Cards */}
           <div className="max-w-6xl mx-auto">
             <div className="grid md:grid-cols-2 gap-4 lg:gap-6">
-              {/* Before XOPS360 - Ultra Compact */}
+              {/* Before Xops360 - Ultra Compact */}
               <motion.div
                 initial={{ opacity: 0, x: -20 }}
                 whileInView={{ opacity: 1, x: 0 }}
@@ -295,7 +280,7 @@ export default function Index() {
                     <div className="w-6 h-6 rounded-md bg-red-500/15 flex items-center justify-center shadow-sm">
                       <div className="w-2 h-2 rounded-full bg-red-500" />
                     </div>
-                    <h3 className="font-heading text-base font-semibold text-foreground">Before XOPS360</h3>
+                    <h3 className="font-heading text-base font-semibold text-foreground">Before Xops360</h3>
                   </div>
 
                   <div className="space-y-2 mb-4">
@@ -321,7 +306,7 @@ export default function Index() {
                 </div>
               </motion.div>
 
-              {/* After XOPS360 - Ultra Compact */}
+              {/* After Xops360 - Ultra Compact */}
               <motion.div
                 initial={{ opacity: 0, x: 20 }}
                 whileInView={{ opacity: 1, x: 0 }}
@@ -337,7 +322,7 @@ export default function Index() {
                     <div className="w-6 h-6 rounded-md bg-green-500/15 flex items-center justify-center shadow-sm">
                       <div className="w-2 h-2 rounded-full bg-green-500" />
                     </div>
-                    <h3 className="font-heading text-base font-semibold text-foreground">After XOPS360</h3>
+                    <h3 className="font-heading text-base font-semibold text-foreground">After Xops360</h3>
                   </div>
 
                   <div className="space-y-2 mb-4">
@@ -375,7 +360,7 @@ export default function Index() {
               <MagneticButton>
                 <Button variant="hero" size="lg" className="px-6 py-3 text-sm" asChild>
                   <Link to="/xops360">
-                    See How Enterprises Use XOPS360
+                    See How Enterprises Use Xops360
                     <ArrowRight className="ml-2 h-4 w-4" />
                   </Link>
                 </Button>
@@ -407,7 +392,7 @@ export default function Index() {
             transition={{ duration: 0.6 }}
             viewport={{ once: true, margin: "-80px" }}
           >
-            <SectionHeader label="Our Services" title="Comprehensive enterprise solutions" description="Beyond XOPS360, we deliver end-to-end capabilities that address the full spectrum of digital transformation." />
+            <SectionHeader label="Our Services" title="Comprehensive enterprise solutions" description="Beyond Xops360, we deliver end-to-end capabilities that address the full spectrum of digital transformation." />
           </motion.div>
 
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 lg:gap-6 mt-12">
@@ -525,7 +510,7 @@ export default function Index() {
               }} viewport={{
                 once: true
               }}>
-                  Ready to experience <span className="text-primary">XOPS360</span>?
+                  Ready to experience <span className="text-primary">Xops360</span>?
                 </motion.h2>
                 <motion.p className="text-lg text-muted-foreground max-w-2xl mx-auto mb-8" initial={{
                 opacity: 0,
@@ -539,7 +524,7 @@ export default function Index() {
               }} viewport={{
                 once: true
               }}>
-                  Let's discuss how Axiomio and XOPS360 can help you navigate complexity, 
+                  Let's discuss how Axiomio and Xops360 can help you navigate complexity, 
                   accelerate transformation, and achieve outcomes that matter.
                 </motion.p>
                 <motion.div className="flex flex-col sm:flex-row gap-4 justify-center" initial={{

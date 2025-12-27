@@ -61,7 +61,7 @@ export function DifferentiatorsStack() {
             viewport={{ once: true }}
           >
             <SectionHeader
-              label="Why Axiomio"
+              label="Why AXIOMIO"
               title="Where precision meets vision"
               description="We operate at the intersection of strategic clarity and technical excellence."
               align="left"

@@ -231,7 +231,7 @@ export default function ObservabilityMonitoring() {
   return (
     <main className="min-h-screen bg-background overflow-hidden">
       <SEOHead
-        title="Observability & Monitoring Services | APM, Infrastructure & Log Analytics | Axiomio"
+        title="Observability & Monitoring Services | APM, Infrastructure & Log Analytics | AXIOMIO"
         description="Achieve 40% faster MTTR with enterprise observability solutions. Expert implementation of Datadog, Grafana, Prometheus, and OpenSearch for APM, infrastructure monitoring, log analytics, and intelligent alerting. Full-stack visibility across AWS, Azure, and GCP."
         keywords="observability, monitoring, APM, application performance monitoring, infrastructure monitoring, log analytics, alerting, incident management, cloud monitoring, performance monitoring, Datadog, Grafana, Prometheus, OpenSearch, MTTR reduction, anomaly detection, distributed tracing, observability platform, log management, capacity planning"
         canonicalUrl="https://axiomio.com/services/observability-monitoring"

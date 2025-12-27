@@ -25,8 +25,8 @@ const contactMethods = [
     icon: Phone,
     title: "Call Us",
     description: "Mon-Fri from 9am to 6pm",
-    value: "+1 (555) 000-0000",
-    href: "tel:+15550000000",
+    value: "+91 8069290089",
+    href: "tel:+918069290089",
   },
   {
     icon: Globe,
@@ -70,8 +70,8 @@ export default function Contact() {
   return (
     <main className="min-h-screen bg-background overflow-hidden">
       <SEOHead
-        title="Contact Axiomio | Enterprise Technology Consulting Inquiry"
-        description="Contact Axiomio for enterprise technology consulting, digital transformation, AI automation, and XOPS360 platform inquiries. Schedule a discovery call with our experts."
+        title="Contact AXIOMIO | Enterprise Technology Consulting Inquiry"
+        description="Contact AXIOMIO for enterprise technology consulting, digital transformation, AI automation, and Xops360 platform inquiries. Schedule a discovery call with our experts."
         keywords="contact Axiomio, technology consulting inquiry, digital transformation consultation, AI consulting contact, enterprise consulting inquiry, schedule consultation"
         canonicalUrl="https://axiomio.com/contact"
         pageType="contact"

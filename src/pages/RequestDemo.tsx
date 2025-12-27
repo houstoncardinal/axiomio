@@ -15,7 +15,7 @@ const demoFeatures = [
   {
     icon: Zap,
     title: "Live Platform Walkthrough",
-    description: "See XOPS360 and XeroTrust in action with real use cases",
+    description: "See Xops360 and XeroTrust in action with real use cases",
   },
   {
     icon: Users,
@@ -62,9 +62,9 @@ export default function RequestDemo() {
   return (
     <main className="min-h-screen bg-background overflow-hidden">
       <SEOHead
-        title="Request a Demo | Axiomio XOPS360 & XeroTrust Platform"
-        description="Schedule a personalized demo of Axiomio's XOPS360 platform and XeroTrust security solution. See how we can transform your operations with AI-powered automation."
-        keywords="XOPS360 demo, XeroTrust demo, DevOps platform demo, cloud security demo, AI automation demo, enterprise technology demo"
+        title="Request a Demo | AXIOMIO Xops360 & XeroTrust Platform"
+        description="Schedule a personalized demo of AXIOMIO's Xops360 platform and XeroTrust security solution. See how we can transform your operations with AI-powered automation."
+        keywords="Xops360 demo, XeroTrust demo, DevOps platform demo, cloud security demo, AI automation demo, enterprise technology demo"
         canonicalUrl="https://axiomio.com/request-a-demo"
         pageType="product"
       />
@@ -110,7 +110,7 @@ export default function RequestDemo() {
               transition={{ delay: 0.1, duration: 0.6 }}
             >
               See{" "}
-              <span className="text-gradient">XOPS360</span>
+              <span className="text-gradient">Xops360</span>
               {" "}& <span className="bg-gradient-to-r from-cyan-500 to-teal-500 bg-clip-text text-transparent">XeroTrust</span>
               {" "}in Action
             </motion.h1>
@@ -353,7 +353,7 @@ export default function RequestDemo() {
                           <SelectValue placeholder="Select interest" />
                         </SelectTrigger>
                         <SelectContent>
-                          <SelectItem value="xops360">XOPS360 Platform</SelectItem>
+                          <SelectItem value="xops360">Xops360 Platform</SelectItem>
                           <SelectItem value="xerotrust">XeroTrust Security</SelectItem>
                           <SelectItem value="both">Both Solutions</SelectItem>
                           <SelectItem value="consulting">Consulting Services</SelectItem>

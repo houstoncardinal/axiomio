@@ -155,7 +155,7 @@ const caseStudies = [
   {
     company: 'DreamCasino',
     industry: 'Gaming Platform',
-    logo: '/logos/client-logos/rezorex.png',
+    logo: '',
     results: ['25%+ savings', 'Improved scalability', 'Better performance'],
     quote: 'Handling millions of users while cutting costs.',
     color: 'from-purple-500 to-pink-600',
@@ -176,7 +176,7 @@ const steps = [
   { number: '04', title: 'Improve', description: 'Continuous optimization and audit-ready posture.', icon: Target },
 ];
 
-export default function XOPS360() {
+export default function Xops360() {
   const heroRef = useRef<HTMLDivElement>(null);
 
   const openCalendly = () => {
@@ -186,9 +186,9 @@ export default function XOPS360() {
   return (
     <div className="min-h-screen bg-background overflow-hidden">
       <SEOHead
-        title="XOPS360 | AI-Powered Cloud Optimization Platform | Axiomio"
+        title="Xops360 | AI-Powered Cloud Optimization Platform | AXIOMIO"
         description="Slash cloud spend, close security gaps, and stay audit-ready with one 360° view. AI-driven cost optimization, continuous security monitoring, and proactive compliance management."
-        keywords="XOPS360, cloud cost optimization, cloud security, CSPM, FinOps, compliance automation, AWS optimization, Azure optimization, vulnerability scanning, Well-Architected Review"
+        keywords="Xops360, cloud cost optimization, cloud security, CSPM, FinOps, compliance automation, AWS optimization, Azure optimization, vulnerability scanning, Well-Architected Review"
         canonicalUrl="https://axiomio.com/xops360"
         structuredData={xops360PageSchema}
       />
@@ -241,7 +241,7 @@ export default function XOPS360() {
                 >
                   <img
                     src="/logos/Xops360/Logo_Colored_v1.png"
-                    alt="XOPS360 Logo"
+                    alt="Xops360 Logo"
                     className="h-12 w-auto mx-auto lg:mx-0"
                   />
                 </motion.div>
@@ -303,7 +303,7 @@ export default function XOPS360() {
                     </div>
                     <div className="text-left">
                       <p className="text-sm font-bold text-foreground group-hover:text-primary transition-colors">Complete Documentation</p>
-                      <p className="text-xs text-muted-foreground">Learn everything about XOPS360</p>
+                      <p className="text-xs text-muted-foreground">Learn everything about Xops360</p>
                     </div>
                     <ArrowRight className="w-5 h-5 text-primary ml-auto group-hover:translate-x-1 transition-transform" />
                   </Link>
@@ -349,7 +349,7 @@ export default function XOPS360() {
                         <div className="w-3 h-3 rounded-full bg-yellow-500" />
                         <div className="w-3 h-3 rounded-full bg-green-500" />
                       </div>
-                      <span className="text-xs font-semibold text-muted-foreground tracking-wide">XOPS360 Dashboard</span>
+                      <span className="text-xs font-semibold text-muted-foreground tracking-wide">Xops360 Dashboard</span>
                     </div>
                     <div className="flex items-center gap-2">
                       <span className="relative flex h-2 w-2">
@@ -515,7 +515,7 @@ export default function XOPS360() {
               viewport={{ once: true }}
               className="inline-flex items-center gap-3 mb-10 p-4 rounded-2xl bg-card/50 border border-border/50"
             >
-              <img src="/logos/Xops360/Logo_Sky_Blue.png" alt="XOPS360" className="h-16 w-auto" loading="lazy" />
+              <img src="/logos/Xops360/Logo_Sky_Blue.png" alt="Xops360" className="h-16 w-auto" loading="lazy" />
             </motion.div>
 
             <h2 className="font-heading text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-foreground mb-8 leading-tight">
@@ -631,7 +631,7 @@ export default function XOPS360() {
         </div>
       </section>
 
-      {/* XOPS360 Capabilities Grid */}
+      {/* Xops360 Capabilities Grid */}
       <CapabilitiesGrid />
 
       {/* Case Studies - Cards with Gradient */}
@@ -723,7 +723,7 @@ export default function XOPS360() {
               Getting Started
             </span>
             <h2 className="font-heading text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-foreground mb-6 leading-tight">
-              How XOPS360 <AnimatedGradientText>Works</AnimatedGradientText>
+              How Xops360 <AnimatedGradientText>Works</AnimatedGradientText>
             </h2>
             <p className="text-lg text-muted-foreground max-w-2xl mx-auto">Four simple steps to transform your cloud operations and unlock continuous optimization</p>
           </motion.div>
@@ -809,7 +809,7 @@ export default function XOPS360() {
                       <span className="text-gradient">Cloud Operations?</span>
                     </h2>
                     <p className="text-xl text-muted-foreground mb-10">
-                      See how XOPS360 can reduce costs, strengthen security, and ensure compliance for your enterprise.
+                      See how Xops360 can reduce costs, strengthen security, and ensure compliance for your enterprise.
                     </p>
 
                     <div className="flex flex-col sm:flex-row gap-4 mb-8">

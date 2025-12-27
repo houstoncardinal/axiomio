@@ -35,8 +35,8 @@ const EnParadigmCaseStudy = () => {
   return (
     <div className="min-h-screen bg-slate-50">
       <SEOHead
-        title="EnParadigm Case Study | AWS DevOps Migration & Infrastructure Modernization | Axiomio"
-        description="How Axiomio helped EnParadigm migrate their EdTech platform from on-premises to AWS, reducing deployment time by 87.5% with automated DevOps pipeline and enhanced security."
+        title="EnParadigm Case Study | AWS DevOps Migration & Infrastructure Modernization | AXIOMIO"
+        description="How AXIOMIO helped EnParadigm migrate their EdTech platform from on-premises to AWS, reducing deployment time by 87.5% with automated DevOps pipeline and enhanced security."
         keywords="EnParadigm, AWS migration, DevOps pipeline, EdTech infrastructure, cloud migration, deployment automation, CI/CD, CloudFormation, infrastructure modernization"
         canonicalUrl="https://axiomio.com/case-studies/enparadigm"
       />

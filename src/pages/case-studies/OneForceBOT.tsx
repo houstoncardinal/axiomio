@@ -26,8 +26,8 @@ const OneForceBOT = () => {
   return (
     <div className="min-h-screen bg-slate-50">
       <SEOHead
-        title="OneForce Case Study | Build Operate Transfer Model & AWS Serverless | Axiomio"
-        description="How Axiomio helped OneForce launch their AI platform using Build, Operate and Transfer model with AWS Lambda, Aurora Serverless, and Cognito authentication."
+        title="OneForce Case Study | Build Operate Transfer Model & AWS Serverless | AXIOMIO"
+        description="How AXIOMIO helped OneForce launch their AI platform using Build, Operate and Transfer model with AWS Lambda, Aurora Serverless, and Cognito authentication."
         keywords="OneForce, Build Operate Transfer, BOT model, AWS Lambda, Aurora Serverless, AWS Cognito, serverless architecture, AI platform, startup development"
         canonicalUrl="https://axiomio.com/case-studies/oneforce-bot"
       />

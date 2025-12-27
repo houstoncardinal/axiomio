@@ -9,7 +9,7 @@ export const organizationSchema = {
   "@type": "Organization",
   "@id": "https://axiomio.com/#organization",
   name: "Axiomio",
-  legalName: "Axiomio Technologies Inc.",
+  legalName: "AXIOMIO Technologies Inc.",
   url: "https://axiomio.com",
   logo: {
     "@type": "ImageObject",
@@ -34,7 +34,7 @@ export const organizationSchema = {
     "https://www.facebook.com/axiomio",
   ],
   description:
-    "Axiomio is a global technology and strategy consulting firm specializing in AI automation, digital transformation, enterprise systems, and the XOPS360 intelligent operations platform. We partner with Fortune 500 companies and ambitious organizations worldwide.",
+    "Axiomio is a global technology and strategy consulting firm specializing in AI automation, digital transformation, enterprise systems, and the Xops360 intelligent operations platform. We partner with Fortune 500 companies and ambitious organizations worldwide.",
   slogan: "Building systems that define the future",
   foundingDate: "2018",
   foundingLocation: {
@@ -127,7 +127,7 @@ export const websiteSchema = {
   url: "https://axiomio.com",
   name: "Axiomio | Enterprise Technology & Strategy Consulting",
   description:
-    "Enterprise technology consulting, digital transformation, AI automation, and the XOPS360 intelligent operations platform for Fortune 500 companies.",
+    "Enterprise technology consulting, digital transformation, AI automation, and the Xops360 intelligent operations platform for Fortune 500 companies.",
   publisher: {
     "@id": "https://axiomio.com/#organization",
   },
@@ -159,7 +159,7 @@ export const professionalServiceSchema = {
   priceRange: "$$$$$",
   image: "https://axiomio.com/og-image.jpg",
   description:
-    "Axiomio delivers enterprise-grade technology consulting, AI automation, digital transformation, and the XOPS360 platform for intelligent operations. Trusted by Fortune 500 companies globally.",
+    "Axiomio delivers enterprise-grade technology consulting, AI automation, digital transformation, and the Xops360 platform for intelligent operations. Trusted by Fortune 500 companies globally.",
   telephone: "+1-800-AXIOMIO",
   email: "hello@axiomio.com",
   currenciesAccepted: "USD, EUR, GBP",
@@ -269,7 +269,7 @@ export const professionalServiceSchema = {
       },
       {
         "@type": "OfferCatalog",
-        name: "XOPS360 Platform",
+        name: "Xops360 Platform",
         itemListElement: [
           {
             "@type": "Offer",
@@ -289,17 +289,17 @@ export const professionalServiceSchema = {
   },
 };
 
-// Software Application Schema for XOPS360 (Product)
+// Software Application Schema for Xops360 (Product)
 export const xops360Schema = {
   "@context": "https://schema.org",
   "@type": "SoftwareApplication",
   "@id": "https://axiomio.com/xops360/#product",
-  name: "XOPS360",
+  name: "Xops360",
   applicationCategory: "BusinessApplication",
   applicationSubCategory: "Enterprise Operations Platform",
   operatingSystem: "Cloud-based, Web",
   description:
-    "XOPS360 is an intelligent operations platform that unifies DevOps, DataOps, MLOps, and AIOps into a single ecosystem for enterprise operational excellence. Transform operational complexity into competitive advantage.",
+    "Xops360 is an intelligent operations platform that unifies DevOps, DataOps, MLOps, and AIOps into a single ecosystem for enterprise operational excellence. Transform operational complexity into competitive advantage.",
   url: "https://axiomio.com/services",
   screenshot: "https://axiomio.com/xops360-dashboard.jpg",
   softwareVersion: "3.0",
@@ -346,7 +346,7 @@ export const xops360Schema = {
       },
       author: { "@type": "Organization", name: "Fortune 500 Financial Services" },
       reviewBody:
-        "XOPS360 transformed our operations, reducing incident response time by 73% and improving deployment frequency by 400%.",
+        "Xops360 transformed our operations, reducing incident response time by 73% and improving deployment frequency by 400%.",
     },
   ],
   provider: { "@id": "https://axiomio.com/#organization" },
@@ -361,10 +361,10 @@ export const faqSchema = {
   mainEntity: [
     {
       "@type": "Question",
-      name: "What is XOPS360 and how does it differ from traditional DevOps tools?",
+      name: "What is Xops360 and how does it differ from traditional DevOps tools?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "XOPS360 is Axiomio's flagship intelligent operations platform that unifies DevOps, DataOps, MLOps, and AIOps into a single integrated ecosystem. Unlike traditional DevOps tools that focus on CI/CD pipelines, XOPS360 provides end-to-end operational intelligence across your entire technology stack, including AI-powered anomaly detection, automated remediation, and predictive maintenance capabilities.",
+        text: "Xops360 is AXIOMIO's flagship intelligent operations platform that unifies DevOps, DataOps, MLOps, and AIOps into a single integrated ecosystem. Unlike traditional DevOps tools that focus on CI/CD pipelines, Xops360 provides end-to-end operational intelligence across your entire technology stack, including AI-powered anomaly detection, automated remediation, and predictive maintenance capabilities.",
       },
     },
     {
@@ -372,7 +372,7 @@ export const faqSchema = {
       name: "How does Axiomio compare to consulting firms like Deloitte, Accenture, and McKinsey?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "Axiomio differentiates through deep technical expertise combined with strategic advisory, plus our proprietary XOPS360 platform. Unlike traditional consulting firms that primarily provide recommendations, we combine strategic advisory with hands-on implementation and ongoing operational excellence. Our technology-first approach means clients get both strategic clarity and production-ready solutions.",
+        text: "AXIOMIO differentiates through deep technical expertise combined with strategic advisory, plus our proprietary Xops360 platform. Unlike traditional consulting firms that primarily provide recommendations, we combine strategic advisory with hands-on implementation and ongoing operational excellence. Our technology-first approach means clients get both strategic clarity and production-ready solutions.",
       },
     },
     {
@@ -380,7 +380,7 @@ export const faqSchema = {
       name: "What industries does Axiomio serve?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "Axiomio serves Fortune 500 enterprises and ambitious organizations across financial services (banking, insurance, asset management), healthcare (hospitals, pharma, medical devices), technology (SaaS, platforms, infrastructure), manufacturing (discrete, process, industrial IoT), retail and e-commerce, energy and utilities, and telecommunications. Our solutions scale from mid-market to enterprise-level implementations globally.",
+        text: "AXIOMIO serves Fortune 500 enterprises and ambitious organizations across financial services (banking, insurance, asset management), healthcare (hospitals, pharma, medical devices), technology (SaaS, platforms, infrastructure), manufacturing (discrete, process, industrial IoT), retail and e-commerce, energy and utilities, and telecommunications. Our solutions scale from mid-market to enterprise-level implementations globally.",
       },
     },
     {
@@ -388,7 +388,7 @@ export const faqSchema = {
       name: "What is Axiomio's methodology for digital transformation?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "Axiomio follows a proven 5-phase methodology: (1) Discover - deep understanding of business context and strategic objectives; (2) Define - clear problem framing and strategic option development; (3) Design - solution architecture with detailed implementation blueprints; (4) Deliver - agile execution with continuous stakeholder communication; (5) Develop - capability building and operational handoff for sustainable success.",
+        text: "AXIOMIO follows a proven 5-phase methodology: (1) Discover - deep understanding of business context and strategic objectives; (2) Define - clear problem framing and strategic option development; (3) Design - solution architecture with detailed implementation blueprints; (4) Deliver - agile execution with continuous stakeholder communication; (5) Develop - capability building and operational handoff for sustainable success.",
       },
     },
     {
@@ -396,7 +396,7 @@ export const faqSchema = {
       name: "What AI and automation services does Axiomio provide?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "Axiomio provides comprehensive AI and automation services including: AI strategy development and roadmapping, custom machine learning model development, intelligent process automation (RPA + ML), conversational AI and chatbots, computer vision applications, document intelligence and extraction, MLOps implementation for model lifecycle management, and AI governance frameworks. Our XOPS360 platform includes built-in AIOps capabilities.",
+        text: "AXIOMIO provides comprehensive AI and automation services including: AI strategy development and roadmapping, custom machine learning model development, intelligent process automation (RPA + ML), conversational AI and chatbots, computer vision applications, document intelligence and extraction, MLOps implementation for model lifecycle management, and AI governance frameworks. Our Xops360 platform includes built-in AIOps capabilities.",
       },
     },
     {
@@ -412,7 +412,7 @@ export const faqSchema = {
       name: "What cloud platforms does Axiomio work with?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "Axiomio is cloud-agnostic and works across all major platforms including AWS (Advanced Consulting Partner), Microsoft Azure (Gold Partner), Google Cloud Platform (Partner), and multi-cloud/hybrid environments. We also specialize in cloud migration, cloud-native architecture, and legacy modernization to cloud platforms.",
+        text: "AXIOMIO is cloud-agnostic and works across all major platforms including AWS (Advanced Consulting Partner), Microsoft Azure (Gold Partner), Google Cloud Platform (Partner), and multi-cloud/hybrid environments. We also specialize in cloud migration, cloud-native architecture, and legacy modernization to cloud platforms.",
       },
     },
     {
@@ -420,7 +420,7 @@ export const faqSchema = {
       name: "What certifications and compliance standards does Axiomio maintain?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "Axiomio maintains ISO 27001 certification, SOC 2 Type II compliance, and GDPR compliance. We hold partner certifications from AWS, Microsoft, Google Cloud, and other major technology vendors. Our consultants maintain certifications in project management (PMP), agile (SAFe, Scrum), cloud architecture, and security (CISSP, CISM).",
+        text: "AXIOMIO maintains ISO 27001 certification, SOC 2 Type II compliance, and GDPR compliance. We hold partner certifications from AWS, Microsoft, Google Cloud, and other major technology vendors. Our consultants maintain certifications in project management (PMP), agile (SAFe, Scrum), cloud architecture, and security (CISSP, CISM).",
       },
     },
   ],

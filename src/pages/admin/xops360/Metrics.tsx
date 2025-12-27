@@ -47,7 +47,7 @@ const automationByCategory = [
   { name: 'Other', value: 5, color: 'hsl(230, 15%, 50%)' },
 ];
 
-const XOPS360Metrics: React.FC = () => {
+const Xops360Metrics: React.FC = () => {
   const { data: metrics } = useQuery({
     queryKey: ['xops360-all-metrics'],
     queryFn: async () => {
@@ -98,7 +98,7 @@ const XOPS360Metrics: React.FC = () => {
     <div className="space-y-8">
       {/* Header */}
       <div>
-        <h1 className="font-heading text-3xl font-bold text-foreground mb-2">XOPS360 Metrics</h1>
+        <h1 className="font-heading text-3xl font-bold text-foreground mb-2">Xops360 Metrics</h1>
         <p className="text-muted-foreground">Platform-wide performance and analytics</p>
       </div>
 
@@ -187,7 +187,7 @@ const XOPS360Metrics: React.FC = () => {
           <PremiumCard>
             <div className="p-6 border-b border-border/30">
               <h3 className="font-heading text-lg font-semibold text-foreground">Cloud Cost Optimization</h3>
-              <p className="text-sm text-muted-foreground">Before vs After XOPS360 (Monthly)</p>
+              <p className="text-sm text-muted-foreground">Before vs After Xops360 (Monthly)</p>
             </div>
             <div className="p-6 h-[300px]">
               <ResponsiveContainer width="100%" height="100%">
@@ -295,4 +295,4 @@ const XOPS360Metrics: React.FC = () => {
   );
 };
 
-export default XOPS360Metrics;
+export default Xops360Metrics;

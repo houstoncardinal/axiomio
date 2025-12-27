@@ -109,7 +109,7 @@ export default function TechnologySystems() {
   return (
     <main className="min-h-screen bg-background overflow-hidden">
       <SEOHead
-        title="Technology & Systems Services | Enterprise Architecture | Axiomio"
+        title="Technology & Systems Services | Enterprise Architecture | AXIOMIO"
         description="Enterprise architecture, cloud infrastructure (AWS, Azure, GCP), system integration, and platform modernization. Build scalable, secure technology systems for Fortune 500 enterprises."
         keywords="enterprise architecture, cloud infrastructure, AWS consulting, Azure consulting, system integration, platform modernization, microservices, DevOps, cloud migration, technical due diligence"
         canonicalUrl="https://axiomio.com/services/technology-systems"

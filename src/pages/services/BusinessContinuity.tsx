@@ -89,7 +89,7 @@ export default function BusinessContinuity() {
   return (
     <main className="min-h-screen bg-background overflow-hidden">
       <SEOHead
-        title="Business Continuity & Disaster Recovery | BDR Services | Axiomio"
+        title="Business Continuity & Disaster Recovery | BDR Services | AXIOMIO"
         description="Comprehensive business continuity solutions: data backup & recovery, disaster recovery planning, cyber resilience, and high availability. Protect your business with 75% faster recovery."
         keywords="business continuity, disaster recovery, BDR, backup and recovery, cyber resilience, high availability, data protection, ransomware protection, AWS disaster recovery, Azure site recovery"
         canonicalUrl="https://axiomio.com/services/business-continuity"

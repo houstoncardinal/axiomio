@@ -84,7 +84,7 @@ export default function SoftwareSupplyChainSecurity() {
   return (
     <main className="min-h-screen bg-background overflow-hidden">
       <SEOHead
-        title="Software Supply Chain Security | DevSecOps, SAST & SCA | Axiomio"
+        title="Software Supply Chain Security | DevSecOps, SAST & SCA | AXIOMIO"
         description="Fortify your software supply chain with DevSecOps, SAST, SCA, and IaC security. Prevent vulnerabilities before deployment with continuous scanning and automated testing."
         keywords="software supply chain security, DevSecOps, SAST, SCA, IaC security, dependency scanning, vulnerability management, secure SDLC, CI/CD security"
         canonicalUrl="https://axiomio.com/services/software-supply-chain-security"

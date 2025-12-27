@@ -163,7 +163,7 @@ export default function CyberSecurity() {
   return (
     <main className="min-h-screen bg-background overflow-hidden">
       <SEOHead
-        title="Cyber Security Services | Cloud, Network & Threat Protection | Axiomio"
+        title="Cyber Security Services | Cloud, Network & Threat Protection | AXIOMIO"
         description="Enterprise cybersecurity services: Cloud Security (CSPM/CWPP), Network Security, Zero Trust, Threat Detection & Response (MDR), Compliance. AI-driven protection with 24/7 SOC. Trusted by Fortune 500."
         keywords="cybersecurity services, cloud security, network security, threat detection, CSPM, CWPP, SOC, MDR, zero trust, compliance, HIPAA, SOC2, PCI-DSS, endpoint security, identity security"
         canonicalUrl="https://axiomio.com/services/cybersecurity"
@@ -335,6 +335,91 @@ export default function CyberSecurity() {
               </div>
             </div>
           </motion.div>
+        </div>
+      </section>
+
+      {/* Professional Certifications */}
+      <section className="py-16 lg:py-20 bg-muted/20">
+        <div className="container mx-auto px-6 lg:px-8">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            viewport={{ once: true }}
+            className="text-center mb-12"
+          >
+            <h3 className="font-heading text-2xl md:text-3xl font-bold text-foreground mb-3">
+              Professional Certifications
+            </h3>
+            <p className="text-muted-foreground max-w-2xl mx-auto">
+              Our security experts hold industry-leading certifications to ensure top-tier protection
+            </p>
+          </motion.div>
+
+          <div className="flex flex-wrap justify-center items-center gap-8 lg:gap-12">
+            {/* OSCP Badge */}
+            <motion.div
+              initial={{ opacity: 0, scale: 0.9 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              transition={{ delay: 0.1, duration: 0.5 }}
+              viewport={{ once: true }}
+              className="flex flex-col items-center gap-3"
+            >
+              <div className="p-6 bg-background rounded-xl border border-border hover:border-primary/30 transition-all shadow-lg hover:shadow-xl">
+                <img
+                  src="https://images.credly.com/images/ec81134d-e80b-4eb5-ae07-0eb8e1a60fcd/image.png"
+                  alt="OSCP - Offensive Security Certified Professional"
+                  className="h-24 w-24 object-contain"
+                />
+              </div>
+              <div className="text-center">
+                <p className="font-semibold text-foreground">OSCP</p>
+                <p className="text-xs text-muted-foreground">Offensive Security</p>
+              </div>
+            </motion.div>
+
+            {/* CEH Badge */}
+            <motion.div
+              initial={{ opacity: 0, scale: 0.9 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              transition={{ delay: 0.2, duration: 0.5 }}
+              viewport={{ once: true }}
+              className="flex flex-col items-center gap-3"
+            >
+              <div className="p-6 bg-background rounded-xl border border-border hover:border-primary/30 transition-all shadow-lg hover:shadow-xl">
+                <img
+                  src="https://images.credly.com/images/8518fbb4-c0c6-40bc-84f3-28f9ed1b3b99/image.png"
+                  alt="CEH - Certified Ethical Hacker"
+                  className="h-24 w-24 object-contain"
+                />
+              </div>
+              <div className="text-center">
+                <p className="font-semibold text-foreground">CEH</p>
+                <p className="text-xs text-muted-foreground">EC-Council</p>
+              </div>
+            </motion.div>
+
+            {/* CISSP for completeness */}
+            <motion.div
+              initial={{ opacity: 0, scale: 0.9 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              transition={{ delay: 0.3, duration: 0.5 }}
+              viewport={{ once: true }}
+              className="flex flex-col items-center gap-3"
+            >
+              <div className="p-6 bg-background rounded-xl border border-border hover:border-primary/30 transition-all shadow-lg hover:shadow-xl">
+                <img
+                  src="https://images.credly.com/images/9180921d-4a13-429e-95bb-a38115a6e0b4/image.png"
+                  alt="CISSP - Certified Information Systems Security Professional"
+                  className="h-24 w-24 object-contain"
+                />
+              </div>
+              <div className="text-center">
+                <p className="font-semibold text-foreground">CISSP</p>
+                <p className="text-xs text-muted-foreground">(ISC)²</p>
+              </div>
+            </motion.div>
+          </div>
         </div>
       </section>
 

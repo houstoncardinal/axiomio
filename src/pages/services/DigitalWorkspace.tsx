@@ -83,7 +83,7 @@ export default function DigitalWorkspace() {
   return (
     <main className="min-h-screen bg-background overflow-hidden">
       <SEOHead
-        title="Digital Workspace Solutions | VDI, Collaboration & Remote Access | Axiomio"
+        title="Digital Workspace Solutions | VDI, Collaboration & Remote Access | AXIOMIO"
         description="Empower your remote workforce with virtual desktop infrastructure, cloud collaboration, and secure remote access. Achieve 99.9% uptime and 50% cost savings with enterprise security."
         keywords="digital workspace, virtual desktop infrastructure, VDI, cloud collaboration, remote access, unified communications, virtual desktop, remote work, endpoint management"
         canonicalUrl="https://axiomio.com/services/digital-workspace"

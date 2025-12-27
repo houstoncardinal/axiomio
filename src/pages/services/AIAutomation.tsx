@@ -117,7 +117,7 @@ export default function AIAutomation() {
   return (
     <main className="min-h-screen bg-background overflow-hidden">
       <SEOHead
-        title="AI Automation for DevOps & SRE | AIOps & Intelligent Operations | Axiomio"
+        title="AI Automation for DevOps & SRE | AIOps & Intelligent Operations | AXIOMIO"
         description="Transform your DevOps and SRE operations with AI-powered automation. Reduce MTTR by 90%, automate incident response, and achieve self-healing infrastructure with our AIOps solutions."
         keywords="AIOps, DevOps automation, SRE automation, intelligent operations, automated incident response, self-healing infrastructure, predictive alerting, automated runbooks, infrastructure automation, observability AI"
         canonicalUrl="https://axiomio.com/services/ai-automation"

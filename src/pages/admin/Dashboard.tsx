@@ -146,7 +146,7 @@ const Dashboard: React.FC = () => {
       <div className="flex items-center justify-between">
         <div>
           <h1 className="font-heading text-3xl font-bold text-foreground mb-2">Command Center</h1>
-          <p className="text-muted-foreground">XOPS360 Platform Management Dashboard</p>
+          <p className="text-muted-foreground">Xops360 Platform Management Dashboard</p>
         </div>
         <div className="flex items-center gap-2 text-sm text-muted-foreground">
           <Activity className="w-4 h-4 text-emerald-400" />
@@ -157,7 +157,7 @@ const Dashboard: React.FC = () => {
       {/* Primary Stats */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
         <StatCard
-          title="Active XOPS360 Clients"
+          title="Active Xops360 Clients"
           value={clientsCount?.toString() || '0'}
           change={12.5}
           icon={Building2}
@@ -186,7 +186,7 @@ const Dashboard: React.FC = () => {
         />
       </div>
 
-      {/* XOPS360 Performance Overview */}
+      {/* Xops360 Performance Overview */}
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -197,7 +197,7 @@ const Dashboard: React.FC = () => {
           <PremiumCard>
             <div className="p-6 border-b border-border/30">
               <div className="flex items-center justify-between">
-                <h2 className="font-heading text-xl font-semibold text-foreground">XOPS360 Platform Health</h2>
+                <h2 className="font-heading text-xl font-semibold text-foreground">Xops360 Platform Health</h2>
                 <Link to="/admin/xops360" className="text-primary text-sm hover:underline">
                   View All →
                 </Link>
@@ -312,7 +312,7 @@ const Dashboard: React.FC = () => {
         >
           <PremiumCard>
             <div className="p-6 border-b border-border/30 flex items-center justify-between">
-              <h2 className="font-heading text-lg font-semibold text-foreground">XOPS360 Clients</h2>
+              <h2 className="font-heading text-lg font-semibold text-foreground">Xops360 Clients</h2>
               <Link to="/admin/xops360/clients" className="text-primary text-sm hover:underline">View All</Link>
             </div>
             <div className="divide-y divide-border/30">

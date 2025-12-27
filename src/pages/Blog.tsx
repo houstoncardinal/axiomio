@@ -81,8 +81,8 @@ export default function Blog() {
   return (
     <div className="min-h-screen bg-background">
       <SEOHead
-        title="Blog & Resources | Axiomio"
-        description="Explore technical insights, case studies, and guides on cloud infrastructure, DevOps, security, and digital transformation from Axiomio experts."
+        title="Blog & Resources | AXIOMIO"
+        description="Explore technical insights, case studies, and guides on cloud infrastructure, DevOps, security, and digital transformation from AXIOMIO experts."
         keywords="cloud blog, DevOps tutorials, AWS guides, Azure tutorials, cloud security, digital transformation insights"
         canonicalUrl="https://axiomio.com/blog"
       />

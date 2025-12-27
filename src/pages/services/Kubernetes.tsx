@@ -82,7 +82,7 @@ export default function Kubernetes() {
   return (
     <main className="min-h-screen bg-background overflow-hidden">
       <SEOHead
-        title="Kubernetes & Microservices Services | Container Orchestration | Axiomio"
+        title="Kubernetes & Microservices Services | Container Orchestration | AXIOMIO"
         description="Expert Kubernetes services: cluster implementation, microservices architecture, service mesh, and K8s security. EKS, AKS, GKE specialists. 70% better resource efficiency."
         keywords="kubernetes, microservices, container orchestration, EKS, AKS, GKE, service mesh, istio, kubernetes security, docker, container platform"
         canonicalUrl="https://axiomio.com/services/kubernetes"

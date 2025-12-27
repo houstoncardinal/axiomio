@@ -35,10 +35,10 @@ export const homepageSchema = {
       "@type": "WebPage",
       "@id": "https://axiomio.com/#webpage",
       url: "https://axiomio.com/",
-      name: "Axiomio | Enterprise Technology & Strategy Consulting | XOPS360 Platform",
+      name: "Axiomio | Enterprise Technology & Strategy Consulting | Xops360 Platform",
       isPartOf: { "@id": "https://axiomio.com/#website" },
       about: { "@id": "https://axiomio.com/#organization" },
-      description: "Axiomio is a global technology and strategy consulting firm. Our XOPS360 platform unifies DevOps, DataOps, MLOps & AIOps. Digital transformation, AI automation & enterprise systems for Fortune 500 companies.",
+      description: "AXIOMIO is a global technology and strategy consulting firm. Our Xops360 platform unifies DevOps, DataOps, MLOps & AIOps. Digital transformation, AI automation & enterprise systems for Fortune 500 companies.",
       primaryImageOfPage: {
         "@type": "ImageObject",
         url: "https://axiomio.com/og-image.jpg",
@@ -60,8 +60,8 @@ export const homepageSchema = {
     // SpecialAnnouncement for featured content
     {
       "@type": "SpecialAnnouncement",
-      name: "XOPS360 Platform Launch",
-      text: "Axiomio's XOPS360 platform unifies DevOps, DataOps, MLOps, and AIOps into a single intelligent automation platform.",
+      name: "Xops360 Platform Launch",
+      text: "AXIOMIO's Xops360 platform unifies DevOps, DataOps, MLOps, and AIOps into a single intelligent automation platform.",
       datePosted: "2024-01-01",
       expires: "2025-12-31",
       category: "https://www.wikidata.org/wiki/Q1047113",
@@ -88,7 +88,7 @@ export const aboutPageSchema = {
       "@id": "https://axiomio.com/about/#webpage",
       url: "https://axiomio.com/about",
       name: "About Axiomio | Enterprise Technology & Strategy Consulting Firm",
-      description: "Learn about Axiomio's vision, values, and precision-driven approach to digital transformation and AI implementation for Fortune 500 companies.",
+      description: "Learn about AXIOMIO's vision, values, and precision-driven approach to digital transformation and AI implementation for Fortune 500 companies.",
       isPartOf: { "@id": "https://axiomio.com/#website" },
       about: { "@id": "https://axiomio.com/#organization" },
       mainEntity: {
@@ -147,7 +147,7 @@ export const servicesPageSchema = {
       "@id": "https://axiomio.com/services/#webpage",
       url: "https://axiomio.com/services",
       name: "Enterprise Consulting Services | Strategy, AI, Digital Transformation | Axiomio",
-      description: "Axiomio's enterprise consulting services: Strategy & Advisory, Technology & Systems, AI & Automation, and Digital Transformation. XOPS360 platform for intelligent operations.",
+      description: "AXIOMIO's enterprise consulting services: Strategy & Advisory, Technology & Systems, AI & Automation, and Digital Transformation. Xops360 platform for intelligent operations.",
       isPartOf: { "@id": "https://axiomio.com/#website" },
       about: { "@id": "https://axiomio.com/#service" },
       mainEntity: servicesListSchema,
@@ -174,7 +174,7 @@ export const approachPageSchema = {
       "@id": "https://axiomio.com/approach/#webpage",
       url: "https://axiomio.com/approach",
       name: "Our Approach | 5-Phase Transformation Methodology | Axiomio",
-      description: "Axiomio's proven 5-phase methodology: Discover, Define, Design, Deliver, Develop. Systematic approach to enterprise digital transformation.",
+      description: "AXIOMIO's proven 5-phase methodology: Discover, Define, Design, Deliver, Develop. Systematic approach to enterprise digital transformation.",
       isPartOf: { "@id": "https://axiomio.com/#website" },
       dateModified: new Date().toISOString().split('T')[0],
     },
@@ -227,7 +227,7 @@ export const approachPageSchema = {
         },
       ],
       tool: [
-        { "@type": "HowToTool", name: "XOPS360 Platform" },
+        { "@type": "HowToTool", name: "Xops360 Platform" },
         { "@type": "HowToTool", name: "Enterprise Architecture Frameworks" },
         { "@type": "HowToTool", name: "Change Management Methodologies" },
       ],
@@ -251,7 +251,7 @@ export const contactPageSchema = {
       "@id": "https://axiomio.com/contact/#webpage",
       url: "https://axiomio.com/contact",
       name: "Contact Axiomio | Enterprise Technology Consulting Inquiry",
-      description: "Contact Axiomio for enterprise technology consulting, digital transformation, AI automation, and XOPS360 platform inquiries.",
+      description: "Contact AXIOMIO for enterprise technology consulting, digital transformation, AI automation, and Xops360 platform inquiries.",
       isPartOf: { "@id": "https://axiomio.com/#website" },
       mainEntity: corporateContactSchema,
       dateModified: new Date().toISOString().split('T')[0],
@@ -277,21 +277,21 @@ export const contactPageSchema = {
 };
 
 // ============================================
-// XOPS360 PRODUCT PAGE SCHEMA
+// Xops360 PRODUCT PAGE SCHEMA
 // ============================================
 export const xops360PageSchema = {
   "@context": "https://schema.org",
   "@graph": [
     createBreadcrumbSchema([
       { name: "Home", url: "https://axiomio.com/" },
-      { name: "XOPS360", url: "https://axiomio.com/xops360" },
+      { name: "Xops360", url: "https://axiomio.com/xops360" },
     ]),
     {
       "@type": "ProductPage",
       "@id": "https://axiomio.com/xops360/#webpage",
       url: "https://axiomio.com/xops360",
-      name: "XOPS360 | Enterprise CloudOps Automation Platform | Axiomio",
-      description: "XOPS360 unifies DevOps, DataOps, MLOps & AIOps into one intelligent automation platform. Reduce incidents by 60%, cut cloud costs by 35%.",
+      name: "Xops360 | Enterprise CloudOps Automation Platform | Axiomio",
+      description: "Xops360 unifies DevOps, DataOps, MLOps & AIOps into one intelligent automation platform. Reduce incidents by 60%, cut cloud costs by 35%.",
       isPartOf: { "@id": "https://axiomio.com/#website" },
       mainEntity: xops360Schema,
       dateModified: new Date().toISOString().split('T')[0],
@@ -300,7 +300,7 @@ export const xops360PageSchema = {
     // Product comparison
     {
       "@type": "ItemList",
-      name: "XOPS360 Use Cases",
+      name: "Xops360 Use Cases",
       itemListElement: [
         {
           "@type": "ListItem",
@@ -497,7 +497,7 @@ export const knowledgeGraphSchema = {
   "@type": "Organization",
   "@id": "https://axiomio.com/#organization",
   name: "Axiomio",
-  alternateName: ["Axiomio Technologies", "Axiomio Consulting"],
+  alternateName: ["AXIOMIO Technologies", "AXIOMIO Consulting"],
   url: "https://axiomio.com",
   logo: "https://axiomio.com/logo.png",
   sameAs: [

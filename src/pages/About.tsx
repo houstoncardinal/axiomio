@@ -43,8 +43,8 @@ export default function About() {
   return (
     <main className="min-h-screen bg-background overflow-hidden">
       <SEOHead
-        title="About Axiomio | Enterprise Technology & Strategy Consulting Firm"
-        description="Axiomio is a global technology and strategy consulting firm. Learn about our vision, values, and precision-driven approach to digital transformation and AI implementation for Fortune 500 companies."
+        title="About AXIOMIO | Enterprise Technology & Strategy Consulting Firm"
+        description="AXIOMIO is a global technology and strategy consulting firm. Learn about our vision, values, and precision-driven approach to digital transformation and AI implementation for Fortune 500 companies."
         keywords="about Axiomio, technology consulting firm, strategy consulting company, digital transformation consulting, enterprise consulting, AI consulting firm, management consulting"
         canonicalUrl="https://axiomio.com/about"
         pageType="about"

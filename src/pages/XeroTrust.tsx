@@ -473,7 +473,7 @@ export default function XeroTrust() {
   return (
     <div className="min-h-screen bg-background overflow-hidden">
       <SEOHead
-        title="XeroTrust | WireGuard-Based Zero Trust Network Access | Axiomio"
+        title="XeroTrust | WireGuard-Based Zero Trust Network Access | AXIOMIO"
         description="Modern zero-trust network access powered by WireGuard. Peer-to-peer mesh networking with sub-20ms latency, automatic NAT traversal, and device posture checks. Deploy in 5 minutes. 95% latency reduction vs traditional VPNs."
         keywords="XeroTrust, zero trust security, ZTNA, WireGuard, peer-to-peer VPN, mesh networking, NAT traversal, device posture, network security, VPN alternative, zero friction security"
         canonicalUrl="https://axiomio.com/xerotrust"
@@ -1832,8 +1832,6 @@ export default function XeroTrust() {
         </div>
       </section>
 
-      {/* Customer Success Stories - Interactive */}
-      <CustomerSuccessStories />
 
       {/* Why XeroTrust vs VPN */}
       <section className="py-28 lg:py-36 relative overflow-hidden">
@@ -2449,8 +2447,6 @@ export default function XeroTrust() {
       {/* Interactive Demo */}
       <XeroTrustInteractiveDemo />
 
-      {/* Testimonials */}
-      <XeroTrustTestimonials />
 
       {/* ROI Calculator */}
       <XeroTrustROICalculator />

@@ -28,7 +28,7 @@ const navItems = [
   { icon: Search, label: 'SEO', path: '/admin/seo' },
   { 
     icon: Server, 
-    label: 'XOPS360', 
+    label: 'Xops360', 
     path: '/admin/xops360',
     children: [
       { icon: Building2, label: 'Clients', path: '/admin/xops360/clients' },
@@ -51,7 +51,7 @@ const AdminLayout: React.FC = () => {
   const location = useLocation();
   const [collapsed, setCollapsed] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
-  const [expandedGroups, setExpandedGroups] = useState<string[]>(['XOPS360']);
+  const [expandedGroups, setExpandedGroups] = useState<string[]>(['Xops360']);
 
   useEffect(() => {
     if (!loading && !user) {

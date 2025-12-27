@@ -1,16 +1,17 @@
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
-import { 
-  ArrowRight, 
-  GitBranch, 
-  Workflow, 
-  Container, 
-  Repeat, 
+import {
+  ArrowRight,
+  GitBranch,
+  Workflow,
+  Container,
+  Repeat,
   CheckCircle2,
   Gauge,
   Rocket,
   Settings,
-  Monitor
+  Monitor,
+  ChevronRight
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Navbar } from "@/components/Navbar";
@@ -19,6 +20,9 @@ import { PremiumCard } from "@/components/PremiumCard";
 import { SectionHeader } from "@/components/SectionHeader";
 import { SEOHead } from "@/components/SEOHead";
 import { MagneticButton } from "@/components/MagneticButton";
+import { getParentCategory } from "@/config/services.config";
+
+const parentCategory = getParentCategory('devops-services');
 
 const services = [
   {
@@ -82,7 +86,7 @@ export default function DevOpsServices() {
   return (
     <main className="min-h-screen bg-background overflow-hidden">
       <SEOHead
-        title="DevOps Services | CI/CD, Kubernetes & IaC | Axiomio"
+        title="DevOps Services | CI/CD, Kubernetes & IaC | AXIOMIO"
         description="Professional DevOps services: CI/CD pipeline design, Kubernetes orchestration, Infrastructure as Code, and observability. Deploy 208x more frequently."
         keywords="devops services, CI/CD, kubernetes, docker, infrastructure as code, terraform, jenkins, gitlab ci, github actions, container orchestration"
         canonicalUrl="https://axiomio.com/services/devops-services"
@@ -99,7 +103,34 @@ export default function DevOpsServices() {
         </div>
         
         <div className="container relative z-10 mx-auto px-6 lg:px-8">
-          <motion.div 
+          {/* Breadcrumb Navigation */}
+          <motion.nav
+            className="flex items-center gap-2 text-sm text-muted-foreground mb-8"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
+            aria-label="Breadcrumb"
+          >
+            <Link to="/" className="hover:text-primary transition-colors">
+              Home
+            </Link>
+            <ChevronRight className="h-4 w-4" />
+            <Link to="/services" className="hover:text-primary transition-colors">
+              Services
+            </Link>
+            <ChevronRight className="h-4 w-4" />
+            {parentCategory && (
+              <>
+                <Link to={parentCategory.route} className="hover:text-primary transition-colors">
+                  {parentCategory.title}
+                </Link>
+                <ChevronRight className="h-4 w-4" />
+              </>
+            )}
+            <span className="text-foreground font-medium">DevOps Services</span>
+          </motion.nav>
+
+          <motion.div
             className="max-w-4xl"
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
@@ -109,7 +140,7 @@ export default function DevOpsServices() {
               initial={{ opacity: 0, scale: 0.9 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ delay: 0.1 }}
-              className="inline-flex items-center gap-3 mb-8"
+              className="inline-flex items-center gap-3 mb-6"
             >
               <div className="p-3 rounded-xl bg-blue-500/10 text-blue-500 border border-blue-500/20">
                 <GitBranch className="h-8 w-8" />
@@ -118,6 +149,26 @@ export default function DevOpsServices() {
                 DevOps Services
               </span>
             </motion.div>
+
+            {/* Part of Badge */}
+            {parentCategory && (
+              <motion.div
+                className="inline-flex items-center gap-2 mb-8"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.15, duration: 0.6 }}
+              >
+                <span className="text-sm text-muted-foreground">Part of</span>
+                <Link
+                  to={parentCategory.route}
+                  className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-primary/10 text-primary border border-primary/20 hover:bg-primary/20 transition-colors text-sm font-medium"
+                >
+                  <parentCategory.icon className="w-4 h-4" />
+                  {parentCategory.title}
+                  <ChevronRight className="w-3 h-3" />
+                </Link>
+              </motion.div>
+            )}
             
             <motion.h1 
               className="font-heading text-4xl md:text-5xl lg:text-6xl font-bold text-foreground leading-[1.1] mb-8"
@@ -208,6 +259,72 @@ export default function DevOpsServices() {
           </div>
         </div>
       </section>
+
+      {/* Related Services Section */}
+      {parentCategory && parentCategory.subServices.length > 1 && (
+        <section className="py-16 lg:py-20 bg-muted/20">
+          <div className="container mx-auto px-6 lg:px-8">
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6 }}
+              viewport={{ once: true }}
+              className="mb-12"
+            >
+              <h3 className="font-heading text-2xl md:text-3xl font-bold text-foreground mb-3">
+                More {parentCategory.title} Services
+              </h3>
+              <p className="text-muted-foreground max-w-2xl">
+                Explore our complete range of services within this category
+              </p>
+            </motion.div>
+
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
+              {parentCategory.subServices
+                .filter(sub => sub.slug !== 'devops-services')
+                .map((sub, index) => (
+                  <motion.div
+                    key={sub.id}
+                    initial={{ opacity: 0, y: 30 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    transition={{ delay: index * 0.1, duration: 0.5 }}
+                    viewport={{ once: true }}
+                  >
+                    <Link
+                      to={sub.route}
+                      className="block h-full p-6 rounded-xl bg-card border border-border hover:border-primary/30 hover:shadow-lg transition-all duration-300 group"
+                    >
+                      <sub.icon className="w-8 h-8 mb-4 text-primary group-hover:scale-110 transition-transform" />
+                      <h4 className="font-heading text-lg font-semibold text-foreground mb-2 group-hover:text-primary transition-colors">
+                        {sub.title}
+                      </h4>
+                      <p className="text-sm text-muted-foreground mb-4">{sub.subtitle}</p>
+                      <div className="flex items-center text-primary text-sm font-medium">
+                        <span>Learn more</span>
+                        <ChevronRight className="w-4 h-4 ml-1 group-hover:translate-x-1 transition-transform" />
+                      </div>
+                    </Link>
+                  </motion.div>
+                ))}
+            </div>
+
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5 }}
+              viewport={{ once: true }}
+              className="text-center"
+            >
+              <Button variant="outline" size="lg" asChild>
+                <Link to={parentCategory.route}>
+                  View All {parentCategory.title}
+                  <ChevronRight className="ml-2 h-4 w-4" />
+                </Link>
+              </Button>
+            </motion.div>
+          </div>
+        </section>
+      )}
 
       {/* CTA Section */}
       <section className="py-20 lg:py-28 bg-gradient-to-b from-card/50 to-background">

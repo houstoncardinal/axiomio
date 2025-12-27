@@ -76,8 +76,8 @@ export default function Approach() {
   return (
     <main className="min-h-screen bg-background overflow-hidden">
       <SEOHead
-        title="Our Approach | 5-Phase Transformation Methodology | Axiomio"
-        description="Axiomio's proven 5-phase methodology: Discover, Define, Design, Deliver, Develop. Systematic approach to enterprise digital transformation and technology consulting for sustainable outcomes."
+        title="Our Approach | 5-Phase Transformation Methodology | AXIOMIO"
+        description="AXIOMIO's proven 5-phase methodology: Discover, Define, Design, Deliver, Develop. Systematic approach to enterprise digital transformation and technology consulting for sustainable outcomes."
         keywords="consulting methodology, digital transformation approach, enterprise consulting process, technology implementation methodology, strategy consulting framework, transformation methodology"
         canonicalUrl="https://axiomio.com/approach"
         pageType="methodology"

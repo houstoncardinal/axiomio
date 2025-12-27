@@ -130,7 +130,7 @@ const sections = [
   },
 ];
 
-const XOPS360Documentation = () => {
+const Xops360Documentation = () => {
   const [activeSection, setActiveSection] = useState('introduction');
   const [expandedSections, setExpandedSections] = useState<string[]>(['introduction']);
 
@@ -165,7 +165,7 @@ const XOPS360Documentation = () => {
             className="inline-flex items-center gap-2 text-muted-foreground hover:text-primary transition-colors mb-8 group"
           >
             <ArrowLeft className="w-4 h-4 group-hover:-translate-x-1 transition-transform" />
-            Back to XOPS360
+            Back to Xops360
           </Link>
           
           <motion.div
@@ -185,7 +185,7 @@ const XOPS360Documentation = () => {
             
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6">
               <span className="bg-gradient-to-r from-foreground via-primary to-foreground bg-clip-text text-transparent">
-                XOPS360 Documentation
+                Xops360 Documentation
               </span>
             </h1>
             
@@ -1899,7 +1899,7 @@ const XOPS360Documentation = () => {
                       className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-muted text-foreground font-medium hover:bg-muted/80 transition-colors"
                     >
                       <ExternalLink className="w-4 h-4" />
-                      Visit XOPS360
+                      Visit Xops360
                     </a>
                   </div>
                 </section>
@@ -1915,4 +1915,4 @@ const XOPS360Documentation = () => {
   );
 };
 
-export default XOPS360Documentation;
+export default Xops360Documentation;

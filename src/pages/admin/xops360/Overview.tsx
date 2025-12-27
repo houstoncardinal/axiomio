@@ -7,7 +7,7 @@ import { supabase } from '@/integrations/supabase/client';
 import { PremiumCard } from '@/components/PremiumCard';
 import { Button } from '@/components/ui/button';
 
-const XOPS360Overview: React.FC = () => {
+const Xops360Overview: React.FC = () => {
   const { data: stats } = useQuery({
     queryKey: ['xops360-overview-stats'],
     queryFn: async () => {
@@ -29,7 +29,7 @@ const XOPS360Overview: React.FC = () => {
   const sections = [
     {
       title: 'Clients',
-      description: 'Manage XOPS360 platform clients - MSPs and Enterprises',
+      description: 'Manage Xops360 platform clients - MSPs and Enterprises',
       icon: Building2,
       path: '/admin/xops360/clients',
       stat: stats?.clients || 0,
@@ -74,7 +74,7 @@ const XOPS360Overview: React.FC = () => {
       {/* Header */}
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="font-heading text-3xl font-bold text-gradient mb-2">XOPS360 Platform</h1>
+          <h1 className="font-heading text-3xl font-bold text-gradient mb-2">Xops360 Platform</h1>
           <p className="text-muted-foreground">The CloudOps Automation Engine Management Console</p>
         </div>
         <div className="flex items-center gap-2 px-4 py-2 rounded-xl bg-emerald-500/10 text-emerald-400">
@@ -161,7 +161,7 @@ const XOPS360Overview: React.FC = () => {
             <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
               {[
                 { step: 1, title: 'Add Client', description: 'Create an MSP or Enterprise client profile' },
-                { step: 2, title: 'Deploy Platform', description: 'Set up XOPS360 deployment for the client' },
+                { step: 2, title: 'Deploy Platform', description: 'Set up Xops360 deployment for the client' },
                 { step: 3, title: 'Connect Integrations', description: 'Link cloud providers and tools' },
                 { step: 4, title: 'Configure Runbooks', description: 'Create automation workflows' },
               ].map((item) => (
@@ -183,4 +183,4 @@ const XOPS360Overview: React.FC = () => {
   );
 };
 
-export default XOPS360Overview;
+export default Xops360Overview;

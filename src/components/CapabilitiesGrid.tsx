@@ -177,7 +177,7 @@ export function CapabilitiesGrid() {
             viewport={{ once: true }}
             className="inline-flex text-sm font-medium uppercase tracking-[0.2em] text-primary mb-6"
           >
-            XOPS360 Capabilities
+            Xops360 Capabilities
           </motion.span>
           <motion.h2
             initial={{ opacity: 0, y: 30 }}

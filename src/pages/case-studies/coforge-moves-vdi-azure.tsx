@@ -33,8 +33,8 @@ const CoforgeCaseStudy = () => {
   return (
     <div className="min-h-screen bg-slate-50">
       <SEOHead
-        title="Coforge VDI Migration to Azure | Cloud Migration Case Study | Axiomio"
-        description="How Axiomio helped Coforge migrate 5000+ VDIs from Windows 7 datacenter to Azure Cloud with Citrix setup and enhanced security in under 10 weeks."
+        title="Coforge VDI Migration to Azure | Cloud Migration Case Study | AXIOMIO"
+        description="How AXIOMIO helped Coforge migrate 5000+ VDIs from Windows 7 datacenter to Azure Cloud with Citrix setup and enhanced security in under 10 weeks."
         keywords="Coforge, VDI migration, Azure Cloud, Citrix, Windows 7 to Windows 10, cloud migration, desktop as a service, DevOps automation"
         canonicalUrl="https://axiomio.com/case-studies/coforge-moves-vdi-azure"
       />

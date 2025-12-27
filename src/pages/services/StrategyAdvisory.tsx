@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
-import { ArrowRight, ArrowLeft, CheckCircle, Target, TrendingUp, Users, Lightbulb, BarChart3, Compass } from "lucide-react";
+import { ArrowRight, ArrowLeft, CheckCircle, Target, TrendingUp, Users, Lightbulb, BarChart3, Compass, ChevronRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
@@ -8,6 +8,9 @@ import { GridBackground } from "@/components/GridBackground";
 import { SectionHeader } from "@/components/SectionHeader";
 import { SEOHead } from "@/components/SEOHead";
 import { createBreadcrumbSchema, strategyAdvisorySchema, organizationSchema } from "@/lib/seo-schemas";
+import { getParentCategory } from "@/config/services.config";
+
+const parentCategory = getParentCategory('strategy-advisory');
 
 const offerings = [
   {
@@ -98,7 +101,7 @@ export default function StrategyAdvisory() {
   return (
     <main className="min-h-screen bg-background overflow-hidden">
       <SEOHead
-        title="Strategy & Advisory Services | Executive Consulting | Axiomio"
+        title="Strategy & Advisory Services | Executive Consulting | AXIOMIO"
         description="Executive-level strategic guidance for Fortune 500 companies. Strategic roadmap development, M&A due diligence, organizational design, and investment thesis development. Outperform Deloitte and McKinsey."
         keywords="strategy consulting, executive advisory, strategic planning, M&A consulting, organizational design, investment thesis, competitive analysis, business strategy, management consulting, enterprise strategy"
         canonicalUrl="https://axiomio.com/services/strategy-advisory"
@@ -110,19 +113,32 @@ export default function StrategyAdvisory() {
       <header className="relative pt-32 pb-24 lg:pt-40 lg:pb-32" role="banner">
         <GridBackground />
         <div className="container relative z-10 mx-auto px-6 lg:px-8">
-          <motion.div
+          {/* Breadcrumb Navigation */}
+          <motion.nav
+            className="flex items-center gap-2 text-sm text-muted-foreground mb-8"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
+            aria-label="Breadcrumb"
           >
-            <Link 
-              to="/services" 
-              className="inline-flex items-center gap-2 text-muted-foreground hover:text-primary transition-colors mb-8"
-            >
-              <ArrowLeft className="h-4 w-4" />
-              Back to Services
+            <Link to="/" className="hover:text-primary transition-colors">
+              Home
             </Link>
-          </motion.div>
+            <ChevronRight className="h-4 w-4" />
+            <Link to="/services" className="hover:text-primary transition-colors">
+              Services
+            </Link>
+            <ChevronRight className="h-4 w-4" />
+            {parentCategory && (
+              <>
+                <Link to={parentCategory.route} className="hover:text-primary transition-colors">
+                  {parentCategory.title}
+                </Link>
+                <ChevronRight className="h-4 w-4" />
+              </>
+            )}
+            <span className="text-foreground font-medium">Strategy & Advisory</span>
+          </motion.nav>
           
           <motion.div 
             className="max-w-4xl"
@@ -139,7 +155,7 @@ export default function StrategyAdvisory() {
               <Target className="h-10 w-10" />
             </motion.div>
             
-            <motion.h1 
+            <motion.h1
               className="font-heading text-4xl md:text-5xl lg:text-6xl font-bold text-foreground leading-[1.1] mb-6"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
@@ -148,7 +164,27 @@ export default function StrategyAdvisory() {
               Strategy &{" "}
               <span className="text-gradient">Advisory</span>
             </motion.h1>
-            
+
+            {/* Part of Badge */}
+            {parentCategory && (
+              <motion.div
+                className="inline-flex items-center gap-2 mb-6"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.15, duration: 0.6 }}
+              >
+                <span className="text-sm text-muted-foreground">Part of</span>
+                <Link
+                  to={parentCategory.route}
+                  className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-primary/10 text-primary border border-primary/20 hover:bg-primary/20 transition-colors text-sm font-medium"
+                >
+                  <parentCategory.icon className="w-4 h-4" />
+                  {parentCategory.title}
+                  <ChevronRight className="w-3 h-3" />
+                </Link>
+              </motion.div>
+            )}
+
             <motion.p 
               className="text-xl md:text-2xl text-muted-foreground leading-relaxed max-w-3xl mb-8"
               initial={{ opacity: 0, y: 20 }}
@@ -381,6 +417,72 @@ export default function StrategyAdvisory() {
           </div>
         </div>
       </section>
+
+      {/* Related Services Section */}
+      {parentCategory && parentCategory.subServices.length > 1 && (
+        <section className="py-16 lg:py-20 bg-muted/20">
+          <div className="container mx-auto px-6 lg:px-8">
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6 }}
+              viewport={{ once: true }}
+              className="mb-12"
+            >
+              <h3 className="font-heading text-2xl md:text-3xl font-bold text-foreground mb-3">
+                More {parentCategory.title} Services
+              </h3>
+              <p className="text-muted-foreground max-w-2xl">
+                Explore our complete range of services within this category
+              </p>
+            </motion.div>
+
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
+              {parentCategory.subServices
+                .filter(sub => sub.slug !== 'strategy-advisory')
+                .map((sub, index) => (
+                  <motion.div
+                    key={sub.id}
+                    initial={{ opacity: 0, y: 30 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    transition={{ delay: index * 0.1, duration: 0.5 }}
+                    viewport={{ once: true }}
+                  >
+                    <Link
+                      to={sub.route}
+                      className="block h-full p-6 rounded-xl bg-card border border-border hover:border-primary/30 hover:shadow-lg transition-all duration-300 group"
+                    >
+                      <sub.icon className="w-8 h-8 mb-4 text-primary group-hover:scale-110 transition-transform" />
+                      <h4 className="font-heading text-lg font-semibold text-foreground mb-2 group-hover:text-primary transition-colors">
+                        {sub.title}
+                      </h4>
+                      <p className="text-sm text-muted-foreground mb-4">{sub.subtitle}</p>
+                      <div className="flex items-center text-primary text-sm font-medium">
+                        <span>Learn more</span>
+                        <ChevronRight className="w-4 h-4 ml-1 group-hover:translate-x-1 transition-transform" />
+                      </div>
+                    </Link>
+                  </motion.div>
+                ))}
+            </div>
+
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5 }}
+              viewport={{ once: true }}
+              className="text-center"
+            >
+              <Button variant="outline" size="lg" asChild>
+                <Link to={parentCategory.route}>
+                  View All {parentCategory.title}
+                  <ChevronRight className="ml-2 h-4 w-4" />
+                </Link>
+              </Button>
+            </motion.div>
+          </div>
+        </section>
+      )}
 
       {/* CTA Section */}
       <section className="py-24 lg:py-32 bg-gradient-to-b from-card/50 to-background">

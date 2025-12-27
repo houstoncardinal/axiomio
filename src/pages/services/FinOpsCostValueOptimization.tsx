@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { ArrowRight, DollarSign, Shield, Cloud, GitBranch, TrendingUp, Lock, Server, Cpu, BarChart3, Zap, CheckCircle2, Bot, Activity } from "lucide-react";
+import { ArrowRight, DollarSign, BarChart3, CheckCircle2, TrendingDown, TrendingUp, Activity, PieChart } from "lucide-react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Navbar } from "@/components/Navbar";
@@ -13,45 +13,41 @@ import { createBreadcrumbSchema, organizationSchema } from "@/lib/seo-schemas";
 const breadcrumbSchema = createBreadcrumbSchema([
   { name: "Home", url: "https://axiomio.com/" },
   { name: "Services", url: "https://axiomio.com/services" },
-  { name: "Ops Excellence", url: "https://axiomio.com/services/ops-excellence" },
+  { name: "FinOps, Cost & Value Optimization", url: "https://axiomio.com/services/finops-cost-value-optimization" },
 ]);
 
-const opsExcellenceSchema = {
+const serviceSchema = {
   "@context": "https://schema.org",
   "@type": "Service",
-  "@id": "https://axiomio.com/services/ops-excellence/#service",
-  "name": "Ops Excellence - FinOps, SecOps, CloudOps, DevOps",
-  "serviceType": "IT Operations Consulting",
-  "description": "Unified operations platform for FinOps, SecOps, CloudOps, and DevOps. AI-powered automation, real-time observability, and self-healing systems for enterprise cloud operations.",
-  "url": "https://axiomio.com/services/ops-excellence",
+  "@id": "https://axiomio.com/services/finops-cost-value-optimization/#service",
+  "name": "FinOps, Cost & Value Optimization",
+  "serviceType": "Cloud Financial Management and Cost Optimization",
+  "description": "Maximize cloud ROI with FinOps practices, cost visibility, and continuous optimization. Financial efficiency and value maximization powered by Xops360.",
+  "url": "https://axiomio.com/services/finops-cost-value-optimization",
   "provider": { "@id": "https://axiomio.com/#organization" },
   "areaServed": "Worldwide",
   "hasOfferCatalog": {
     "@type": "OfferCatalog",
-    "name": "Operations Excellence Services",
+    "name": "FinOps Services",
     "itemListElement": [
-      { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "FinOps - Cloud Financial Management" } },
-      { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "SecOps - Security Operations" } },
-      { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "CloudOps - Cloud Operations Excellence" } },
-      { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "DevOps - Development Operations" } }
+      { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Cloud FinOps" } }
     ]
   }
 };
 
 const pageSchema = {
   "@context": "https://schema.org",
-  "@graph": [breadcrumbSchema, opsExcellenceSchema, organizationSchema]
+  "@graph": [breadcrumbSchema, serviceSchema, organizationSchema]
 };
 
-const opsCategories = [
+const subServices = [
   {
-    id: "finops",
-    title: "FinOps",
-    subtitle: "Cloud Financial Management",
-    icon: DollarSign,
-    color: "from-emerald-500 to-teal-400",
-    bgGlow: "emerald",
-    description: "Optimize cloud spending with data-driven financial operations. Achieve visibility, control, and accountability across your cloud investments.",
+    id: "cloud-finops",
+    title: "Cloud FinOps",
+    subtitle: "Cost Optimization",
+    icon: BarChart3,
+    color: "from-green-500 to-emerald-400",
+    description: "Maximize cloud ROI with comprehensive cost visibility, optimization, and accountability. Data-driven financial operations for multi-cloud environments.",
     capabilities: [
       "Cost visibility & allocation",
       "Budget forecasting & planning",
@@ -71,122 +67,39 @@ const opsCategories = [
       "Resource right-sizing",
       "Waste elimination automation",
     ],
-  },
-  {
-    id: "secops",
-    title: "SecOps",
-    subtitle: "Security Operations",
-    icon: Shield,
-    color: "from-red-500 to-orange-400",
-    bgGlow: "red",
-    description: "Unify security and operations with automated threat detection, response, and compliance. Build security into every layer of your infrastructure.",
-    capabilities: [
-      "SIEM & log aggregation",
-      "Threat intelligence integration",
-      "Automated incident response",
-      "Compliance monitoring (SOC2, ISO, HIPAA)",
-      "Vulnerability management",
-      "Zero-trust architecture",
-    ],
-    metrics: [
-      { value: "99.9%", label: "Threat Detection" },
-      { value: "< 5min", label: "Mean Time to Detect" },
-      { value: "100%", label: "Compliance Score" },
-    ],
-    useCases: [
-      "24/7 security monitoring",
-      "Automated remediation",
-      "Security posture management",
-      "Regulatory compliance",
-    ],
-  },
-  {
-    id: "cloudops",
-    title: "CloudOps",
-    subtitle: "Cloud Operations Excellence",
-    icon: Cloud,
-    color: "from-blue-500 to-cyan-400",
-    bgGlow: "blue",
-    description: "Master your cloud infrastructure with automated provisioning, monitoring, and optimization across multi-cloud and hybrid environments.",
-    capabilities: [
-      "Infrastructure as Code (IaC)",
-      "Multi-cloud orchestration",
-      "Auto-scaling & optimization",
-      "Disaster recovery automation",
-      "Performance monitoring",
-      "Capacity planning",
-    ],
-    metrics: [
-      { value: "99.99%", label: "Uptime SLA" },
-      { value: "60%", label: "Faster Provisioning" },
-      { value: "40%", label: "Resource Optimization" },
-    ],
-    useCases: [
-      "Cloud migration & modernization",
-      "Hybrid cloud management",
-      "Container orchestration",
-      "Edge computing integration",
-    ],
-  },
-  {
-    id: "devops",
-    title: "DevOps",
-    subtitle: "Development Operations",
-    icon: GitBranch,
-    color: "from-violet-500 to-purple-400",
-    bgGlow: "violet",
-    description: "Accelerate software delivery with automated CI/CD pipelines, GitOps workflows, and developer-first infrastructure management.",
-    capabilities: [
-      "CI/CD pipeline automation",
-      "GitOps & version control",
-      "Container orchestration",
-      "Release management",
-      "Feature flag management",
-      "Developer experience (DX) optimization",
-    ],
-    metrics: [
-      { value: "50x", label: "Faster Deployments" },
-      { value: "95%", label: "Deployment Success Rate" },
-      { value: "80%", label: "Less Manual Work" },
-    ],
-    useCases: [
-      "Continuous deployment",
-      "Microservices architecture",
-      "Platform engineering",
-      "Developer productivity",
-    ],
+    route: "/services/cloud-finops",
   },
 ];
 
 const platformFeatures = [
   {
-    icon: Bot,
-    title: "AI-Powered Automation",
-    description: "Machine learning algorithms that learn from your operations and automate routine tasks.",
+    icon: TrendingDown,
+    title: "Cost Optimization",
+    description: "Identify and eliminate waste with automated recommendations and right-sizing.",
+  },
+  {
+    icon: PieChart,
+    title: "Complete Visibility",
+    description: "Real-time cost tracking across all cloud providers with granular allocation.",
+  },
+  {
+    icon: TrendingUp,
+    title: "ROI Maximization",
+    description: "Data-driven insights that connect costs to business outcomes and value.",
   },
   {
     icon: Activity,
-    title: "Real-Time Observability",
-    description: "Unified monitoring across all Ops domains with intelligent alerting and root cause analysis.",
-  },
-  {
-    icon: Zap,
-    title: "Self-Healing Systems",
-    description: "Automated remediation that detects and resolves issues before they impact users.",
-  },
-  {
-    icon: BarChart3,
-    title: "Unified Analytics",
-    description: "Cross-domain insights that connect costs, security, performance, and delivery metrics.",
+    title: "Continuous Optimization",
+    description: "AI-powered automation that continuously optimizes cloud spending.",
   },
 ];
 
-function OpsCard({ category, index }: { category: typeof opsCategories[0]; index: number }) {
-  const Icon = category.icon;
-  
+function SubServiceCard({ service, index }: { service: typeof subServices[0]; index: number }) {
+  const Icon = service.icon;
+
   return (
     <motion.div
-      id={category.id}
+      id={service.id}
       className="scroll-mt-32"
       initial={{ opacity: 0, y: 50 }}
       whileInView={{ opacity: 1, y: 0 }}
@@ -194,57 +107,59 @@ function OpsCard({ category, index }: { category: typeof opsCategories[0]; index
       viewport={{ once: true, margin: "-100px" }}
     >
       <div className="glass-card rounded-2xl p-8 lg:p-12 relative overflow-hidden group hover:border-primary/30 transition-all duration-500">
-        {/* Background glow */}
-        <div 
-          className={`absolute top-0 right-0 w-96 h-96 bg-gradient-to-br ${category.color} opacity-5 blur-3xl group-hover:opacity-10 transition-opacity duration-500`}
+        <div
+          className={`absolute top-0 right-0 w-96 h-96 bg-gradient-to-br ${service.color} opacity-5 blur-3xl group-hover:opacity-10 transition-opacity duration-500`}
         />
-        
+
         <div className="relative z-10">
-          {/* Header */}
           <div className="flex flex-col lg:flex-row lg:items-start gap-6 mb-8">
-            <motion.div 
-              className={`p-4 rounded-xl bg-gradient-to-br ${category.color} text-white shadow-lg`}
+            <motion.div
+              className={`p-4 rounded-xl bg-gradient-to-br ${service.color} text-white shadow-lg`}
               whileHover={{ scale: 1.1, rotate: 5 }}
               transition={{ type: "spring", stiffness: 400 }}
             >
               <Icon className="h-8 w-8" />
             </motion.div>
             <div className="flex-1">
-              <div className="flex items-center gap-3 mb-2">
+              <div className="flex items-center gap-3 mb-2 flex-wrap">
                 <h2 className="font-heading text-3xl md:text-4xl font-bold text-foreground">
-                  {category.title}
+                  {service.title}
                 </h2>
                 <span className="px-3 py-1 text-xs font-medium bg-primary/10 text-primary rounded-full border border-primary/20">
-                  {category.subtitle}
+                  {service.subtitle}
                 </span>
               </div>
-              <p className="text-lg text-muted-foreground leading-relaxed max-w-2xl">
-                {category.description}
+              <p className="text-lg text-muted-foreground leading-relaxed max-w-2xl mb-4">
+                {service.description}
               </p>
+              <Link
+                to={service.route}
+                className="inline-flex items-center gap-2 text-sm font-medium text-primary hover:underline"
+              >
+                View Full {service.title} Details
+                <ArrowRight className="w-4 h-4" />
+              </Link>
             </div>
           </div>
-          
-          {/* Metrics */}
+
           <div className="grid grid-cols-3 gap-4 mb-8 p-6 bg-muted/30 rounded-xl border border-border/50">
-            {category.metrics.map((metric) => (
+            {service.metrics.map((metric) => (
               <div key={metric.label} className="text-center">
-                <div className={`text-3xl md:text-4xl font-bold bg-gradient-to-r ${category.color} bg-clip-text text-transparent`}>
+                <div className={`text-3xl md:text-4xl font-bold bg-gradient-to-r ${service.color} bg-clip-text text-transparent`}>
                   {metric.value}
                 </div>
                 <div className="text-sm text-muted-foreground mt-1">{metric.label}</div>
               </div>
             ))}
           </div>
-          
-          {/* Two columns: Capabilities + Use Cases */}
+
           <div className="grid md:grid-cols-2 gap-8">
-            {/* Capabilities */}
             <div>
               <h4 className="font-heading font-semibold text-sm text-muted-foreground uppercase tracking-wider mb-4">
                 Core Capabilities
               </h4>
               <ul className="space-y-3">
-                {category.capabilities.map((capability) => (
+                {service.capabilities.map((capability) => (
                   <li key={capability} className="flex items-center gap-3 text-foreground">
                     <CheckCircle2 className="w-5 h-5 text-primary flex-shrink-0" />
                     {capability}
@@ -252,16 +167,15 @@ function OpsCard({ category, index }: { category: typeof opsCategories[0]; index
                 ))}
               </ul>
             </div>
-            
-            {/* Use Cases */}
+
             <div>
               <h4 className="font-heading font-semibold text-sm text-muted-foreground uppercase tracking-wider mb-4">
                 Use Cases
               </h4>
               <ul className="space-y-3">
-                {category.useCases.map((useCase) => (
+                {service.useCases.map((useCase) => (
                   <li key={useCase} className="flex items-center gap-3 text-muted-foreground">
-                    <div className={`w-2 h-2 rounded-full bg-gradient-to-r ${category.color}`} />
+                    <div className={`w-2 h-2 rounded-full bg-gradient-to-r ${service.color}`} />
                     {useCase}
                   </li>
                 ))}
@@ -274,82 +188,80 @@ function OpsCard({ category, index }: { category: typeof opsCategories[0]; index
   );
 }
 
-export default function OpsExcellence() {
+export default function FinOpsCostValueOptimization() {
   return (
     <main className="min-h-screen bg-background overflow-hidden">
       <SEOHead
-        title="FinOps, SecOps, CloudOps, DevOps Excellence | Unified Operations Platform | AXIOMIO"
-        description="Master your operations with AXIOMIO's unified platform for FinOps, SecOps, CloudOps, and DevOps. AI-powered automation, real-time observability, self-healing systems, and Xops360 integration."
-        keywords="FinOps, SecOps, CloudOps, DevOps, cloud financial management, security operations, cloud operations, development operations, Xops360, unified operations, AI automation, cloud optimization, SRE, platform engineering"
-        canonicalUrl="https://axiomio.com/services/ops-excellence"
+        title="FinOps, Cost & Value Optimization | Cloud Cost Management | AXIOMIO"
+        description="Maximize cloud ROI with FinOps practices, cost visibility, and continuous optimization. Financial efficiency powered by Xops360 platform."
+        keywords="FinOps, cloud cost optimization, cost visibility, cloud financial management, ROI optimization, Xops360, budget forecasting, cost allocation"
+        canonicalUrl="https://axiomio.com/services/finops-cost-value-optimization"
         pageType="services"
         structuredData={pageSchema}
       />
       <Navbar />
-      
-      {/* Hero Section */}
+
       <header className="relative pt-32 pb-24 lg:pt-40 lg:pb-32" role="banner">
         <GridBackground />
         <div className="container relative z-10 mx-auto px-6 lg:px-8">
-          <motion.div 
+          <motion.div
             className="max-w-5xl mx-auto text-center"
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
           >
-            <motion.span 
-              className="inline-flex items-center gap-2 text-sm font-medium text-primary uppercase tracking-wider mb-6 px-4 py-2 rounded-xl border border-primary/20 bg-primary/5"
+            <motion.span
+              className="inline-flex items-center gap-2 text-sm font-medium text-green-400 uppercase tracking-wider mb-6 px-4 py-2 rounded-xl border border-green-400/20 bg-green-500/5"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.1, duration: 0.5 }}
             >
-              <span className="w-2 h-2 bg-primary rounded-full animate-pulse" aria-hidden="true" />
-              Modern MSP · AI Workforce · Product-Led Services
+              <span className="w-2 h-2 bg-green-400 rounded-full animate-pulse" aria-hidden="true" />
+              FinOps · Cost Optimization · ROI
             </motion.span>
-            
-            <motion.h1 
+
+            <motion.h1
               className="font-heading text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold text-foreground leading-[1.1] mb-8"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.2, duration: 0.6 }}
             >
-              Master your operations with{" "}
-              <span className="text-gradient">unified precision</span>
+              Maximize cloud ROI with{" "}
+              <span className="text-gradient">financial efficiency</span>
             </motion.h1>
-            
-            <motion.p 
+
+            <motion.p
               className="text-xl md:text-2xl text-muted-foreground leading-relaxed max-w-3xl mx-auto mb-10"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.3, duration: 0.6 }}
             >
-              Inform decisions, streamline operations, and enhance customer experiences with 
-              cutting-edge FinOps, SecOps, CloudOps, and DevOps solutions powered by AI.
+              Cost visibility, optimization, and accountability for multi-cloud environments.
+              Data-driven FinOps powered by Xops360.
             </motion.p>
-            
-            {/* Quick navigation */}
-            <motion.div 
+
+            <motion.div
               className="flex flex-wrap justify-center gap-3 mb-10"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.4, duration: 0.6 }}
             >
-              {opsCategories.map((cat) => {
-                const Icon = cat.icon;
+              {subServices.map((service) => {
+                const Icon = service.icon;
                 return (
                   <a
-                    key={cat.id}
-                    href={`#${cat.id}`}
-                    className={`inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-gradient-to-r ${cat.color} text-white font-medium text-sm hover:opacity-90 transition-opacity shadow-md`}
+                    key={service.id}
+                    href={`#${service.id}`}
+                    className={`inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-gradient-to-r ${service.color} text-white font-medium text-sm hover:opacity-90 transition-opacity shadow-md`}
                   >
                     <Icon className="w-4 h-4" />
-                    {cat.title}
+                    {service.title}
                   </a>
                 );
               })}
             </motion.div>
-            
-            <motion.div 
+
+            <motion.div
               className="flex flex-col sm:flex-row gap-4 justify-center"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
@@ -358,7 +270,7 @@ export default function OpsExcellence() {
               <MagneticButton>
                 <Button variant="hero" size="xl" asChild>
                   <Link to="/contact">
-                    Request a Demo
+                    Request Cost Assessment
                     <ArrowRight className="ml-2 h-5 w-5" />
                   </Link>
                 </Button>
@@ -375,7 +287,6 @@ export default function OpsExcellence() {
         </div>
       </header>
 
-      {/* Platform Features */}
       <section className="py-16 lg:py-20 bg-muted/20">
         <div className="container mx-auto px-6 lg:px-8">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -401,27 +312,25 @@ export default function OpsExcellence() {
         </div>
       </section>
 
-      {/* Ops Categories */}
       <section className="py-24 lg:py-32">
         <div className="container mx-auto px-6 lg:px-8">
           <SectionHeader
-            label="Unified Operations"
-            title="Four pillars of operational excellence"
-            description="Each domain is optimized individually while working together as a unified intelligent system."
+            label="FinOps Services"
+            title="Turn cloud costs into competitive advantage"
+            description="Financial operations that connect technology spending to business value and outcomes."
           />
-          
+
           <div className="mt-16 space-y-12">
-            {opsCategories.map((category, index) => (
-              <OpsCard key={category.id} category={category} index={index} />
+            {subServices.map((service, index) => (
+              <SubServiceCard key={service.id} service={service} index={index} />
             ))}
           </div>
         </div>
       </section>
 
-      {/* Integration CTA */}
       <section className="py-24 lg:py-32 bg-gradient-to-b from-muted/30 to-background">
         <div className="container mx-auto px-6 lg:px-8">
-          <motion.div 
+          <motion.div
             className="text-center max-w-3xl mx-auto"
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -429,22 +338,22 @@ export default function OpsExcellence() {
             viewport={{ once: true }}
           >
             <div className="inline-flex items-center gap-2 text-sm font-medium text-primary uppercase tracking-wider mb-6">
-              <TrendingUp className="w-4 h-4" />
-              Unified Platform
+              <DollarSign className="w-4 h-4" />
+              Powered by Xops360
             </div>
             <h2 className="font-heading text-3xl md:text-4xl lg:text-5xl font-bold text-foreground mb-6">
-              All four Ops domains.{" "}
-              <span className="text-gradient">One intelligent platform.</span>
+              Financial intelligence with{" "}
+              <span className="text-gradient">automated optimization</span>
             </h2>
             <p className="text-xl text-muted-foreground mb-10">
-              Xops360 brings together FinOps, SecOps, CloudOps, and DevOps into a unified 
-              ecosystem that learns, adapts, and optimizes your entire operation.
+              Xops360 brings together cost visibility, forecasting, and optimization into a
+              unified platform that maximizes your cloud ROI.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <MagneticButton>
                 <Button variant="hero" size="xl" asChild>
                   <Link to="/contact">
-                    Schedule a Discovery Call
+                    Schedule a Demo
                     <ArrowRight className="ml-2 h-5 w-5" />
                   </Link>
                 </Button>

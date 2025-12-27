@@ -100,7 +100,7 @@ export function SEOHead({
 
   useEffect(() => {
     // Update document title with brand
-    const brandedTitle = title.includes("Axiomio") ? title : `${title} | Axiomio`;
+    const brandedTitle = title.includes("Axiomio") ? title : `${title} | AXIOMIO`;
     document.title = brandedTitle;
 
     // Primary Meta Tags
@@ -127,7 +127,7 @@ export function SEOHead({
     updateMeta("og:image", ogImage, true);
     updateMeta("og:image:width", "1200", true);
     updateMeta("og:image:height", "630", true);
-    updateMeta("og:image:alt", `${title} - Axiomio`, true);
+    updateMeta("og:image:alt", `${title} - AXIOMIO`, true);
     updateMeta("og:site_name", "Axiomio", true);
     updateMeta("og:locale", locale, true);
     
@@ -153,7 +153,7 @@ export function SEOHead({
     updateMeta("twitter:title", brandedTitle);
     updateMeta("twitter:description", description);
     updateMeta("twitter:image", ogImage);
-    updateMeta("twitter:image:alt", `${title} - Axiomio`);
+    updateMeta("twitter:image:alt", `${title} - AXIOMIO`);
     updateMeta("twitter:site", "@axiomio");
     updateMeta("twitter:creator", twitterCreator);
 
@@ -163,7 +163,7 @@ export function SEOHead({
     updateMeta("msapplication-TileColor", "#030712");
     updateMeta("apple-mobile-web-app-capable", "yes");
     updateMeta("apple-mobile-web-app-status-bar-style", "black-translucent");
-    updateMeta("apple-mobile-web-app-title", "Axiomio");
+    updateMeta("apple-mobile-web-app-title", "AXIOMIO");
 
     // Canonical URL
     if (canonicalUrl) {

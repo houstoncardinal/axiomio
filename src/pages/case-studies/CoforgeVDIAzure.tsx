@@ -12,7 +12,7 @@ export default function CoforgeVDIAzure() {
   return (
     <div className="min-h-screen bg-background">
       <SEOHead
-        title="Coforge VDI Migration to Azure Case Study | Axiomio"
+        title="Coforge VDI Migration to Azure Case Study | AXIOMIO"
         description="How Coforge migrated 5,000+ VDIs to Azure in under 10 weeks with Citrix DaaS, NetScaler, and multi-factor authentication."
         keywords="Coforge, VDI migration, Azure, Citrix DaaS, virtual desktop, Windows 7 migration, NetScaler, MFA"
         ogImage="https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&q=80&w=1200"

@@ -54,7 +54,7 @@ const Deployments: React.FC = () => {
       {/* Header */}
       <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
         <div>
-          <h1 className="font-heading text-3xl font-bold text-foreground mb-2">XOPS360 Deployments</h1>
+          <h1 className="font-heading text-3xl font-bold text-foreground mb-2">Xops360 Deployments</h1>
           <p className="text-muted-foreground">Monitor and manage active platform deployments</p>
         </div>
         <Button className="bg-primary hover:bg-primary/90 gap-2">
@@ -163,7 +163,7 @@ const Deployments: React.FC = () => {
         <div className="glass-premium rounded-2xl p-12 text-center">
           <Server className="w-12 h-12 text-muted-foreground mx-auto mb-4" />
           <h3 className="font-heading text-lg font-semibold text-foreground mb-2">No deployments yet</h3>
-          <p className="text-muted-foreground mb-4">Create a client first, then deploy XOPS360</p>
+          <p className="text-muted-foreground mb-4">Create a client first, then deploy Xops360</p>
         </div>
       )}
     </div>

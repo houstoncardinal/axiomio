@@ -178,7 +178,7 @@ export default function InfrastructureAsCode() {
   return (
     <main className="min-h-screen bg-background overflow-hidden">
       <SEOHead
-        title="Infrastructure as Code Services | Terraform, OpenTofu & Ansible | Axiomio"
+        title="Infrastructure as Code Services | Terraform, OpenTofu & Ansible | AXIOMIO"
         description="Achieve 70% faster infrastructure provisioning with IaC services. Expert implementation of Terraform, OpenTofu, and Ansible for automated, reproducible infrastructure across AWS, Azure, and GCP. Enterprise-grade automation with GitOps workflows."
         keywords="infrastructure as code, IaC, terraform, opentofu, ansible, infrastructure automation, configuration management, DevOps, GitOps, multi-cloud infrastructure, terraform consulting, ansible automation, IaC implementation, infrastructure provisioning, cloud automation, IaC best practices"
         canonicalUrl="https://axiomio.com/services/infrastructure-as-code"

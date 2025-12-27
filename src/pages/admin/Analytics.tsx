@@ -18,7 +18,7 @@ const topPagesData = [
   { page: 'Services', views: 8200 },
   { page: 'About', views: 6100 },
   { page: 'Contact', views: 4300 },
-  { page: 'XOPS360', views: 3200 },
+  { page: 'Xops360', views: 3200 },
 ];
 
 const MetricCard: React.FC<{

@@ -11,7 +11,7 @@ import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from 
 import { toast } from '@/hooks/use-toast';
 import { PremiumCard } from '@/components/PremiumCard';
 
-const XOPS360Clients: React.FC = () => {
+const Xops360Clients: React.FC = () => {
   const queryClient = useQueryClient();
   const [isDialogOpen, setIsDialogOpen] = useState(false);
   const [searchTerm, setSearchTerm] = useState('');
@@ -107,8 +107,8 @@ const XOPS360Clients: React.FC = () => {
       {/* Header */}
       <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
         <div>
-          <h1 className="font-heading text-3xl font-bold text-foreground mb-2">XOPS360 Clients</h1>
-          <p className="text-muted-foreground">Manage your XOPS360 platform clients</p>
+          <h1 className="font-heading text-3xl font-bold text-foreground mb-2">Xops360 Clients</h1>
+          <p className="text-muted-foreground">Manage your Xops360 platform clients</p>
         </div>
         <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
           <DialogTrigger asChild>
@@ -119,7 +119,7 @@ const XOPS360Clients: React.FC = () => {
           </DialogTrigger>
           <DialogContent className="glass-premium border-border/30 max-w-2xl max-h-[90vh] overflow-y-auto">
             <DialogHeader>
-              <DialogTitle className="font-heading text-xl">Add New XOPS360 Client</DialogTitle>
+              <DialogTitle className="font-heading text-xl">Add New Xops360 Client</DialogTitle>
             </DialogHeader>
             <form
               onSubmit={(e) => {
@@ -349,7 +349,7 @@ const XOPS360Clients: React.FC = () => {
         <div className="glass-premium rounded-2xl p-12 text-center">
           <Building2 className="w-12 h-12 text-muted-foreground mx-auto mb-4" />
           <h3 className="font-heading text-lg font-semibold text-foreground mb-2">No clients yet</h3>
-          <p className="text-muted-foreground mb-4">Add your first XOPS360 client to get started</p>
+          <p className="text-muted-foreground mb-4">Add your first Xops360 client to get started</p>
           <Button onClick={() => setIsDialogOpen(true)} className="bg-primary hover:bg-primary/90 gap-2">
             <Plus className="w-4 h-4" />
             Add Client
@@ -360,4 +360,4 @@ const XOPS360Clients: React.FC = () => {
   );
 };
 
-export default XOPS360Clients;
+export default Xops360Clients;

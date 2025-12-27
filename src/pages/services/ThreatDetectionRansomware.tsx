@@ -82,7 +82,7 @@ export default function ThreatDetectionRansomware() {
   return (
     <main className="min-h-screen bg-background overflow-hidden">
       <SEOHead
-        title="Threat Detection & Ransomware Protection | 24/7 SOC Services | Axiomio"
+        title="Threat Detection & Ransomware Protection | 24/7 SOC Services | AXIOMIO"
         description="Advanced threat detection and ransomware protection with 99.9% detection rate and sub-5min response time. 24/7 SOC monitoring, behavioral analytics, and automated incident response."
         keywords="threat detection, ransomware protection, SOC services, behavioral analytics, incident response, threat intelligence, zero-day protection, security monitoring"
         canonicalUrl="https://axiomio.com/services/threat-detection-ransomware"

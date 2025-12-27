@@ -30,8 +30,8 @@ const EnParadigmSOC = () => {
   return (
     <div className="min-h-screen bg-slate-50">
       <SEOHead
-        title="EnParadigm Cloud SOC Case Study | AWS Security Operations Center | Axiomio"
-        description="How Axiomio implemented a comprehensive Cloud Security Operations Center for enParadigm using AWS GuardDuty, Security Hub, and Kibana for 24/7 threat detection and compliance monitoring."
+        title="EnParadigm Cloud SOC Case Study | AWS Security Operations Center | AXIOMIO"
+        description="How AXIOMIO implemented a comprehensive Cloud Security Operations Center for enParadigm using AWS GuardDuty, Security Hub, and Kibana for 24/7 threat detection and compliance monitoring."
         keywords="enParadigm, Cloud SOC, AWS GuardDuty, Security Hub, threat detection, compliance monitoring, Amazon Inspector, CIS Benchmarks, security automation"
         canonicalUrl="https://axiomio.com/case-studies/enparadigm-soc"
       />

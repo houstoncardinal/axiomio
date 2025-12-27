@@ -27,8 +27,8 @@ const BlueYonderCitrix = () => {
   return (
     <div className="min-h-screen bg-slate-50">
       <SEOHead
-        title="Blue Yonder Case Study | Citrix Infrastructure Deployment for 4,000 Users | Axiomio"
-        description="How Axiomio deployed enterprise Citrix infrastructure across Azure and on-premises for Blue Yonder, enabling 4,000 concurrent users across 8 global data centers with GSLB."
+        title="Blue Yonder Case Study | Citrix Infrastructure Deployment for 4,000 Users | AXIOMIO"
+        description="How AXIOMIO deployed enterprise Citrix infrastructure across Azure and on-premises for Blue Yonder, enabling 4,000 concurrent users across 8 global data centers with GSLB."
         keywords="Blue Yonder, Citrix deployment, Virtual Apps, NetScaler, GSLB, Azure Citrix, supply chain, 4000 users, enterprise virtualization"
         canonicalUrl="https://axiomio.com/case-studies/blue-yonder-citrix"
       />

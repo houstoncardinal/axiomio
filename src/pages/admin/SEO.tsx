@@ -116,7 +116,7 @@ export default function SEO() {
     { keyword: 'enterprise technology consulting', position: 3, change: 2, volume: 2400 },
     { keyword: 'digital transformation services', position: 5, change: -1, volume: 1800 },
     { keyword: 'AI automation consulting', position: 7, change: 4, volume: 1200 },
-    { keyword: 'XOPS360 platform', position: 1, change: 0, volume: 320 },
+    { keyword: 'Xops360 platform', position: 1, change: 0, volume: 320 },
     { keyword: 'cloud operations platform', position: 12, change: 0, volume: 890 },
   ];
 

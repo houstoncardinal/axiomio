@@ -28,8 +28,8 @@ const SaxonInsuranceAzure = () => {
   return (
     <div className="min-h-screen bg-slate-50">
       <SEOHead
-        title="Saxon Insurance Case Study | Datacenter Exit & Azure Migration | Axiomio"
-        description="How Axiomio helped Saxon Insurance exit their datacenter and migrate to Microsoft Azure with zero downtime, eliminating latency and achieving disaster recovery in one month."
+        title="Saxon Insurance Case Study | Datacenter Exit & Azure Migration | AXIOMIO"
+        description="How AXIOMIO helped Saxon Insurance exit their datacenter and migrate to Microsoft Azure with zero downtime, eliminating latency and achieving disaster recovery in one month."
         keywords="Saxon Insurance, Azure migration, datacenter exit, zero downtime migration, Azure Site Recovery, disaster recovery, cloud migration, Cayman Islands"
         canonicalUrl="https://axiomio.com/case-studies/saxon-insurance-azure"
       />

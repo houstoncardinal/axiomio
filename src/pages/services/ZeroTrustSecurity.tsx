@@ -82,7 +82,7 @@ export default function ZeroTrustSecurity() {
   return (
     <main className="min-h-screen bg-background overflow-hidden">
       <SEOHead
-        title="Zero Trust Security | Never Trust, Always Verify | Axiomio"
+        title="Zero Trust Security | Never Trust, Always Verify | AXIOMIO"
         description="Implement zero trust security architecture with continuous verification, identity management, and micro-segmentation. Reduce breaches by 80% with our comprehensive zero trust solutions."
         keywords="zero trust security, zero trust architecture, identity and access management, IAM, micro-segmentation, continuous authentication, device security, least privilege access"
         canonicalUrl="https://axiomio.com/services/zero-trust-security"

@@ -46,7 +46,7 @@ const About = lazy(() => import("./pages/About"));
 const Services = lazy(() => import("./pages/Services"));
 const Approach = lazy(() => import("./pages/Approach"));
 const Contact = lazy(() => import("./pages/Contact"));
-const Xops360 = lazy(() => import("./pages/Xops360"));
+const Xops360 = lazy(() => import("./pages/XOPS360"));
 const Auth = lazy(() => import("./pages/Auth"));
 const StrategyAdvisory = lazy(() => import("./pages/services/StrategyAdvisory"));
 const TechnologySystems = lazy(() => import("./pages/services/TechnologySystems"));

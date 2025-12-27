@@ -99,7 +99,7 @@ const Xops360Runbooks = lazy(() => import("./pages/admin/xops360/Runbooks"));
 const Xops360Integrations = lazy(() => import("./pages/admin/xops360/Integrations"));
 const Xops360Metrics = lazy(() => import("./pages/admin/xops360/Metrics"));
 const NotFound = lazy(() => import("./pages/NotFound"));
-const Xops360Documentation = lazy(() => import("./pages/books/Xops360Documentation"));
+const Xops360Documentation = lazy(() => import("./pages/books/XOPS360Documentation"));
 const ScifferCaseStudy = lazy(() => import("./pages/case-studies/sciffer-enhances-security-with-axiom"));
 const EnParadigmCaseStudy = lazy(() => import("./pages/case-studies/EnParadigmCaseStudy"));
 const EnParadigmSOC = lazy(() => import("./pages/case-studies/EnParadigmSOC"));

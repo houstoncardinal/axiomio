@@ -97,9 +97,8 @@ const BlueYonderCitrix = lazy(() => import("./pages/case-studies/BlueYonderCitri
 const SaxonInsuranceAzure = lazy(() => import("./pages/case-studies/SaxonInsuranceAzure"));
 const ArchLawSmartContracts = lazy(() => import("./pages/case-studies/ArchLawSmartContracts"));
 const OneForceBOT = lazy(() => import("./pages/case-studies/OneForceBOT"));
-const DreamCasinoAWS = lazy(() => import("./pages/case-studies/DreamCasinoAWS"));
-const EnterpriseHealthcareHIPAA = lazy(() => import("./pages/case-studies/EnterpriseHealthcareHIPAA"));
-const GlobalFinTechFraud = lazy(() => import("./pages/case-studies/GlobalFinTechFraud"));
+const CoforgeVDIAzure = lazy(() => import("./pages/case-studies/CoforgeVDIAzure"));
+const FrontlinePerformanceGroup = lazy(() => import("./pages/case-studies/FrontlinePerformanceGroup"));
 const CaseStudies = lazy(() => import("./pages/CaseStudies"));
 
 // Single clean loading screen - white background, smooth and fast
@@ -177,9 +176,8 @@ const AppContent = () => {
           <Route path="/case-studies/saxon-insurance-azure" element={<SaxonInsuranceAzure />} />
           <Route path="/case-studies/arch-law-smart-contracts" element={<ArchLawSmartContracts />} />
           <Route path="/case-studies/oneforce-bot" element={<OneForceBOT />} />
-          <Route path="/case-studies/dreamcasino-aws" element={<DreamCasinoAWS />} />
-          <Route path="/case-studies/enterprise-healthcare-hipaa" element={<EnterpriseHealthcareHIPAA />} />
-          <Route path="/case-studies/global-fintech-fraud" element={<GlobalFinTechFraud />} />
+          <Route path="/case-studies/coforge-vdi-azure" element={<CoforgeVDIAzure />} />
+          <Route path="/case-studies/frontline-performance-group" element={<FrontlinePerformanceGroup />} />
 
           {/* Admin Routes */}
           <Route path="/admin" element={<AdminLayout />}>

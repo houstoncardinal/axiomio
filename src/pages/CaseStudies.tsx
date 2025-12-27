@@ -51,7 +51,7 @@ const caseStudies = [
       { icon: Clock, value: "60%", label: "Faster Deployment" },
     ],
     tags: ["AWS", "Cloud Migration", "Cost Optimization"],
-    link: "/blog",
+    link: "/case-studies/dreamcasino-aws",
   },
   {
     client: "Enterprise Healthcare",
@@ -66,7 +66,7 @@ const caseStudies = [
       { icon: Clock, value: "40%", label: "Time Savings" },
     ],
     tags: ["Azure", "Security", "Compliance"],
-    link: "/contact",
+    link: "/case-studies/enterprise-healthcare-hipaa",
   },
   {
     client: "Global FinTech",
@@ -81,7 +81,7 @@ const caseStudies = [
       { icon: Clock, value: "24/7", label: "Monitoring" },
     ],
     tags: ["AI/ML", "AWS", "Real-Time Analytics"],
-    link: "/contact",
+    link: "/case-studies/global-fintech-fraud",
   },
   {
     client: "enParadigm",

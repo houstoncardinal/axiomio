@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 80" fill="none">
+  <defs>
+    <style>
+      .ap-red { fill: #D71920; stroke: #D71920; }
+      .ap-text { fill: #1A1A1A; }
+    </style>
+  </defs>
+  <g transform="translate(20, 10)">
+    <!-- AP Circle -->
+    <circle cx="30" cy="30" r="28" class="ap-red" stroke-width="3" fill="none"/>
+    <!-- AP Text inside circle -->
+    <text x="30" y="42" font-family="Arial Black, sans-serif" font-size="32" font-weight="900" class="ap-red" text-anchor="middle" letter-spacing="-2">AP</text>
+    <!-- NEWS -->
+    <text x="70" y="42" font-family="Arial, sans-serif" font-size="24" font-weight="700" class="ap-text" letter-spacing="1">NEWS</text>
+  </g>
+</svg>

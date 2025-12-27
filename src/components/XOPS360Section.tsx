@@ -726,50 +726,67 @@ export function XOPS360Section() {
   const scale = useTransform(scrollYProgress, [0, 0.15], [0.95, 1]);
 
   return (
-    <section ref={containerRef} className="py-10 md:py-14 lg:py-16 relative overflow-hidden">
-      {/* Background */}
+    <section ref={containerRef} className="py-20 lg:py-24 relative overflow-hidden bg-gradient-to-b from-muted/20 via-background to-background">
+      {/* Enhanced Background */}
       <div className="absolute inset-0">
-        <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-primary/40 to-transparent" />
-        <div 
-          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] md:w-[1200px] h-[800px] md:h-[1200px] opacity-50"
+        <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-primary/50 to-transparent" />
+        <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-border to-transparent" />
+
+        {/* Premium gradient orbs */}
+        <div
+          className="absolute top-1/4 left-1/4 w-[600px] h-[600px] opacity-40 animate-pulse"
           style={{
-            background: "radial-gradient(circle, hsl(var(--primary) / 0.08) 0%, hsl(var(--primary) / 0.02) 40%, transparent 70%)",
+            background: "radial-gradient(circle, hsl(var(--primary) / 0.15) 0%, hsl(var(--primary) / 0.05) 30%, transparent 60%)",
           }}
         />
-        
-        {/* Subtle grid */}
-        <div 
-          className="absolute inset-0 opacity-[0.02]"
+        <div
+          className="absolute bottom-1/4 right-1/4 w-[500px] h-[500px] opacity-30"
+          style={{
+            background: "radial-gradient(circle, hsl(var(--accent) / 0.12) 0%, hsl(var(--accent) / 0.03) 30%, transparent 60%)",
+          }}
+        />
+
+        {/* Subtle enterprise grid */}
+        <div
+          className="absolute inset-0 opacity-[0.025]"
           style={{
             backgroundImage: `
               linear-gradient(hsl(var(--primary)) 1px, transparent 1px),
               linear-gradient(90deg, hsl(var(--primary)) 1px, transparent 1px)
             `,
-            backgroundSize: '60px 60px',
+            backgroundSize: '80px 80px',
           }}
         />
       </div>
 
-      <motion.div 
-        className="container relative z-10 mx-auto px-4 md:px-6 lg:px-8"
+      <motion.div
+        className="container relative z-10 mx-auto px-6 lg:px-8"
         style={{ opacity, scale }}
       >
-        {/* Header - Compact */}
-        <div className="text-center max-w-3xl mx-auto mb-6 md:mb-8">
+        {/* Powerful Header with Large Logo */}
+        <div className="text-center max-w-5xl mx-auto mb-8 md:mb-10">
           <motion.div
             initial={{ opacity: 0, y: 15 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="mb-3"
+            className="mb-6 flex flex-col items-center gap-5"
           >
-            <span className="inline-flex items-center gap-2 text-[10px] md:text-xs font-semibold uppercase tracking-[0.15em] text-primary px-3 py-1.5 rounded-full border border-primary/30 bg-primary/10">
-              <motion.span
-                className="w-1.5 h-1.5 bg-primary rounded-full"
-                animate={{ scale: [1, 1.4, 1], opacity: [1, 0.6, 1] }}
-                transition={{ duration: 2, repeat: Infinity }}
+            {/* Large Product Logo */}
+            <motion.div
+              initial={{ opacity: 0, scale: 0.8 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, type: "spring", stiffness: 100 }}
+              className="relative"
+            >
+              {/* Glow effect behind logo */}
+              <div className="absolute inset-0 blur-3xl opacity-30 bg-primary/50 scale-150" />
+              <img
+                src="/logos/Xops360/Logo_Colored_v1.png"
+                alt="XOPS360"
+                className="relative h-16 md:h-20 lg:h-24 w-auto drop-shadow-2xl"
               />
-              Flagship Platform
-            </span>
+            </motion.div>
           </motion.div>
 
           <motion.h2
@@ -777,9 +794,12 @@ export function XOPS360Section() {
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.1 }}
             viewport={{ once: true }}
-            className="font-heading text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-foreground mb-2 md:mb-3"
+            className="font-heading text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-foreground mb-4"
           >
-            Introducing <AnimatedGradientText>XOPS360</AnimatedGradientText>
+            AI-Powered Operations,{" "}
+            <span className="bg-gradient-to-r from-primary via-blue-500 to-secondary bg-clip-text text-transparent">
+              Unified in One Platform
+            </span>
           </motion.h2>
 
           <motion.p
@@ -787,55 +807,54 @@ export function XOPS360Section() {
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.2 }}
             viewport={{ once: true }}
-            className="text-sm md:text-base lg:text-lg text-muted-foreground leading-relaxed"
+            className="text-base md:text-lg text-muted-foreground leading-relaxed max-w-3xl mx-auto"
           >
-            AI-powered operations replacing manual processes with intelligent automation.{" "}
-            <span className="text-primary font-medium hidden md:inline">Click any node to explore.</span>
-            <span className="text-primary font-medium md:hidden">Tap to explore.</span>
+            Replace manual processes with intelligent automation. DevOps, SecOps, CloudOps, and AI Agents working together seamlessly.{" "}
+            <span className="text-primary font-semibold">Click any node to explore.</span>
           </motion.p>
         </div>
 
-        {/* Central visualization container - perfectly centered */}
+        {/* Central visualization container - compact */}
         <motion.div
           initial={{ opacity: 0, scale: 0.9 }}
           whileInView={{ opacity: 1, scale: 1 }}
           transition={{ delay: 0.3, duration: 0.6 }}
           viewport={{ once: true }}
-          className="relative flex items-center justify-center"
+          className="relative flex items-center justify-center mb-6"
         >
           {/* Decorative outer glow ring */}
           <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-            <div 
-              className="w-[280px] h-[220px] md:w-[380px] md:h-[300px] lg:w-[440px] lg:h-[340px] rounded-[50%] opacity-20"
+            <div
+              className="w-[280px] h-[220px] md:w-[360px] md:h-[280px] lg:w-[400px] lg:h-[310px] rounded-[50%] opacity-20"
               style={{
                 background: "radial-gradient(ellipse at center, hsl(var(--primary) / 0.3) 0%, transparent 70%)",
               }}
             />
           </div>
 
-          {/* Visualization wrapper with fixed aspect ratio */}
-          <div 
+          {/* Visualization wrapper - more compact */}
+          <div
             ref={visualRef}
-            className="relative w-[280px] h-[220px] sm:w-[320px] sm:h-[260px] md:w-[400px] md:h-[320px] lg:w-[460px] lg:h-[360px]"
+            className="relative w-[280px] h-[220px] sm:w-[320px] sm:h-[250px] md:w-[380px] md:h-[290px] lg:w-[420px] lg:h-[320px]"
           >
             <div className="absolute inset-0 flex items-center justify-center">
               {/* Connection lines */}
-              <ConnectionLines 
+              <ConnectionLines
                 animationPhase={animationPhase}
-                hoveredNode={hoveredNode} 
+                hoveredNode={hoveredNode}
                 selectedNode={selectedNode}
                 isMobile={isMobile}
               />
-              
+
               {/* Central hub */}
-              <CentralHub 
+              <CentralHub
                 animationPhase={animationPhase}
-                isActive={hoveredNode !== null || selectedNode !== null} 
+                isActive={hoveredNode !== null || selectedNode !== null}
               />
-              
+
               {/* Floating particles around hub */}
               <HubParticles animationPhase={animationPhase} />
-              
+
               {/* Operation nodes */}
               {opsNodes.map((node, index) => (
                 <EnterpriseNode
@@ -854,52 +873,64 @@ export function XOPS360Section() {
             </div>
           </div>
         </motion.div>
-        
+
         {/* Key metrics - compact inline */}
         <KeyMetrics animationPhase={animationPhase} isMobile={isMobile} />
 
-        {/* Features grid - 2 rows of 3 compact cards */}
-        <div className="grid grid-cols-2 md:grid-cols-3 gap-3 md:gap-4 mt-8 md:mt-10">
-          {features.map((feature, index) => (
-            <motion.div
-              key={feature.title}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ delay: index * 0.05, duration: 0.4 }}
-              viewport={{ once: true }}
-              whileHover={{ y: -3, transition: { duration: 0.2 } }}
-              className="group relative p-3 md:p-5 rounded-xl bg-gradient-to-br from-muted/50 to-muted/20 border border-border/50 hover:border-primary/30 transition-all duration-300"
-            >
-              <div className="absolute inset-0 rounded-xl bg-gradient-to-br from-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-              
-              <div className="relative z-10">
-                <div className="p-2 rounded-lg bg-primary/10 text-primary w-fit mb-2 md:mb-3 border border-primary/20 group-hover:bg-primary/20 transition-colors">
-                  <feature.icon className="h-4 w-4 md:h-5 md:w-5" />
+        {/* Compact Features Grid - 2 rows of 3 */}
+        <div className="max-w-5xl mx-auto mt-8 md:mt-10">
+          <div className="grid grid-cols-2 md:grid-cols-3 gap-3 md:gap-4">
+            {features.map((feature, index) => (
+              <motion.div
+                key={feature.title}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ delay: index * 0.05, duration: 0.4 }}
+                viewport={{ once: true }}
+                whileHover={{ y: -4, transition: { duration: 0.2 } }}
+                className="group relative p-4 md:p-5 rounded-xl bg-gradient-to-br from-card/80 via-card/60 to-muted/30 border border-border/60 hover:border-primary/40 hover:bg-card/90 transition-all duration-300 backdrop-blur-sm shadow-md hover:shadow-xl hover:shadow-primary/10"
+              >
+                {/* Hover gradient overlay */}
+                <div className="absolute inset-0 rounded-xl bg-gradient-to-br from-primary/8 via-primary/3 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+
+                <div className="relative z-10">
+                  {/* Icon and title inline */}
+                  <div className="flex items-start gap-3 mb-2">
+                    <div className="inline-flex p-2 rounded-lg bg-primary/10 text-primary border border-primary/20 group-hover:bg-primary/15 group-hover:border-primary/30 group-hover:scale-105 transition-all duration-300 shrink-0">
+                      <feature.icon className="h-5 w-5" />
+                    </div>
+                    <h3 className="font-heading text-sm md:text-base font-bold text-foreground group-hover:text-primary transition-colors pt-1">
+                      {feature.title}
+                    </h3>
+                  </div>
+
+                  {/* Description */}
+                  <p className="text-xs md:text-sm text-muted-foreground leading-relaxed">
+                    {feature.description}
+                  </p>
                 </div>
-                <h3 className="font-heading text-sm md:text-base font-semibold text-foreground mb-1 group-hover:text-primary transition-colors">
-                  {feature.title}
-                </h3>
-                <p className="text-xs md:text-sm text-muted-foreground leading-relaxed line-clamp-2">
-                  {feature.description}
-                </p>
-              </div>
-            </motion.div>
-          ))}
+
+                {/* Bottom accent line */}
+                <div className="absolute bottom-0 left-0 right-0 h-0.5 bg-gradient-to-r from-transparent via-primary/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-b-xl" />
+              </motion.div>
+            ))}
+          </div>
         </div>
 
-        {/* CTA - compact */}
+        {/* Compact CTA */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.3 }}
+          transition={{ delay: 0.3, duration: 0.5 }}
           viewport={{ once: true }}
           className="text-center mt-8 md:mt-10"
         >
           <MagneticButton>
-            <Button variant="hero" size="lg" asChild>
+            <Button variant="hero" size="xl" asChild className="group/btn shadow-xl hover:shadow-2xl">
               <Link to="/xops360">
-                Explore XOPS360
-                <ArrowRight className="ml-2 h-4 w-4" />
+                <Zap className="mr-2 h-5 w-5 group-hover/btn:rotate-12 transition-transform duration-300" />
+                Explore XOPS360 Platform
+                <ArrowRight className="ml-2 h-5 w-5 group-hover/btn:translate-x-1 transition-transform duration-300" />
               </Link>
             </Button>
           </MagneticButton>

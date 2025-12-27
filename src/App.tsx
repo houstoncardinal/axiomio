@@ -91,6 +91,13 @@ const XOPS360Metrics = lazy(() => import("./pages/admin/xops360/Metrics"));
 const NotFound = lazy(() => import("./pages/NotFound"));
 const XOPS360Documentation = lazy(() => import("./pages/books/XOPS360Documentation"));
 const ScifferCaseStudy = lazy(() => import("./pages/case-studies/sciffer-enhances-security-with-axiom"));
+const EnParadigmCaseStudy = lazy(() => import("./pages/case-studies/EnParadigmCaseStudy"));
+const EnParadigmSOC = lazy(() => import("./pages/case-studies/EnParadigmSOC"));
+const BlueYonderCitrix = lazy(() => import("./pages/case-studies/BlueYonderCitrix"));
+const SaxonInsuranceAzure = lazy(() => import("./pages/case-studies/SaxonInsuranceAzure"));
+const ArchLawSmartContracts = lazy(() => import("./pages/case-studies/ArchLawSmartContracts"));
+const OneForceBOT = lazy(() => import("./pages/case-studies/OneForceBOT"));
+const CaseStudies = lazy(() => import("./pages/CaseStudies"));
 
 // Single clean loading screen - white background, smooth and fast
 const PageLoader = () => (
@@ -159,7 +166,14 @@ const AppContent = () => {
           <Route path="/request-a-demo" element={<RequestDemo />} />
           <Route path="/auth" element={<Auth />} />
           <Route path="/books/xops-360-documentation" element={<XOPS360Documentation />} />
+          <Route path="/case-studies" element={<CaseStudies />} />
           <Route path="/case-studies/sciffer-enhances-security-with-axiom" element={<ScifferCaseStudy />} />
+          <Route path="/case-studies/enparadigm" element={<EnParadigmCaseStudy />} />
+          <Route path="/case-studies/enparadigm-soc" element={<EnParadigmSOC />} />
+          <Route path="/case-studies/blue-yonder-citrix" element={<BlueYonderCitrix />} />
+          <Route path="/case-studies/saxon-insurance-azure" element={<SaxonInsuranceAzure />} />
+          <Route path="/case-studies/arch-law-smart-contracts" element={<ArchLawSmartContracts />} />
+          <Route path="/case-studies/oneforce-bot" element={<OneForceBOT />} />
 
           {/* Admin Routes */}
           <Route path="/admin" element={<AdminLayout />}>

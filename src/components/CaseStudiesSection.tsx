@@ -1,9 +1,10 @@
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import { Link } from "react-router-dom";
-import { ArrowRight, TrendingDown, TrendingUp, Zap, Clock, ChevronLeft, ChevronRight, ShieldCheck } from "lucide-react";
+import { ArrowRight, TrendingDown, TrendingUp, Zap, Clock, ChevronLeft, ChevronRight, ShieldCheck, ExternalLink } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { MagneticButton } from "./MagneticButton";
 
 const caseStudies = [
   {
@@ -20,6 +21,21 @@ const caseStudies = [
     ],
     tags: ["Security", "DevSecOps", "ISO 27001", "Azure"],
     link: "/case-studies/sciffer-enhances-security-with-axiom",
+  },
+  {
+    client: "EnParadigm",
+    industry: "EdTech & Learning Solutions",
+    title: "Reduced Deployment Time by 87.5% with AWS DevOps Pipeline",
+    description: "Mid-sized EdTech firm migrated from on-premises to AWS with automated one-click DevOps pipeline, eliminating manual deployments and security vulnerabilities.",
+    image: "https://images.unsplash.com/photo-1501504905252-473c47e087f8?auto=format&fit=crop&q=80&w=800",
+    metrics: [
+      { icon: TrendingDown, value: "87.5%", label: "Time Reduction" },
+      { icon: Clock, value: "1 Hour", label: "Deployment Time" },
+      { icon: ShieldCheck, value: "DDoS", label: "Prevention" },
+      { icon: Zap, value: "One-Click", label: "Deployment" },
+    ],
+    tags: ["AWS", "DevOps", "CI/CD", "CloudFormation"],
+    link: "/case-studies/enparadigm",
   },
   {
     client: "DreamCasino",
@@ -70,152 +86,210 @@ const caseStudies = [
 
 export function CaseStudiesSection() {
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [direction, setDirection] = useState(0);
 
   const nextSlide = () => {
+    setDirection(1);
     setCurrentIndex((prev) => (prev + 1) % caseStudies.length);
   };
 
   const prevSlide = () => {
+    setDirection(-1);
     setCurrentIndex((prev) => (prev - 1 + caseStudies.length) % caseStudies.length);
   };
 
   const goToSlide = (index: number) => {
+    setDirection(index > currentIndex ? 1 : -1);
     setCurrentIndex(index);
   };
 
+  // Keyboard navigation
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "ArrowLeft") prevSlide();
+      if (e.key === "ArrowRight") nextSlide();
+    };
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, []);
+
+  const currentStudy = caseStudies[currentIndex];
+
+  const slideVariants = {
+    enter: (direction: number) => ({
+      x: direction > 0 ? 1000 : -1000,
+      opacity: 0,
+      scale: 0.95,
+    }),
+    center: {
+      x: 0,
+      opacity: 1,
+      scale: 1,
+    },
+    exit: (direction: number) => ({
+      x: direction < 0 ? 1000 : -1000,
+      opacity: 0,
+      scale: 0.95,
+    }),
+  };
+
   return (
-    <section className="py-12 lg:py-16 relative overflow-hidden bg-slate-50/30">
+    <section className="py-20 lg:py-24 relative overflow-hidden bg-gradient-to-b from-background via-muted/20 to-background">
+      {/* Background elements */}
+      <div className="absolute inset-0">
+        <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-border to-transparent" />
+      </div>
+
       <div className="container relative z-10 mx-auto px-6 lg:px-8">
+        {/* Header */}
         <motion.div
-          initial={{ opacity: 0, y: 15 }}
+          initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
+          transition={{ duration: 0.6 }}
           viewport={{ once: true }}
-          className="text-center max-w-3xl mx-auto mb-6"
+          className="text-center max-w-3xl mx-auto mb-12"
         >
-          <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg bg-slate-100 border border-slate-200 mb-2">
-            <span className="text-xs font-semibold uppercase tracking-[0.15em] text-slate-700">Case Studies</span>
+          <div className="inline-flex items-center gap-2.5 px-4 py-2 rounded-full bg-primary/10 border border-primary/20 mb-4">
+            <span className="text-xs font-bold uppercase tracking-[0.15em] text-primary">Success Stories</span>
           </div>
-          <h2 className="font-heading text-xl md:text-2xl font-bold text-slate-900 mb-1">
+          <h2 className="font-heading text-3xl md:text-4xl lg:text-5xl font-bold text-foreground mb-3">
             Real Results, Real Impact
           </h2>
-          <p className="text-slate-600 text-xs max-w-2xl mx-auto leading-relaxed">
+          <p className="text-base md:text-lg text-muted-foreground max-w-2xl mx-auto">
             Enterprise transformations that deliver measurable outcomes
           </p>
         </motion.div>
 
-        {/* Ultra-Compact Horizontal Carousel */}
-        <div className="relative">
-          {/* Navigation Arrows */}
-          <button
-            onClick={prevSlide}
-            className="absolute left-2 top-1/2 -translate-y-1/2 z-20 w-8 h-8 rounded-full bg-white/90 backdrop-blur-sm border border-slate-200 shadow-lg flex items-center justify-center hover:bg-white transition-colors"
-            aria-label="Previous case study"
-          >
-            <ChevronLeft className="w-4 h-4 text-slate-700" />
-          </button>
-
-          <button
-            onClick={nextSlide}
-            className="absolute right-2 top-1/2 -translate-y-1/2 z-20 w-8 h-8 rounded-full bg-white/90 backdrop-blur-sm border border-slate-200 shadow-lg flex items-center justify-center hover:bg-white transition-colors"
-            aria-label="Next case study"
-          >
-            <ChevronRight className="w-4 h-4 text-slate-700" />
-          </button>
-
-          {/* Horizontal Scroll Container */}
-          <div className="overflow-hidden">
-            <motion.div
-              className="flex gap-4 lg:gap-6"
-              animate={{ x: `-${currentIndex * 100}%` }}
-              transition={{ duration: 0.5, ease: "easeInOut" }}
+        {/* Single Card Carousel */}
+        <div className="max-w-4xl mx-auto relative">
+          {/* Navigation Arrows - Desktop */}
+          <div className="hidden md:flex">
+            <button
+              onClick={prevSlide}
+              className="absolute -left-16 top-1/2 -translate-y-1/2 z-20 w-12 h-12 rounded-full bg-card border border-border hover:border-primary/40 hover:bg-card/80 shadow-lg flex items-center justify-center transition-all duration-300 group"
+              aria-label="Previous case study"
             >
-              {caseStudies.map((study, index) => (
-                <motion.div
-                  key={study.client}
-                  className="flex-shrink-0 w-full max-w-sm mx-auto"
-                  initial={{ opacity: 0, scale: 0.95 }}
-                  whileInView={{ opacity: 1, scale: 1 }}
-                  transition={{ delay: index * 0.1, duration: 0.4 }}
-                  viewport={{ once: true }}
-                >
-                  <div className="bg-white rounded-xl overflow-hidden border border-slate-200 shadow-sm hover:shadow-md transition-shadow">
-                    {/* Compact Image */}
-                    <div className="relative aspect-[4/3]">
+              <ChevronLeft className="w-5 h-5 text-foreground group-hover:text-primary transition-colors" />
+            </button>
+
+            <button
+              onClick={nextSlide}
+              className="absolute -right-16 top-1/2 -translate-y-1/2 z-20 w-12 h-12 rounded-full bg-card border border-border hover:border-primary/40 hover:bg-card/80 shadow-lg flex items-center justify-center transition-all duration-300 group"
+              aria-label="Next case study"
+            >
+              <ChevronRight className="w-5 h-5 text-foreground group-hover:text-primary transition-colors" />
+            </button>
+          </div>
+
+          {/* Card Container with AnimatePresence */}
+          <div className="relative overflow-hidden min-h-[600px] flex items-center">
+            <AnimatePresence initial={false} custom={direction} mode="wait">
+              <motion.div
+                key={currentIndex}
+                custom={direction}
+                variants={slideVariants}
+                initial="enter"
+                animate="center"
+                exit="exit"
+                transition={{
+                  x: { type: "spring", stiffness: 300, damping: 30 },
+                  opacity: { duration: 0.3 },
+                }}
+                className="w-full"
+              >
+                {/* Case Study Card */}
+                <div className="bg-card rounded-2xl overflow-hidden border border-border shadow-xl hover:shadow-2xl transition-all duration-500">
+                  <div className="grid md:grid-cols-2 gap-0">
+                    {/* Image Side */}
+                    <div className="relative aspect-[4/3] md:aspect-auto md:min-h-[400px]">
                       <img
-                        src={study.image}
-                        alt={study.client}
+                        src={currentStudy.image}
+                        alt={currentStudy.client}
                         className="w-full h-full object-cover"
                       />
-                      <div className="absolute inset-0 bg-gradient-to-t from-slate-900/60 via-transparent to-transparent" />
-                      <div className="absolute bottom-3 left-3">
-                        <Badge className="bg-white/95 text-slate-900 text-[10px] px-2 py-0.5">
-                          {study.industry}
+                      <div className="absolute inset-0 bg-gradient-to-t from-background/80 via-background/20 to-transparent" />
+
+                      {/* Industry Badge */}
+                      <div className="absolute top-4 left-4">
+                        <Badge className="bg-primary text-primary-foreground text-xs px-3 py-1 shadow-lg">
+                          {currentStudy.industry}
                         </Badge>
                       </div>
                     </div>
 
-                    {/* Ultra-Compact Content */}
-                    <div className="p-4">
-                      <div className="flex items-center gap-2 mb-2">
-                        <span className="text-sm font-bold text-slate-900">{study.client}</span>
-                        <div className="h-px bg-slate-300 flex-1" />
+                    {/* Content Side */}
+                    <div className="p-8 md:p-10 flex flex-col justify-between">
+                      <div>
+                        {/* Client Name */}
+                        <div className="flex items-center gap-3 mb-4">
+                          <span className="text-2xl font-bold text-foreground">{currentStudy.client}</span>
+                          <div className="h-px bg-border flex-1" />
+                        </div>
+
+                        {/* Title */}
+                        <h3 className="font-heading text-xl md:text-2xl font-bold text-foreground mb-4 leading-tight">
+                          {currentStudy.title}
+                        </h3>
+
+                        {/* Description */}
+                        <p className="text-muted-foreground leading-relaxed mb-6">
+                          {currentStudy.description}
+                        </p>
+
+                        {/* Metrics Grid */}
+                        <div className="grid grid-cols-2 gap-3 mb-6">
+                          {currentStudy.metrics.map((metric) => {
+                            const Icon = metric.icon;
+                            return (
+                              <div
+                                key={metric.label}
+                                className="p-4 rounded-xl bg-muted/50 border border-border/50 hover:bg-muted transition-colors"
+                              >
+                                <Icon className="w-5 h-5 text-primary mb-2" />
+                                <div className="font-heading text-xl font-bold text-foreground">
+                                  {metric.value}
+                                </div>
+                                <div className="text-xs text-muted-foreground font-medium">{metric.label}</div>
+                              </div>
+                            );
+                          })}
+                        </div>
+
+                        {/* Tags */}
+                        <div className="flex flex-wrap gap-2 mb-6">
+                          {currentStudy.tags.map((tag) => (
+                            <Badge key={tag} variant="outline" className="text-xs px-3 py-1 border-border/60">
+                              {tag}
+                            </Badge>
+                          ))}
+                        </div>
                       </div>
 
-                      <h3 className="font-heading text-sm font-semibold text-slate-900 mb-2 leading-tight line-clamp-2">
-                        {study.title}
-                      </h3>
-
-                      <p className="text-slate-600 text-xs leading-tight mb-3 line-clamp-2">
-                        {study.description}
-                      </p>
-
-                      {/* Mini Metrics Row */}
-                      <div className="flex gap-2 mb-3 overflow-x-auto">
-                        {study.metrics.slice(0, 3).map((metric) => (
-                          <div
-                            key={metric.label}
-                            className="flex-shrink-0 p-1.5 rounded-md bg-slate-50 border border-slate-200 text-center min-w-[60px]"
-                          >
-                            <div className="font-heading text-xs font-bold text-slate-900 leading-none">
-                              {metric.value}
-                            </div>
-                            <div className="text-[9px] text-slate-500 font-medium leading-none mt-0.5">{metric.label}</div>
-                          </div>
-                        ))}
-                      </div>
-
-                      {/* Compact Tags */}
-                      <div className="flex flex-wrap gap-1 mb-3">
-                        {study.tags.slice(0, 2).map((tag) => (
-                          <Badge key={tag} variant="outline" className="text-[9px] px-1.5 py-0.5 border-slate-300 text-slate-700">
-                            {tag}
-                          </Badge>
-                        ))}
-                      </div>
-
-                      <Button variant="default" size="sm" className="w-full bg-slate-900 hover:bg-slate-800 text-white text-xs py-1.5 h-7" asChild>
-                        <Link to={study.link}>
-                          Read Study
-                          <ArrowRight className="ml-1 h-2.5 w-2.5" />
-                        </Link>
-                      </Button>
+                      {/* CTA Button */}
+                      <MagneticButton>
+                        <Button variant="hero" size="lg" className="w-full" asChild>
+                          <Link to={currentStudy.link}>
+                            Read Full Case Study
+                            <ArrowRight className="ml-2 h-4 w-4" />
+                          </Link>
+                        </Button>
+                      </MagneticButton>
                     </div>
                   </div>
-                </motion.div>
-              ))}
-            </motion.div>
+                </div>
+              </motion.div>
+            </AnimatePresence>
           </div>
 
-          {/* Navigation */}
-          <div className="flex justify-center items-center gap-6 mt-6">
-            {/* Previous Button */}
+          {/* Navigation Controls */}
+          <div className="flex justify-center items-center gap-6 mt-8">
+            {/* Previous Button - Mobile */}
             <button
               onClick={prevSlide}
-              className="p-2.5 rounded-lg bg-white border border-slate-200 hover:border-slate-300 hover:bg-slate-50 transition-all duration-200 shadow-sm"
+              className="md:hidden p-3 rounded-xl bg-card border border-border hover:border-primary/40 hover:bg-card/80 transition-all duration-300 shadow-md"
               aria-label="Previous case study"
             >
-              <ChevronLeft className="w-4 h-4 text-slate-700" />
+              <ChevronLeft className="w-5 h-5 text-foreground" />
             </button>
 
             {/* Dots Indicator */}
@@ -224,56 +298,60 @@ export function CaseStudiesSection() {
                 <button
                   key={index}
                   onClick={() => goToSlide(index)}
-                  className={`w-2.5 h-2.5 rounded-full transition-all duration-200 ${
+                  className={`transition-all duration-300 rounded-full ${
                     index === currentIndex
-                      ? "bg-slate-900 scale-125"
-                      : "bg-slate-300 hover:bg-slate-400"
+                      ? "w-8 h-3 bg-primary"
+                      : "w-3 h-3 bg-border hover:bg-primary/50"
                   }`}
                   aria-label={`Go to case study ${index + 1}`}
                 />
               ))}
             </div>
 
-            {/* Next Button */}
+            {/* Next Button - Mobile */}
             <button
               onClick={nextSlide}
-              className="p-2.5 rounded-lg bg-white border border-slate-200 hover:border-slate-300 hover:bg-slate-50 transition-all duration-200 shadow-sm"
+              className="md:hidden p-3 rounded-xl bg-card border border-border hover:border-primary/40 hover:bg-card/80 transition-all duration-300 shadow-md"
               aria-label="Next case study"
             >
-              <ChevronRight className="w-4 h-4 text-slate-700" />
+              <ChevronRight className="w-5 h-5 text-foreground" />
             </button>
           </div>
 
           {/* Progress Indicator */}
-          <div className="mt-4 max-w-xs mx-auto">
-            <div className="text-center text-xs text-slate-500 font-medium">
+          <div className="mt-4 text-center">
+            <span className="text-sm text-muted-foreground font-medium">
               {currentIndex + 1} of {caseStudies.length}
-            </div>
+            </span>
           </div>
         </div>
 
-        {/* CTA */}
+        {/* Bottom CTA */}
         <motion.div
-          className="text-center mt-8"
+          className="text-center mt-16"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
         >
-          <p className="text-slate-600 mb-4 text-sm">
+          <p className="text-lg text-muted-foreground mb-6">
             Ready to become our next success story?
           </p>
-          <div className="flex flex-col sm:flex-row gap-3 justify-center">
-            <Button variant="default" size="lg" className="bg-slate-900 hover:bg-slate-800 text-white" asChild>
-              <Link to="/contact">
-                Start Your Transformation
-                <ArrowRight className="ml-2 h-4 w-4" />
-              </Link>
-            </Button>
-            <Button variant="outline" size="lg" className="border-slate-300 text-slate-700 hover:bg-slate-50" asChild>
-              <Link to="/approach">
-                See Our Approach
-              </Link>
-            </Button>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <MagneticButton>
+              <Button variant="hero" size="xl" asChild>
+                <Link to="/contact">
+                  Start Your Transformation
+                  <ArrowRight className="ml-2 h-5 w-5" />
+                </Link>
+              </Button>
+            </MagneticButton>
+            <MagneticButton>
+              <Button variant="hero-outline" size="xl" asChild>
+                <Link to="/approach">
+                  See Our Approach
+                </Link>
+              </Button>
+            </MagneticButton>
           </div>
         </motion.div>
       </div>

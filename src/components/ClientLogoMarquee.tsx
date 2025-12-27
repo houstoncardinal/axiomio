@@ -95,13 +95,13 @@ export function ClientLogoMarquee() {
   const doubledSecond = [...secondHalf, ...secondHalf];
 
   return (
-    <section className="py-20 lg:py-28 relative overflow-hidden">
+    <section className="py-16 lg:py-20 relative overflow-hidden">
       <div className="absolute inset-0">
         <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-border to-transparent" />
         <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-border to-transparent" />
       </div>
 
-      <div className="container mx-auto px-6 lg:px-8 mb-16">
+      <div className="container mx-auto px-6 lg:px-8 mb-10">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -133,7 +133,7 @@ export function ClientLogoMarquee() {
         <div className="absolute right-0 top-0 bottom-0 w-40 bg-gradient-to-l from-background to-transparent z-10 pointer-events-none" />
 
         {/* First row - scrolling left */}
-        <div className="flex overflow-hidden mb-8">
+        <div className="flex overflow-hidden mb-6">
           <motion.div
             className="flex gap-6"
             animate={{ x: [0, -176 * firstHalf.length] }}
@@ -174,15 +174,14 @@ export function ClientLogoMarquee() {
       </div>
 
 
-
       {/* Featured In section */}
-      <div className="container mx-auto px-6 lg:px-8 mt-16">
+      <div className="container mx-auto px-6 lg:px-8 mt-12">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
           viewport={{ once: true }}
-          className="text-center mb-8"
+          className="text-center mb-6"
         >
           <p className="text-xs uppercase tracking-[0.2em] text-muted-foreground/60 font-medium">
             As Featured In

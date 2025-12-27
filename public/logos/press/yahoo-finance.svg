@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 80" fill="none">
+  <defs>
+    <style>
+      .yahoo-main { fill: #5F01D1; }
+      .yahoo-finance { fill: #720E9E; }
+    </style>
+  </defs>
+  <!-- Yahoo! Finance Logo -->
+  <g transform="translate(20, 15)">
+    <!-- Yahoo! -->
+    <text x="0" y="30" font-family="Arial Black, sans-serif" font-size="28" font-weight="900" class="yahoo-main" letter-spacing="-0.5">YAHOO!</text>
+    <!-- Finance -->
+    <text x="0" y="55" font-family="Georgia, serif" font-size="20" font-weight="400" class="yahoo-finance" letter-spacing="0.5">Finance</text>
+  </g>
+</svg>

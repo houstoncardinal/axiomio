@@ -13,13 +13,14 @@ const navLinks = [
   { href: "/", label: "Home" },
   { href: "/xops360", label: "XOPS360", highlight: true },
   { href: "/xerotrust", label: "XeroTrust", highlight: true, secondary: true },
-  { 
-    href: "/about", 
-    label: "About", 
+  {
+    href: "/about",
+    label: "About",
     hasDropdown: true,
     dropdownItems: [
       { href: "/about", label: "About Us" },
       { href: "/approach", label: "Our Approach" },
+      { href: "/case-studies", label: "Case Studies" },
     ]
   },
   { href: "/services", label: "Services", hasMegaMenu: true },
@@ -123,7 +124,7 @@ export function Navbar() {
                         }}
                         className={cn(
                           "relative px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200 flex items-center gap-1",
-                          aboutDropdownOpen || location.pathname === "/about" || location.pathname === "/approach"
+                          aboutDropdownOpen || location.pathname === "/about" || location.pathname === "/approach" || location.pathname === "/case-studies"
                             ? "text-primary bg-primary/5"
                             : "text-foreground/70 hover:text-foreground hover:bg-muted/50"
                         )}
@@ -344,7 +345,7 @@ export function Navbar() {
                             onClick={() => setMobileAboutOpen(!mobileAboutOpen)}
                             className={cn(
                               "w-full flex items-center justify-between px-3 py-2.5 rounded-lg text-sm font-medium transition-all",
-                              mobileAboutOpen || location.pathname === "/about" || location.pathname === "/approach"
+                              mobileAboutOpen || location.pathname === "/about" || location.pathname === "/approach" || location.pathname === "/case-studies"
                                 ? "text-primary bg-primary/10"
                                 : "text-muted-foreground hover:text-foreground hover:bg-muted/50"
                             )}

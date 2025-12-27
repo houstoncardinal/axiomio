@@ -364,72 +364,71 @@ export default function Index() {
       {/* XeroTrust Banner */}
       <XeroTrustBanner />
 
-      {/* Case Studies */}
-      <CaseStudiesSection />
-
       {/* Process Timeline */}
       <ProcessTimeline />
 
-      {/* Services Section */}
-      <section className="py-28 lg:py-36 relative">
+      {/* Case Studies */}
+      <CaseStudiesSection />
+
+      {/* Services Section - Compact */}
+      <section className="py-16 lg:py-20 relative">
         <div className="absolute inset-0">
           <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-border to-transparent" />
         </div>
-        
+
         <div className="container mx-auto px-6 lg:px-8">
-          <motion.div 
-            initial={{ opacity: 0, y: 30 }}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-            viewport={{ once: true, margin: "-100px" }}
+            transition={{ duration: 0.6 }}
+            viewport={{ once: true, margin: "-80px" }}
           >
             <SectionHeader label="Our Services" title="Comprehensive enterprise solutions" description="Beyond XOPS360, we deliver end-to-end capabilities that address the full spectrum of digital transformation." />
           </motion.div>
-          
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-8 mt-20">
+
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 lg:gap-6 mt-12">
             {services.map((service, index) => (
               <motion.div
                 key={service.title}
-                initial={{ opacity: 0, y: 60, scale: 0.95 }}
+                initial={{ opacity: 0, y: 30, scale: 0.97 }}
                 whileInView={{ opacity: 1, y: 0, scale: 1 }}
                 transition={{
-                  delay: index * 0.15,
-                  duration: 0.7,
-                  ease: [0.16, 1, 0.3, 1]
+                  delay: index * 0.1,
+                  duration: 0.5,
                 }}
-                viewport={{ once: true, margin: "-50px" }}
-                whileHover={{ y: -8, transition: { duration: 0.3 } }}
+                viewport={{ once: true, margin: "-40px" }}
+                whileHover={{ y: -4, transition: { duration: 0.2 } }}
               >
                 <Link to={service.link}>
                   <PremiumCard className="h-full group">
-                    <div className={`p-8 lg:p-10 bg-gradient-to-br ${service.gradient} relative overflow-hidden`}>
+                    <div className={`p-6 lg:p-7 bg-gradient-to-br ${service.gradient} relative overflow-hidden`}>
                       {/* Animated background glow on hover */}
                       <motion.div
                         className="absolute inset-0 bg-gradient-to-br from-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"
                       />
-                      
+
                       <div className="relative z-10">
-                        <div className="flex items-start justify-between mb-6">
-                          <motion.div 
-                            className="p-3 rounded-xl bg-primary/10 text-primary border border-primary/20"
-                            whileHover={{ scale: 1.1, rotate: 5 }}
+                        <div className="flex items-start justify-between mb-4">
+                          <motion.div
+                            className="p-2.5 rounded-lg bg-primary/10 text-primary border border-primary/20"
+                            whileHover={{ scale: 1.08, rotate: 4 }}
                             transition={{ type: "spring", stiffness: 400, damping: 10 }}
                           >
-                            <service.icon className="h-6 w-6" />
+                            <service.icon className="h-5 w-5" />
                           </motion.div>
                           <motion.div
-                            initial={{ x: -10, opacity: 0 }}
+                            initial={{ x: -8, opacity: 0 }}
                             whileInView={{ x: 0, opacity: 1 }}
-                            transition={{ delay: index * 0.15 + 0.3 }}
+                            transition={{ delay: index * 0.1 + 0.2 }}
                             viewport={{ once: true }}
                           >
-                            <ChevronRight className="h-5 w-5 text-muted-foreground/50 group-hover:text-primary group-hover:translate-x-1 transition-all duration-300" />
+                            <ChevronRight className="h-4 w-4 text-muted-foreground/50 group-hover:text-primary group-hover:translate-x-1 transition-all duration-300" />
                           </motion.div>
                         </div>
-                        <h3 className="font-heading text-2xl font-semibold text-foreground mb-3 group-hover:text-primary transition-colors duration-300">
+                        <h3 className="font-heading text-lg md:text-xl font-bold text-foreground mb-2 group-hover:text-primary transition-colors duration-300">
                           {service.title}
                         </h3>
-                        <p className="text-muted-foreground leading-relaxed">
+                        <p className="text-sm md:text-base text-muted-foreground leading-relaxed">
                           {service.description}
                         </p>
                       </div>
@@ -458,7 +457,7 @@ export default function Index() {
       <CalendlyWidget />
 
       {/* CTA Section */}
-      <section className="py-24 lg:py-32 relative overflow-hidden bg-muted/30">
+      <section className="py-16 lg:py-20 relative overflow-hidden bg-muted/30">
         <div className="container relative z-10 mx-auto px-6 lg:px-8">
           <motion.div className="relative max-w-4xl mx-auto" initial={{
           opacity: 0,
@@ -472,7 +471,7 @@ export default function Index() {
           once: true
         }}>
             {/* Card */}
-            <div className="bg-background rounded-2xl p-10 lg:p-16 text-center border border-border shadow-lg relative overflow-hidden">
+            <div className="bg-background rounded-2xl p-8 lg:p-12 text-center border border-border shadow-lg relative overflow-hidden">
               {/* Decorative elements */}
               <div className="absolute top-0 left-0 w-40 h-40 bg-gradient-to-br from-primary/5 to-transparent" />
               <div className="absolute bottom-0 right-0 w-40 h-40 bg-gradient-to-tl from-primary/5 to-transparent" />
@@ -484,13 +483,13 @@ export default function Index() {
                 opacity: 1
               }} viewport={{
                 once: true
-              }} className="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.15em] text-primary mb-6">
+              }} className="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.15em] text-primary mb-4">
                   <span className="w-6 h-px bg-primary" />
                   Start Your Transformation
                   <span className="w-6 h-px bg-primary" />
                 </motion.span>
-                
-                <motion.h2 className="font-heading text-3xl md:text-4xl lg:text-5xl font-bold text-foreground mb-6" initial={{
+
+                <motion.h2 className="font-heading text-3xl md:text-4xl lg:text-5xl font-bold text-foreground mb-4" initial={{
                 opacity: 0,
                 y: 20
               }} whileInView={{
@@ -504,7 +503,7 @@ export default function Index() {
               }}>
                   Ready to experience <span className="text-primary">XOPS360</span>?
                 </motion.h2>
-                <motion.p className="text-lg text-muted-foreground max-w-2xl mx-auto mb-10" initial={{
+                <motion.p className="text-lg text-muted-foreground max-w-2xl mx-auto mb-8" initial={{
                 opacity: 0,
                 y: 20
               }} whileInView={{

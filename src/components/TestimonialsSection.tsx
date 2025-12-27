@@ -46,7 +46,7 @@ export function TestimonialsSection() {
   };
 
   return (
-    <section className="py-32 lg:py-44 relative overflow-hidden">
+    <section className="py-16 lg:py-20 relative overflow-hidden">
       {/* Background */}
       <div className="absolute inset-0">
         <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-border to-transparent" />
@@ -64,7 +64,7 @@ export function TestimonialsSection() {
 
       <div className="container relative z-10 mx-auto px-6 lg:px-8">
         {/* Header */}
-        <div className="text-center max-w-3xl mx-auto mb-16">
+        <div className="text-center max-w-3xl mx-auto mb-12">
           <motion.span
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -78,7 +78,7 @@ export function TestimonialsSection() {
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.1 }}
             viewport={{ once: true }}
-            className="font-heading text-4xl md:text-5xl lg:text-6xl font-bold text-foreground mb-6"
+            className="font-heading text-3xl md:text-4xl lg:text-5xl font-bold text-foreground mb-4"
           >
             Why Clients Trust and Love To Work With Us
           </motion.h2>
@@ -109,7 +109,7 @@ export function TestimonialsSection() {
             className="relative rounded-3xl overflow-hidden bg-muted/30"
           >
             {/* Main Layout Container */}
-            <div className="relative min-h-[500px] lg:min-h-[600px]">
+            <div className="relative min-h-[450px] lg:min-h-[520px]">
               
               {/* Background with gradient */}
               <div className="absolute inset-0 bg-gradient-to-br from-muted/60 via-muted/40 to-muted/20" />

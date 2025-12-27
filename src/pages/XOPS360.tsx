@@ -240,7 +240,7 @@ export default function XOPS360() {
                   className="mb-8"
                 >
                   <img
-                    src="/logos/xops360.svg"
+                    src="/logos/Xops360/Logo_Colored_v1.png"
                     alt="XOPS360 Logo"
                     className="h-12 w-auto mx-auto lg:mx-0"
                   />

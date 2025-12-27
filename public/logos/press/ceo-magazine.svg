@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 280 80" fill="none">
+  <defs>
+    <style>
+      .mag-the { fill: #6B7280; }
+      .mag-ceo { fill: #B8860B; }
+      .mag-magazine { fill: #374151; }
+    </style>
+  </defs>
+  <g transform="translate(15, 12)">
+    <!-- THE -->
+    <text x="0" y="18" font-family="Georgia, serif" font-size="14" font-weight="400" class="mag-the" letter-spacing="3">THE</text>
+    <!-- CEO -->
+    <text x="0" y="42" font-family="Georgia, serif" font-size="32" font-weight="700" class="mag-ceo" letter-spacing="2">CEO</text>
+    <!-- MAGAZINE -->
+    <text x="0" y="62" font-family="Georgia, serif" font-size="16" font-weight="400" class="mag-magazine" letter-spacing="3">MAGAZINE</text>
+  </g>
+</svg>

@@ -68,7 +68,7 @@ const competencies = [
 
 export function CertificationsSection() {
   return (
-    <section className="py-24 lg:py-32 relative overflow-hidden bg-muted/20">
+    <section className="py-16 lg:py-20 relative overflow-hidden bg-muted/20">
       {/* Background decorations */}
       <div className="absolute inset-0">
         <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-border to-transparent" />
@@ -83,7 +83,7 @@ export function CertificationsSection() {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
           viewport={{ once: true }}
-          className="text-center mb-16"
+          className="text-center mb-10"
         >
           <span className="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.15em] text-primary mb-4">
             <Award className="w-4 h-4" />
@@ -103,7 +103,7 @@ export function CertificationsSection() {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
           viewport={{ once: true }}
-          className="mb-16"
+          className="mb-10"
         >
           <div className="relative bg-gradient-to-br from-[#232F3E] to-[#131A22] rounded-3xl p-8 lg:p-12 overflow-hidden border border-[#FF9900]/20">
             {/* Background pattern */}
@@ -188,9 +188,9 @@ export function CertificationsSection() {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
           viewport={{ once: true }}
-          className="mb-16"
+          className="mb-10"
         >
-          <div className="flex items-center gap-3 mb-8">
+          <div className="flex items-center gap-3 mb-6">
             <Code className="w-5 h-5 text-[#FF9900]" />
             <h3 className="font-heading text-xl font-semibold text-foreground">AWS Partner Badges</h3>
           </div>
@@ -245,7 +245,7 @@ export function CertificationsSection() {
           transition={{ duration: 0.8 }}
           viewport={{ once: true }}
         >
-          <div className="flex items-center gap-3 mb-8">
+          <div className="flex items-center gap-3 mb-6">
             <Database className="w-5 h-5 text-[#0078D4]" />
             <h3 className="font-heading text-xl font-semibold text-foreground">Microsoft Azure Certifications</h3>
           </div>
@@ -295,7 +295,7 @@ export function CertificationsSection() {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.4 }}
           viewport={{ once: true }}
-          className="mt-16 flex flex-wrap justify-center items-center gap-8 pt-12 border-t border-border/50"
+          className="mt-12 flex flex-wrap justify-center items-center gap-8 pt-8 border-t border-border/50"
         >
           <div className="flex items-center gap-2 text-muted-foreground">
             <Shield className="w-5 h-5 text-primary" />

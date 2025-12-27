@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 280 80" fill="none">
+  <defs>
+    <style>
+      .ceo-main { fill: #1E3A8A; }
+      .ceo-weekly { fill: #D97706; }
+    </style>
+  </defs>
+  <g transform="translate(20, 15)">
+    <!-- CEO -->
+    <text x="0" y="32" font-family="Impact, Arial Black, sans-serif" font-size="38" font-weight="900" class="ceo-main" letter-spacing="4">CEO</text>
+    <!-- WEEKLY -->
+    <text x="0" y="56" font-family="Arial, sans-serif" font-size="16" font-weight="600" class="ceo-weekly" letter-spacing="6">WEEKLY</text>
+  </g>
+</svg>

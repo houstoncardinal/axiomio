@@ -16,7 +16,7 @@ export default function FrontlinePerformanceGroup() {
         description="How Frontline Performance Group saved over $100,000 annually through microservices architecture, Kubernetes, and multi-tier AWS deployment."
         keywords="Frontline Performance Group, cloud modernization, Kubernetes, microservices, AWS, cost optimization, DevOps, hospitality consulting"
         ogImage="https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=80&w=1200"
-        canonical="/case-studies/frontline-performance-group"
+        canonicalUrl="/case-studies/frontline-performance-group"
       />
       <Navbar />
 

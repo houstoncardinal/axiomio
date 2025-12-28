@@ -110,6 +110,8 @@ const OneForceBOT = lazy(() => import("./pages/case-studies/OneForceBOT"));
 const CoforgeVDIAzure = lazy(() => import("./pages/case-studies/CoforgeVDIAzure"));
 const FrontlinePerformanceGroup = lazy(() => import("./pages/case-studies/FrontlinePerformanceGroup"));
 const CaseStudies = lazy(() => import("./pages/CaseStudies"));
+const Privacy = lazy(() => import("./pages/Privacy"));
+const Terms = lazy(() => import("./pages/Terms"));
 
 // Single clean loading screen - white background, smooth and fast
 const PageLoader = () => (
@@ -199,6 +201,8 @@ const AppContent = () => {
           <Route path="/case-studies/oneforce-bot" element={<OneForceBOT />} />
           <Route path="/case-studies/coforge-vdi-azure" element={<CoforgeVDIAzure />} />
           <Route path="/case-studies/frontline-performance-group" element={<FrontlinePerformanceGroup />} />
+          <Route path="/privacy" element={<Privacy />} />
+          <Route path="/terms" element={<Terms />} />
 
           {/* Admin Routes */}
           <Route path="/admin" element={<AdminLayout />}>

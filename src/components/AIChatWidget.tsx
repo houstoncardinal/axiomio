@@ -31,18 +31,15 @@ const AIChatWidget = () => {
   // ElevenLabs Conversation Hook
   const conversation = useConversation({
     onConnect: () => {
-      console.log('Voice connected');
       setIsVoiceConnecting(false);
     },
     onDisconnect: () => {
-      console.log('Voice disconnected');
       setIsVoiceConnecting(false);
     },
-    onMessage: (message) => {
-      console.log('Voice message:', message);
+    onMessage: () => {
+      // Voice message received
     },
-    onError: (error) => {
-      console.error('Voice error:', error);
+    onError: () => {
       setIsVoiceConnecting(false);
     },
   });
@@ -79,8 +76,7 @@ const AIChatWidget = () => {
       await conversation.startSession({
         signedUrl: data.signed_url,
       });
-    } catch (error) {
-      console.error('Failed to start voice conversation:', error);
+    } catch {
       setIsVoiceConnecting(false);
     }
   };
@@ -117,8 +113,7 @@ const AIChatWidget = () => {
       audioRef.current.onended = () => setIsSpeaking(false);
       audioRef.current.onerror = () => setIsSpeaking(false);
       await audioRef.current.play();
-    } catch (error) {
-      console.error('TTS error:', error);
+    } catch {
       setIsSpeaking(false);
     }
   };
@@ -189,8 +184,7 @@ const AIChatWidget = () => {
       if (assistantContent && isTTSEnabled) {
         playTTS(assistantContent);
       }
-    } catch (error) {
-      console.error('Chat error:', error);
+    } catch {
       setMessages(prev => [
         ...prev.slice(0, -1),
         { role: 'assistant', content: 'I apologize, but I encountered an error. Please try again.' }

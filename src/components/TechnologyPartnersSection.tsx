@@ -70,7 +70,7 @@ export function TechnologyPartnersSection() {
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[300px] bg-primary/5 rounded-full blur-[100px]" />
       </div>
 
-      <div className="container relative z-10 mx-auto px-6 lg:px-8">
+      <div className="container relative z-10 mx-auto px-8 sm:px-12 lg:px-16 xl:px-20 max-w-7xl">
         {/* Section Header */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}

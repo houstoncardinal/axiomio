@@ -117,15 +117,16 @@ export function Navbar() {
                       />
                     </button>
                   ) : link.hasDropdown ? (
-                    <div className="relative">
-                      <button
-                        onClick={(e) => {
-                          e.stopPropagation();
-                          setAboutDropdownOpen(!aboutDropdownOpen);
-                        }}
+                    <div 
+                      className="relative"
+                      onMouseEnter={() => setAboutDropdownOpen(true)}
+                      onMouseLeave={() => setAboutDropdownOpen(false)}
+                    >
+                      <Link
+                        to={link.href}
                         className={cn(
                           "relative px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200 flex items-center gap-1",
-                          aboutDropdownOpen || location.pathname === "/about" || location.pathname === "/approach" || location.pathname === "/case-studies"
+                          location.pathname === "/about" || location.pathname === "/approach" || location.pathname === "/case-studies"
                             ? "text-primary bg-primary/5"
                             : "text-foreground/70 hover:text-foreground hover:bg-muted/50"
                         )}
@@ -137,7 +138,7 @@ export function Navbar() {
                             aboutDropdownOpen && "rotate-180"
                           )} 
                         />
-                      </button>
+                      </Link>
                       
                       {/* About Dropdown */}
                       <AnimatePresence>
@@ -148,7 +149,6 @@ export function Navbar() {
                             exit={{ opacity: 0, y: 10 }}
                             transition={{ duration: 0.15 }}
                             className="absolute top-full left-0 mt-2 w-48 py-2 bg-background border border-border rounded-xl shadow-lg z-50"
-                            onClick={(e) => e.stopPropagation()}
                           >
                             {link.dropdownItems?.map((item) => (
                               <Link
@@ -160,7 +160,6 @@ export function Navbar() {
                                     ? "text-primary bg-primary/5"
                                     : "text-foreground/70 hover:text-foreground hover:bg-muted/50"
                                 )}
-                                onClick={() => setAboutDropdownOpen(false)}
                               >
                                 {item.label}
                               </Link>

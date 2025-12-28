@@ -25,7 +25,7 @@ import { CalendlyWidget } from "@/components/CalendlyWidget";
 import { lazy, Suspense, useRef } from "react";
 import { getFeaturedServices } from "@/config/services.config";
 
-const LazyXops360Section = lazy(() => import("@/components/Xops360Section").then(m => ({
+const LazyXops360Section = lazy(() => import("@/components/XOPS360Section").then(m => ({
   default: m.Xops360Section
 })));
 

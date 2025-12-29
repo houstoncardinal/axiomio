@@ -51,12 +51,12 @@ export function Footer() {
                 <img 
                   src="/logos/xero-trust/_XeroTrust_-lightbcg.png" 
                   alt="XeroTrust" 
-                  className="h-8 w-auto object-contain opacity-60 group-hover:opacity-100 transition-opacity dark:hidden"
+                  className="h-6 w-auto object-contain opacity-60 group-hover:opacity-100 transition-opacity dark:hidden"
                 />
                 <img 
                   src="/logos/xero-trust/_XeroTrust_-darkbcg.png" 
                   alt="XeroTrust" 
-                  className="h-8 w-auto object-contain opacity-60 group-hover:opacity-100 transition-opacity hidden dark:block"
+                  className="h-6 w-auto object-contain opacity-60 group-hover:opacity-100 transition-opacity hidden dark:block"
                 />
               </Link>
             </div>

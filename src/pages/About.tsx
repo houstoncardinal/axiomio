@@ -9,7 +9,7 @@ import { SectionHeader } from "@/components/SectionHeader";
 import { SEOHead } from "@/components/SEOHead";
 import { aboutPageSchema } from "@/lib/seo-schemas-enhanced";
 import { MagneticButton } from "@/components/MagneticButton";
-import { TeamSection } from "@/components/TeamSection";
+
 
 const values = [
   {
@@ -364,8 +364,6 @@ export default function About() {
         </div>
       </section>
 
-      {/* Team Section */}
-      <TeamSection />
 
       {/* CTA Section */}
       <section className="py-24 lg:py-32 bg-gradient-to-b from-card/50 to-background">

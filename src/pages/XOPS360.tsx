@@ -423,15 +423,15 @@ export default function Xops360() {
         </div>
 
         {/* Scroll Indicator */}
-        <motion.div 
-          className="absolute bottom-8 left-1/2 -translate-x-1/2"
+        <motion.div
+          className="absolute bottom-8 left-0 right-0 flex justify-center z-20"
           animate={{ y: [0, 10, 0] }}
           transition={{ duration: 2, repeat: Infinity }}
         >
           <div className="flex flex-col items-center gap-2 text-muted-foreground">
             <span className="text-xs uppercase tracking-widest">Scroll</span>
             <div className="w-6 h-10 rounded-full border-2 border-muted-foreground/30 flex justify-center pt-2">
-              <motion.div 
+              <motion.div
                 className="w-1.5 h-1.5 rounded-full bg-primary"
                 animate={{ y: [0, 12, 0] }}
                 transition={{ duration: 1.5, repeat: Infinity }}

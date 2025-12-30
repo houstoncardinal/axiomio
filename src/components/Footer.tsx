@@ -38,28 +38,6 @@ export function Footer() {
               advanced systems, AI-driven solutions, and enterprise-grade execution.
             </p>
             
-            {/* Product logos */}
-            <div className="flex items-center gap-4">
-              <Link to="/xops360" className="group">
-                <img
-                  src="/logos/Xops360/Logo_Sky_Blue.png"
-                  alt="Xops360"
-                  className="h-10 w-auto object-contain opacity-60 group-hover:opacity-100 transition-opacity"
-                />
-              </Link>
-              <Link to="/xerotrust" className="group">
-                <img 
-                  src="/logos/xero-trust/_XeroTrust_-lightbcg.png" 
-                  alt="XeroTrust" 
-                  className="h-6 w-auto object-contain opacity-60 group-hover:opacity-100 transition-opacity dark:hidden"
-                />
-                <img 
-                  src="/logos/xero-trust/_XeroTrust_-darkbcg.png" 
-                  alt="XeroTrust" 
-                  className="h-6 w-auto object-contain opacity-60 group-hover:opacity-100 transition-opacity hidden dark:block"
-                />
-              </Link>
-            </div>
           </div>
 
           {/* Company Links */}

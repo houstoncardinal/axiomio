@@ -323,7 +323,7 @@ export default function Xops360() {
                       <span className="text-xs font-medium text-foreground">AWS Marketplace</span>
                     </div>
                     <div className="flex items-center gap-2 px-4 py-2 rounded-lg bg-muted/50 border border-border/50 hover:border-primary/30 transition-colors">
-                      <img src="/logos/azure/logo.png" alt="Azure" className="h-6 w-auto" loading="lazy" />
+                      <img src="/azurelogo.png" alt="Azure" className="h-6 w-auto" loading="lazy" />
                       <span className="text-xs font-medium text-foreground">Azure Marketplace</span>
                     </div>
                   </div>

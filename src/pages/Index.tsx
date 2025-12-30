@@ -25,7 +25,7 @@ import { CalendlyWidget } from "@/components/CalendlyWidget";
 import { lazy, Suspense, useRef } from "react";
 import { getFeaturedServices } from "@/config/services.config";
 
-const LazyXops360Section = lazy(() => import("@/components/XOPS360Section").then(m => ({
+const LazyXops360Section = lazy(() => import("@/components/Xops360Section").then(m => ({
   default: m.Xops360Section
 })));
 
@@ -53,7 +53,7 @@ export default function Index() {
     inView: xopsInView
   } = useInViewOnce<HTMLDivElement>("800px");
   return <div className="min-h-screen bg-background overflow-hidden">
-      <SEOHead title="AXIOMIO | Enterprise Technology & Strategy Consulting | Xops360 Platform" description="AXIOMIO is a global technology and strategy consulting firm. Our Xops360 platform unifies DevOps, SecOps, CloudOps & AI Agents. Digital transformation, AI automation & enterprise systems for Fortune 500 companies." keywords="technology consulting, strategy consulting, digital transformation, AI automation, enterprise architecture, DevOps, SecOps, CloudOps, AI Agents, Xops360, cloud consulting, machine learning consulting, enterprise systems, IT consulting, Deloitte alternative, Accenture alternative" canonicalUrl="https://axiomio.com/" ogType="website" structuredData={homepageSchema} />
+      <SEOHead title="Axiomio | Enterprise Technology & Strategy Consulting | Xops360 Platform" description="AXIOMIO is a global technology and strategy consulting firm. Our Xops360 platform unifies DevOps, SecOps, CloudOps & AI Agents. Digital transformation, AI automation & enterprise systems for Fortune 500 companies." keywords="technology consulting, strategy consulting, digital transformation, AI automation, enterprise architecture, DevOps, SecOps, CloudOps, AI Agents, Xops360, cloud consulting, machine learning consulting, enterprise systems, IT consulting, Deloitte alternative, Accenture alternative" canonicalUrl="https://axiomio.com/" ogType="website" structuredData={homepageSchema} />
       <Navbar />
       
       {/* Hero Section */}
@@ -62,7 +62,7 @@ export default function Index() {
         <div className="absolute inset-0">
           <div className="absolute inset-0 bg-gradient-to-b from-muted/30 via-background to-background" />
           <div className="absolute top-0 left-1/4 w-[600px] h-[600px] bg-primary/5 rounded-full blur-3xl" />
-          <div className="absolute bottom-1/4 right-1/4 w-[400px] h-[400px] bg-accent/5 rounded-full blur-3xl" />
+          <div className="absolute bottom-1/4 right-1/4 w-[400px] h-[400px] bg-accent/5 rounded-full blur-3xl" /> 
         </div>
         
         <div className="container relative z-10 mx-auto px-6 lg:px-8 lg:py-28 py-[50px]">
@@ -115,7 +115,7 @@ export default function Index() {
             duration: 0.8,
             delay: 0.4
           }}>
-              AXIOMIO's Xops360 platform unifies DevOps, SecOps, CloudOps, and AI Agents into a single 
+              Axiomio's Xops360 platform unifies DevOps, SecOps, CloudOps, and AI Agents into a single 
               intelligent ecosystem—transforming operational complexity into competitive advantage.
             </motion.p>
             

@@ -31,7 +31,7 @@ const contactMethods = [
   {
     icon: Globe,
     title: "Global Offices",
-    description: "Presence in 40+ countries",
+    description: "Worldwide presence",
     value: "View Locations",
     href: "#locations",
   },

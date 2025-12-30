@@ -12,11 +12,23 @@ interface Message {
 
 const CHAT_URL = 'https://n8n.axiomio.com/webhook/854c829c-2ce6-426f-89e2-ed44d33182f3/chat';
 
+// Generate a unique session ID
+const generateSessionId = () => {
+  if (typeof crypto !== 'undefined' && crypto.randomUUID) {
+    return crypto.randomUUID().replace(/-/g, '');
+  }
+  // Fallback for older browsers
+  return 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx'.replace(/x/g, () =>
+    Math.floor(Math.random() * 16).toString(16)
+  );
+};
+
 const AIChatWidget = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [messages, setMessages] = useState<Message[]>([]);
   const [input, setInput] = useState('');
   const [isLoading, setIsLoading] = useState(false);
+  const [sessionId] = useState(() => generateSessionId());
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
 
@@ -40,17 +52,22 @@ const AIChatWidget = () => {
     setIsLoading(true);
 
     try {
-      console.log('Sending to n8n webhook:', { message: userMessage, history: newMessages });
+      const payload = [
+        {
+          sessionId: sessionId,
+          action: 'sendMessage',
+          chatInput: userMessage
+        }
+      ];
+
+      console.log('Sending to n8n webhook:', payload);
 
       const response = await fetch(CHAT_URL, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({
-          message: userMessage,
-          history: newMessages
-        }),
+        body: JSON.stringify(payload),
       });
 
       console.log('n8n response status:', response.status);
@@ -85,7 +102,7 @@ const AIChatWidget = () => {
     } finally {
       setIsLoading(false);
     }
-  }, [messages]);
+  }, [messages, sessionId]);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();

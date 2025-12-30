@@ -142,7 +142,7 @@ const AIChatWidget = () => {
                   </div>
                   <h4 className="font-medium text-sm text-foreground mb-1">Hi, I'm Alex</h4>
                   <p className="text-xs text-muted-foreground leading-relaxed">
-                    Ask me anything about Axiom.io's services, solutions, or how we can help your business.
+                    Welcome to AXIOMIO, please chat with our Agent
                   </p>
                 </div>
               )}

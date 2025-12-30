@@ -38,28 +38,38 @@ const AIChatWidget = () => {
     const newMessages: Message[] = [...messages, { role: 'user', content: userMessage }];
     setMessages(newMessages);
     setIsLoading(true);
-    
+
     try {
+      console.log('Sending to n8n webhook:', { message: userMessage, history: newMessages });
+
       const response = await fetch(CHAT_URL, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ 
+        body: JSON.stringify({
           message: userMessage,
-          history: newMessages 
+          history: newMessages
         }),
       });
 
+      console.log('n8n response status:', response.status);
+
       if (!response.ok) {
-        throw new Error('Chat request failed');
+        throw new Error(`Chat request failed with status ${response.status}`);
       }
 
       const data = await response.json();
-      const assistantMessage = data.response || data.message || data.output || 'I apologize, but I couldn\'t process that request.';
-      
+      console.log('n8n response data:', data);
+
+      // Try multiple possible response fields from n8n
+      const assistantMessage = data.output || data.response || data.text || data.reply || data.answer || data.message || 'I apologize, but I couldn\'t process that request.';
+
+      console.log('Extracted assistant message:', assistantMessage);
+
       setMessages([...newMessages, { role: 'assistant', content: assistantMessage }]);
-    } catch {
+    } catch (error) {
+      console.error('Chat error:', error);
       setMessages([
         ...newMessages,
         { role: 'assistant', content: 'I apologize, but I encountered an error. Please try again.' }

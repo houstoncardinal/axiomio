@@ -43,16 +43,33 @@ export default function RequestDemo() {
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setIsSubmitting(true);
-    
-    await new Promise(resolve => setTimeout(resolve, 1500));
-    
-    toast({
-      title: "Demo Request Received!",
-      description: "Our team will reach out within 24 hours to schedule your personalized demo.",
-    });
-    
-    setIsSubmitting(false);
-    (e.target as HTMLFormElement).reset();
+
+    const form = e.target as HTMLFormElement;
+    const formData = new FormData(form);
+
+    try {
+      // Submit to Netlify
+      await fetch('/', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: new URLSearchParams(formData as any).toString(),
+      });
+
+      toast({
+        title: "Demo Request Received!",
+        description: "Our team will reach out within 24 hours to schedule your personalized demo.",
+      });
+
+      form.reset();
+    } catch (error) {
+      toast({
+        title: "Error",
+        description: "Something went wrong. Please try again or contact us directly.",
+        variant: "destructive",
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const openCalendly = () => {
@@ -254,16 +271,23 @@ export default function RequestDemo() {
                   Fill out the form and we'll reach out to schedule your personalized demo.
                 </p>
                 
-                <form onSubmit={handleSubmit} className="space-y-5">
+                <form onSubmit={handleSubmit} name="demo-request" method="POST" data-netlify="true" data-netlify-honeypot="bot-field" className="space-y-5">
+                  {/* Hidden fields for Netlify form detection */}
+                  <input type="hidden" name="form-name" value="demo-request" />
+                  <div hidden>
+                    <label>Don't fill this out if you're human: <input name="bot-field" /></label>
+                  </div>
+
                   <div className="grid sm:grid-cols-2 gap-5">
                     <div className="space-y-2">
                       <Label htmlFor="firstName" className="text-foreground font-medium">
                         First Name *
                       </Label>
-                      <Input 
-                        id="firstName" 
-                        placeholder="John" 
-                        required 
+                      <Input
+                        id="firstName"
+                        name="firstName"
+                        placeholder="John"
+                        required
                         className="h-12 bg-muted/30 border-border focus:border-primary focus:ring-2 focus:ring-primary/20"
                       />
                     </div>
@@ -271,26 +295,28 @@ export default function RequestDemo() {
                       <Label htmlFor="lastName" className="text-foreground font-medium">
                         Last Name *
                       </Label>
-                      <Input 
-                        id="lastName" 
-                        placeholder="Smith" 
-                        required 
+                      <Input
+                        id="lastName"
+                        name="lastName"
+                        placeholder="Smith"
+                        required
                         className="h-12 bg-muted/30 border-border focus:border-primary focus:ring-2 focus:ring-primary/20"
                       />
                     </div>
                   </div>
-                  
+
                   <div className="space-y-2">
                     <Label htmlFor="email" className="text-foreground font-medium">
                       Work Email *
                     </Label>
                     <div className="relative">
                       <Mail className="absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5 text-muted-foreground" />
-                      <Input 
-                        id="email" 
-                        type="email" 
-                        placeholder="john@company.com" 
-                        required 
+                      <Input
+                        id="email"
+                        name="email"
+                        type="email"
+                        placeholder="john@company.com"
+                        required
                         className="h-12 pl-10 bg-muted/30 border-border focus:border-primary focus:ring-2 focus:ring-primary/20"
                       />
                     </div>
@@ -302,24 +328,26 @@ export default function RequestDemo() {
                     </Label>
                     <div className="relative">
                       <Phone className="absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5 text-muted-foreground" />
-                      <Input 
-                        id="phone" 
-                        type="tel" 
-                        placeholder="+1 (555) 000-0000" 
+                      <Input
+                        id="phone"
+                        name="phone"
+                        type="tel"
+                        placeholder="+1 (555) 000-0000"
                         className="h-12 pl-10 bg-muted/30 border-border focus:border-primary focus:ring-2 focus:ring-primary/20"
                       />
                     </div>
                   </div>
-                  
+
                   <div className="space-y-2">
                     <Label htmlFor="company" className="text-foreground font-medium">
                       Company Name *
                     </Label>
                     <div className="relative">
                       <Building2 className="absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5 text-muted-foreground" />
-                      <Input 
-                        id="company" 
-                        placeholder="Your Organization" 
+                      <Input
+                        id="company"
+                        name="company"
+                        placeholder="Your Organization"
                         required
                         className="h-12 pl-10 bg-muted/30 border-border focus:border-primary focus:ring-2 focus:ring-primary/20"
                       />
@@ -331,7 +359,7 @@ export default function RequestDemo() {
                       <Label htmlFor="companySize" className="text-foreground font-medium">
                         Company Size
                       </Label>
-                      <Select>
+                      <Select name="companySize">
                         <SelectTrigger className="h-12 bg-muted/30 border-border">
                           <SelectValue placeholder="Select size" />
                         </SelectTrigger>
@@ -348,7 +376,7 @@ export default function RequestDemo() {
                       <Label htmlFor="interest" className="text-foreground font-medium">
                         Primary Interest
                       </Label>
-                      <Select>
+                      <Select name="interest">
                         <SelectTrigger className="h-12 bg-muted/30 border-border">
                           <SelectValue placeholder="Select interest" />
                         </SelectTrigger>
@@ -361,13 +389,14 @@ export default function RequestDemo() {
                       </Select>
                     </div>
                   </div>
-                  
+
                   <div className="space-y-2">
                     <Label htmlFor="message" className="text-foreground font-medium">
                       Tell us about your goals
                     </Label>
-                    <Textarea 
-                      id="message" 
+                    <Textarea
+                      id="message"
+                      name="message"
                       placeholder="What challenges are you looking to solve? What are your main goals?"
                       rows={4}
                       className="bg-muted/30 border-border focus:border-primary focus:ring-2 focus:ring-primary/20 resize-none"

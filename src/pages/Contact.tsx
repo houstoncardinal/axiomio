@@ -51,16 +51,33 @@ export default function Contact() {
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setIsSubmitting(true);
-    
-    await new Promise(resolve => setTimeout(resolve, 1000));
-    
-    toast({
-      title: "Message received",
-      description: "We'll be in touch within 24 hours.",
-    });
-    
-    setIsSubmitting(false);
-    (e.target as HTMLFormElement).reset();
+
+    const form = e.target as HTMLFormElement;
+    const formData = new FormData(form);
+
+    try {
+      // Submit to Netlify
+      await fetch('/', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: new URLSearchParams(formData as any).toString(),
+      });
+
+      toast({
+        title: "Message received",
+        description: "We'll be in touch within 24 hours.",
+      });
+
+      form.reset();
+    } catch (error) {
+      toast({
+        title: "Error",
+        description: "Something went wrong. Please try again or email us directly.",
+        variant: "destructive",
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const openCalendly = () => {
@@ -214,63 +231,75 @@ export default function Contact() {
                   Fill out the form below and we'll get back to you within 24 hours.
                 </p>
                 
-                <form onSubmit={handleSubmit} className="space-y-6">
+                <form onSubmit={handleSubmit} name="contact" method="POST" data-netlify="true" data-netlify-honeypot="bot-field" className="space-y-6">
+                  {/* Hidden fields for Netlify form detection */}
+                  <input type="hidden" name="form-name" value="contact" />
+                  <div hidden>
+                    <label>Don't fill this out if you're human: <input name="bot-field" /></label>
+                  </div>
+
                   <div className="grid sm:grid-cols-2 gap-6">
                     <div className="space-y-2">
                       <Label htmlFor="firstName" className="text-foreground font-medium">First Name *</Label>
-                      <Input 
-                        id="firstName" 
-                        placeholder="John" 
-                        required 
+                      <Input
+                        id="firstName"
+                        name="firstName"
+                        placeholder="John"
+                        required
                         className="h-12 bg-muted/30 border-border focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all"
                       />
                     </div>
                     <div className="space-y-2">
                       <Label htmlFor="lastName" className="text-foreground font-medium">Last Name *</Label>
-                      <Input 
-                        id="lastName" 
-                        placeholder="Smith" 
-                        required 
+                      <Input
+                        id="lastName"
+                        name="lastName"
+                        placeholder="Smith"
+                        required
                         className="h-12 bg-muted/30 border-border focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all"
                       />
                     </div>
                   </div>
-                  
+
                   <div className="grid sm:grid-cols-2 gap-6">
                     <div className="space-y-2">
                       <Label htmlFor="email" className="text-foreground font-medium">Work Email *</Label>
-                      <Input 
-                        id="email" 
-                        type="email" 
-                        placeholder="john@company.com" 
-                        required 
+                      <Input
+                        id="email"
+                        name="email"
+                        type="email"
+                        placeholder="john@company.com"
+                        required
                         className="h-12 bg-muted/30 border-border focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all"
                       />
                     </div>
                     <div className="space-y-2">
                       <Label htmlFor="phone" className="text-foreground font-medium">Phone Number</Label>
-                      <Input 
-                        id="phone" 
-                        type="tel" 
-                        placeholder="+1 (555) 000-0000" 
+                      <Input
+                        id="phone"
+                        name="phone"
+                        type="tel"
+                        placeholder="+1 (555) 000-0000"
                         className="h-12 bg-muted/30 border-border focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all"
                       />
                     </div>
                   </div>
-                  
+
                   <div className="space-y-2">
                     <Label htmlFor="company" className="text-foreground font-medium">Company Name</Label>
-                    <Input 
-                      id="company" 
-                      placeholder="Your Organization" 
+                    <Input
+                      id="company"
+                      name="company"
+                      placeholder="Your Organization"
                       className="h-12 bg-muted/30 border-border focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all"
                     />
                   </div>
-                  
+
                   <div className="space-y-2">
                     <Label htmlFor="message" className="text-foreground font-medium">How can we help? *</Label>
-                    <Textarea 
-                      id="message" 
+                    <Textarea
+                      id="message"
+                      name="message"
                       placeholder="Tell us about your project, challenges, or goals..."
                       required
                       rows={5}

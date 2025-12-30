@@ -25,7 +25,7 @@ const contactMethods = [
     icon: Phone,
     title: "Call Us",
     description: "Mon-Fri from 9am to 6pm",
-    value: "+91 8069290089",
+    value: "+91 8069290089 / +91 9989234422",
     href: "tel:+918069290089",
   },
   {

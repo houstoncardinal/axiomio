@@ -7,8 +7,8 @@ const Terms = () => {
   return (
     <>
       <SEOHead
-        title="Terms of Service | Axiom.io"
-        description="Read the terms and conditions governing your use of Axiom.io services. Understand your rights and responsibilities when using our platform."
+        title="Terms of Service | AXIOMIO"
+        description="Read the terms and conditions governing your use of AXIOMIO services. Understand your rights and responsibilities when using our platform."
         canonicalUrl="https://axiomio.com/terms"
       />
       <div className="min-h-screen bg-background">
@@ -28,14 +28,14 @@ const Terms = () => {
                 <section>
                   <h2 className="text-2xl font-semibold text-foreground mb-4">1. Acceptance of Terms</h2>
                   <p className="text-muted-foreground leading-relaxed">
-                    By accessing or using Axiom.io's website and services, you agree to be bound by these Terms of Service. If you do not agree to these terms, please do not use our services.
+                    By accessing or using AXIOMIO's website and services, you agree to be bound by these Terms of Service. If you do not agree to these terms, please do not use our services.
                   </p>
                 </section>
 
                 <section>
                   <h2 className="text-2xl font-semibold text-foreground mb-4">2. Services Description</h2>
                   <p className="text-muted-foreground leading-relaxed">
-                    Axiom.io provides cloud consulting, DevOps, cybersecurity, and digital transformation services. Our services are subject to change, and we reserve the right to modify or discontinue any service at any time.
+                    AXIOMIO provides cloud consulting, DevOps, cybersecurity, and digital transformation services. Our services are subject to change, and we reserve the right to modify or discontinue any service at any time.
                   </p>
                 </section>
 
@@ -54,7 +54,7 @@ const Terms = () => {
                 <section>
                   <h2 className="text-2xl font-semibold text-foreground mb-4">4. Intellectual Property</h2>
                   <p className="text-muted-foreground leading-relaxed">
-                    All content on our website, including text, graphics, logos, and software, is the property of Axiom.io or its licensors and is protected by intellectual property laws. You may not reproduce, distribute, or create derivative works without our express written permission.
+                    All content on our website, including text, graphics, logos, and software, is the property of AXIOMIO or its licensors and is protected by intellectual property laws. You may not reproduce, distribute, or create derivative works without our express written permission.
                   </p>
                 </section>
 
@@ -68,14 +68,14 @@ const Terms = () => {
                 <section>
                   <h2 className="text-2xl font-semibold text-foreground mb-4">6. Limitation of Liability</h2>
                   <p className="text-muted-foreground leading-relaxed">
-                    To the maximum extent permitted by law, Axiom.io shall not be liable for any indirect, incidental, special, consequential, or punitive damages arising from your use of our services. Our total liability shall not exceed the fees paid by you in the twelve months preceding the claim.
+                    To the maximum extent permitted by law, AXIOMIO shall not be liable for any indirect, incidental, special, consequential, or punitive damages arising from your use of our services. Our total liability shall not exceed the fees paid by you in the twelve months preceding the claim.
                   </p>
                 </section>
 
                 <section>
                   <h2 className="text-2xl font-semibold text-foreground mb-4">7. Indemnification</h2>
                   <p className="text-muted-foreground leading-relaxed">
-                    You agree to indemnify and hold harmless Axiom.io and its officers, directors, employees, and agents from any claims, damages, or expenses arising from your use of our services or violation of these terms.
+                    You agree to indemnify and hold harmless AXIOMIO and its officers, directors, employees, and agents from any claims, damages, or expenses arising from your use of our services or violation of these terms.
                   </p>
                 </section>
 
@@ -89,7 +89,7 @@ const Terms = () => {
                 <section>
                   <h2 className="text-2xl font-semibold text-foreground mb-4">9. Governing Law</h2>
                   <p className="text-muted-foreground leading-relaxed">
-                    These Terms shall be governed by and construed in accordance with the laws of India, without regard to its conflict of law provisions. Any disputes shall be resolved in the courts of Bangalore, Karnataka.
+                    These Terms shall be governed by and construed in accordance with the laws of the United Arab Emirates, without regard to its conflict of law provisions. Any disputes shall be resolved in the courts of Abu Dhabi, UAE.
                   </p>
                 </section>
 
@@ -107,7 +107,7 @@ const Terms = () => {
                   </p>
                   <p className="text-muted-foreground mt-4">
                     <strong className="text-foreground">Email:</strong> legal@axiomio.com<br />
-                    <strong className="text-foreground">Address:</strong> Axiom.io, Technology Park, Bangalore, India
+                    <strong className="text-foreground">Address:</strong> AXIOMIO, Office #104, 1st Floor, Tower-A, Al Aryam Tower, Al Zahiyah, Abu Dhabi, UAE
                   </p>
                 </section>
               </div>

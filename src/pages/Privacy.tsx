@@ -7,8 +7,8 @@ const Privacy = () => {
   return (
     <>
       <SEOHead
-        title="Privacy Policy | Axiom.io"
-        description="Learn how Axiom.io collects, uses, and protects your personal information. Our privacy policy outlines our commitment to data security and transparency."
+        title="Privacy Policy | AXIOMIO"
+        description="Learn how AXIOMIO collects, uses, and protects your personal information. Our privacy policy outlines our commitment to data security and transparency."
         canonicalUrl="https://axiomio.com/privacy"
       />
       <div className="min-h-screen bg-background">
@@ -28,7 +28,7 @@ const Privacy = () => {
                 <section>
                   <h2 className="text-2xl font-semibold text-foreground mb-4">1. Introduction</h2>
                   <p className="text-muted-foreground leading-relaxed">
-                    Axiom.io ("we," "our," or "us") is committed to protecting your privacy. This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you visit our website or use our services.
+                    AXIOMIO ("we," "our," or "us") is committed to protecting your privacy. This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you visit our website or use our services.
                   </p>
                 </section>
 
@@ -94,7 +94,7 @@ const Privacy = () => {
                   </p>
                   <p className="text-muted-foreground mt-4">
                     <strong className="text-foreground">Email:</strong> privacy@axiomio.com<br />
-                    <strong className="text-foreground">Address:</strong> Axiom.io, Technology Park, Bangalore, India
+                    <strong className="text-foreground">Address:</strong> AXIOMIO, Office #104, 1st Floor, Tower-A, Al Aryam Tower, Al Zahiyah, Abu Dhabi, UAE
                   </p>
                 </section>
               </div>

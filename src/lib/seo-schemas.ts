@@ -8,7 +8,7 @@ export const organizationSchema = {
   "@context": "https://schema.org",
   "@type": "Organization",
   "@id": "https://axiomio.com/#organization",
-  name: "Axiomio",
+  name: "AXIOMIO",
   legalName: "AXIOMIO Technologies Inc.",
   url: "https://axiomio.com",
   logo: {
@@ -18,7 +18,7 @@ export const organizationSchema = {
     contentUrl: "https://axiomio.com/logo.png",
     width: 512,
     height: 512,
-    caption: "Axiomio - Enterprise Technology & Strategy Consulting",
+    caption: "AXIOMIO - Enterprise Technology & Strategy Consulting",
   },
   image: {
     "@type": "ImageObject",
@@ -34,7 +34,7 @@ export const organizationSchema = {
     "https://www.facebook.com/axiomio",
   ],
   description:
-    "Axiomio is a global technology and strategy consulting firm specializing in AI automation, digital transformation, enterprise systems, and the Xops360 intelligent operations platform. We partner with Fortune 500 companies and ambitious organizations worldwide.",
+    "AXIOMIO is a global technology and strategy consulting firm specializing in AI automation, digital transformation, enterprise systems, and the Xops360 intelligent operations platform. We partner with Fortune 500 companies and ambitious organizations worldwide.",
   slogan: "Building systems that define the future",
   foundingDate: "2018",
   foundingLocation: {
@@ -125,7 +125,7 @@ export const websiteSchema = {
   "@type": "WebSite",
   "@id": "https://axiomio.com/#website",
   url: "https://axiomio.com",
-  name: "Axiomio | Enterprise Technology & Strategy Consulting",
+  name: "AXIOMIO | Enterprise Technology & Strategy Consulting",
   description:
     "Enterprise technology consulting, digital transformation, AI automation, and the Xops360 intelligent operations platform for Fortune 500 companies.",
   publisher: {
@@ -154,12 +154,12 @@ export const professionalServiceSchema = {
   "@context": "https://schema.org",
   "@type": "ProfessionalService",
   "@id": "https://axiomio.com/#service",
-  name: "Axiomio Technology & Strategy Consulting",
+  name: "AXIOMIO Technology & Strategy Consulting",
   url: "https://axiomio.com",
   priceRange: "$$$$$",
   image: "https://axiomio.com/og-image.jpg",
   description:
-    "Axiomio delivers enterprise-grade technology consulting, AI automation, digital transformation, and the Xops360 platform for intelligent operations. Trusted by Fortune 500 companies globally.",
+    "AXIOMIO delivers enterprise-grade technology consulting, AI automation, digital transformation, and the Xops360 platform for intelligent operations. Trusted by Fortune 500 companies globally.",
   telephone: "+1-800-AXIOMIO",
   email: "hello@axiomio.com",
   currenciesAccepted: "USD, EUR, GBP",
@@ -193,7 +193,7 @@ export const professionalServiceSchema = {
   },
   hasOfferCatalog: {
     "@type": "OfferCatalog",
-    name: "Axiomio Enterprise Services",
+    name: "AXIOMIO Enterprise Services",
     itemListElement: [
       {
         "@type": "OfferCatalog",
@@ -369,7 +369,7 @@ export const faqSchema = {
     },
     {
       "@type": "Question",
-      name: "How does Axiomio compare to consulting firms like Deloitte, Accenture, and McKinsey?",
+      name: "How does AXIOMIO compare to consulting firms like Deloitte, Accenture, and McKinsey?",
       acceptedAnswer: {
         "@type": "Answer",
         text: "AXIOMIO differentiates through deep technical expertise combined with strategic advisory, plus our proprietary Xops360 platform. Unlike traditional consulting firms that primarily provide recommendations, we combine strategic advisory with hands-on implementation and ongoing operational excellence. Our technology-first approach means clients get both strategic clarity and production-ready solutions.",
@@ -377,7 +377,7 @@ export const faqSchema = {
     },
     {
       "@type": "Question",
-      name: "What industries does Axiomio serve?",
+      name: "What industries does AXIOMIO serve?",
       acceptedAnswer: {
         "@type": "Answer",
         text: "AXIOMIO serves Fortune 500 enterprises and ambitious organizations across financial services (banking, insurance, asset management), healthcare (hospitals, pharma, medical devices), technology (SaaS, platforms, infrastructure), manufacturing (discrete, process, industrial IoT), retail and e-commerce, energy and utilities, and telecommunications. Our solutions scale from mid-market to enterprise-level implementations globally.",
@@ -385,7 +385,7 @@ export const faqSchema = {
     },
     {
       "@type": "Question",
-      name: "What is Axiomio's methodology for digital transformation?",
+      name: "What is AXIOMIO's methodology for digital transformation?",
       acceptedAnswer: {
         "@type": "Answer",
         text: "AXIOMIO follows a proven 5-phase methodology: (1) Discover - deep understanding of business context and strategic objectives; (2) Define - clear problem framing and strategic option development; (3) Design - solution architecture with detailed implementation blueprints; (4) Deliver - agile execution with continuous stakeholder communication; (5) Develop - capability building and operational handoff for sustainable success.",
@@ -393,7 +393,7 @@ export const faqSchema = {
     },
     {
       "@type": "Question",
-      name: "What AI and automation services does Axiomio provide?",
+      name: "What AI and automation services does AXIOMIO provide?",
       acceptedAnswer: {
         "@type": "Answer",
         text: "AXIOMIO provides comprehensive AI and automation services including: AI strategy development and roadmapping, custom machine learning model development, intelligent process automation (RPA + ML), conversational AI and chatbots, computer vision applications, document intelligence and extraction, MLOps implementation for model lifecycle management, and AI governance frameworks. Our Xops360 platform includes built-in AIOps capabilities.",
@@ -401,7 +401,7 @@ export const faqSchema = {
     },
     {
       "@type": "Question",
-      name: "How long does a typical Axiomio engagement take?",
+      name: "How long does a typical AXIOMIO engagement take?",
       acceptedAnswer: {
         "@type": "Answer",
         text: "Engagement duration varies by scope and complexity. Strategic assessments typically take 4-8 weeks. Implementation projects range from 3-12 months depending on complexity. Enterprise-wide transformations often span 18-36 months with phased value delivery. We structure engagements to deliver quick wins within the first 90 days while building toward long-term strategic objectives.",
@@ -409,7 +409,7 @@ export const faqSchema = {
     },
     {
       "@type": "Question",
-      name: "What cloud platforms does Axiomio work with?",
+      name: "What cloud platforms does AXIOMIO work with?",
       acceptedAnswer: {
         "@type": "Answer",
         text: "AXIOMIO is cloud-agnostic and works across all major platforms including AWS (Advanced Consulting Partner), Microsoft Azure (Gold Partner), Google Cloud Platform (Partner), and multi-cloud/hybrid environments. We also specialize in cloud migration, cloud-native architecture, and legacy modernization to cloud platforms.",
@@ -417,7 +417,7 @@ export const faqSchema = {
     },
     {
       "@type": "Question",
-      name: "What certifications and compliance standards does Axiomio maintain?",
+      name: "What certifications and compliance standards does AXIOMIO maintain?",
       acceptedAnswer: {
         "@type": "Answer",
         text: "AXIOMIO maintains ISO 27001 certification, SOC 2 Type II compliance, and GDPR compliance. We hold partner certifications from AWS, Microsoft, Google Cloud, and other major technology vendors. Our consultants maintain certifications in project management (PMP), agile (SAFe, Scrum), cloud architecture, and security (CISSP, CISM).",
@@ -432,7 +432,7 @@ export const aggregateRatingSchema = {
   "@type": "AggregateRating",
   itemReviewed: {
     "@type": "Organization",
-    name: "Axiomio",
+    name: "AXIOMIO",
     "@id": "https://axiomio.com/#organization",
   },
   ratingValue: "4.9",
@@ -596,9 +596,9 @@ export const servicesListSchema = {
   "@context": "https://schema.org",
   "@type": "ItemList",
   "@id": "https://axiomio.com/services/#list",
-  name: "Axiomio Enterprise Consulting Services",
+  name: "AXIOMIO Enterprise Consulting Services",
   description:
-    "Comprehensive enterprise technology and strategy consulting services from Axiomio.",
+    "Comprehensive enterprise technology and strategy consulting services from AXIOMIO.",
   numberOfItems: 5,
   itemListElement: [
     {
@@ -682,7 +682,7 @@ export const corporateContactSchema = {
   "@context": "https://schema.org",
   "@type": "Corporation",
   "@id": "https://axiomio.com/#corporation",
-  name: "Axiomio",
+  name: "AXIOMIO",
   url: "https://axiomio.com",
   contactPoint: [
     {

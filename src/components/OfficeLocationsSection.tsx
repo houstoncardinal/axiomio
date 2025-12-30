@@ -18,13 +18,6 @@ const offices = [
     isHQ: false,
   },
   {
-    city: "Bengaluru",
-    country: "India",
-    type: "Office",
-    address: "18/20, 1st Flr, Clayworks Create, BLR 560076",
-    isHQ: false,
-  },
-  {
     city: "Newark",
     country: "USA",
     type: "Americas HQ",
@@ -33,18 +26,19 @@ const offices = [
     isHQ: false,
   },
   {
-    city: "Dubai",
+    city: "Abu Dhabi",
     country: "UAE",
     type: "Middle East Office",
-    address: "5th Floor, 502, Iris Bay, opp. JW Marriott Hotel, Business Bay, Dubai",
+    address: "Office #104, 1st Floor, Tower-A, Al Aryam Tower, Al Zahiyah, Abu Dhabi",
+    phone: ["+971 502045262"],
     isHQ: false,
   },
   {
-    city: "Edinburgh",
+    city: "Leicester",
     country: "UK",
     type: "UK Office",
-    address: "2 Horsburgh Gardens, Balerno, Edinburgh EH14 7BY",
-    phone: ["+44 7740588303"],
+    address: "Unit 112, THE DOCK, 75 Exploration Dr, Leicester LE4 5NU",
+    phone: ["+44 7414 758816"],
     isHQ: false,
   },
 ];

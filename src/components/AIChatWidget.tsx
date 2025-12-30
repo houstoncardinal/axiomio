@@ -63,7 +63,15 @@ const AIChatWidget = () => {
       console.log('n8n response data:', data);
 
       // Try multiple possible response fields from n8n
-      const assistantMessage = data.output || data.response || data.text || data.reply || data.answer || data.message || 'I apologize, but I couldn\'t process that request.';
+      let assistantMessage = data.output || data.response || data.text || data.reply || data.answer || data.message;
+
+      // Check if n8n is just echoing the input back (not processed)
+      if (assistantMessage === userMessage) {
+        console.error('n8n is echoing input back - workflow not configured properly');
+        assistantMessage = 'The AI agent is not configured correctly. Please check your n8n workflow to ensure it calls an AI service and returns the response in the "output" or "response" field.';
+      } else if (!assistantMessage || typeof assistantMessage !== 'string') {
+        assistantMessage = 'I apologize, but I couldn\'t process that request.';
+      }
 
       console.log('Extracted assistant message:', assistantMessage);
 

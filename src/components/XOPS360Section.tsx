@@ -599,12 +599,12 @@ const KeyMetrics = ({ animationPhase, isMobile }: { animationPhase: number; isMo
   
   return (
     <motion.div
-      className="flex items-center justify-center mt-6 md:mt-8"
+      className="w-full flex items-center justify-center mt-6 md:mt-8"
       initial={{ opacity: 0, y: 20 }}
       animate={shouldAnimate ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
       transition={{ duration: 0.5 }}
     >
-      <div className="inline-flex items-center gap-1 sm:gap-2 md:gap-3 px-3 sm:px-4 md:px-6 py-2 md:py-3 bg-card/80 backdrop-blur-md rounded-full border border-border/60 shadow-xl">
+      <div className="flex items-center justify-center gap-1 sm:gap-2 md:gap-3 px-3 sm:px-4 md:px-6 py-2 md:py-3 bg-card/80 backdrop-blur-md rounded-full border border-border/60 shadow-xl mx-auto">
         {metricsData.map((metric, i) => (
           <motion.div
             key={metric.label}

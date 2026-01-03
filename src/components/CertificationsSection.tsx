@@ -250,7 +250,7 @@ export function CertificationsSection() {
             <h3 className="font-heading text-xl font-semibold text-foreground">Microsoft Azure Certifications</h3>
           </div>
           
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="flex flex-wrap gap-4">
             {azureCertifications.map((cert, index) => (
               <motion.div
                 key={cert.name}
@@ -261,9 +261,9 @@ export function CertificationsSection() {
                 whileHover={{ scale: 1.03, transition: { duration: 0.3 } }}
                 className="group"
               >
-                <div className="bg-background rounded-2xl border border-border p-6 hover:border-[#0078D4]/30 hover:shadow-lg hover:shadow-[#0078D4]/10 transition-all duration-300">
-                  <div className="flex items-center gap-4">
-                    <div className="w-20 h-20 flex-shrink-0">
+                <div className="bg-background rounded-xl border border-border p-4 hover:border-[#0078D4]/30 hover:shadow-lg hover:shadow-[#0078D4]/10 transition-all duration-300">
+                  <div className="flex items-center gap-3">
+                    <div className="w-12 h-12 flex-shrink-0">
                       <img
                         src={cert.image}
                         alt={cert.name}

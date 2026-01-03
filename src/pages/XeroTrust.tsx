@@ -294,7 +294,7 @@ function CustomerSuccessStories() {
   const [selectedCustomer, setSelectedCustomer] = useState(customerStories[0]);
 
   return (
-    <section className="py-28 lg:py-36 relative overflow-hidden bg-gradient-to-b from-transparent via-muted/10 to-transparent">
+    <section className="py-16 lg:py-20 relative overflow-hidden bg-gradient-to-b from-transparent via-muted/10 to-transparent">
       <div className="container mx-auto px-6 lg:px-8">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
@@ -1138,7 +1138,7 @@ export default function XeroTrust() {
       </section>
 
       {/* What is ZTNA */}
-      <section className="py-16 sm:py-20 lg:py-28 relative bg-gradient-to-br from-muted/20 to-transparent">
+      <section className="py-12 sm:py-14 lg:py-16 relative bg-gradient-to-br from-muted/20 to-transparent">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -1206,7 +1206,7 @@ export default function XeroTrust() {
       </section>
 
       {/* Four Core Principles */}
-      <section className="py-16 sm:py-20 lg:py-28 relative">
+      <section className="py-12 sm:py-14 lg:py-16 relative">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -1268,7 +1268,7 @@ export default function XeroTrust() {
       </section>
 
       {/* Use Cases */}
-      <section className="py-16 sm:py-20 lg:py-28 relative bg-muted/10">
+      <section className="py-12 sm:py-14 lg:py-16 relative bg-muted/10">
         <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-border to-transparent" />
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
@@ -1298,17 +1298,17 @@ export default function XeroTrust() {
                 viewport={{ once: true }}
               >
                 <PremiumCard className="h-full">
-                  <div className="p-5 sm:p-6 lg:p-8">
-                    <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-xl sm:rounded-2xl bg-gradient-to-br from-secondary/20 to-primary/20 flex items-center justify-center mb-4 sm:mb-6 border border-secondary/20">
+                  <div className="p-5 sm:p-6 lg:p-8 flex flex-col h-full">
+                    <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-xl sm:rounded-2xl bg-gradient-to-br from-secondary/20 to-primary/20 flex items-center justify-center mb-4 border border-secondary/20 flex-shrink-0">
                       <useCase.icon className="w-6 h-6 sm:w-7 sm:h-7 text-secondary" />
                     </div>
-                    <h3 className="font-heading text-lg sm:text-xl lg:text-2xl font-bold text-foreground mb-2 sm:mb-4">{useCase.title}</h3>
-                    <p className="text-muted-foreground mb-4 sm:mb-6 leading-relaxed text-sm sm:text-base">{useCase.description}</p>
-                    <ul className="space-y-2 sm:space-y-3">
+                    <h3 className="font-heading text-lg sm:text-xl lg:text-2xl font-bold text-foreground mb-3">{useCase.title}</h3>
+                    <p className="text-muted-foreground mb-4 leading-relaxed text-sm sm:text-base flex-grow">{useCase.description}</p>
+                    <ul className="space-y-2">
                       {useCase.benefits.map((benefit) => (
-                        <li key={benefit} className="flex items-center gap-2 sm:gap-3 text-foreground/90 text-sm sm:text-base">
-                          <CheckCircle2 className="w-4 h-4 sm:w-5 sm:h-5 text-secondary flex-shrink-0" />
-                          {benefit}
+                        <li key={benefit} className="flex items-start gap-2 text-foreground/90 text-sm">
+                          <CheckCircle2 className="w-4 h-4 text-secondary flex-shrink-0 mt-0.5" />
+                          <span>{benefit}</span>
                         </li>
                       ))}
                     </ul>
@@ -1321,7 +1321,7 @@ export default function XeroTrust() {
       </section>
 
       {/* Capabilities */}
-      <section className="py-16 sm:py-20 lg:py-28 relative bg-muted/10">
+      <section className="py-12 sm:py-14 lg:py-16 relative bg-muted/10">
         <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-secondary/30 to-transparent" />
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
@@ -1365,7 +1365,7 @@ export default function XeroTrust() {
       </section>
 
       {/* Enterprise Security, Zero Complexity */}
-      <section className="py-16 sm:py-20 lg:py-28 relative overflow-hidden">
+      <section className="py-12 sm:py-14 lg:py-16 relative overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-b from-transparent via-secondary/5 to-transparent" />
         <div className="container relative z-10 mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
@@ -1519,7 +1519,7 @@ export default function XeroTrust() {
       </section>
 
       {/* Lightning Performance */}
-      <section className="py-28 lg:py-36 relative bg-muted/20">
+      <section className="py-16 lg:py-20 relative bg-muted/20">
         <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-border to-transparent" />
         <div className="container mx-auto px-6 lg:px-8">
           <motion.div
@@ -1661,7 +1661,7 @@ export default function XeroTrust() {
       </section>
 
       {/* Complete Audit Logs */}
-      <section className="py-28 lg:py-36 relative">
+      <section className="py-16 lg:py-20 relative">
         <div className="container mx-auto px-6 lg:px-8">
           <div className="grid lg:grid-cols-2 gap-16 items-center max-w-6xl mx-auto">
             <motion.div
@@ -1747,7 +1747,7 @@ export default function XeroTrust() {
       </section>
 
       {/* Platform Support & Compliance */}
-      <section className="py-20 lg:py-28 relative border-y border-border/30">
+      <section className="py-12 lg:py-16 relative border-y border-border/30">
         <div className="container mx-auto px-6 lg:px-8">
           <div className="grid lg:grid-cols-2 gap-16">
             {/* Platform Support */}
@@ -1834,7 +1834,7 @@ export default function XeroTrust() {
 
 
       {/* Why XeroTrust vs VPN */}
-      <section className="py-28 lg:py-36 relative overflow-hidden">
+      <section className="py-16 lg:py-20 relative overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-br from-secondary/5 via-transparent to-primary/5" />
         <div className="container relative z-10 mx-auto px-6 lg:px-8">
           <motion.div
@@ -1964,7 +1964,7 @@ export default function XeroTrust() {
       </section>
 
       {/* How It Works */}
-      <section className="py-28 lg:py-36 relative bg-muted/10">
+      <section className="py-16 lg:py-20 relative bg-muted/10">
         <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-border to-transparent" />
         <div className="container mx-auto px-6 lg:px-8">
           <motion.div
@@ -2012,14 +2012,17 @@ export default function XeroTrust() {
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ delay: i * 0.15 }}
                 viewport={{ once: true }}
-                className="relative"
+                className="relative pt-8"
               >
-                <div className="absolute -top-6 left-6">
-                  <span className="font-heading text-8xl font-bold text-gradient opacity-20">{item.step}</span>
+                {/* Step number badge - clearly visible */}
+                <div className="absolute top-0 left-6 z-20">
+                  <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-secondary to-primary flex items-center justify-center shadow-lg shadow-secondary/30 border-2 border-background">
+                    <span className="font-heading text-xl font-bold text-white">{item.step}</span>
+                  </div>
                 </div>
 
                 <PremiumCard className="h-full relative z-10">
-                  <div className="p-8">
+                  <div className="p-8 pt-10">
                     <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-secondary/20 to-primary/20 flex items-center justify-center mb-6 border border-secondary/20">
                       <item.icon className="w-7 h-7 text-secondary" />
                     </div>
@@ -2040,7 +2043,7 @@ export default function XeroTrust() {
       </section>
 
       {/* Deploy in 60 Seconds */}
-      <section className="py-28 lg:py-36 relative overflow-hidden bg-gradient-to-b from-muted/10 to-transparent">
+      <section className="py-16 lg:py-20 relative overflow-hidden bg-gradient-to-b from-muted/10 to-transparent">
         <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-secondary/30 to-transparent" />
         <div className="container mx-auto px-6 lg:px-8">
           <motion.div
@@ -2260,7 +2263,7 @@ export default function XeroTrust() {
       </section>
 
       {/* Use Cases & Real Results - New Version */}
-      <section className="py-28 lg:py-36 relative bg-gradient-to-b from-muted/10 to-transparent">
+      <section className="py-16 lg:py-20 relative bg-gradient-to-b from-muted/10 to-transparent">
         <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-border to-transparent" />
         <div className="container mx-auto px-6 lg:px-8">
           <motion.div

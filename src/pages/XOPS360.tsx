@@ -422,27 +422,10 @@ export default function Xops360() {
           </div>
         </div>
 
-        {/* Scroll Indicator */}
-        <motion.div
-          className="absolute bottom-8 left-0 right-0 flex justify-center z-20"
-          animate={{ y: [0, 10, 0] }}
-          transition={{ duration: 2, repeat: Infinity }}
-        >
-          <div className="flex flex-col items-center gap-2 text-muted-foreground">
-            <span className="text-xs uppercase tracking-widest">Scroll</span>
-            <div className="w-6 h-10 rounded-full border-2 border-muted-foreground/30 flex justify-center pt-2">
-              <motion.div
-                className="w-1.5 h-1.5 rounded-full bg-primary"
-                animate={{ y: [0, 12, 0] }}
-                transition={{ duration: 1.5, repeat: Infinity }}
-              />
-            </div>
-          </div>
-        </motion.div>
       </header>
 
       {/* Problems Section - Bento Style */}
-      <section className="py-32 relative bg-muted/30 overflow-hidden">
+      <section className="py-16 lg:py-20 relative bg-muted/30 overflow-hidden">
         <div className="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-border to-transparent" />
         {/* Background Decoration */}
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,hsl(var(--primary)/0.05),transparent_60%)]" />
@@ -497,7 +480,7 @@ export default function Xops360() {
       </section>
 
       {/* Solution Intro - Large Typography */}
-      <section className="py-32 relative overflow-hidden">
+      <section className="py-16 lg:py-20 relative overflow-hidden">
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,hsl(var(--primary)/0.08),transparent_70%)]" />
         {/* Static Background Elements */}
         <div className="absolute top-1/2 left-1/4 w-96 h-96 bg-primary/8 rounded-full blur-[80px] opacity-40" />
@@ -544,7 +527,7 @@ export default function Xops360() {
       </section>
 
       {/* Metrics Bar - Floating Cards */}
-      <section className="py-20 relative">
+      <section className="py-12 lg:py-16 relative">
         <div className="container mx-auto px-6 lg:px-8">
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 max-w-6xl mx-auto">
             {metrics.map((stat, i) => (
@@ -568,7 +551,7 @@ export default function Xops360() {
       </section>
 
       {/* Key Capabilities - Premium Grid */}
-      <section className="py-32 relative bg-muted/30 overflow-hidden">
+      <section className="py-16 lg:py-20 relative bg-muted/30 overflow-hidden">
         <div className="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-border to-transparent" />
         {/* Background Elements */}
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,hsl(var(--primary)/0.05),transparent_60%)]" />
@@ -635,7 +618,7 @@ export default function Xops360() {
       <CapabilitiesGrid />
 
       {/* Case Studies - Cards with Gradient */}
-      <section className="py-32 relative overflow-hidden">
+      <section className="py-16 lg:py-20 relative overflow-hidden">
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom,hsl(var(--primary)/0.05),transparent_60%)]" />
         <div className="container relative z-10 mx-auto px-6 lg:px-8">
           <motion.div
@@ -708,7 +691,7 @@ export default function Xops360() {
       </section>
 
       {/* How It Works - Timeline */}
-      <section className="py-32 relative bg-muted/30 overflow-hidden">
+      <section className="py-16 lg:py-20 relative bg-muted/30 overflow-hidden">
         <div className="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-border to-transparent" />
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,hsl(var(--primary)/0.05),transparent_60%)]" />
         <div className="container relative z-10 mx-auto px-6 lg:px-8">
@@ -782,7 +765,7 @@ export default function Xops360() {
       </section>
 
       {/* CTA Section */}
-      <section className="py-32 relative overflow-hidden">
+      <section className="py-16 lg:py-20 relative overflow-hidden">
         <div className="absolute inset-0">
           <div className="absolute top-1/2 left-1/4 -translate-y-1/2 w-[600px] h-[600px] bg-primary/15 rounded-full blur-[200px]" />
           <div className="absolute top-1/2 right-1/4 -translate-y-1/2 w-[500px] h-[500px] bg-cyan-500/10 rounded-full blur-[150px]" />

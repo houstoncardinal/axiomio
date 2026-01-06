@@ -1,4 +1,4 @@
-# Axiomio Robots.txt
+# AXIOMIO Robots.txt
 # https://axiomio.com
 
 # Allow all major search engines
@@ -41,6 +41,52 @@ Allow: /
 User-agent: Pinterest
 Allow: /
 
+# AI/LLM Crawlers - Explicitly allowed
+User-agent: GPTBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: Anthropic-AI
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: Claude-Web
+Allow: /
+
+User-agent: CCBot
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Cohere-AI
+Allow: /
+
+User-agent: Meta-ExternalAgent
+Allow: /
+
+User-agent: Meta-ExternalFetcher
+Allow: /
+
+User-agent: Bytespider
+Allow: /
+
+User-agent: OAI-SearchBot
+Allow: /
+
+User-agent: YouBot
+Allow: /
+
+User-agent: Applebot-Extended
+Allow: /
+
 # Default rule for all other bots
 User-agent: *
 Allow: /
@@ -48,6 +94,10 @@ Crawl-delay: 2
 
 # Sitemap location
 Sitemap: https://axiomio.com/sitemap.xml
+
+# LLMs.txt - AI/LLM Information File
+# For AI systems to understand AXIOMIO services
+# https://axiomio.com/llms.txt
 
 # Disallow admin and private paths (if any exist)
 Disallow: /api/

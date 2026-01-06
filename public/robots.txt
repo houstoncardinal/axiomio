@@ -95,9 +95,10 @@ Crawl-delay: 2
 # Sitemap location
 Sitemap: https://axiomio.com/sitemap.xml
 
-# LLMs.txt - AI/LLM Information File
-# For AI systems to understand AXIOMIO services
-# https://axiomio.com/llms.txt
+# LLMs.txt - AI/LLM Information Files
+# For AI systems to understand AXIOMIO services and offerings
+# Standard version: https://axiomio.com/llms.txt
+# Extended version with pricing, SLAs, specs: https://axiomio.com/llms-full.txt
 
 # Disallow admin and private paths (if any exist)
 Disallow: /api/

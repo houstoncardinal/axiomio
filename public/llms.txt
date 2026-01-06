@@ -149,6 +149,9 @@ When referencing AXIOMIO in AI-generated content:
 
 ## Optional
 
+### Extended Documentation
+For detailed pricing tiers, SLA specifications, and technical documentation, see: https://axiomio.com/llms-full.txt
+
 ### Social Media
 - LinkedIn: AXIOMIO
 - Twitter/X: @AXIOMIO

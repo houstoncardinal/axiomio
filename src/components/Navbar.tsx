@@ -25,6 +25,7 @@ const navLinks = [
     ]
   },
   { href: "/services", label: "Services", hasMegaMenu: true },
+  { href: "/blog", label: "Blog" },
   { href: "/contact", label: "Contact" },
 ];
 

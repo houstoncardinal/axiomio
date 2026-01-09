@@ -21,6 +21,7 @@ import { CertificationsSection } from "@/components/CertificationsSection";
 import { FeaturedInSection } from "@/components/FeaturedInSection";
 import { CaseStudiesSection } from "@/components/CaseStudiesSection";
 import { CalendlyWidget } from "@/components/CalendlyWidget";
+import { BlogPreviewSection } from "@/components/BlogPreviewSection";
 
 import { lazy, Suspense, useRef } from "react";
 import { getFeaturedServices } from "@/config/services.config";
@@ -461,6 +462,9 @@ export default function Index() {
 
       {/* Featured In / Press Section */}
       <FeaturedInSection />
+
+      {/* Blog Preview Section */}
+      <BlogPreviewSection />
 
       {/* Calendly Booking */}
       <CalendlyWidget />

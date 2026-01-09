@@ -92,6 +92,8 @@ const Content = lazy(() => import("./pages/admin/Content"));
 const Users = lazy(() => import("./pages/admin/Users"));
 const Settings = lazy(() => import("./pages/admin/Settings"));
 const Leads = lazy(() => import("./pages/admin/Leads"));
+const CaseStudyList = lazy(() => import("./pages/admin/CaseStudyList"));
+const CaseStudyEditor = lazy(() => import("./pages/admin/CaseStudyEditor"));
 const Xops360Overview = lazy(() => import("./pages/admin/xops360/Overview"));
 const Xops360Clients = lazy(() => import("./pages/admin/xops360/Clients"));
 const Xops360Deployments = lazy(() => import("./pages/admin/xops360/Deployments"));
@@ -204,21 +206,15 @@ const AppContent = () => {
           <Route path="/privacy" element={<Privacy />} />
           <Route path="/terms" element={<Terms />} />
 
-          {/* Admin Routes */}
+          {/* Admin Routes - Case Studies CRM */}
           <Route path="/admin" element={<AdminLayout />}>
             <Route index element={<Dashboard />} />
-            <Route path="analytics" element={<Analytics />} />
-            <Route path="seo" element={<SEO />} />
-            <Route path="content" element={<Content />} />
-            <Route path="users" element={<Users />} />
+            <Route path="case-studies" element={<CaseStudyList />} />
+            <Route path="case-studies/published" element={<CaseStudyList filterType="published" />} />
+            <Route path="case-studies/featured" element={<CaseStudyList filterType="featured" />} />
+            <Route path="case-studies/new" element={<CaseStudyEditor />} />
+            <Route path="case-studies/:id" element={<CaseStudyEditor />} />
             <Route path="settings" element={<Settings />} />
-            <Route path="leads" element={<Leads />} />
-            <Route path="xops360" element={<Xops360Overview />} />
-            <Route path="xops360/clients" element={<Xops360Clients />} />
-            <Route path="xops360/deployments" element={<Xops360Deployments />} />
-            <Route path="xops360/runbooks" element={<Xops360Runbooks />} />
-            <Route path="xops360/integrations" element={<Xops360Integrations />} />
-            <Route path="xops360/metrics" element={<Xops360Metrics />} />
           </Route>
           
           <Route path="*" element={<NotFound />} />

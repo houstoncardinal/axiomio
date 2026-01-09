@@ -3,45 +3,24 @@ import { Outlet, useNavigate, Link, useLocation } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import {
   LayoutDashboard,
-  BarChart3,
   FileText,
-  Users,
-  Settings,
   LogOut,
   ChevronLeft,
   Menu,
-  Server,
-  Target,
-  Zap,
-  Building2,
-  Link as LinkIcon,
-  Briefcase,
-  Search,
+  Plus,
+  Eye,
+  Star,
+  Settings,
 } from 'lucide-react';
 import { useAuth } from '@/contexts/AuthContext';
 import { Button } from '@/components/ui/button';
 import { useState, useEffect } from 'react';
 
 const navItems = [
-  { icon: LayoutDashboard, label: 'Dashboard', path: '/admin' },
-  { icon: BarChart3, label: 'Analytics', path: '/admin/analytics' },
-  { icon: Search, label: 'SEO', path: '/admin/seo' },
-  { 
-    icon: Server, 
-    label: 'Xops360', 
-    path: '/admin/xops360',
-    children: [
-      { icon: Building2, label: 'Clients', path: '/admin/xops360/clients' },
-      { icon: Server, label: 'Deployments', path: '/admin/xops360/deployments' },
-      { icon: Zap, label: 'Runbooks', path: '/admin/xops360/runbooks' },
-      { icon: LinkIcon, label: 'Integrations', path: '/admin/xops360/integrations' },
-      { icon: BarChart3, label: 'Metrics', path: '/admin/xops360/metrics' },
-    ]
-  },
-  { icon: Target, label: 'Leads', path: '/admin/leads' },
-  { icon: Briefcase, label: 'Engagements', path: '/admin/engagements' },
-  { icon: Users, label: 'Inquiries', path: '/admin/users' },
-  { icon: FileText, label: 'Content', path: '/admin/content' },
+  { icon: LayoutDashboard, label: 'Overview', path: '/admin' },
+  { icon: FileText, label: 'All Case Studies', path: '/admin/case-studies' },
+  { icon: Eye, label: 'Published', path: '/admin/case-studies/published' },
+  { icon: Star, label: 'Featured', path: '/admin/case-studies/featured' },
   { icon: Settings, label: 'Settings', path: '/admin/settings' },
 ];
 
@@ -51,7 +30,6 @@ const AdminLayout: React.FC = () => {
   const location = useLocation();
   const [collapsed, setCollapsed] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
-  const [expandedGroups, setExpandedGroups] = useState<string[]>(['Xops360']);
 
   useEffect(() => {
     if (!loading && !user) {
@@ -72,19 +50,7 @@ const AdminLayout: React.FC = () => {
     navigate('/');
   };
 
-  const toggleGroup = (label: string) => {
-    setExpandedGroups((prev) =>
-      prev.includes(label) ? prev.filter((g) => g !== label) : [...prev, label]
-    );
-  };
-
   const isActive = (path: string) => location.pathname === path;
-  const isGroupActive = (item: typeof navItems[0]) => {
-    if (item.children) {
-      return item.children.some((child) => location.pathname.startsWith(child.path));
-    }
-    return location.pathname === item.path;
-  };
 
   return (
     <div className="min-h-screen bg-background flex">
@@ -119,67 +85,32 @@ const AdminLayout: React.FC = () => {
           </button>
         </div>
 
+        {/* Create New Button */}
+        <div className="p-4 border-b border-border/30">
+          <Link to="/admin/case-studies/new">
+            <Button variant="hero" className={`w-full justify-center gap-2 ${collapsed ? 'px-2' : ''}`}>
+              <Plus className="w-4 h-4" />
+              {!collapsed && 'New Case Study'}
+            </Button>
+          </Link>
+        </div>
+
         {/* Navigation */}
         <nav className="flex-1 p-4 space-y-1">
           {navItems.map((item) => (
-            <div key={item.path}>
-              {item.children ? (
-                <>
-                  <button
-                    onClick={() => !collapsed && toggleGroup(item.label)}
-                    className={`w-full flex items-center gap-3 px-4 py-3 rounded-xl transition-all ${
-                      isGroupActive(item)
-                        ? 'bg-primary/10 text-primary border border-primary/20'
-                        : 'text-muted-foreground hover:text-foreground hover:bg-muted/50'
-                    }`}
-                  >
-                    <item.icon className="w-5 h-5 flex-shrink-0" />
-                    {!collapsed && (
-                      <>
-                        <span className="font-medium flex-1 text-left">{item.label}</span>
-                        <ChevronLeft
-                          className={`w-4 h-4 transition-transform ${
-                            expandedGroups.includes(item.label) ? '-rotate-90' : 'rotate-180'
-                          }`}
-                        />
-                      </>
-                    )}
-                  </button>
-                  {!collapsed && expandedGroups.includes(item.label) && (
-                    <div className="ml-4 mt-1 space-y-1">
-                      {item.children.map((child) => (
-                        <Link
-                          key={child.path}
-                          to={child.path}
-                          onClick={() => setMobileOpen(false)}
-                          className={`flex items-center gap-3 px-4 py-2.5 rounded-lg transition-all text-sm ${
-                            isActive(child.path)
-                              ? 'bg-primary/10 text-primary'
-                              : 'text-muted-foreground hover:text-foreground hover:bg-muted/30'
-                          }`}
-                        >
-                          <child.icon className="w-4 h-4" />
-                          <span>{child.label}</span>
-                        </Link>
-                      ))}
-                    </div>
-                  )}
-                </>
-              ) : (
-                <Link
-                  to={item.path}
-                  onClick={() => setMobileOpen(false)}
-                  className={`flex items-center gap-3 px-4 py-3 rounded-xl transition-all ${
-                    isActive(item.path)
-                      ? 'bg-primary/10 text-primary border border-primary/20'
-                      : 'text-muted-foreground hover:text-foreground hover:bg-muted/50'
-                  }`}
-                >
-                  <item.icon className="w-5 h-5 flex-shrink-0" />
-                  {!collapsed && <span className="font-medium">{item.label}</span>}
-                </Link>
-              )}
-            </div>
+            <Link
+              key={item.path}
+              to={item.path}
+              onClick={() => setMobileOpen(false)}
+              className={`flex items-center gap-3 px-4 py-3 rounded-xl transition-all ${
+                isActive(item.path)
+                  ? 'bg-primary/10 text-primary border border-primary/20'
+                  : 'text-muted-foreground hover:text-foreground hover:bg-muted/50'
+              }`}
+            >
+              <item.icon className="w-5 h-5 flex-shrink-0" />
+              {!collapsed && <span className="font-medium">{item.label}</span>}
+            </Link>
           ))}
         </nav>
 
@@ -212,7 +143,7 @@ const AdminLayout: React.FC = () => {
           >
             <Menu className="w-5 h-5" />
           </button>
-          <span className="font-heading text-lg font-bold tracking-wider text-gradient">AXIOMIO Admin</span>
+          <span className="font-heading text-lg font-bold tracking-wider text-gradient">Case Studies CRM</span>
         </header>
 
         {/* Page content */}

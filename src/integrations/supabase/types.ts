@@ -41,6 +41,78 @@ export type Database = {
         }
         Relationships: []
       }
+      case_studies: {
+        Row: {
+          challenge: string | null
+          client_name: string
+          created_at: string
+          created_by: string | null
+          description: string
+          display_order: number | null
+          featured: boolean
+          full_content: string | null
+          id: string
+          image_url: string | null
+          industry: string
+          is_published: boolean
+          metrics: Json
+          published_at: string | null
+          results: string | null
+          slug: string
+          solution: string | null
+          tags: string[]
+          title: string
+          updated_at: string
+          updated_by: string | null
+        }
+        Insert: {
+          challenge?: string | null
+          client_name: string
+          created_at?: string
+          created_by?: string | null
+          description: string
+          display_order?: number | null
+          featured?: boolean
+          full_content?: string | null
+          id?: string
+          image_url?: string | null
+          industry: string
+          is_published?: boolean
+          metrics?: Json
+          published_at?: string | null
+          results?: string | null
+          slug: string
+          solution?: string | null
+          tags?: string[]
+          title: string
+          updated_at?: string
+          updated_by?: string | null
+        }
+        Update: {
+          challenge?: string | null
+          client_name?: string
+          created_at?: string
+          created_by?: string | null
+          description?: string
+          display_order?: number | null
+          featured?: boolean
+          full_content?: string | null
+          id?: string
+          image_url?: string | null
+          industry?: string
+          is_published?: boolean
+          metrics?: Json
+          published_at?: string | null
+          results?: string | null
+          slug?: string
+          solution?: string | null
+          tags?: string[]
+          title?: string
+          updated_at?: string
+          updated_by?: string | null
+        }
+        Relationships: []
+      }
       contact_inquiries: {
         Row: {
           company: string | null

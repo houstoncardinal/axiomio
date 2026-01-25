@@ -72,8 +72,12 @@ export default function RequestDemo() {
     }
   };
 
-  const openCalendly = () => {
-    window.open("https://calendly.com/kishan-k", "_blank", "noopener,noreferrer");
+  const openXeroTrustCalendly = () => {
+    window.open("https://calendly.com/xerotrust/", "_blank", "noopener,noreferrer");
+  };
+
+  const openXops360Calendly = () => {
+    window.open("https://calendly.com/xops360discovery/", "_blank", "noopener,noreferrer");
   };
 
   return (
@@ -198,41 +202,73 @@ export default function RequestDemo() {
                   with one of our solution experts.
                 </p>
 
-                {/* Calendly Card */}
-                <div className="bg-gradient-to-br from-primary/10 to-primary/5 rounded-3xl p-8 border border-primary/20 mb-8">
-                  <div className="flex items-center gap-4 mb-6">
-                    <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-primary to-primary/70 flex items-center justify-center shadow-lg shadow-primary/25">
-                      <Calendar className="w-8 h-8 text-primary-foreground" />
+                {/* XOPS360 Calendly Card */}
+                <div className="bg-gradient-to-br from-primary/10 to-primary/5 rounded-3xl p-6 border border-primary/20 mb-4 hover:border-primary/40 transition-colors cursor-pointer group" onClick={openXops360Calendly}>
+                  <div className="flex items-center gap-4 mb-4">
+                    <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-primary to-primary/70 flex items-center justify-center shadow-lg shadow-primary/25 group-hover:scale-105 transition-transform">
+                      <Zap className="w-7 h-7 text-primary-foreground" />
                     </div>
-                    <div>
-                      <h3 className="font-heading text-xl font-bold text-foreground">30-Minute Demo</h3>
-                      <p className="text-sm text-muted-foreground">Video call with screen sharing</p>
+                    <div className="flex-1">
+                      <h3 className="font-heading text-lg font-bold text-foreground">XOPS360 Discovery Call</h3>
+                      <p className="text-sm text-muted-foreground">AI-Powered Operations Platform</p>
                     </div>
+                    <ArrowRight className="w-5 h-5 text-primary opacity-0 group-hover:opacity-100 group-hover:translate-x-1 transition-all" />
                   </div>
 
-                  <ul className="space-y-3 mb-8">
+                  <ul className="space-y-2 mb-5">
                     {[
-                      "Live product demonstration",
-                      "Q&A with platform expert",
-                      "Custom use case discussion",
-                      "Implementation timeline review",
+                      "Platform capabilities walkthrough",
+                      "DevOps & CloudOps automation",
+                      "Custom integration discussion",
                     ].map((item, i) => (
-                      <li key={i} className="flex items-center gap-3 text-foreground">
-                        <CheckCircle className="w-4 h-4 text-primary" />
+                      <li key={i} className="flex items-center gap-2 text-foreground">
+                        <CheckCircle className="w-3.5 h-3.5 text-primary" />
                         <span className="text-sm">{item}</span>
                       </li>
                     ))}
                   </ul>
 
-                  <Button variant="hero" size="xl" className="w-full" onClick={openCalendly}>
+                  <Button variant="hero" size="lg" className="w-full">
                     <Calendar className="mr-2 h-5 w-5" />
-                    Pick a Time
+                    Schedule XOPS360 Demo
                   </Button>
-                  
-                  <p className="text-xs text-muted-foreground text-center mt-4">
-                    Powered by Calendly • No account required
-                  </p>
                 </div>
+
+                {/* XeroTrust Calendly Card */}
+                <div className="bg-gradient-to-br from-cyan-500/10 to-teal-500/5 rounded-3xl p-6 border border-cyan-500/20 mb-8 hover:border-cyan-500/40 transition-colors cursor-pointer group" onClick={openXeroTrustCalendly}>
+                  <div className="flex items-center gap-4 mb-4">
+                    <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-cyan-500 to-teal-500 flex items-center justify-center shadow-lg shadow-cyan-500/25 group-hover:scale-105 transition-transform">
+                      <Shield className="w-7 h-7 text-white" />
+                    </div>
+                    <div className="flex-1">
+                      <h3 className="font-heading text-lg font-bold text-foreground">XeroTrust Security Demo</h3>
+                      <p className="text-sm text-muted-foreground">Zero-Trust Network Access</p>
+                    </div>
+                    <ArrowRight className="w-5 h-5 text-cyan-500 opacity-0 group-hover:opacity-100 group-hover:translate-x-1 transition-all" />
+                  </div>
+
+                  <ul className="space-y-2 mb-5">
+                    {[
+                      "Zero-trust architecture overview",
+                      "WireGuard encryption demo",
+                      "Compliance & security features",
+                    ].map((item, i) => (
+                      <li key={i} className="flex items-center gap-2 text-foreground">
+                        <CheckCircle className="w-3.5 h-3.5 text-cyan-500" />
+                        <span className="text-sm">{item}</span>
+                      </li>
+                    ))}
+                  </ul>
+
+                  <Button variant="default" size="lg" className="w-full bg-gradient-to-r from-cyan-500 to-teal-500 hover:from-cyan-600 hover:to-teal-600 text-white border-0">
+                    <Calendar className="mr-2 h-5 w-5" />
+                    Schedule XeroTrust Demo
+                  </Button>
+                </div>
+                
+                <p className="text-xs text-muted-foreground text-center mb-8">
+                  Powered by Calendly • No account required
+                </p>
 
                 {/* Trust Indicators */}
                 <div className="bg-muted/30 rounded-2xl p-6 border border-border">
